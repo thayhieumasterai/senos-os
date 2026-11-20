@@ -1,0 +1,174 @@
+/* ============================================================================
+   SenOS skin - loaded last, on top of style.css + console.css.
+   Design rules: docs/design_web.md. One accent (lotus rose) on violet-tinted
+   neutrals; flat surfaces separated by 1px rules; no gradients, no glow, small
+   radii. This file owns everything that makes SenOS look and sit differently
+   from the upstream layout:
+     1. colour tokens (dark and light) that replace the upstream palette
+     2. layout: talk column left, map centre, library right, rail on the right
+     3. shapes: 6-10px radii, solid primary buttons, quiet scrollbars
+   ========================================================================== */
+:root {
+  --bg: #1a161c; --bg2: #221d25; --bg3: #2a242d; --border: #3a333e;
+  --text: #efeaf0; --text2: #c9c0cc; --text3: #a79eab; --text-hi: #ffffff;
+  --accent: #e0689f; --accent2: #e0689f;
+  --accent-ink: #f0a3c5; --accent2-ink: #f0a3c5; --link-ink: #f0a3c5;
+  --accent-solid: #c2317a; --accent2-solid: #c2317a;
+  --accent-wash: rgba(224, 104, 159, 0.08); --accent-wash-2: rgba(224, 104, 159, 0.14);
+  --accent-line: rgba(224, 104, 159, 0.34); --accent-ring: 0 0 0 3px rgba(224, 104, 159, 0.18);
+  --accent2-wash: rgba(224, 104, 159, 0.10); --accent2-wash-2: rgba(224, 104, 159, 0.18);
+  --accent2-line: rgba(224, 104, 159, 0.36);
+  --surface-1: rgba(255, 255, 255, 0.03); --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.09); --hairline: rgba(255, 255, 255, 0.09);
+  --field-bg: #1f1a22;
+  --sen-accent: var(--accent-solid);
+  --sen-radius: 10px; --sen-radius-sm: 6px; --sen-gap: 10px;
+  --rail-w: 196px; --rail-w-collapsed: 60px; --rail-bg: #1f1a22;
+  /* the knowledge map: a quiet well, not a neon stage */
+  --brain-bg: radial-gradient(ellipse 62% 58% at 50% 46%, #2a242d 0%, #1d181f 60%, #171318 100%);
+  --brain-glass-brd: #3a333e; --brain-ink: #d9cfdc; --brain-ink-hot: #f0a3c5;
+}
+:root[data-theme="light"] {
+  --bg: #faf8fa; --bg2: #ffffff; --bg3: #f3f0f4; --border: #e6e1e8;
+  --text: #221c26; --text2: #55505a; --text3: #6f6675; --text-hi: #120e14;
+  --accent: #b3266b; --accent2: #b3266b;
+  --accent-ink: #9c1f5c; --accent2-ink: #9c1f5c; --link-ink: #9c1f5c;
+  --accent-solid: #b3266b; --accent2-solid: #b3266b;
+  --accent-wash: rgba(179, 38, 107, 0.06); --accent-wash-2: rgba(179, 38, 107, 0.11);
+  --accent-line: rgba(179, 38, 107, 0.30); --accent-ring: 0 0 0 3px rgba(179, 38, 107, 0.14);
+  --accent2-wash: rgba(179, 38, 107, 0.07); --accent2-wash-2: rgba(179, 38, 107, 0.13);
+  --accent2-line: rgba(179, 38, 107, 0.30);
+  --surface-1: rgba(34, 28, 38, 0.03); --surface-2: rgba(34, 28, 38, 0.055);
+  --surface-3: rgba(34, 28, 38, 0.09); --hairline: rgba(34, 28, 38, 0.10);
+  --field-bg: #ffffff;
+  --rail-bg: #ffffff;
+  --brain-bg: radial-gradient(ellipse 62% 58% at 50% 46%, #ffffff 0%, #f6f3f7 62%, #efeaf0 100%);
+  --brain-glass-brd: #e6e1e8; --brain-ink: #55505a; --brain-ink-hot: #9c1f5c;
+}
+
+body { background: var(--bg); }
+::selection { background: var(--accent-wash-2); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ============================================================================
+   LAYOUT - desktop. Talk column on the LEFT, knowledge map in the middle,
+   library on the RIGHT; the navigation rail sits on the right edge.
+   col-resize.js has the drag edges swapped to match. Phones keep the drawer
+   behaviour from console.css (rail width is 0 there).
+   ========================================================================== */
+@media (min-width: 861px) {
+  .rail {
+    left: auto; right: 0; top: 0; bottom: 0;
+    border: 0; border-left: 1px solid var(--border); border-radius: 0;
+    padding: 12px 8px; box-shadow: none; background: var(--rail-bg);
+  }
+  body.has-rail .hud { margin-left: 0; margin-right: var(--rail-w); width: calc(100% - var(--rail-w)); }
+  .cview { left: 0; right: var(--rail-w); bottom: 0; border: 0; border-radius: 0; }
+  /* collapsed-rail tooltip opens to the LEFT of the icon (console.js sets `left` to the icon's left edge) */
+  .rail-tip { transform: translate(calc(-100% + 4px), -50%); }
+  .rail-tip.show { transform: translate(-100%, -50%); }
+
+  /* columns: [talk] [map] [library] */
+  .hud-body {
+    gap: var(--sen-gap); padding: var(--sen-gap);
+    grid-template-columns: var(--hud-right-w, clamp(280px, 26vw, 360px)) minmax(0, 1fr) var(--hud-left-w, clamp(200px, 18vw, 250px));
+  }
+  .hud-body > .hud-right { order: 1; }
+  .hud-body > .hud-center { order: 2; }
+  .hud-body > .hud-left { order: 3; }
+  body.vault-thu .hud-body { grid-template-columns: var(--hud-right-w, clamp(280px, 26vw, 360px)) minmax(0, 1fr) 44px; }
+  body.chatcol-thu .hud-body { grid-template-columns: 44px minmax(0, 1fr) var(--hud-left-w, clamp(200px, 18vw, 250px)); }
+  body.vault-thu.chatcol-thu .hud-body { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  /* the collapse arrows were drawn for the old sides: mirror them */
+  .chatcol-thu-btn svg, .chatcol-expand svg { transform: none; }
+  #vtCollapse svg, .vault-expand svg { transform: scaleX(-1); }
+
+  .hud-left, .hud-right, .hud-center {
+    border-radius: var(--sen-radius); border: 1px solid var(--border); overflow: hidden;
+  }
+  .hud-left, .hud-right { background: var(--bg2); }
+
+  /* composer: a centred dock rather than a full-width bar */
+  .hud-voice { justify-self: center; width: min(100% - 28px, 940px); margin: 0 auto 10px; }
+}
+
+/* ---- Rail: plain wordmark, quiet items, one accent mark on the active one ---- */
+.rail-brand { gap: 10px; padding: 4px 8px 12px; }
+.rail-brand .brand-mark img { width: 28px !important; height: 28px !important; border-radius: 6px !important; box-shadow: none; }
+.rail-brand-text {
+  font-weight: 600; letter-spacing: -0.01em; font-size: 16px; text-transform: none;
+  background: none; color: var(--text); -webkit-text-fill-color: currentColor;
+}
+.rail-brand-text i { font-style: normal; font-weight: 600; opacity: 1; color: inherit; margin: 0; }
+.rail-item { border-radius: var(--sen-radius-sm); }
+.rail-item.active, .rail-item[aria-current="page"] {
+  background: var(--surface-2); box-shadow: inset -2px 0 0 var(--accent);
+}
+.rail-item.active .rail-ico { color: var(--accent-ink); }
+.rail-grp-lbl { text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 500; color: var(--text3); }
+.rail-foot .rf-author { color: var(--text3); letter-spacing: 0; }
+
+/* ---- Top bar: a flat strip with one rule under it ---- */
+.hud-top {
+  margin: 0; border-radius: 0; border: 0; border-bottom: 1px solid var(--border);
+  background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.hud-top::after { content: none; }
+.hud-icon-btn { border-radius: var(--sen-radius-sm); }
+
+/* ---- Composer ---- */
+.hud-voice {
+  border-radius: var(--sen-radius); border: 1px solid var(--border);
+  background: var(--bg2); box-shadow: none;
+}
+.hud-voice:focus-within { border-color: var(--accent-line); box-shadow: var(--accent-ring); }
+
+/* ---- Buttons, fields, cards ---- */
+.s-btn, .gcard-btn, .mp-btn, .ws-btn, .s-btn-ghost { border-radius: var(--sen-radius-sm); }
+.s-btn, .gcard-btn.primary, .mp-btn.primary, .ws-btn.primary {
+  background: var(--accent-solid); border-color: var(--accent-solid); color: #fff; box-shadow: none;
+}
+.s-btn:hover, .gcard-btn.primary:hover, .mp-btn.primary:hover, .ws-btn.primary:hover { filter: brightness(0.94); }
+input[type="text"], input[type="password"], input[type="search"], input[type="email"], input[type="number"], select, textarea {
+  border-radius: var(--sen-radius-sm);
+}
+.modal, .modal-card, .gcard, .cv-card, .card { border-radius: var(--sen-radius); }
+
+/* ---- Knowledge map overlays: counters as a vertical dock on the left ---- */
+.brain-stats {
+  top: 50%; bottom: auto; left: 14px; transform: translateY(-50%);
+  flex-direction: column; border-radius: var(--sen-radius); padding: 6px 4px;
+  border-color: var(--brain-glass-brd); background: var(--bg2);
+  backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none;
+}
+.brain-stats .bstat-sep { width: 70%; height: 1px; align-self: center; }
+.brain-stats .bstat-num {
+  background: none; color: var(--text); -webkit-text-fill-color: currentColor;
+  font-weight: 500; font-variant-numeric: tabular-nums;
+}
+.graph-stats { top: auto; bottom: 14px; left: 14px; border-radius: var(--sen-radius-sm); font-variant-numeric: tabular-nums; }
+.brain-overlay-toggle { border-radius: var(--sen-radius-sm); }
+.orb-state { letter-spacing: 0.08em; font-size: 11px; font-weight: 500; color: var(--text3); text-shadow: none; }
+
+/* ---- Panel headings: plain labels ---- */
+.vault-title, .panel-label > span:first-child {
+  letter-spacing: 0; font-weight: 600; font-size: 12px; text-transform: none;
+  padding: 0; border-radius: 0; background: none; color: var(--text2);
+}
+
+.brain-stats .bstat-lbl { text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--text3); }
+
+/* The "give a star" prompt points at the upstream project; it has no place in a customer workspace. */
+.rf-star, .sn-overlay, .sn-card { display: none !important; }
+
+/* ---- rail brand = the tenant's own logo and name (Thiết lập > Thương hiệu) ---- */
+.rail-brand { flex-direction: column; align-items: flex-start; gap: 6px; padding: 6px 8px 14px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.rail-brand .brand-mark { display: flex; align-items: center; min-height: 40px; }
+.rail-brand .brand-mark img { width: auto !important; height: 40px !important; max-width: 168px; object-fit: contain; border-radius: 6px !important; box-shadow: none !important; display: block; }
+.rail-brand .brand-initial { display: none; width: 40px; height: 40px; border-radius: 10px; place-items: center; font-weight: 700; font-size: 20px; color: #fff; background: var(--accent-solid); }
+.rail-brand.no-logo .brand-mark img { display: none; }
+.rail-brand.no-logo .brand-initial { display: grid; }
+.rail-brand-text { font-size: 14px !important; font-weight: 600 !important; line-height: 1.25; white-space: normal; word-break: break-word; }
+body.rail-collapsed .rail-brand-text, .rail.collapsed .rail-brand-text { display: none; }

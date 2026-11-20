@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 60 220 188" width="512" height="512">
+  <!-- SenOS mark: lotus mascot with smiling eyes. Same outline as SHAPES.lotus in dashboard/pet.js. -->
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B4BFF"/><stop offset=".5" stop-color="#8B5CFF"/><stop offset="1" stop-color="#E14BD8"/></linearGradient></defs>
+  <path d="M160 68 Q186 96 190 124 Q216 104 248 106 Q256 150 232 184 Q250 186 262 196 Q236 240 160 240 Q84 240 58 196 Q70 186 88 184 Q64 150 72 106 Q104 104 130 124 Q134 96 160 68 Z" fill="url(#g)" stroke="#C9B8FF" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M119.5 178.7 Q134.5 157.1 149.6 178.7 M170.2 178.7 Q185.2 157.1 200.1 178.7" fill="none" stroke="#5EF2E6" stroke-width="10" stroke-linecap="round"/>
+</svg>

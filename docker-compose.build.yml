@@ -1,0 +1,36 @@
+# ============================================================================
+# SenOS - BUILD TỪ SOURCE (thay vì pull image GHCR).
+#   docker compose -f docker-compose.build.yml up -d --build
+# Dùng khi: tự host registry riêng, fork sửa code, hoặc test image trước khi đẩy.
+# ============================================================================
+services:
+  senos:
+    build:
+      context: .
+      args:
+        CLAUDE_CLI_VERSION: ${CLAUDE_CLI_VERSION:-latest}
+    image: ghcr.io/thayhieumasterai/senos-os:latest
+    container_name: ${SENOS_NAME:-senos}          # đổi trong .env khi chạy nhiều bản trên một máy
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "${SENOS_HOST_PORT:-7777}:7777"
+    volumes:
+      - senos-data:/data
+      - senos-brains:/brains      # đổi sang  ./brains:/brains  nếu muốn git-backup (chown -R 10001 ./brains)
+      - claude-auth:/home/senos/.claude
+      - codex-auth:/home/senos/.codex
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,os,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:'+os.getenv('SENOS_PORT','7777')+'/health',timeout=4).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+volumes:
+  senos-data:
+  senos-brains:
+  claude-auth:
+  codex-auth:
