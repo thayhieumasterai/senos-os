@@ -20,6 +20,10 @@
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
+  // Packs come from upstream's store and keep their ids (javis.*) and file names (javis-*.zip): those are the keys for
+  // install, update and the file check. Only what the owner READS says SenOS; every data-* attribute keeps the real id.
+  const hienMa = (s) => (s || "").toString().replace(/^javis([.-])/, "senos$1");
+
   // Từ điển vi.json khi file này chạy DƯỚI NODE (test nạp nó bằng `new Function`). Trong thân
   // một `new Function` thì `require` KHÔNG tồn tại - nó là biến của module, không phải biến
   // toàn cục - nên mượn `process.mainModule.require`. Ba đường dò vì lối nạp đó không để lại
@@ -284,7 +288,7 @@
       + gt + (phu ? '<div class="pkm-o-phu">' + phu + '</div>' : "") + '</div>';
     const bang = [
       o(tw("store.inspect.file"), '<div class="pkm-o-gt">'
-        + esc(d.filename || tw("store.inspect.file_fallback"))
+        + esc(hienMa(d.filename) || tw("store.inspect.file_fallback"))
         + ' <span class="nhe">· ' + co(d.size) + '</span></div>'),
       o(tw("store.inspect.sha"),
         '<div class="pkm-o-ma">' + esc((d.sha256 || "").slice(0, 20)) + '…</div>',
@@ -300,9 +304,9 @@
     ].filter(Boolean).join("");
 
     modal(
-      pkmDau(d, esc(nn(d.name, d.id))
+      pkmDau(d, esc(nn(d.name, hienMa(d.id)))
           + (d.version ? '<span class="pkm-ver">v' + esc(d.version) + '</span>' : ""),
-        '<code>' + esc(d.id) + '</code>'
+        '<code>' + esc(hienMa(d.id)) + '</code>'
           + (d.author && d.author.name
               ? ' · ' + tw("store.inspect.author", { ten: esc(d.author.name) }) : ""))
       + '<div class="pkm-than">'
@@ -408,7 +412,7 @@
   function baoDoiTen(d, r) {
     const ds = ((r && r.vault) || {}).doi_ten || [];
     if (!ds.length) return;
-    modal(pkmDau(d, esc(tw("store.installed_renamed.title")), esc(nn(d.name, d.id)))
+    modal(pkmDau(d, esc(tw("store.installed_renamed.title")), esc(nn(d.name, hienMa(d.id))))
       + '<div class="pkm-than"><p class="pkm-mota">' + esc(tw("store.installed_renamed.body")) + '</p><ul>'
       + ds.map(x => '<li>' + tw("store.installed_renamed.row",
           { goc: '<code>' + esc(x.goc || "") + '</code>', moi: '<code>' + esc(x.slug || "") + '</code>' }) + '</li>').join("")
@@ -642,7 +646,7 @@
       + (showKind === true && g.nhom ? '<span class="kho-nhom">' + esc(tw(lo.nhan)) + '</span>' : "")
       + '<span class="kho-nhom">' + esc(g.nhom ? nhanNhom(g.nhom) : tw(lo.nhan)) + '</span>'
       + '</span></div>'
-      + '<div class="kho-ten">' + esc(nn(g.name, g.id))
+      + '<div class="kho-ten">' + esc(nn(g.name, hienMa(g.id)))
       + (dai ? infoBtn() : "")
       + '</div>'
       + '<div class="cat-desc kho-mo-ta">' + esc(moTa) + '</div>'
@@ -800,7 +804,7 @@
     const laMoi = _kho.nhom === "Có bản mới";
     const q = _kho.tim.trim().toLowerCase();
     if (!SAP[_kho.sap]) _kho.sap = docSap();
-    const matches = g => !q || (nn(g.name, g.id) + " " + nn(g.description) + " " + g.id).toLowerCase().includes(q);
+    const matches = g => !q || (nn(g.name, g.id) + " " + nn(g.description) + " " + g.id + " " + hienMa(g.id)).toLowerCase().includes(q);
     const hop = sapXep(cungLoai, _kho.sap).filter(g =>
       (_kho.nhom === "Tất cả"
         || (laDaCai ? g.installed
@@ -1198,7 +1202,7 @@
       + ic(icon) + tieu + '</div><div>' + than + '</div></div>';
     const bang = [
       oBang(tw("store.inspect.file"), '<div class="pkm-o-gt">'
-        + esc(d.filename || tw("store.inspect.file_fallback"))
+        + esc(hienMa(d.filename) || tw("store.inspect.file_fallback"))
         + ' <span class="nhe">· ' + co(d.size) + '</span></div>'),
       oBang(tw("store.inspect.sha"),
         '<div class="pkm-o-ma">' + esc((d.sha256 || "").slice(0, 20)) + '…</div>',
@@ -1301,8 +1305,8 @@
     const xoa = (d.vault || {}).xoa || [];
     const vaultBrain = String((d.vault || {}).brain_name || "");
     const giu = (d.vault || {}).giu || [];
-    modal(pkmDau(d, tw("store.rm.heading", { ten: esc(nn(d.name, d.id)) }),
-                 '<code>' + esc(d.id) + '</code>')
+    modal(pkmDau(d, tw("store.rm.heading", { ten: esc(nn(d.name, hienMa(d.id))) }),
+                 '<code>' + esc(hienMa(d.id)) + '</code>')
       + '<div class="pkm-than">'
       + '<div class="pkm-canh do"><div class="pkm-canh-tieu">' + ic("triangle-alert")
       + tw("store.rm.lose") + '</div>'
