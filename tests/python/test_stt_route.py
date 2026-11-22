@@ -34,8 +34,8 @@ async def fake_nghe(data, ten, key, model="", ngon_ngu=None, hotwords=""):
     calls.append({"data": data, "ten": ten, "key": key, "model": model, "lang": ngon_ngu, "hotwords": hotwords})
     if not key:
         return {"ok": False, "ly_do": "thieu_key"}
-    # Whisper chép "SenOS" thành "David": route phải sửa lại theo ngữ cảnh (nghe_sua) trước khi trả.
-    return {"ok": True, "text": "xin chào David", "model": model or "whisper-large-v3-turbo"}
+    # Whisper chép "SenOS" thành "Xenos": route phải sửa lại theo ngữ cảnh (nghe_sua) trước khi trả.
+    return {"ok": True, "text": "xin chào Xenos", "model": model or "whisper-large-v3-turbo"}
 
 
 _goc_nghe, _goc_cfg, _goc_models = stt.groq_nghe, main.cfgmod.read_settings, antigravity_cli.list_models
@@ -44,7 +44,7 @@ main.cfgmod.read_settings = lambda: {"model": {"groq_api_key": "gk"}, "voice": {
 antigravity_cli.list_models = lambda: [{"id": "gemini-3.8-flash-low", "label": "Gemini 3.8 Flash (Low)"}]
 
 r = client.post("/stt", files={"file": ("voice.webm", b"OggS-fake", "audio/webm")}, data={"lang": "vi-VN"})
-check("/stt: 200 ok=true kèm text đã sửa David -> SenOS", r.status_code == 200 and r.json()["ok"] is True and r.json()["text"] == "xin chào SenOS")
+check("/stt: 200 ok=true kèm text đã sửa Xenos -> SenOS", r.status_code == 200 and r.json()["ok"] is True and r.json()["text"] == "xin chào SenOS")
 check("/stt: mồi hotwords cho Whisper (SenOS + từ người dùng khai, đứng cuối sát audio)", calls[-1]["hotwords"].endswith("SenOS, Pancake, OpenRouter."))
 check("/stt: mồi kèm từ tiếng Anh hay nói xen (GitHub Actions)", "GitHub Actions" in calls[-1]["hotwords"])
 check("/stt: byte file tới nguyên vẹn, tên file giữ", calls[-1]["data"] == b"OggS-fake" and calls[-1]["ten"] == "voice.webm")

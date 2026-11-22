@@ -95,7 +95,7 @@ check("the module exposes SenOSPetMenu", !!(PM && PM.renderSettings && PM.menuEn
   check("pet menu: default six in order", rows.map((r) => r.id).join() === "chat,agent,workflow,mic,pet,teams");
   check("pet menu: the mic row says what a press will do", rows[3].label === vi["pet.menu.mic_on"] && PM.menuEntries({ mic: true })[3].label === vi["pet.menu.mic_off"]);
   check("settings list names the mic as a toggle, not by its current state", PM.entry("mic").label === vi["petmenu.mic_label"]);
-  check("the assistants item is called Cộng sự, like its page", PM.entry("agent").label === "Cộng sự" && vi["page.workspace.label"] === "Cộng sự");
+  check("the assistants item is called Trợ lý, like its page", PM.entry("agent").label === "Trợ lý" && vi["page.workspace.label"] === "Trợ lý");
   win.navigator.mediaDevices = undefined;
   check("mic without browser permission is unavailable, with the reason", PM.entry("mic").why === vi["petmenu.why_mic"]);
   win.navigator.mediaDevices = { getUserMedia() {} };
@@ -145,7 +145,7 @@ check("the module exposes SenOSPetMenu", !!(PM && PM.renderSettings && PM.menuEn
   // Remove anything (owner: "tắt luôn cả các chức năng mặc định ... có thể tắt hết sạch được luôn")
   click(btn({ "data-pm-remove": true }, 1));
   h = host.innerHTML;
-  check("the X removes a DEFAULT item too (row 1 is Chat)", order() === 6 && h.indexOf("Trò chuyện") < 0 && h.indexOf("Cộng sự") >= 0);
+  check("the X removes a DEFAULT item too (row 1 is Chat)", order() === 6 && h.indexOf("Trò chuyện") < 0 && h.indexOf("Trợ lý") >= 0);
   check("removing is a change to save", !/data-pm-save disabled/.test(h) && win.SenOSLeaveGuard.fn() === vi["petmenu.leave"]);
   for (let i = 0; i < 6; i++) click(btn({ "data-pm-remove": true }, 0));
   h = host.innerHTML;
@@ -169,7 +169,7 @@ check("the module exposes SenOSPetMenu", !!(PM && PM.renderSettings && PM.menuEn
   check("picking one already there adds nothing", order() === 7);
   pick.listeners.click[0]({ target: { closest: (s) => (s === "[data-pm-pick]" ? pickBtn("tasks") : null) } });
   check("picking a new feature adds it at the end and closes the picker",
-    order() === 8 && /data-i="7"[\s\S]*Nhiệm vụ/.test(host.innerHTML) && !doc.body.kids.some((k) => k.id === "petMenuPick"));
+    order() === 8 && /data-i="7"[\s\S]*Công việc/.test(host.innerHTML) && !doc.body.kids.some((k) => k.id === "petMenuPick"));
 
   // Save: network error keeps the draft and the running menu
   const before = PM.current().join();

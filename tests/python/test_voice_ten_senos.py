@@ -19,11 +19,11 @@ import voice_brain  # noqa: E402
 class TenSenOS(unittest.TestCase):
     def test_cau_that_cua_nguoi_dung(self):
         tv = nghe_sua.vocabulary({})
-        self.assertEqual(nghe_sua.sua("Ok bây giờ giọng nói chắc là tốt rồi đúng không David", tv),
+        self.assertEqual(nghe_sua.sua("Ok bây giờ giọng nói chắc là tốt rồi đúng không Xenos", tv),
                          "Ok bây giờ giọng nói chắc là tốt rồi đúng không SenOS")
-        self.assertEqual(nghe_sua.sua("David ơi", tv), "SenOS ơi")
+        self.assertEqual(nghe_sua.sua("Xenos ơi", tv), "SenOS ơi")
         # Người thứ ba và câu không có tên thì để yên.
-        self.assertEqual(nghe_sua.sua("nhắn cho David là mai họp", tv), "nhắn cho David là mai họp")
+        self.assertEqual(nghe_sua.sua("nhắn cho Xenos là mai họp", tv), "nhắn cho Xenos là mai họp")
         self.assertEqual(nghe_sua.sua("Em phải trả lời vâng", tv), "Em phải trả lời vâng")
 
     def test_websocket_sua_ten_truoc_khi_luu(self):

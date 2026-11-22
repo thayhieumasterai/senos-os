@@ -44,7 +44,7 @@ check("số liệu vẫn được nạp (who_counts cho lọc nhanh và huy hi�
 // ---- 2. đầu trang: tiêu đề cùng hàng với tab ----
 check("tiêu đề và tab cùng một hàng .ht-top", /<div class="ht-top">/.test(CV) && /<div class="ht-title">/.test(CV) &&
   CV.indexOf('class="ht-title"') < CV.indexOf('class="ht-tabs"'));
-check("tiêu đề lấy từ từ điển của trang (page.conversations.label)", /window\.t\("page\.conversations\.label"\)/.test(CV) && VI["page.conversations.label"] === "Chatbot");
+check("tiêu đề lấy từ từ điển của trang (page.conversations.label)", /window\.t\("page\.conversations\.label"\)/.test(CV) && VI["page.conversations.label"] === "Hộp thư bot");
 check("đầu trang chung bị ẩn cho trang này", /\.cview\.cview-hoi-thoai \.cview-head \{ display: none; \}/.test(CSS));
 check("CANARY: lớp cview-hoi-thoai được bật/tắt ở MỌI lần renderPage, trước khi rẽ nhánh theo trang",
   /cv\.classList\.toggle\("cview-hoi-thoai", id === "conversations" \|\| id === "chatbots"\)/.test(CON) &&

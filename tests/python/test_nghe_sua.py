@@ -3,9 +3,9 @@
     python tests/run.py nghe_sua
 
 Vì sao file này tồn tại (0.59.24): người dùng nói lẫn Việt - Anh, máy nghe chép "SenOS" thành
-"David", "Jarvis", "Gia vít"... rồi SenOS trả lời bám nghĩa đen. Lớp này sửa theo ÂM và NGỮ
+"Xenos", "Senost", "Sê nốt"... rồi SenOS trả lời bám nghĩa đen. Lớp này sửa theo ÂM và NGỮ
 CẢNH trước khi câu đi vào bộ não. Ranh giới quan trọng: không đổi tên người thứ ba ("nhắn cho
-David"), không đổi tên riêng hai chữ ("David Beckham"), không đụng câu không liên quan, và
+Xenos"), không đổi tên riêng hai chữ ("Xenos Beckham"), không đụng câu không liên quan, và
 không sửa gì thì trả y nguyên.
 """
 from _paths import ROOT, SERVER  # noqa: E402,F401
@@ -25,34 +25,34 @@ TV = ["SenOS"]
 S = lambda s, tv=TV: nghe_sua.sua(s, tv)   # noqa: E731
 
 # ---- 1. Khoá âm: những cách máy nghe hay chép "SenOS" phải về cùng một khoá ----
-for w in ("SenOS", "David", "Davis", "Jarvis", "Gia vít", "Ja vịt", "Đa vít", "senost"):
+for w in ("SenOS", "Xenos", "Senot", "Senost", "Sê nốt", "Xen ốt", "Sen ốt", "senost"):
     check(f"khoá âm của {w!r} trùng SenOS", nghe_sua.khoa_am(w) == nghe_sua.khoa_am("SenOS"))
 check("Java KHÔNG trùng khoá SenOS", nghe_sua.khoa_am("Java") != nghe_sua.khoa_am("SenOS"))
 
 # ---- 2. Gọi tên: sửa ở mọi vị trí khi trùng âm hoàn toàn ----
-check("đầu câu: David -> SenOS", S("David mở trang việc giúp anh") == "SenOS mở trang việc giúp anh")
-check("hey David", S("hey David, doanh thu hôm nay bao nhiêu") == "hey SenOS, doanh thu hôm nay bao nhiêu")
-check("cuối câu: cảm ơn David", S("cảm ơn David") == "cảm ơn SenOS")
-check("Jarvis -> SenOS", S("Jarvis ơi mở lịch") == "SenOS ơi mở lịch")
-check("bị tách hai tiếng: Gia vít ơi", S("Gia vít ơi, tóm tắt email") == "SenOS ơi, tóm tắt email")
-check("Ja vịt giữa câu (trùng hoàn toàn)", S("hôm nay ja vịt thấy sao") == "hôm nay SenOS thấy sao")
-check("Đa vít", S("Đa vít cho anh xem lịch") == "SenOS cho anh xem lịch")
+check("đầu câu: Xenos -> SenOS", S("Xenos mở trang việc giúp anh") == "SenOS mở trang việc giúp anh")
+check("hey Xenos", S("hey Xenos, doanh thu hôm nay bao nhiêu") == "hey SenOS, doanh thu hôm nay bao nhiêu")
+check("cuối câu: cảm ơn Xenos", S("cảm ơn Xenos") == "cảm ơn SenOS")
+check("Senost -> SenOS", S("Senost ơi mở lịch") == "SenOS ơi mở lịch")
+check("bị tách hai tiếng: Sê nốt ơi", S("Sê nốt ơi, tóm tắt email") == "SenOS ơi, tóm tắt email")
+check("Xen ốt giữa câu (trùng hoàn toàn)", S("hôm nay xen ốt thấy sao") == "hôm nay SenOS thấy sao")
+check("Sen ốt", S("Sen ốt cho anh xem lịch") == "SenOS cho anh xem lịch")
 check("sửa nhiều chỗ trong một câu",
-      S("David ơi, David nghe rõ không") == "SenOS ơi, SenOS nghe rõ không")
+      S("Xenos ơi, Xenos nghe rõ không") == "SenOS ơi, SenOS nghe rõ không")
 check("giữ nguyên xuống dòng và dấu câu quanh chỗ sửa",
-      S("Ok David.\nMở trang cài đặt!") == "Ok SenOS.\nMở trang cài đặt!")
+      S("Ok Xenos.\nMở trang cài đặt!") == "Ok SenOS.\nMở trang cài đặt!")
 
 # ---- 3. Trùng vừa phải: CHỈ sửa ở vị trí gọi tên ----
-check("Gia vị ơi (gọi tên) -> SenOS", S("Gia vị ơi, mấy giờ rồi") == "SenOS ơi, mấy giờ rồi")
+check("Sê nộp ơi (gọi tên) -> SenOS", S("Sê nộp ơi, mấy giờ rồi") == "SenOS ơi, mấy giờ rồi")
 check("cho gia vị vào nồi (giữa câu) giữ nguyên",
       S("cho gia vị vào nồi rồi đun") == "cho gia vị vào nồi rồi đun")
-check("Cha vít đầu câu -> SenOS", S("Cha vít, đọc tin mới") == "SenOS, đọc tin mới")
+check("Xê nốp đầu câu -> SenOS", S("Xê nốp, đọc tin mới") == "SenOS, đọc tin mới")
 
 # ---- 4. Không sửa bừa ----
 GIU = [
-    "nhắn cho David là tôi đến muộn",           # người thứ ba
-    "gặp David lúc 3 giờ",
-    "David Beckham đá bóng hay",                 # tên riêng hai chữ
+    "nhắn cho Xenos là tôi đến muộn",           # người thứ ba
+    "gặp Xenos lúc 3 giờ",
+    "Xenos Beckham đá bóng hay",                 # tên riêng hai chữ
     "học Java với anh Nam",                      # Java không phải SenOS
     "đọc file README.md và mở https://github.com/x",
     "doanh thu tháng này bao nhiêu",
@@ -63,8 +63,8 @@ for s in GIU:
 check("không có gì sửa thì trả CÙNG đối tượng", S("xin chào") == "xin chào")
 check("đã đúng SenOS thì không đổi gì", S("SenOS ơi mở lịch") == "SenOS ơi mở lịch")
 check("chạy hai lần ra cùng kết quả (idempotent)",
-      S(S("David ơi Gia vít nghe không")) == S("David ơi Gia vít nghe không"))
-check("bộ từ vựng rỗng: trả y nguyên", nghe_sua.sua("David ơi", []) == "David ơi")
+      S(S("Xenos ơi Sê nốt nghe không")) == S("Xenos ơi Sê nốt nghe không"))
+check("bộ từ vựng rỗng: trả y nguyên", nghe_sua.sua("Xenos ơi", []) == "Xenos ơi")
 
 # ---- 5. Từ vựng người dùng khai: nhiều từ, cụm hai tiếng ----
 TV2 = ["SenOS", "OpenRouter", "Pancake"]

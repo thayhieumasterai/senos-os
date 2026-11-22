@@ -45,7 +45,7 @@ URL = "https://codeload.github.com/blogminhquy/javis-zalo/tar.gz/refs/tags/v1.6.
 
 # ---- 1. ledger ---------------------------------------------------------------------------------------
 check("markers: last long arg plus the package name of a tarball URL",
-      mcp_orphans._markers(["-y", "--prefer-offline", URL, "mcp", "start"]) == [URL, "/senos-zalo/"])
+      mcp_orphans._markers(["-y", "--prefer-offline", URL, "mcp", "start"]) == [URL, "/javis-zalo/"])
 check("markers: an ordinary package keeps one marker", mcp_orphans._markers(["-y", "mcp-server-gsc"]) == ["mcp-server-gsc"])
 LINUX = os.name != "nt" and os.path.isdir("/proc")
 if LINUX:

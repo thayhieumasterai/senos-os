@@ -8,6 +8,14 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.595.0] - 2026-11-22
+### Improved
+- **Store packs show as `senos.`** on the card and the install and uninstall screens; inside they keep their original ids, so install and update work as before.
+- **SenOS ships from its own repos** (thayhieumasterai/senos-os, store thayhieumasterai/senos-store); the updater and the Docker image point there.
+### Fixed
+- The public repo's CI is green again: tests follow SenOS's own design and names, and the qualification hashes follow the renamed files.
+- Resetting the mascot brings back the lotus (it used to bring back the old star); the mascot menu names the Assistants page correctly.
+
 ## [0.593.0] - 2026-11-18
 ### Added
 - **Bots read the files staff send customers on Zalo OA and Fanpage.** A PDF, Word or Excel quote, or a photo, sent from the OA app or the Page inbox now shows in the Inbox (labelled Staff) and the bot knows what it says when the customer asks about it. Photos are read by a connected brain that can see.

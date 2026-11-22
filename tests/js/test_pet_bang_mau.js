@@ -84,8 +84,9 @@ check("tông tối không bị gọt bão hoà thành pastel",
 const laCam = (hex) => { const c = hls(hex); return c.h >= 15 && c.h <= 40 && c.s >= 0.6; };
 check("có bảng màu tên 'cam'", bang.some(p => p.ten === "cam"));
 const cam = bang.find(p => p.ten === "cam") || { sun: ["#000000"], moon: ["#000000"] };
-check("màu 'cam' ra cam ở giao diện SÁNG", laCam(cam.sun[0]), cam.sun[0]);
-check("màu 'cam' ra cam ở giao diện TỐI", laCam(cam.moon[0]), cam.moon[0]);
+// SenOS keeps the palette key "cam" (saved configs use it) but paints it in the brand violet.
+check("bảng mặc định 'cam' là tím SenOS ở giao diện SÁNG", cam.sun[0] === "#7B4DFF", cam.sun[0]);
+check("bảng mặc định 'cam' là tím SenOS ở giao diện TỐI", cam.moon[0] === "#8B5CFF", cam.moon[0]);
 check("và 'amber' cũng ra cam ở giao diện tối (lỗi gốc)",
   laCam((bang.find(p => p.ten === "amber") || { moon: ["#000"] }).moon[0]),
   (bang.find(p => p.ten === "amber") || { moon: ["?"] }).moon[0]);

@@ -65,7 +65,7 @@ check("sidebar: Connections group has logins", /ids: \["mcp", "packs", "channels
 // Owner, 2026-10-28: choosing the brain is SenOS's own setting, not an outside connection: Models sits under System.
 check("sidebar: Models is in the System group", /ids: \["models", "settings", "share", "account"\], foot: true/.test(cons));
 check("sidebar: logins has the cookie icon", /logins: "cookie"/.test(cons));
-check("page is called Cookies in both languages", VI["page.logins.label"] === "Cookies" && EN["page.logins.label"] === "Cookies");
+check("page is called Phiên đăng nhập / Sign-ins", VI["page.logins.label"] === "Phiên đăng nhập" && EN["page.logins.label"] === "Sign-ins");
 check("cookie and file-up icons are vendored", /"cookie":/.test(D("vendor/lucide-icons.js")) && /"file-up":/.test(D("vendor/lucide-icons.js")));
 check("page delegates to login-vault.js", /id === "logins"[\s\S]{0,200}SenOSLoginVault\.mount\(el\)/.test(cons));
 check("voice commands know the page", /"logins", "pet", "share"\]/.test(D("ui-actions.js")) && /"logins", "pet", "share",/.test(R("server/ui_targets.py")));

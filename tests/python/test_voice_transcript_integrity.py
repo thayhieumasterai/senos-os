@@ -25,7 +25,7 @@ class LocalCorrections(unittest.TestCase):
 
     def test_ui_context_is_not_speech(self):
         context = '[NGỮ CẢNH GIAO DIỆN: chọn="David ơi"; kênh=giọng]\n\n'
-        self.assertEqual(nghe_sua.sua(context + "David ơi", ["SenOS"]), context + "SenOS ơi")
+        self.assertEqual(nghe_sua.sua(context + "Xenos ơi", ["SenOS"]), context + "SenOS ơi")
 
 
 class ModelCorrections(unittest.TestCase):
@@ -51,7 +51,7 @@ class ModelCorrections(unittest.TestCase):
 
     def test_local_spelling_corrections_may_be_shorter(self):
         for original, proposed in [
-            ("David mở lịch", "SenOS mở lịch"),
+            ("Xenos mở lịch", "SenOS mở lịch"),
             ("Gia vít ơi mở lịch", "SenOS ơi mở lịch"),
             ("mở Open Router", "mở OpenRouter"),
             ("SenOS mở lịch", "SenOS, mở lịch."),
@@ -61,7 +61,7 @@ class ModelCorrections(unittest.TestCase):
 
     def test_preserves_ui_context_while_correcting_only_speech(self):
         prefix = '[NGỮ CẢNH GIAO DIỆN: trang=models; chọn="bản 200"; kênh=giọng]\n\n'
-        self.assertEqual(voice_brain.safe_transcript_rewrite(prefix + "David mở lịch", "SenOS mở lịch"),
+        self.assertEqual(voice_brain.safe_transcript_rewrite(prefix + "Xenos mở lịch", "SenOS mở lịch"),
                          prefix + "SenOS mở lịch")
         self.assertEqual(voice_brain.safe_transcript_rewrite(prefix + "SenOS mở lịch", "SenOS"),
                          prefix + "SenOS mở lịch")
@@ -87,7 +87,7 @@ class ModelCorrections(unittest.TestCase):
                 self.assertEqual((head, speech), (prefix, "nghe anh nói chưa"))
                 self.assertEqual(voice_brain.safe_transcript_rewrite(original, "Nghe anh nói chưa?"),
                                  prefix + "Nghe anh nói chưa?")
-                self.assertEqual(nghe_sua.sua(prefix + "David ơi", ["SenOS"]), prefix + "SenOS ơi")
+                self.assertEqual(nghe_sua.sua(prefix + "Xenos ơi", ["SenOS"]), prefix + "SenOS ơi")
 
     def test_model_cannot_rewrite_literal_identifiers(self):
         for original, proposed in [

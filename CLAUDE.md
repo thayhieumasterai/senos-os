@@ -88,7 +88,6 @@ When a task arrives through chat, SenOS does NOT merely answer. The procedure: *
 ## Customer inbox (Hội thoại page)
 
 Customer chats from every channel account (Telegram/Zalo bots, watched personal Zalo) land in one store, read on the **Chatbot** page: tabs Hòm thư bot (takeover, reply), Tài khoản bot (of this brain), Tạo chatbot. Store pack `javis.crm` adds `crm_*` tools; absent = not installed.
-Store packs come from upstream (javis-store): their ids start with `javis.`, and where a pack's text names a tool `javis_<x>` (javis_schedule, javis_generate_image...), call the SenOS tool `senos_<x>`.
 
 ## Creating Plugins (native tool/hook for every engine)
 

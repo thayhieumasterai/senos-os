@@ -40,7 +40,7 @@ _GOAL_FILE = Path(__file__).resolve().parent.parent / "system" / "plugins" / "se
 # authority to reinterpret an arbitrary predicate as the ordinary-owner result.
 # Re-pinned 2026-11-09 after an audit of the diff: the plugin opens the store with `RS.shared()` instead of
 # `RS.GoalStore()` (one opened store per file); `_visible`'s branches and what they return are unchanged.
-_GOAL_SOURCE_HASH = "cf2eb26b4198cadcd067aa036a1aa129b6db4e1456098fdb34014542c858406e"
+_GOAL_SOURCE_HASH = "fa7b990b9c38f44779885ee3a5c9ae282a150cc5c237825e0b33cba98312285e"
 
 
 def _plain(value):

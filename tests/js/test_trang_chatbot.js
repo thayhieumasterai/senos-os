@@ -479,7 +479,7 @@ check("agent để Mặc định thì nói rõ là theo model chính, không đ�
 // ============================================================
 // Chủ repo chốt 21/09: thanh bên gọi trang này là "Chatbot"; từ 0.65.9 chỉ còn hai tab, Hòm thư bot và Bot (gộp Kênh của bot với
 // Tạo chatbot). Nhãn nằm trong từ điển, nên canary soi từ điển.
-check("thanh bên gọi trang này là Chatbot", VI["page.conversations.label"] === "Chatbot");
+check("thanh bên gọi trang này là Hộp thư bot", VI["page.conversations.label"] === "Hộp thư bot");
 check("tab đúng tên mới (Chatbot v5: Hội thoại, Bot, Kênh, Thống kê), tab cũ không còn trong từ điển",
   VI["ib.tab_inbox"] === "Hội thoại" && VI["ht.tab_bot"] === "Bot" && VI["ib.tab_kenh"] === "Kênh" &&
   VI["ht.tab_kenh"] === undefined && VI["ht.tab_chatbot"] === undefined);

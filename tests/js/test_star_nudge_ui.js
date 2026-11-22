@@ -60,7 +60,8 @@ check("số sao đọc từ server, không viết cứng", /phanSo\(d\.count\)/.
 const saoLogo = (LOGO.match(/<path d="(M145 81[^"]+)"/) || [])[1];
 const saoThe = (SN.match(/var SAO_SENOS = ([\s\S]*?);\n/) || [])[1];
 const noiChuoi = saoThe ? saoThe.replace(/"\s*\+\s*"/g, "").replace(/^"|"$/g, "").trim() : "";
-check("đường hình sao trùng logo.svg", !!saoLogo && noiChuoi === saoLogo, noiChuoi.slice(0, 40));
+// SenOS hides the star prompt (it asked for a star on the upstream repo) and its logo is the lotus, not the star.
+check("SenOS giấu lời mời star", /\.rf-star, \.sn-overlay, \.sn-card \{ display: none !important; \}/.test(fs.readFileSync(path.join(ROOT, "dashboard", "senos-skin.css"), "utf8")));
 check("màu thân và viền của logo", /fill: #7B4DFF/.test(CSS) && /stroke: #C9B8FF/.test(CSS));
 
 // 5. Chữ đủ to cho điện thoại, có chừa cho người tắt chuyển động

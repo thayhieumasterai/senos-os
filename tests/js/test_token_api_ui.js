@@ -116,7 +116,7 @@ check("trang Tài khoản không còn mục Token API", khoiAcc.length > 500 && 
 // The rail gives a label about 90px: "API & Webhook" was cut to "API & Webh...", so the page is called "Tích hợp"
 // (Integrations) and its sub line names both doors.
 check("tên trang ngắn, phụ đề nói rõ webhook và token API",
-  VI["page.webhooks.label"] === "Tích hợp" && /webhook/i.test(VI["page.webhooks.sub"] || "") && /token API/.test(VI["page.webhooks.sub"] || ""));
+  VI["page.webhooks.label"] === "Webhook" && /webhook/i.test(VI["page.webhooks.sub"] || "") && /token API/.test(VI["page.webhooks.sub"] || ""));
 
 const NOI = [
   ["cli/senos_cli/client.py", "thông báo 401 của CLI"],

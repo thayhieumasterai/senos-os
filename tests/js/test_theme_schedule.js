@@ -78,11 +78,11 @@ const at = (h, m) => new Date(2026, 9, 4, h, m || 0).getTime();
 // đừng để mặc định giao diện tối nữa"). From 0.75.1 it was Auto, which turned dark after 18:00.
 {
   const b = boot({}, { now: at(12) });
-  check("no saved choice means Light", b.T.mode() === "light");
-  check("so a fresh device is light at noon", b.light());
+  check("no saved choice means Dark (SenOS default)", b.T.mode() === "dark");
+  check("so a fresh device is dark at noon", !b.light());
   check("and nothing is written until the user picks", !("senos.theme" in b.store));
-  check("a fresh device stays light at night too", boot({}, { now: at(22) }).light());
-  check("an unknown stored value is light as well", boot({ "senos.theme": "weird" }, { now: at(22) }).light());
+  check("a fresh device stays dark at night too", !boot({}, { now: at(22) }).light());
+  check("an unknown stored value is dark as well", !boot({ "senos.theme": "weird" }, { now: at(22) }).light());
   check("an explicit dark choice is kept", !boot({ "senos.theme": "dark" }, { now: at(12) }).light());
   check("an explicit Auto choice is kept (dark at night)", !boot({ "senos.theme": "auto" }, { now: at(22) }).light()
     && boot({ "senos.theme": "auto" }, { now: at(22) }).T.mode() === "auto");
@@ -200,8 +200,8 @@ if (pre) {
   check("pre-paint and theme.js agree for every minute of the day", !mismatch, mismatch);
   check("pre-paint keeps manual light", runPre({ "senos.theme": "light" }, at(23)));
   check("pre-paint keeps manual dark", !runPre({ "senos.theme": "dark" }, at(12)));
-  check("pre-paint: no saved choice is Light at noon", runPre({}, at(12)));
-  check("pre-paint: no saved choice is Light at night too", runPre({}, at(22)));
+  check("pre-paint: no saved choice is Dark at noon", !runPre({}, at(12)));
+  check("pre-paint: no saved choice is Dark at night too", !runPre({}, at(22)));
   check("pre-paint keeps old 'dim' dark", !runPre({ "senos.theme": "dim" }, at(12)));
   check("pre-paint: old 'dim' stays dark, no flash before the migration",
     !runPre({ "senos.theme": "dim" }, at(12)) && !boot({ "senos.theme": "dim" }, { now: at(12) }).light());

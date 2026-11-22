@@ -110,11 +110,12 @@ check("tắt dấu ấn thì trả lại thẻ <img> nguyên bản", /o\.innerHT
 // Chữ "SenOS" nằm CẠNH dấu ấn trong cùng khối .rail-brand. Nếu pet.js thay ruột của cả
 // khối thì mỗi lần đổi hình dáng hay bảng màu là chữ bị xoá theo - nên nó phải nhắm vào ô
 // con .brand-mark, và index.html phải có sẵn ô con đó.
-check("dấu ấn thay ruột ô .brand-mark, không thay cả khối thương hiệu",
-  /var LO_DAU_AN = "\.rail-brand \.brand-mark, \.brand \.brand-icon";/.test(pet));
-check("index.html: .rail-brand có ô dấu ấn riêng và chữ SenOS",
-  /<div class="rail-brand"><span class="brand-mark">/.test(html)
-  && /<span class="rail-brand-text">SENOS <i>OS<\/i><\/span>/.test(html));
+// SenOS: the rail brand shows the owner's own logo (Thiết lập > Thương hiệu), so the mascot never takes it over.
+check("dấu ấn chỉ thay ô .brand-icon, không đụng logo của chủ trên thanh bên",
+  /var LO_DAU_AN = "\.brand \.brand-icon";/.test(pet));
+check("index.html: .rail-brand có ô logo của chủ và tên",
+  /<div class="rail-brand" id="railBrand"[\s\S]*?<span class="brand-mark"><img id="railLogo"/.test(html)
+  && /<span class="rail-brand-text" id="railName">/.test(html));
 check("css: thu gọn thanh bên thì giấu chữ, chỉ còn dấu ấn",
   /\.rail\.collapsed \.rail-brand-text \{ display: none; \}/.test(railCss));
 // Quầng sáng cam phải ở ô DẤU ẤN chứ không ở cả khối: filter của cha ăn xuống cả cây con và
@@ -160,8 +161,8 @@ check("console.js: Chat đứng riêng ở đầu thanh bên, Bộ não còn hom
   /const RAIL_TOP = \["chat"\];/.test(console_js) && /ids: \["home", "files", "learn"\]/.test(console_js));
 check("i18n: không còn khoá nhóm tro_ly", vi["nav.group.tro_ly"] === undefined && en["nav.group.tro_ly"] === undefined);
 // 2026-11-05 (owner): "thay chữ đồ thị và biểu tượng đồ thị thành neural network (Mạng nơ-ron)".
-check("i18n: trang home tên là Mạng nơ-ron / Neural network",
-  vi["page.home.label"] === "Mạng nơ-ron" && en["page.home.label"] === "Neural network");
+check("i18n: trang home tên là Bản đồ tri thức / Knowledge map",
+  vi["page.home.label"] === "Bản đồ tri thức" && en["page.home.label"] === "Knowledge map");
 check("console.js: Tự học có icon riêng (brain-cog), không trùng bộ não của nhóm", /learn: "brain-cog",/.test(console_js));
 check("console.js: icon trang home là neural-net riêng của SenOS", /home: "neural-net",/.test(console_js) && /"neural-net":/.test(read("dashboard/icons.js")));
 
@@ -393,8 +394,8 @@ check("ws.onclose gọi baoDutMang", /ws\.onclose = \(e?\) => \{[\s\S]{0,320}bao
 {
   const icons = read("dashboard/icons.js");
   check("icons.js có icon riêng senos-pet", /"senos-pet":/.test(icons));
-  check("senos-pet có vành cam + mắt liếc lên phải",
-    /stroke="#F28C28"/.test(icons) && /cy="10\.74"/.test(icons));
+  check("senos-pet có vành tím SenOS + mắt liếc lên phải",
+    /stroke="#9B6BFF"/.test(icons) && /cy="10\.74"/.test(icons));
   check("bodyOf tra bảng icon riêng trước Lucide", /if \(RIENG\[name\]\) return RIENG\[name\];/.test(icons));
   check("console.js: trang pet dùng icon đó chứ không phải mặt cười chung",
     /pet: "senos-pet",/.test(console_js));

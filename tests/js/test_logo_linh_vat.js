@@ -20,18 +20,20 @@ function check(name, cond, extra) {
 
 const pet = read("dashboard/pet.js");
 const svg = read("dashboard/logo.svg");
-const dSao = (/star:\s+\{ key: "pet\.shape\.star",\s+d: "([^"]+)"/.exec(pet) || [])[1] || "";
+// SenOS: the official mascot is the lotus (logo.svg says "Same outline as SHAPES.lotus").
+const dSen = (/lotus:\s+\{ key: "pet\.shape\.lotus",\s+d: "([^"]+)"/.exec(pet) || [])[1] || "";
 const cam = /cam:\s+\{ key: "pet\.color\.cam",\s+sun: \["(#\w{6})", "(#\w{6})"/.exec(pet) || [];
 
-check("linh vật mặc định là NGÔI SAO", /var MAC_DINH = \{[^}]*shape: "star"/.test(pet));
+check("linh vật mặc định là HOA SEN", /var MAC_DINH = \{[^}]*shape: "lotus"/.test(pet));
 check("linh vật mặc định màu CAM", /var MAC_DINH = \{[^}]*palette: "cam"/.test(pet));
-check("nút Đặt lại trả về đúng ngôi sao cam",
-  /P\.setCfg\(\{ shape: "star", palette: "cam",/.test(read("dashboard/console.js")));
-check("logo.svg vẽ ĐÚNG đường ngôi sao của linh vật", dSao.length > 50 && svg.split(dSao).length - 1 === 2,
-  "số lần xuất hiện: " + (svg.split(dSao).length - 1));
-check("thân logo cùng màu thân bảng Cam", !!cam[1] && svg.includes('fill="' + cam[1] + '"'), cam[1]);
-check("viền logo cùng màu vành bảng Cam", !!cam[2] && svg.includes('stroke="' + cam[2] + '"'), cam[2]);
-const dMat = (/<path d="(M[^"]+)"\s+fill="none" stroke="#1F1F1F"/.exec(svg) || [])[1] || "";
+check("nút Đặt lại trả về đúng hoa sen mặc định",
+  /P\.setCfg\(\{ shape: "lotus", palette: "cam",/.test(read("dashboard/console.js")));
+check("logo.svg vẽ ĐÚNG đường hoa sen của linh vật", dSen.length > 50 && svg.split(dSen).length - 1 >= 1,
+  "số lần xuất hiện: " + (svg.split(dSen).length - 1));
+// logo.svg fills the lotus with the brand gradient whose middle stop is the palette's dark-mode body.
+check("logo dùng tông tím của bảng mặc định", /stop-color="#8B5CFF"/.test(svg) && cam[1] === "#7B4DFF", cam[1]);
+check("viền logo cùng màu vành bảng mặc định", !!cam[2] && svg.includes('stroke="' + cam[2] + '"'), cam[2]);
+const dMat = (/<path d="(M[^"]+)"\s+fill="none" stroke="#[0-9A-Fa-f]{6}"/.exec(svg) || [])[1] || "";
 check("logo có đôi mắt cười ^^ (đúng hai cung, đầu bo tròn)", (dMat.match(/Q/g) || []).length === 2 && /stroke-linecap="round"/.test(svg), dMat);
 check("logo nền trong suốt (không có hình nền)", !/<rect/.test(svg));
 

@@ -145,9 +145,9 @@ ms.append_message(gs, "user", "[Cát Tường Group] @SenOS Vũ hầy")
 check("(chuẩn bị) phiên nhóm chưa có tên: tiêu đề hiện đang là tin đầu",
       next(x for x in ms.list_sessions(limit=50, brain=["brain"], channel="*") if x["id"] == gs)["preview"].startswith("[Cát Tường Group]"))
 check("đặt tên phiên theo tên nhóm", ms.name_group_session(gs, "  Lớp SenOS   OS ") is True
-      and ms.get_session(gs)["title"] == "Lớp SenOS", ms.get_session(gs))
+      and ms.get_session(gs)["title"] == "Lớp SenOS OS", ms.get_session(gs))
 check("đã có tên thì KHÔNG ghi đè (kể cả tên chủ tự đặt)", ms.name_group_session(gs, "Nhóm khác") is False
-      and ms.get_session(gs)["title"] == "Lớp SenOS")
+      and ms.get_session(gs)["title"] == "Lớp SenOS OS")
 gs2 = ms.create_session(brain="brain", engine="cli", title="", channel="bot:" + slug1)
 check("nhóm chưa có tiêu đề: không đặt gì, để lượt sau đặt kịp",
       ms.name_group_session(gs2, "") is False and ms.name_group_session(gs2, None) is False

@@ -627,7 +627,7 @@
   "pet.color.ruby": "Ruby",
   "pet.color.custom": "Tùy chọn",
   "pet.menu.chat": "Trò chuyện",
-  "pet.menu.agent": "Cộng sự",
+  "pet.menu.agent": "Trợ lý",
   "pet.menu.workflow": "Quy trình",
   "pet.menu.mic_on": "Bật mic",
   "pet.menu.mic_off": "Tắt mic",
@@ -7564,5 +7564,7 @@
   "sec.d_wrong_pw": "sai mật khẩu",
   "sec.d_pw": "bằng mật khẩu",
   "sec.d_pw_2fa": "mật khẩu + 2FA",
-  "sec.d_setup": "lần đầu tạo"
+  "sec.d_setup": "lần đầu tạo",
+  "vault.title": "Thư viện",
+  "rail.brand_title": "Logo và tên của bạn: Thiết lập > Thương hiệu"
 }

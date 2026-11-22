@@ -6,6 +6,14 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.595.0] - 2026-11-22
+### Cải thiện
+- **Gói trong Chợ Sen hiện mã `senos.`** trên thẻ, màn hình cài và gỡ; bên trong vẫn giữ mã gốc nên cài và cập nhật như cũ.
+- **SenOS phát hành từ repo riêng** (thayhieumasterai/senos-os, kho gói thayhieumasterai/senos-store); bộ tự cập nhật và ảnh Docker trỏ về đó.
+### Sửa lỗi
+- CI của repo công khai xanh trở lại: test theo đúng thiết kế và tên của SenOS, các mã kiểm định cập nhật theo tệp đã đổi tên.
+- Nút Đặt lại linh vật trả về hoa sen (trước đó về ngôi sao cũ); menu linh vật gọi đúng tên trang Trợ lý.
+
 ## [0.593.0] - 2026-11-18
 ### Thêm mới
 - **Bot đọc được file nhân viên gửi cho khách trên Zalo OA và Fanpage.** Báo giá PDF, Word, Excel hay ảnh nhân viên gửi từ app OA hoặc hộp thư Trang giờ hiện trong Hộp thư (nhãn Nhân viên), và bot biết nội dung để trả lời khi khách hỏi lại. Ảnh được một bộ não đã kết nối có mắt đọc hộ.

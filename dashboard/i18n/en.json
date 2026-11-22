@@ -627,7 +627,7 @@
   "pet.color.ruby": "Ruby",
   "pet.color.custom": "Custom",
   "pet.menu.chat": "Chat",
-  "pet.menu.agent": "Partners",
+  "pet.menu.agent": "Assistants",
   "pet.menu.workflow": "Workflows",
   "pet.menu.mic_on": "Turn mic on",
   "pet.menu.mic_off": "Turn mic off",
@@ -7564,5 +7564,7 @@
   "sec.d_wrong_pw": "wrong password",
   "sec.d_pw": "with password",
   "sec.d_pw_2fa": "password + 2FA",
-  "sec.d_setup": "first setup"
+  "sec.d_setup": "first setup",
+  "vault.title": "Library",
+  "rail.brand_title": "Your logo and name: Preferences > Branding"
 }

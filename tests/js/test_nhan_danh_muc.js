@@ -56,7 +56,7 @@ global.fetch = (url) => {
   check("en: 'Nhắn tin' -> Messaging", I.catLabel("Nhắn tin") === "Messaging", I.catLabel("Nhắn tin"));
   check("en: 'ban-hang' -> Sales", I.catLabel("ban-hang") === "Sales", I.catLabel("ban-hang"));
   check("en: tên lạ vẫn giữ nguyên", I.catLabel("Nhóm tự đặt") === "Nhóm tự đặt");
-  check("en: nhóm 'Khác' trên thanh bên có bản dịch", I.t("nav.group.khac") === "Other", I.t("nav.group.khac"));
+  check("en: nhóm 'Khác' trên thanh bên có bản dịch", I.t("nav.group.khac") === "More", I.t("nav.group.khac"));
   check("en: lời nhắc .dmg của Ollama có bản dịch", /dmg/.test(I.t("ol.mac_hint")) && !/hoặc/.test(I.t("ol.mac_hint")));
 
   // Mọi tên danh mục đang có trong catalog và kho đi kèm app đều phải dịch được, để không

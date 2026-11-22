@@ -5,7 +5,7 @@
   "scope": "M2D2 routing-state foundation only; no production overlays/task pin integration",
   "source_hashes": {
     "server/skill_router.py": "1a141e295d3daf6c1b9604ef31286d794bd4f73fb730ca8752eba0cc4c8155f9",
-    "tests/python/test_skill_resolution_state.py": "d5001b12b79d180c180ce49fffeccfabb10d53885df09e879d21efea1d620269"
+    "tests/python/test_skill_resolution_state.py": "415d4c9dce1cfe4ab8ff575c388a5c070802d8813a18b4ccd9680df86f6c63d4"
   },
   "red": {
     "tests": 7,

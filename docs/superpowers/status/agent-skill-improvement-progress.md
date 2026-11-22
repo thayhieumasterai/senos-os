@@ -138,7 +138,7 @@ Real-boundary new8methods/24fixtureexercises: cleanRED12intended failures;
 finalWindows13PASS/0skip and earlyLinux40083817343/job120842572439 exact5pins
 13PASS/0skip. Scoped fresh6.1/high specPASS/qualityApproved0Critical/0Important/
 1MinorM1. Proof2026-10-24-m2-qualification-capability-exclusion.json
-SHAac258798bd7cf5221bbf9c80fbd0d218cea3e3225120c0ef811122562d2d23b7.
+SHA7ba52d1f2e0a37b086542b79481f24015934cd66842204f9c8587291cf697baf.
 Root independently checked87raw artifacts/committed LF pins/zeroownedprocesses.
 Initial fixture failures and superseded freeze retained; new-test cleanup repair
 refrozen before09, unchanged-source existing selectors retained with exactpins.
@@ -162,7 +162,7 @@ to actualSCHEMA_VERSION+1. Refusal/no-backup/no-native/history asserts unchanged
 actual2GREEN, source-spec compliant/qualityApproved0Critical/Important/1Minor.
 T1-R1 freeze-order limitation retained (post-GREEN pins, no pre-run timestamp
 claim). Proof2026-10-24-m2-future-schema-controls.json
-SHA74a92878248c7a22f3d49e13b06a7c57c88f88688406daf1760a5d02569cf6fa.
+SHAb101a8144430910305592b81793b5b49e1a1960be632d8fb9cd689261015d9a8.
 Production/native unchanged99UNQUALIFIED, slotreleased; fullM2gates stillOPEN.
 
 Source269d3892 adds actual retained source observation after legitimate skill
@@ -178,7 +178,7 @@ three evidence limitations against freeze/log/cleanup/static import-discovery
 and Linux artifacts. Two punycode/one Node action-runtime notices retained
 separately; no test ResourceWarning/task/timing diagnostics or suppression.
 Public2026-10-24-recipe-source-observer.json SHA
-a0ec009bb3eab3e53756cd37e560429f7f7dc8107de99760b4b6045a9fe43cf9.
+2a4cc90ba46551765d9e9a8e78e78be23da5a4192a36e7eb0c1bd9b13c51064f.
 
 PROFILE99 stays UNQUALIFIED/registriesclosed; static import closure is distinct
 from current installed/runtime qualification. Task1 terminal audit/serial slot
@@ -207,7 +207,7 @@ recipe-archive-authority/Task2/T2-R1 retains43local/42Linux asyncio timing
 diagnostics as final test-hygiene follow-up; ResourceWarnings0/task-leaks0, no
 suppression. One CI action-runtime deprecation notice is retained separately.
 Checkpoint2026-10-24-recipe-archive-views.json
-SHAd632b12330bce64cdb4537f6963d6c2644a6065d8a2cb928f8d1aeedd7fa4196.
+SHA1311e9b9f5d2d51044f84cea38caebbee9cb7b1177318bb756b59e6a71cd3431.
 
 PROFILE_SOURCES98 remains UNQUALIFIED/registriesclosed; protected309 proof and
 VERSION0.299.0 unchanged. Both tasks in recipe-archive-authority are scoped
@@ -239,7 +239,7 @@ spec/qualityPASS, executionnone. Early Linux40074394806 exactv2pins48PASS and
 40075062683 exactv3pinsfocused3PASS, both ResourceWarnings0. All seven committed
 raw pins, complete logs/reports/reviews and terminal process release reconciled.
 Checkpoint2026-10-24-recipe-archive-authoring.json
-SHAb19e63eb1f6a5401c7386ad265c89744ad64d7ae80bc4023d70b2f4dd0fa0745.
+SHA895f42c1f0b403fe5a8263666aa06c2b79d9d3bdb2f7d21960ae49bce1a3fa48.
 
 PROFILE_SOURCES97 UNQUALIFIED/registriesclosed; protected309 proof unchanged.
 Actual v4 refs remain intact but schema9 refuses publication atomically. Mandatory
@@ -268,7 +268,7 @@ all7stablev3pins/no reviewer execution. Local28PASS includes explicitly reused
 unchanged compose6; other17archive+5selected checks run on correctedv3. Early
 Linux40071193085/job120804788438 SUCCESS exact7pins23PASS (17archive+6compose),
 not final task-head fullCI. Root reconciled raw/Git/log/review/Linux/fixture pins.
-Public2026-10-24-recipe-archive-schema.json SHA29db52f3f7f56a07915075a16ad780b18d08066ca8704a42a2255102b82a0712.
+Public2026-10-24-recipe-archive-schema.json SHAbda3416fca65417745479a95a4dfa618e0466d5756ebd009021dc61882a7aaa5.
 
 PROFILE96 rawdbd31ee091efa14b98f632460ee4f4376e70b5ed9f49f9d3716f025040ca566c
 UNQUALIFIED; registries closed/actual309 proof untouched. Next actual encrypted
@@ -292,7 +292,7 @@ Linux40069793207/job120800563778 SUCCESS on the exact7rawpins,26run/25pass/
 1explicitWindowsskip includes actual POSIX symlink. Fresh independent static
 spec/quality review approved,0findings/no execution. Root reconciled source/
 committed/log/review/Linux pins and targeted RED disclosures. Public checkpoint
-2026-10-24-harness2-library-snapshot.json SHA0fc8b025b27af47068f4d9ddc86ee7c26f87c4046e136d7d08027595a9584603.
+2026-10-24-harness2-library-snapshot.json SHAefb25a32e83a318640de724b2b8cbbf0f87a0cf8111130773a30fe597998c81b.
 
 PROFILE95 remains7f7f77da63c0814fb08e55f58849899de0786023c0feb977b81e0778b2573044
 UNQUALIFIED; actual309 test untouched. Next: canonical encrypted recipe authority,
@@ -326,7 +326,7 @@ proof. Early isolated Linux40068923965/job120797950847 SUCCESS, same12rawpins,
 Root real-browser vi/en desktop walkthrough used labelled synthetic metadata;
 actual panel mount, separate steps/KEEP_BASE/close verified, helper/tab cleaned.
 This is no account/model/native proof. Raw warnings/diagnostics remain recorded.
-Public checkpoint2026-10-24-compose-owner-panel.json SHA06224f4b71acf3a4382505c8500f77709ffc9489b18451fa809596e7cdc5c8c7.
+Public checkpoint2026-10-24-compose-owner-panel.json SHA8358cd776a55761b481b14f3ba1a2864df0b0daa45f62a7863a737352ebcf8a2.
 
 PROFILE95 raw7f7f77da63c0814fb08e55f58849899de0786023c0feb977b81e0778b2573044 is UNQUALIFIED; actual309 proof untouched. MinorT2-R4
 ambiguous candidate option labels andT2-R5 existing evidence warning noise remain
@@ -363,7 +363,7 @@ ADDRESSED/no new findings/9stablev2pins; reviewer executed no tests. Root valida
 terminal logs/pins/CI. Existing Starlette/httpx deprecation warnings remain in main
 test logs; corrected fixture ResourceWarnings are excluded from final evidence.
 Public2026-10-24-compose-owner-controls.json SHA
-de6eda2890334dcaeb7df9d17379cbd1bccaa41c84ad4a978e44251c3836809a (UTF8/LF).
+1800090add07769889f22d9ad49aed51e66682e1bb98b4b61bd9e297cce74599 (UTF8/LF).
 
 All positive native predicates/SDK packets are synthetic storage controls, not
 actual CLI/SDKClient/account/model/business evidence. PROFILE95 raw
@@ -395,7 +395,7 @@ independent15PASS/192.949s/15stablepins/no open P0/P1/P2. Review report SHA
 Early isolated Linux40064018472/job120783344859 SUCCESS145PASS/17scripts,
 snapshota3934037bc0e5442cf2aa4005a60eae1e2a49549/15exactpins. Public proof
 2026-10-24-compose-checked-arms.json SHA
-a4532ac0fef6678e222c64f3c492865aae675d36eca4c9037a6d059c7f026f82 (UTF8/LF).
+452f08dfc7f6074b26ea997052472fb4938c2e46baef18e92e3f993bdd28e7f1 (UTF8/LF).
 
 Positive SDK/verifier/format/qualification and shared-source host DI are labelled
 synthetic controls; no actual CLI/SDKClient/account/model/business proof. Actual
@@ -2135,7 +2135,7 @@ pending. All81 isolated native pins remain unchanged, with no native/model query
   comparison rows. Cold metadata neither decrypts nor migrates; canonical skill
   bytes and target pointers stay unchanged. Evidence:
   `../evidence/2026-10-23-m2d1-task1-verification.json`, SHA256
-  b9d7c51fd9725111678365f667b4af2168738b73329e89475ba2d700d52f76f8.
+  2cc3de46579b4348ec249b5cab826cd2ca44c06da7c03628cf4577dfdf9e0e41.
   Task1 local foundation is verified; task-done checks committed bytes/logs.
   Checkpoint Linux CI remains pending. WSL is unavailable; the PR workflow now
   fetches actual C2727edcc for its reader test. No real provider/account inference
@@ -2155,7 +2155,7 @@ pending. All81 isolated native pins remain unchanged, with no native/model query
   the new source service still require CI. C semantic/native unknown and A's
   unreviewed status remain unchanged. Evidence:
   `../evidence/2026-10-23-m2d1-task2-verification.json`, SHA256
-  588f7dba351d6d4253039819179207e467306163b14bfb7447d8c700d08fc41e.
+  957897cd2acbcd65547b1c2a9a5d26f1aaebbca531f56dd8d29dec818e2221be.
   All C34-profile and selected Task1 source bytes remain exact; there is no new D
   native qualification, API wiring, actual comparison Trial or real model call.
   Task3/4 retain actual admission/native-preflight/reservation/query fences.
@@ -2174,7 +2174,7 @@ pending. All81 isolated native pins remain unchanged, with no native/model query
   Task2 verified commit68dc6c26507841f30e5ead93fe5281aad2afb4e5. This qualifies
   reuse of Task2's76-test proof; it does not replace fresh current-head Linux CI.
   Correction evidence `../evidence/2026-10-23-m2d1-legacy-fixture-correction.json`,
-  SHA256641a71c203e8e42d2a09ee51c17195bcf2b1ce2af999fe2f8dc043a73bdaa5e0.
+  SHA2566a3df48660af8910ec27df2c05beb024838e5212dbaba39e94792c851f1a90e4.
 - Earlier pending/failure
   checkpoints remain historical; complete M2/business/rollout gates remain open.
 
@@ -2196,7 +2196,7 @@ the disabled skill. Five affected scripts passed sequentially in13.392s, includi
 11 Phase8 pytest cases. No model or native query occurred. All81 qualified native
 source hashes remain identical, so exact958527ac/1f3391cf enforcement evidence is
 reused. Artifact `../evidence/2026-10-24-m2d2-routing-state.json`, SHA256
-56246006f3a4dce8cb58762f648c30380c67b0618dd3b5742dec366da04de610.
+333ed7c6bd2fa55e65718b63a0e5d38a32ad11881f60d7129c21848f33b4f474.
 
 Scoped routing-delta review and final-head CI remain required. D1 CI39990661065
 on999c207a was running before this new source delta; it cannot prove a later head.
@@ -2243,7 +2243,7 @@ Changed profile
 passed20 actual native enforcement tests in94.890s on one source map: paired1,
 solver5, typed roles5 and quiescence9. The exact309/5441781f/SDK116 tuple is now
 registered against `../evidence/2026-10-23-m2d1-native-qualification-outcome.json`,
-SHA2561f3391cf9c1bf621d3ef2de44dd181acf17dd7d922fed4a80ae66bef36c8fab4.
+SHA256b3466bb96303935ff4f88d51d4cfa97501353c1ac3c0472ba8e529ae134ce2fc.
 Metadata RED→GREEN3 passed0.068s; prior C and D registrations remain exact.
 These native suites used only dummy auth/local providers, with no new selected
 account calls or quality/owner waiver. Prior source qualification stays historical.
@@ -2267,7 +2267,7 @@ Actual paired views1 +solver5+roles5+quiescence9 passed20 tests in96.767s on
 identical source maps; adapter guards22 passed1.711s. Actual CLI --version is
 checked within the owned hidden dummy job. Artifact
 `../evidence/2026-10-23-m2d1-native-qualification-final.json`, SHA256
-012d9e37690e8711da75a344dfee0677df8d6c690b90f689ddbb14574c82f295.
+3c1966ecc8312a2c1d18f9489f247d012eda055956fa058470df37955aa1beb6.
 
 The exact registration now points to that evidence; historical C remains intact,
 lookup code is unchanged, and altered pin/platform is refused. Metadata RED→GREEN2
@@ -2307,13 +2307,13 @@ reuse are covered, along with owner/main/service controls and actual v4 handoff/
 cancel. AST/source proof shows the only product change is constructor refusal;
 the prior stop/current-source/materialization behavior is preserved. Evidence
 `../evidence/2026-10-23-m2d1-review-lifetime-fix.json`, SHA256
-fb8333f444f84ac85f03d3f0c71402eb30f599e1a025499802b860739e7d94b5.
+bbdace4d0af552e95ede7b178e55c2730758df57bb68562e1a521654a77487f3.
 Same-reviewer scoped recheck is pending, not another whole review.
 
 Before the fix, profile81/2221a859 also passed full local/dummy solver5, roles5
 and quiescence9 in60.609s on one source map. Its source-bound artifact
 `../evidence/2026-10-23-m2d1-native-qualification.json`, SHA256
-96adabecf47773debc2988098a68cc3a9c592a00ad2ed9b0d8a6e4cab096936b,
+daf07dcd1dc8f8dc50985e101f96b80d1b3fb763297fb30c9923489ca23a2436,
 is historical after the constructor change and was never registered. Current
 profile81/d070550687af101c07094e1234c5988fae15af9318eb5f5277c4cb2e413324ba
 remains unregistered; requalify after fix stability. Exact740c LinuxCI39982218130
@@ -2339,7 +2339,7 @@ spawn reached the worker-only Popen interception. The original failed log/source
 record is retained; keeping that proof within the existing real-Popen scope
 fixed the fixture without changing product code or relaxing an assertion.
 Sanitized evidence `../evidence/2026-10-23-m2d1-native-view-enforcement.json`,
-SHA2560691a727db9dd81b91e814ccfaa4278f04d9c90c5a325cc789b282de31f6a10c.
+SHA256570398e544cd5271913c06d98ff1b374062b5712b49d6ca442f47baf7dd003f0.
 All server and owner47+route test bytes are unchanged, so that scoped evidence
 is reused. Current profile remains UNREGISTERED. Composite solver/role/death/
 quiescence qualification, actual native TrialRunner/account feasibility,
@@ -2365,7 +2365,7 @@ unmodified code. Existing B/C owner/stop/lifetime workflows and actual v4 paired
 reservation remain green. Operator guide:
 `../../dev/agent-skill-m2d1-views.md`. Evidence
 `../evidence/2026-10-23-m2d1-task5-view-controls.json`, SHA256
-b3a617be7e9eda67398ff166b28ff7ff833908e2f779089bfa670f088b3305a9.
+ea01b2624255f39dfa40738d2fa1546ef163e6d1aa6ff950b3307a39d76f22ed.
 The route snapshot was intentionally regenerated with the direct Python script;
 the wrapper does not forward its documented `--update` flag. No product failure
 was hidden by accepting an unrelated route change.
@@ -2400,7 +2400,7 @@ Subsequent Task3 history checkpoint b755699e passed56 scoped tests (portable
 evidence170d0de3). Actual reservation now passes140 tests in nine sequential
 affected checks,231.248s, recorded in
 `../evidence/2026-10-23-m2d1-task3-reservations.json` (SHA256
-bde6b073ae78acbf4e220cd5363fa40fd16e1f4bc5dd3d2ac225cd83a0b8a796).
+e4d314a547a34456032c167234d31dae7290ebdabd98a42d074cc588824a6995).
 Genuine v4 baseline/candidate Trials and existing Calls/links are created; source
 changes roll back actual reservations, and cold replay stays readable after
 off/revoke. No model query/engine marker. Current native footprint is now76
@@ -2415,7 +2415,7 @@ includes actual v4 links under the shared12000 comparison bound, and next refuse
 pending/terminal-no-result slots. Owned next now passes71 scoped+affected checks
 (401.851s recorded, basis per row), evidence
 `../evidence/2026-10-23-m2d1-task3-owned-next.json` SHA256
-4d9df2ba736bf8fc736dc2d8e0e19d10b8f24cf406d7ee0dc99684b1aa944221.
+a5f95ce10f7733cc1088f184eb50fe67f12069b79270da5843105af95a7ffc28.
 Actual brain barrier covers next/source/native-preflight/Trial+Call reservation;
 concurrent owner keys reserve once and cancelled HTTP stays owned through stop.
 Current native profile is78 sources/058166e7, deliberately unregistered. No real
@@ -2436,7 +2436,7 @@ close futures to complete successfully. A live owner or missing/pending/cancelle
 failed close refuses replacement, without constructor source/native I/O. Current
 32 scoped/affected checks pass276.518s; evidence
 `../evidence/2026-10-23-m2d1-task3-view-lifetime.json` SHA256
-c56e88ee52a9813711021db8d93984f53594d0ee42bdbb519eab8679dcf7c60e.
+a48e83b59e7b2a674bc0e4d71f709cc7740ac66549a1426bc0926b1d4e058c90.
 Current78-source profilebfda8912 is UNREGISTERED. No real query/native execution,
 ordinary D2 task/session resume, business or rollout acceptance is claimed.
 
@@ -2447,7 +2447,7 @@ historical report bytes/hash and cold replay remain unchanged, including the
 older metadata-only prototype with no result refs. Full18 integrity checks and
 report v1 envelope remain intact. Evidence
 `../evidence/2026-10-23-m2d1-task3-reports.json`, SHA256
-aabb253c30404d6155ba2bba92981285462da56e9e6439c5218abc363567609d.
+fe47993f8930b15d0904c0c134bb5da0bf819d2e7a71a8d01dcce84de8b0faaa.
 Current78-source profile4e3ecee0 is unregistered; final qualification ownership,
 actual view workspace/native execution and public controls remain OPEN.
 Linux39957029202 failed on olderdad605c3, before the fixture correction; current
@@ -2461,7 +2461,7 @@ bytes with common inputs, without modifying canonical or manufacturing a bundle.
 Source edits during solver read roll back the materialization and retain exact
 prior exposure rows. V1 prompt/hash stays unchanged; v2 binds its view descriptor.
 Evidence `../evidence/2026-10-23-m2d1-task4-materialization.json`, SHA256
-87d9d7306dc3226ac3f2a68860bc4277eec699c08535e4ba4892c5aed38d76d3.
+66217fa257b88157947dbf81b8f9d55e6f1af48f75bed629826605bcfa0b2d91.
 Current79-source profilebeddb902 is unregistered. Native v4 receipt/check/result
 integration, final qualification ownership and public controls remain open.
 No actual native query, successful result, eligibility or business/live proof.
@@ -2474,7 +2474,7 @@ Full18 check IDs and unknown effort/asset use remain; both simulated results
 are non-pass, and comparison selection stays unsupported. Actual histories read
 exactly after off/revoke. Legacy checks/Claude/results/v2 execution pass.
 Evidence `../evidence/2026-10-23-m2d1-task4-view-execution.json`, SHA256
-4d7c1b9f7ea74b27e1b335ae93274561fb8290e2a82915ed61bc66bb54aea721.
+31eaa2ca176cff6fe2a37c397b8e7c75bdddb65c0d147069340c8268523c5d97.
 Source79/2192bf86 remains unregistered; no real model call/native qualification.
 Linux39959675109 SUCCESS254a90ca; Linux39965159570 in progressc811b9d6.
 Current result code still requires its own CI/review. Final holdout ownership,
@@ -2487,7 +2487,7 @@ unchanged SQL guard now runs before any current view plaintext; existing frozen
 metadata remains readable.31 checks passed262.843s recorded: new boundary3,
 improver inputs10, view sources16, real paired reservations/native-footprint2.
 Evidence `../evidence/2026-10-23-m2d1-task3-view-holdout.json`, SHA256
-07ef50951c43236be3128be3e9740bed1521e94e1e31c1a0bf178c88517cf6fc.
+e1f5430733d0543b58c036e18ccaf95947aa995fa1d831f125959e01b935f0cc.
 Current79-source b46e2cc3 is unregistered. This is a current-authority repair,
 not a final holdout claim/native/business acceptance. Task3 remains OPEN.
 
@@ -2498,7 +2498,7 @@ missing/changed guard blocks new authority before plaintext. Earlier prototype
 metadata stays readable, existing view DDL is AST-identical, and schema2
 downgrade drops the new child first. Evidence
 `../evidence/2026-10-23-m2d1-task3-qualification-schema.json`, SHA256
-c52e682319fafcd9613e125ce3741bc6b27cb9f7bf3ae4a4b94f4b7327e3179a.
+52d3d5529573074de617e89c5f0f8fb3cad1b87e4f8414355624ddf93c9eb9b8.
 Current79-source d6b20eb5 is unregistered. Genuine positive selected-final link,
 owned reserve/consume and final native/public controls remain open; runtime
 final requests are still explicitly denied. No final/eligible result is faked.
@@ -2512,7 +2512,7 @@ has a separate SQL/blob reader. Actual tests deny nonfinal/foreign/missing scope
 missing/foreign transaction and consumed qualification relabelled as regression;
 the real tuning pipeline with simulated engine still passes and stays non-pass.
 Evidence `../evidence/2026-10-23-m2d1-task3-owned-qualification.json`, SHA256
-5f54cee420f022709b4ea9278fcc5cda975f85c2b1faf55f9f9b9eea0283697a.
+ec19ed1cc0a8d8fd3e274d820d768b321b6b731c7270aa47b76b98972394ce06.
 Source81/759f44ab is UNREGISTERED. Genuine positive selected-final execution is
 unverified; no eligible selection/result was fabricated and full18/unknown was
 preserved. Legacy v2 tuning-family bypass is under separate audit. Task3, native
@@ -2526,7 +2526,7 @@ the new boundary, B lineage/admission/actual execution and actual v4 pair/native
 footprint. Exact old replay/metadata stays cold; qualifier/history source and
 v4/materialization methods retain their earlier qualified scope by AST/hash.
 Evidence `../evidence/2026-10-23-m2d1-task3-legacy-alias.json`, SHA256
-fa40a4baf1887cc1c873be511546b3d45311f3636c48c5e6c7ba18422180ee40.
+101cec499430b2004d3f660b8428f1924137d4d81ac2c1de218cc844e296508f.
 Current81-source c2e7968e is unregistered. Actual positive final/native, public
 controls and independent whole-D1 review/CI remain open; Task3 is not done.
 
