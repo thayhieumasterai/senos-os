@@ -2196,7 +2196,7 @@ the disabled skill. Five affected scripts passed sequentially in13.392s, includi
 11 Phase8 pytest cases. No model or native query occurred. All81 qualified native
 source hashes remain identical, so exact958527ac/1f3391cf enforcement evidence is
 reused. Artifact `../evidence/2026-10-24-m2d2-routing-state.json`, SHA256
-dffe28bf7e1cc95d8351a01997e85f6ea1d21082eaca2b9f9f934257769a6ca5.
+8140da42dca7af889ab127a5c227a8d1a51b7d3cdde9a1f7fa79bd3889267241.
 
 Scoped routing-delta review and final-head CI remain required. D1 CI39990661065
 on999c207a was running before this new source delta; it cannot prove a later head.
@@ -2217,7 +2217,7 @@ model word `pass` is not an accepted assessment. Canonical bytes stayed exact;
 all plaintext workspaces were removed. No model retry or owner arbitration.
 
 Evidence `../evidence/2026-10-23-m2d1-real-feasibility.json`, SHA256
-8d7d27eb97a67671ea9b7376040269f9ff97bfab6c00e2e1bfce213e8d9d0579.
+4ad9ff27128119ab0041dd8dbad2f246b2d687e37d0b477c98ed88844c000b50.
 Observed usage8569 input/877 output tokens, subscription-equivalent USD0.0707254;
 cash and request counts are unavailable and coverage remains partial. These
 are technical synthetic calls, with no business efficacy or live authority.
@@ -2232,7 +2232,7 @@ the original native result, no receipt and no automatic retry. Parser, prompt,
 assessments, native checks and eligibility are unchanged. Five sequential focused
 and affected scripts passed63 tests in349.720s on one complete source map.
 Artifact `../evidence/2026-10-23-m2d1-semantic-invalid-output.json`, SHA256
-9e56bd85a196bd98fa585e26bec381f56bf8e7a2cf55aa17b5b72d052f1c16d2.
+e540936a2eeb7011c9672115762f644ce80a812b12603e75586e8e8d27b97738.
 AST proof preserves all other product code and prior test methods; the scoped
 independent review approved exact330501fa, with no finding. Its actual HTTP
 invalid-output/stop/off/revoke/cold-replay recheck passed1 test in12.336s; log
@@ -2267,7 +2267,7 @@ Actual paired views1 +solver5+roles5+quiescence9 passed20 tests in96.767s on
 identical source maps; adapter guards22 passed1.711s. Actual CLI --version is
 checked within the owned hidden dummy job. Artifact
 `../evidence/2026-10-23-m2d1-native-qualification-final.json`, SHA256
-537a5a9955b0d0b429f1f4a04c2ddbea74205c259d91e9c1d45e44029a9ac76a.
+94bcc73f179d66eef2a9472d9b24604e13c5b88d3cde35731cfa8437fc798b77.
 
 The exact registration now points to that evidence; historical C remains intact,
 lookup code is unchanged, and altered pin/platform is refused. Metadata RED→GREEN2
@@ -2275,7 +2275,7 @@ passed0.045s. Current source qualification is enforcement-only: all queries used
 dummy auth and local providers, observed reasoning/asset use remain unknown.
 Reuse/source/recheck checkpoint
 `../evidence/2026-10-23-m2d1-source-checkpoint.json`, SHA256
-7660a09ca9452a55df9aae0d0793ad8a9e5a6ca05df45ca32c939f1fcb89c31d.
+6b208b300014a5b6a0290cd1c608e4d6ca7e822ea7d293a3fd56d9c8de692ba2.
 The runtime tuple/test-version probe/registration delta was independently
 approved at5421080714f78c653e2ab10c17a5e8ee4a613a55, with no actionable finding.
 The reviewer verified all81 source pins, retained evidence/log hashes and the
@@ -2313,7 +2313,7 @@ Same-reviewer scoped recheck is pending, not another whole review.
 Before the fix, profile81/2221a859 also passed full local/dummy solver5, roles5
 and quiescence9 in60.609s on one source map. Its source-bound artifact
 `../evidence/2026-10-23-m2d1-native-qualification.json`, SHA256
-fceda2a093465bde55ea1341252733be6e680dc1360c652d62edd23970f4892f,
+300576482336ef194f58cd395c1e007ec4f2b6e824fc44af7ae58fba2a35db63,
 is historical after the constructor change and was never registered. Current
 profile81/d070550687af101c07094e1234c5988fae15af9318eb5f5277c4cb2e413324ba
 remains unregistered; requalify after fix stability. Exact740c LinuxCI39982218130
@@ -2400,7 +2400,7 @@ Subsequent Task3 history checkpoint b755699e passed56 scoped tests (portable
 evidence170d0de3). Actual reservation now passes140 tests in nine sequential
 affected checks,231.248s, recorded in
 `../evidence/2026-10-23-m2d1-task3-reservations.json` (SHA256
-e4d314a547a34456032c167234d31dae7290ebdabd98a42d074cc588824a6995).
+f72721597103665f5158e4b590b8239501be922d360d799babe3d2f0a953b7a3).
 Genuine v4 baseline/candidate Trials and existing Calls/links are created; source
 changes roll back actual reservations, and cold replay stays readable after
 off/revoke. No model query/engine marker. Current native footprint is now76

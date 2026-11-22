@@ -197,6 +197,12 @@ def allow_patterns():
 # `senos_login` (0.251.0) opens pages signed in as the owner (login vault): a customer must never browse as them.
 # Its op=browser (2026-11-21) puts a sign-in into the Playwright browser; `discover_all` then also keeps that
 # browser's own tools away from a bot.
+# Multi-user: never offered to an added "limited" user, at any mode (a shell on the server reaches every brain).
+# senos_schedule / senos_task / senos_mytask / senos_job queue work that later runs in the background AS THE OWNER, so
+# an added user queuing it would act with the owner's rights.
+LIMITED_CAM = frozenset({"senos_terminal", "senos_process", "senos_run_command", "senos_schedule", "senos_plugin",
+                         "senos_job", "senos_task", "senos_mytask"})
+
 OWNER_ONLY_TOOLS = frozenset({"senos_reply_policy", "senos_reply_policy_tune", "senos_team", "senos_memory",
                               "senos_watch", "senos_login",
                               # 0.403.0: changes which notices reach the owner. A customer must never mute the owner.
@@ -2165,6 +2171,19 @@ async def discover_all(mode="full", vault_root=None, include_plugins=True, inclu
     except Exception as e:
         print(f"[hub] plugin host lỗi: {type(e).__name__}: {e}", file=sys.stderr)
 
+    # Multi-user (users.py): an added "limited" user's chat is treated like a bot here (no owner-only tools), and never
+    # gets a shell, whatever mode the turn runs at.
+    _lim = False
+    try:
+        import users as _users
+        _lim = not _users.is_admin(_users.CURRENT.get())
+    except Exception:  # noqa: BLE001
+        pass
+    if _lim:
+        for_bot = True
+        tools_spec = [t for t in tools_spec if t.get("fn") not in LIMITED_CAM]
+        for fn in LIMITED_CAM:
+            route.pop(fn, None)
     # Owner-only tools leave a bot's list BEFORE the lazy tier, or `senos_run_tool` would still dispatch them.
     if for_bot:
         tools_spec = [t for t in tools_spec if t.get("fn") not in OWNER_ONLY_TOOLS]
@@ -2616,6 +2635,13 @@ async def handle_http(request):
     # A dedicated bot's Claude Code config carries X-SenOS-Bot: 1 (see `claude_config_path(bot=True)`), so the hub
     # hides OWNER_ONLY_TOOLS from it. The header can only take tools AWAY; leaving it out grants nothing new.
     for_bot = (request.headers.get("x-senos-bot") or "").strip() == "1"
+    if (request.headers.get("x-senos-limited") or "").strip() == "1":
+        # An added "limited" user's turn: discover_all reads users.CURRENT, which an HTTP call from the CLI lacks.
+        try:
+            import users as _users
+            _users.CURRENT.set({"id": "hub-limited", "role": "limited", "perms": {}, "personal_brain": ""})
+        except Exception:  # noqa: BLE001
+            pass
     tool_allowlist = None
     raw_allowlist = request.headers.get("x-senos-tool-allowlist")
     if raw_allowlist is not None:
@@ -2718,7 +2744,7 @@ def _has_connections():
         return False
 
 
-def claude_config_path(mode="full", vault_root=None, bot=False):
+def claude_config_path(mode="full", vault_root=None, bot=False, limited=False):
     """Ghi file --mcp-config 1 entry 'senos'. 0 connection bật → None (giữ hành vi cũ:
     không config → Claude dùng MCP sẵn của máy).
 
@@ -2754,6 +2780,11 @@ def claude_config_path(mode="full", vault_root=None, bot=False):
     if bot:
         headers["X-SenOS-Bot"] = "1"
         hau_to += "_bot"
+    if limited:
+        # Multi-user: a "limited" user's Claude Code turn (main._lock_cli_for_user). Like X-SenOS-Bot it only takes
+        # tools away: the hub drops LIMITED_CAM from the list AND from the dispatch route (senos_run_tool).
+        headers["X-SenOS-Limited"] = "1"
+        hau_to += "_lim"
     p = STATE_DIR / f".mcp_hub_{mode}{hau_to}.json"
     # X-SenOS-Engine=claude: báo hub đây là engine Claude (có tool native mcp__* của connector
     # tài khoản Claude) → senos_connections/lazy search kèm gợi ý ambient. Codex/engine API không gắn.

@@ -333,7 +333,7 @@ reads. Descriptor mismatch denies before plaintext, and source edits after real
 ledger reservation or the last history read roll back/deny. The first focused
 RED/GREEN preceded nine sequential affected checks:140 tests,231.248s wall time.
 Evidence `../evidence/2026-10-23-m2d1-task3-reservations.json`, SHA256
-e4d314a547a34456032c167234d31dae7290ebdabd98a42d074cc588824a6995.
+f72721597103665f5158e4b590b8239501be922d360d799babe3d2f0a953b7a3.
 The reachable source footprint expanded in the SAME change to76 files, hash
 51b62052babed7b4ceee02f8edf5a7101c92cefe0873280fc6148a6b7dcf7e3c.
 No registration matches it; actual native readiness remains false. Engine markers
@@ -696,7 +696,7 @@ log/source record is preserved. Moving the actual cleanup proof inside the
 existing real-Popen scope fixed the harness without weakening an assertion or
 changing product source. Sanitized evidence
 `../evidence/2026-10-23-m2d1-native-view-enforcement.json`, SHA256
-166a9f7cea1d47705749f5302c7eb0449671431ddd67a3f70f38b7714dee0e8d.
+9b1db6d64be6c08057bd512e74824b0dc2fb850058d6e77402431da05b831ee9.
 Native account calls remain0 and profile is still UNREGISTERED. Shared solver/
 typed-role/death/quiescence composite qualification, genuine native TrialRunner
 feasibility/positive final, whole-D1 review and final CI remain open. Prior owner
@@ -789,7 +789,7 @@ bbdace4d0af552e95ede7b178e55c2730758df57bb68562e1a521654a77487f3.
 Scoped independent recheck is pending. The earlier source-identical81/2221a859
 composite native solver5/roles5/quiescence9 passed60.609s, artifact
 `../evidence/2026-10-23-m2d1-native-qualification.json`, SHA256
-fceda2a093465bde55ea1341252733be6e680dc1360c652d62edd23970f4892f.
+300576482336ef194f58cd395c1e007ec4f2b6e824fc44af7ae58fba2a35db63.
 That profile was never registered and is historical after this source change.
 Current81/d0705506 is unregistered and needs exact-source native requalification
 after the scoped fix review; no real account query or positive final is claimed.
@@ -827,7 +827,7 @@ passed actual paired-view1, solver5, roles5 and quiescence9:20 tests in96.767s
 on identical full source maps. Actual --version is checked inside the hidden
 owned job before SDK query; public adapter guards22 passed1.711s. Source-bound
 artifact `../evidence/2026-10-23-m2d1-native-qualification-final.json`, SHA256
-537a5a9955b0d0b429f1f4a04c2ddbea74205c259d91e9c1d45e44029a9ac76a.
+94bcc73f179d66eef2a9472d9b24604e13c5b88d3cde35731cfa8437fc798b77.
 Registration RED proves the exact entry absent; GREEN2/0.045s matches actual
 artifact/source hashes and refuses changed tuple/platform. The new exact309
 entry lives outside the native footprint; lookup function and historical C
@@ -835,7 +835,7 @@ entry remain unchanged. AST proof preserves all native adapter behavior except
 one known-runtime tuple and all paired fixture helpers except the unexecuted
 registration-test class. Do not rerun native20 solely for this post-proof entry.
 Checkpoint `../evidence/2026-10-23-m2d1-source-checkpoint.json`, SHA256
-7660a09ca9452a55df9aae0d0793ad8a9e5a6ca05df45ca32c939f1fcb89c31d,
+6b208b300014a5b6a0290cd1c608e4d6ca7e822ea7d293a3fd56d9c8de692ba2,
 also qualifies the independent fix recheck/rebase/component evidence reuse.
 Small runtime309 delta still requires scoped independent recheck; final CI,
 actual native TrialRunner/account feasibility and genuine selected-final positive

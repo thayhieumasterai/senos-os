@@ -12,20 +12,20 @@
   },
   "semantic_regression": {
     "path": "2026-10-23-m2d1-semantic-invalid-output.json",
-    "sha256": "9e56bd85a196bd98fa585e26bec381f56bf8e7a2cf55aa17b5b72d052f1c16d2",
+    "sha256": "e540936a2eeb7011c9672115762f644ce80a812b12603e75586e8e8d27b97738",
     "tests": 63,
     "seconds": 349.72
   },
   "historical_selected_account_feasibility": {
     "path": "2026-10-23-m2d1-real-feasibility.json",
-    "sha256": "8d7d27eb97a67671ea9b7376040269f9ff97bfab6c00e2e1bfce213e8d9d0579",
+    "sha256": "4ad9ff27128119ab0041dd8dbad2f246b2d687e37d0b477c98ed88844c000b50",
     "calls": 2,
     "paired_calls": 0,
     "outcome": "invalid_semantic_output_rejected_before_pair"
   },
   "native_qualification": {
     "path": "2026-10-23-m2d1-native-qualification-outcome.json",
-    "sha256": "6532d0e0cacfb2230233d577a04d73d9293f77a3a324eb037e6f93ca7c187526",
+    "sha256": "b12c5daa40bd936049201445be20755ebdc6780f515600cbc8efb06c4bcf984b",
     "profile_hash": "958527ac69c3b5728044b22cf6d3bdebb920da7cbe46a9da261e899568ced1ef",
     "tests": 20,
     "seconds": 94.89,

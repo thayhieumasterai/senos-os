@@ -306,6 +306,12 @@ import upstream_compat
 app.add_middleware(nen_phan_hoi.NenPhanHoi)
 # Plugins from upstream packs read the cookie javis_session (see upstream_compat.py).
 app.add_middleware(upstream_compat.PluginSessionCookie)
+# Per-user permissions (users.py, users_guard.py). Added here, before _auth_guard is declared, so it runs inside it
+# and sees the user that guard put in users.CURRENT. The callbacks are looked up at call time.
+import users
+import users_guard
+app.add_middleware(users_guard.UserGuard, resolve_brain=lambda b: _guard_brain_path(b),
+                   conv_account=lambda c: _guard_conv_account(c), session_owner=lambda s: _guard_session_owner(s))
 # CORS KHÔNG dùng '*' nữa: dashboard cùng-origin (không cần CORS). Chống trang web độc ĐỌC API qua trình duyệt;
 # phần chống GHI/CSRF ở _csrf_guard bên dưới.
 # Vá bảo mật 2026-11-05: cửa CORS cho MỌI localhost:<cổng> (để tiện dev) giờ chỉ mở khi SENOS_DEV_CORS=1. Trên
@@ -471,6 +477,9 @@ async def _auth_guard(request: Request, call_next):
                     renewed = request.cookies.get("senos_session", "")
             except Exception:  # noqa: BLE001
                 pass
+    # Who is calling (users.py). A Bearer token, a local tool call or an instance with no password is the owner.
+    _tok = request.cookies.get("senos_session", "")
+    users.CURRENT.set(users.session_user(_tok) if _tok and cfgmod.valid_session(_tok) else users.OWNER)
     resp = await call_next(request)
     # Re-issue the 30-day cookie for a renewed session. Checked after call_next: this request may be /auth/logout,
     # which ends the session, and the cookie must not come back then.
@@ -1841,10 +1850,13 @@ def _sec(request, event: str, **kw) -> None:
         print(f"[security_log] {event}: {type(e).__name__}: {e}", file=sys.stderr)
 
 
-def _new_login_session(request, user: str = "", how: str = "", remember: bool = True) -> str:
-    """A session for a successful sign-in, recorded with its device; a network never seen before is an alert."""
+def _new_login_session(request, user: str = "", how: str = "", remember: bool = True, uid: str = "") -> str:
+    """A session for a successful sign-in, recorded with its device; a network never seen before is an alert.
+    `uid` = an added user's id (users.py); empty = the owner."""
     ip, ua = security_log.request_meta(request)
-    tok = cfgmod.new_session(ip, ua, remember=remember)
+    tok = cfgmod.new_session(ip, ua, remember=remember, user=uid)
+    if uid:
+        users.bind_session(tok, uid)
     try:
         new_net = security_log.note_login_network(ip)
         security_log.record("login_new_network" if new_net else "login_ok", ip=ip, ua=ua, user=user, detail=how)
@@ -1880,7 +1892,19 @@ async def auth_status(request: Request):
             # install.sh có thể ghi SENOS_SETUP_2FA=1 vào .env khi người cài chọn bật 2FA.
             # Đây chỉ là LỜI NHẮC cho giao diện mở sẵn màn bật, không phải một cơ chế bảo mật.
             "totp_suggested": (_env_bat("SENOS_SETUP_2FA") and not cfgmod.totp_enabled(cfg)),
-            "username": (cfg.get("auth", {}).get("username", "") if authed else "")}
+            "username": (cfg.get("auth", {}).get("username", "") if authed else ""),
+            **_auth_status_user(request, authed)}
+
+
+def _auth_status_user(request, authed: bool) -> dict:
+    """Multi-user part of /auth/status: the signed-in person, their role and the pages the dashboard shows them."""
+    if not authed:
+        return {}
+    u = users.CURRENT.get()
+    if users.is_owner(u):
+        return {"user": {"id": "owner", "role": "owner"}, "pages": None, "is_owner": True}
+    return {"user": users.public(u), "username": u.get("username", ""), "pages": users.pages(u), "is_owner": False,
+            "personal_brain": u.get("personal_brain", "")}
 
 
 @app.post("/auth/setup")
@@ -1943,6 +1967,14 @@ async def auth_login(request: Request, username: str = Form(...), password: str 
     cfg = cfgmod.read_settings()
     if not cfgmod.auth_enabled(cfg):
         return {"ok": True, "note": localefmt.chu("auth chưa bật", "auth is not enabled")}
+    if not cfgmod.username_matches(username, cfg):
+        # An added user (multi-user, users.py) signs in at the same place; no 2FA for them yet.
+        _them = users.verify(username, password)
+        if _them:
+            _sec(request, "login_ok", user=_them["username"], detail="user")
+            return _session_cookie(JSONResponse({"ok": True, "user": users.public(_them)}),
+                                   _new_login_session(request, _them["username"], "user", remember != "0", uid=_them["id"]),
+                                   request, remember=remember != "0")
     if not cfgmod.username_matches(username, cfg) or not cfgmod.verify_password(password, cfg):
         _sec(request, "login_fail", user=username,
              detail="unknown username" if not cfgmod.username_matches(username, cfg) else "wrong password")
@@ -2143,6 +2175,17 @@ async def auth_password(request: Request, current_password: str = Form(""),
     """
     if (loi := _doi_phien_that(request)) is not None:
         return loi
+    _me = users.CURRENT.get()
+    if not users.is_owner(_me):
+        # An added user: their own password (the username is the owner's to change on the Users page).
+        if not users.verify(_me.get("username", ""), current_password):
+            await asyncio.sleep(0.5)
+            return JSONResponse({"ok": False, "error": localefmt.chu("Sai mật khẩu hiện tại.", "Wrong current password.")}, status_code=401)
+        r = users.update(_me["id"], password=password)
+        if not r.get("ok"):
+            return JSONResponse(r, status_code=400)
+        return _session_cookie(JSONResponse({"ok": True}), _new_login_session(request, _me["username"], "password", uid=_me["id"]),
+                               request)
     cfg = cfgmod.read_settings()
     if not cfgmod.auth_enabled(cfg):
         return JSONResponse({"ok": False, "error": localefmt.chu("Chưa có tài khoản nào - đặt mật khẩu lần đầu đã.", "No account yet - set the first password first.")},
@@ -3744,12 +3787,23 @@ def _chat_provider(mcfg):
             if (signed_in is None or cand in signed_in) and _route_ready(mcfg, cand):
                 prov, model = cand, model_routing.profile(mcfg, cand)["model"]
                 break
+    # Multi-user: Codex, Grok Build and Antigravity bring their own shell, which the hub cannot fence in. An added
+    # "limited" user's turn goes to the next card that has none (Claude Code, locked down by _lock_cli_for_user, or
+    # an API engine).
+    if prov in _SHELL_ENGINES and users.CURRENT.get().get("role") == "limited":
+        for cand in model_routing.order(mcfg):
+            if cand not in _SHELL_ENGINES and _route_ready(mcfg, cand):
+                prov, model = cand, model_routing.profile(mcfg, cand)["model"]
+                break
     d = _provider_def(prov) or {}
     kind = d.get("kind", "cli")
     key = _provider_key(mcfg, d)
     if prov == "openrouter":
         model = model or mcfg.get("openrouter_model")
     return prov, kind, key, model
+
+
+_SHELL_ENGINES = (aux_engine.CODEX, aux_engine.GROK_CLI, aux_engine.ANTIGRAVITY)
 
 
 def _chat_reasoning(mcfg, prov) -> str:
@@ -4140,8 +4194,8 @@ def _chat_provider_for_session(mcfg, row):
         _cp = _core_pin(mcfg)
         row = {"pinned_provider": _cp.get("provider") or "", "pinned_model": _cp.get("model") or ""}
     pprov = ((row or {}).get("pinned_provider") or "").strip()
-    if not pprov:
-        return _chat_provider(mcfg)
+    if not pprov or (pprov in _SHELL_ENGINES and users.CURRENT.get().get("role") == "limited"):
+        return _chat_provider(mcfg)       # multi-user: a limited user's chat never runs on an engine with its own shell
     d = _provider_def(pprov)
     if not d:
         return _chat_provider(mcfg)
@@ -7505,6 +7559,27 @@ async def connect_oauth_callback(state: str = Query(""), code: str = Query(""), 
     return HTMLResponse(html)
 
 
+_USER_SETTINGS = ("workspace_name", "locale", "dashboard", "voice", "branding", "setup_done", "lang_list",
+                  "ui_lang_list", "locale_fmt")
+_USER_MODEL = ("main", "order", "engine", "claude_model", "reasoning", "fast", "profiles", "openrouter_model")
+
+
+def _settings_for_user(safe: dict) -> dict:
+    """Multi-user: what an added "limited" user's dashboard may read of the settings (interface, language, voice,
+    branding, which model runs), with every field that looks like a credential dropped."""
+    def clean(v):
+        if isinstance(v, dict):
+            return {k: clean(x) for k, x in v.items()
+                    if not any(w in str(k).lower() for w in ("key", "token", "secret", "password", "cookie", "oauth"))}
+        if isinstance(v, list):
+            return [clean(x) for x in v]
+        return v
+    out = {k: clean(safe[k]) for k in _USER_SETTINGS if k in safe}
+    out["model"] = clean({k: v for k, v in (safe.get("model") or {}).items() if k in _USER_MODEL})
+    out["auth"] = {"username": users.CURRENT.get().get("username", ""), "has_password": True}
+    return out
+
+
 @app.get("/settings")  # def thường, xem ghi chú ở list_agents
 def settings_get():
     cfg = cfgmod.read_settings()
@@ -7571,7 +7646,7 @@ def settings_get():
     safe["model"]["providers"] = _providers_view(cfg)   # danh sách provider + trạng thái + model
     safe["model"]["main"] = _effective_main(cfg)         # model chính hiệu lực (suy từ legacy nếu cần)
     safe["model"]["routing"] = _routing_view(cfg["model"], safe["model"]["providers"])
-    return safe
+    return safe if users.is_admin(users.CURRENT.get()) else _settings_for_user(safe)
 
 
 def _default_model_name(mcfg, prov: str) -> str:
@@ -8879,7 +8954,39 @@ def _default_brain_dir() -> Path:
 
     2026-11-13: nearly every request asks for this, and each call cost one stat of the pointer file plus a mkdir
     on the event loop. The loop now gets the folder from memory (kept.py); `_brain_paths_changed()` drops it."""
+    u = users.CURRENT.get()
+    if u.get("role") == "limited" and u.get("personal_brain") and _BRAIN_IS_DIR.get(u["personal_brain"]):
+        return Path(u["personal_brain"])       # multi-user: a limited user's own brain is their default
     return _DEFAULT_BRAIN_DIR.get()
+
+
+def _guard_brain_path(b: str) -> str:
+    """The folder a `brain` value means, exactly as the routes pick it (for users_guard)."""
+    b = str(b or "").strip()
+    if not b or b == "brain":
+        return str(_default_brain_dir())
+    if b.startswith("path:"):
+        b = b[5:]
+    if _BRAIN_IS_DIR.get(b):
+        return b
+    cand = Path(BRAINS_DIR) / b                 # a folder name, as in /brains/<folder>/...
+    return str(cand) if cand.is_dir() else b
+
+
+def _guard_session_owner(sid: str):
+    try:
+        row = get_store().get_session(sid)
+        return None if not row else (row.get("owner_user") or "owner")
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _guard_conv_account(conv_id: str):
+    try:
+        c = conversations.chi_tiet(int(conv_id))
+        return (c or {}).get("channel_account_id")
+    except Exception:  # noqa: BLE001
+        return None
 
 
 def _default_brain_dir_now() -> Path:
@@ -9009,6 +9116,23 @@ def _khoi_coding(row, brain: str = "") -> str:
         return ""
 
 
+def _lock_cli_for_user(cli, mode: str, brain: str) -> None:
+    """Multi-user: a "limited" user's Claude Code turn gets the dedicated-bot lockdown. Owner chats run Claude Code with
+    every native tool (Bash, Read, Write anywhere on the server); for an added user only the hub's tools remain, bound
+    to the brain of the chat, with owner-only tools hidden (X-SenOS-Bot) and every native tool denied."""
+    if users.is_admin(users.CURRENT.get()):
+        return
+    vault = _brain_root(brain)
+    cli.allowed_tools = list(mcp_hub.allow_patterns())
+    cli.senos_mode = mode
+    cli.senos_vault = vault
+    cli.cwd = vault
+    cli.mcp_config = mcp_hub.claude_config_path(mode, vault_root=vault, bot=True, limited=True)
+    cli.mcp_strict = cli.mcp_config is not None
+    cli.disallowed_tools = list(BOT_CAM_NATIVE) + ["PowerShell", "Skill", "SlashCommand"] + [
+        f"mcp__senos__{t}" for t in sorted(mcp_hub.OWNER_ONLY_TOOLS | mcp_hub.LIMITED_CAM)]
+
+
 def _muc_quyen_luot_chat(row, user_message="") -> str:
     """Mức quyền của lượt: phiên coding lấy theo chip trên trang, còn lại giữ `full` như cũ.
 
@@ -9021,6 +9145,14 @@ def _muc_quyen_luot_chat(row, user_message="") -> str:
     """
     if lenh_he_thong.la_luot_ke_hoach(user_message):
         return "suggest"
+    # Multi-user (users.py): an added "limited" user's chat never runs above what they were granted. A brain they may
+    # only read = read and suggest; one they may edit = files only ("auto"); outside actions only when the owner allowed.
+    _u = users.CURRENT.get()
+    if _u.get("role") == "limited":
+        lv = users.brain_level(_u, _brain_root(str((row or {}).get("brain") or "")))
+        if lv != "write":
+            return "suggest"
+        return "full" if users.outside_actions(_u) else "auto"
     try:
         sid = (row or {}).get("id") or ""
         if sid and str((row or {}).get("channel") or "").startswith("coding:"):
@@ -9566,7 +9698,114 @@ def _list_brains_sync() -> dict:
 async def list_brains():
     """Liệt kê mọi brain trong BRAINS_DIR (mỗi folder con = 1 brain) + số note .md.
     Dropdown chọn brain đổ từ đây (server-side) thay vì localStorage."""
-    return await asyncio.to_thread(_list_brains_sync)
+    d = await asyncio.to_thread(_list_brains_sync)
+    u = users.CURRENT.get()
+    if not users.is_admin(u):
+        keep = []
+        for b in d.get("brains") or []:
+            lv = users.brain_level(u, b.get("path", ""))
+            if lv:
+                keep.append({**b, "access": lv, "is_default": users._norm(b.get("path", "")) == users._norm(u.get("personal_brain") or "")})
+        d["brains"] = keep
+    return d
+
+
+# ---------------------------------------------------------------- Users (multi-user, 2026-11-22)
+def _personal_brain_for(name: str) -> str:
+    """Create the own brain of a new user: a normal brain folder, labelled with their name."""
+    base = _safe_brain_name(f"Rieng {name}") or "Rieng"
+    root, n = Path(BRAINS_DIR) / base, 2
+    while root.exists():
+        root, n = Path(BRAINS_DIR) / f"{base} {n}", n + 1
+    _ensure_brain_scaffold(root)
+    try:
+        brain_label.write(root, f"{name} (riêng)")
+    except Exception:  # noqa: BLE001
+        pass
+    _brain_paths_changed()
+    return str(root)
+
+
+async def _users_body(request: Request) -> dict:
+    try:
+        d = await request.json()
+        return d if isinstance(d, dict) else {}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+@app.get("/users")
+async def users_list():
+    """Owner only (users_guard.OWNER_ONLY). Users, seats and what can be granted (brains, agents, channel accounts)."""
+    brains = (await asyncio.to_thread(_list_brains_sync)).get("brains") or []
+    chans = []
+    try:
+        for a in conversations.tai_khoan():      # the inbox's channel accounts (ids match conversations.channel_account_id)
+            chans.append({"id": a.get("id"), "channel": a.get("channel"),
+                          "name": a.get("display_name") or a.get("external_account_id") or a.get("id")})
+    except Exception:  # noqa: BLE001
+        pass
+    return {"ok": True, "users": users.list_users(), "seats": users.seats(),
+            "brains": [{"path": b["path"], "label": b.get("label") or b["name"]} for b in brains], "channels": chans}
+
+
+@app.get("/users/agents")
+def users_agents(brain: str = Query("")):          # plain def: reads the disk, so it runs off the event loop
+    """Agent slugs of one brain, for the permission picker."""
+    root = Path(_guard_brain_path(brain))
+    out = []
+    for d in (root / "agents", root / "SenOS" / "agents"):
+        if d.is_dir():
+            out += [{"slug": p.stem, "name": p.stem} for p in sorted(d.glob("*.md"))]
+    seen, uniq = set(), []
+    for a in out:
+        if a["slug"] not in seen:
+            seen.add(a["slug"])
+            uniq.append(a)
+    return {"ok": True, "agents": uniq}
+
+
+@app.post("/users")
+async def users_create(request: Request):
+    d = await _users_body(request)
+    name = str(d.get("name") or d.get("username") or "").strip()
+    pre = users.seats()
+    if pre["max"] is not None and pre["used"] >= pre["max"]:
+        return JSONResponse({"ok": False, "seats": pre, "error": f"Gói hiện tại cho tối đa {pre['max']} người dùng. "
+                             "Mua thêm người dùng ở trang Gói & tín dụng."}, status_code=400)
+    if users.by_username(d.get("username", "")):
+        return JSONResponse({"ok": False, "error": "Tên đăng nhập đã có người dùng."}, status_code=400)
+    personal = ""
+    if (d.get("role") or "limited") == "limited":
+        try:
+            personal = await asyncio.to_thread(_personal_brain_for, name or str(d.get("username")))
+        except Exception as e:  # noqa: BLE001
+            return JSONResponse({"ok": False, "error": f"Không tạo được bộ não riêng: {e}"}, status_code=500)
+    r = users.create(d.get("username", ""), d.get("password", ""), name, d.get("role") or "limited", d.get("perms"), personal)
+    if not r.get("ok") and personal:
+        shutil.rmtree(personal, ignore_errors=True)
+        _brain_paths_changed()
+    return r if r.get("ok") else JSONResponse(r, status_code=400)
+
+
+@app.post("/users/{uid}")
+async def users_update(uid: str, request: Request):
+    d = await _users_body(request)
+    u = users.get(uid)
+    if not u:
+        return JSONResponse({"ok": False, "error": "Không tìm thấy người dùng."}, status_code=404)
+    fields = {k: d.get(k) for k in ("name", "role", "perms", "disabled", "password") if k in d}
+    if fields.get("role") == "limited" and not u.get("personal_brain"):
+        fields["personal_brain"] = await asyncio.to_thread(_personal_brain_for, u.get("name") or u["username"])
+    r = users.update(uid, **fields)
+    return r if r.get("ok") else JSONResponse(r, status_code=400)
+
+
+@app.post("/users/{uid}/delete")
+async def users_delete(uid: str):
+    """Remove a user. Their own brain stays (it holds their work); the owner can delete it from the brain list."""
+    r = users.delete(uid)
+    return r if r.get("ok") else JSONResponse(r, status_code=404)
 
 
 @app.post("/brains/order")
@@ -10275,6 +10514,10 @@ def list_agents(brain: str = Query("brain"), prompt: int = Query(1), system: int
     ds = agents_index(brain, kem_prompt=bool(prompt))
     # `system=1` (the Partners page, 0.185.0): SenOS Core first. Pickers that need a brain agent FILE (team members,
     # chatbots, the "/" menu) do not ask for it, so they never offer the system assistant.
+    _u = users.CURRENT.get()
+    if not users.is_admin(_u):              # multi-user: only the agents this person may control
+        _root = _brain_root(brain)
+        ds = [a for a in ds if users.can_agent(_u, _root, str(a.get("slug") or a.get("id") or ""))]
     return {"agents": ([_senos_core_entry(brain)] if system else []) + ds}
 
 
@@ -20774,6 +21017,35 @@ async def websocket_endpoint(ws: WebSocket):
     await _chat_socket(ws)
 
 
+def _ws_denied(payload: dict) -> str:
+    """Why the signed-in user may not send this chat-socket message ("" = allowed). Same rules as users_guard."""
+    u = users.CURRENT.get()
+    if users.is_owner(u):
+        return ""
+    sid = str(payload.get("session_id") or "")
+    if sid:
+        row = get_store().get_session(sid)
+        if row and (row.get("owner_user") or "owner") != u.get("id"):
+            return localefmt.chu("Cuộc trò chuyện này không phải của bạn.", "This chat is not yours.")
+    if users.is_admin(u):
+        return ""
+    if u.get("role") != "limited":
+        return localefmt.chu("Tài khoản này đã bị gỡ hoặc tạm khoá.", "This account was removed or disabled.")
+    brain = str(payload.get("brain") or "")
+    real = _guard_brain_path(brain)
+    if users.brain_level(u, real) is None:
+        return localefmt.chu("Bạn chưa được cấp quyền vào bộ não này.", "You have no access to this brain.")
+    sid = str(payload.get("session_id") or "")
+    if sid:
+        row = get_store().get_session(sid)
+        if row and (row.get("owner_user") or "owner") != u.get("id"):
+            return localefmt.chu("Cuộc trò chuyện này không phải của bạn.", "This chat is not yours.")
+    agent = str(payload.get("agent") or payload.get("agent_slug") or "")
+    if agent and not users.can_agent(u, real, agent):
+        return localefmt.chu("Bạn chưa được cấp quyền điều khiển Agent này.", "You may not run this agent.")
+    return ""
+
+
 async def _chat_socket(ws):
     """Vòng nhận tin của khung chat, tách khỏi `websocket_endpoint` (0.440.0) chỉ để server
     tự gọi được nó: SenOS Gate (`chat_bridge`) đưa tin của ChatGPT/Claude vào hội thoại bằng
@@ -22011,6 +22283,7 @@ async def _chat_socket(ws):
                 # mode: `full` cho mọi phiên như xưa nay; riêng phiên coding lấy theo chip Mức
                 # quyền của trang đó, vì ở trang ấy người dùng CHỌN mức chứ không thừa kế.
                 _apply_mcp(cli, mode=_muc_quyen_luot_chat(_row0, user_message), brain=brain)   # gắn MCP do SenOS quản lý (nhiều shop POSCake...)
+                _lock_cli_for_user(cli, _muc_quyen_luot_chat(_row0, user_message), brain)
                 _streamed = ""      # phần đã stream - phương án dự phòng khi luồng đứt trước 'final'
                 _cli_sid = None
                 _cost = None
@@ -23060,6 +23333,11 @@ async def _chat_socket(ws):
             except ValueError:
                 continue
             if not isinstance(payload, dict):
+                continue
+            # Multi-user: a WebSocket message carries its own brain / chat / agent, which no HTTP guard sees.
+            _cam = globals().get("_ws_denied", lambda _p: "")(payload)
+            if _cam:
+                await send_raw({"type": "error", "session_id": str(payload.get("session_id") or ""), "content": _cam})
                 continue
             # One message that fails must not take the socket down with it (users, 07/11/2026: "Mất kết nối tới
             # máy chủ" for hours, a restart did not help). An error here used to end this handler, so the socket

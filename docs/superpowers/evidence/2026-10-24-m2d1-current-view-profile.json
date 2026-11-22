@@ -4,7 +4,7 @@
   "source_head": "29f5bdd52d5e8d88d6b4a90ba777d14bacc0c4b3",
   "kind": "read_only_preparation_profile",
   "account_run_artifact": "2026-10-24-m2d1-real-format-feasibility.json",
-  "account_run_sha256": "652bb32e66654daedb786f623b6d5a3fee34d061727bf586acf0807d49042246",
+  "account_run_sha256": "4ea6d571d802759f8509784fe91c049040056f30216fc9b637fb801085e8cd7f",
   "cli_size_bytes": 298624160,
   "raw_profile_sha256": "5b539ad612509000bfdc9b812180db209ef3867f2aca67eb3e8b3d55b9150429",
   "driver_sha256": "83e94351898fd1694dfec88846255228f3e6999056d4376e29ec5cb2c5f1c12b",

@@ -1564,15 +1564,22 @@ def _save_sessions():
         pass
 
 
-def new_session(ip: str = "", ua: str = "", remember: bool = True):
-    """A new sign-in session. remember=False is "Keep me signed in" left unticked (see _SHORT_SESSION_IDLE)."""
+def new_session(ip: str = "", ua: str = "", remember: bool = True, user: str = ""):
+    """A new sign-in session. remember=False is "Keep me signed in" left unticked (see _SHORT_SESSION_IDLE).
+
+    `user` is the id of an added user (users.py); empty = the owner. It lives in SESSION_META, so a session made before
+    multi-user, or by an older version, carries none and stays the owner's."""
     t = secrets.token_urlsafe(32)
     SESSIONS[t] = _time.time()
     _save_sessions()
     if ip or ua:
         note_session_device(t, ip, ua)
-    if not remember:
-        SESSION_META.setdefault(t, {})["remember"] = False
+    if not remember or user:
+        m = SESSION_META.setdefault(t, {})
+        if not remember:
+            m["remember"] = False
+        if user:
+            m["user"] = user
         _save_session_meta()
     return t
 
@@ -1700,7 +1707,9 @@ def note_session_device(token, ip: str = "", ua: str = ""):
     if not token or token not in SESSIONS:
         return
     now = _time.time()
-    SESSION_META[token] = {"ip": str(ip or "")[:64], "ua": str(ua or "")[:200], "last": now,
+    old = SESSION_META.get(token) or {}
+    keep = {k: old[k] for k in ("user", "remember", "created") if k in old}   # who it is never changes with the device
+    SESSION_META[token] = {**keep, "ip": str(ip or "")[:64], "ua": str(ua or "")[:200], "last": now,
                            "last_ip": str(ip or "")[:64]}
     _save_session_meta()
 

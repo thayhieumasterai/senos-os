@@ -6,6 +6,13 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.624.2] - 2026-11-22
+### Thêm mới
+- **Nhiều người dùng trong một workspace.** Chủ thêm người ở trang Người dùng, chọn vai trò Toàn quyền hoặc Một phần quyền. Người một phần quyền có bộ não riêng, và chỉ thấy những bộ não chung (chỉ xem hoặc xem và sửa), Agent, kênh trong Hộp thư bot mà chủ cấp.
+- **Mỗi người một lịch sử trò chuyện riêng**; chủ thấy tất cả. Người dùng tự đổi mật khẩu ở trang Hồ sơ.
+### Bảo mật
+- **Quyền được chặn ở máy chủ**, không chỉ ẩn trên giao diện. AI khi người một phần quyền chat bị khoá theo quyền của họ: không dòng lệnh, không việc nền, chỉ đọc ở bộ não chỉ xem, không hành động ra ngoài trừ khi chủ cho phép.
+
 ## [0.624.1] - 2026-11-22
 ### Cải thiện
 - **Đồng bộ với Javis OS 0.624.0**: mọi thay đổi từ 0.594.0 tới 0.624.0 bên dưới đã có trong SenOS, chuyển sang tên SenOS.

@@ -20,7 +20,7 @@ import unicodedata
 PAGES = (
     "home", "chat", "settings", "workspace", "teams", "skills", "chatbots", "conversations", "files",
     "terminal", "coding", "tasks", "webhooks", "learn", "models", "channels", "mcp", "plugins",
-    "packs", "logs", "account", "usage", "logins", "pet", "share",
+    "packs", "logs", "account", "users", "usage", "logins", "pet", "share",
 )
 
 # Bí danh người dùng hay nói, ánh xạ về id trang. Thường hoá không dấu trước khi tra, nên viết

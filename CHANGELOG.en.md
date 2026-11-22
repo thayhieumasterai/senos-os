@@ -8,6 +8,13 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.624.2] - 2026-11-22
+### Added
+- **Several users in one workspace.** The owner adds people on the Users page, as Full access or Limited access. A limited user has their own brain and sees only the shared brains (read only or read and edit), agents and inbox channels the owner grants.
+- **Each person has their own chat history**; the owner sees all. Users change their own password on the Profile page.
+### Security
+- **Permissions are enforced on the server**, not only hidden in the interface. When a limited user chats, the AI is locked to their rights: no shell, no background work, read only in a read-only brain, no outside actions unless the owner allows them.
+
 ## [0.624.1] - 2026-11-22
 ### Improved
 - **In sync with Javis OS 0.624.0**: every change from 0.594.0 to 0.624.0 below is in SenOS, in SenOS's names.

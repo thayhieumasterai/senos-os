@@ -16,7 +16,7 @@
   // Cùng danh sách với RAIL_ITEMS trong console.js và PAGES trong plugin senos-ui.
   var PAGES = ["home", "chat", "settings", "workspace", "teams", "skills", "chatbots", "conversations", "files",
                "terminal", "coding", "tasks", "webhooks", "learn", "models", "channels", "mcp", "plugins",
-               "packs", "logs", "account", "usage", "logins", "pet", "share"];
+               "packs", "logs", "account", "users", "usage", "logins", "pet", "share"];
   // Nhóm trên thanh bên (accordion). Cùng danh sách với RAIL_GROUPS trong console.js và GROUPS
   // trong plugin senos-ui. Mở một NHÓM khác với mở một TRANG: người dùng hay muốn bung phần
   // đang gập lại để nhìn xem có gì, chứ chưa chọn trang nào.

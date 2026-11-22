@@ -338,7 +338,7 @@ check("kho hiện trên thanh bên", _an is not None and '"packs"' not in _an.gr
 # 0.251.0: the Login vault joined the same group, between Channels and Models.
 check("và nằm trong nhóm Kết nối", '"mcp", "packs", "channels", "logins"' in src_con)
 check("vẫn giữ trong danh sách trang (nguồn icon và nhãn)",
-      '"packs", "logs", "account", "usage",' in src_con)
+      '"packs", "logs", "account", "users", "usage",' in src_con)
 # VIEW_META thiếu "packs" từ đầu nên header trang kho ghi nhầm là tiêu đề Trang chủ.
 check("trang kho có tiêu đề riêng, không mượn tiêu đề Trang chủ",
       '"plugins", "packs", "logs"' in src_con)

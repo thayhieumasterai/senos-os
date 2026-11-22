@@ -7,7 +7,7 @@
   "cli_hash": "f9a3920634ae3b961ee92c2eb58d0051f5f8852b120983d0a4f57b6a5efeba61",
   "sdk_version": "0.2.116",
   "profile_version": "claude-isolated-roles-v2",
-  "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+  "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
   "source_base_commit": "53b4b2cdb98e5865f2f9db60de7ac8f5f1ad5333",
   "source_pins_authoritative": true,
   "source_hashes": {
@@ -65,7 +65,7 @@
     "improvement_trial_admission.py": "c10d47c68fee11dfae88974f8c1e37de395737ae90737f5af16f502feaba0bf5",
     "improvement_trial_context.py": "cd18fbeb5904ac1147dc2b9877bcb9e289bb5a6c4137c3ece92db4b7a905227f",
     "improvement_trial_sources.py": "1d4c1f0162f2fe9b7e135681d3f6bd3e644f82e2e3a04324234ab38418109669",
-    "improvement_trial_sql_context.py": "1079187f392478ead14ebf05c45c1681415c7d6317eea9d04a055629bb88e4ca",
+    "improvement_trial_sql_context.py": "77b89a97fa0f90f750e2d29dfe610f699c6baa074848124107bb6a1a7b4a0bf3",
     "improvement_trial_dashboard.py": "687fd8bfc13372f0fe47a52c73b9c98aae179d91757a60af0fc384ccc155fe89",
     "improvement_trial_file_sources.py": "df07158a0c97a789ef1f5f2dee064fcba276c3179ddb9a5264d6cc28735e755e",
     "improvement_trial_selection.py": "589d9afc4bec3827509434091b6503c6f3bc0efdb3d869976c6c3377d267e248",
@@ -219,7 +219,7 @@
       "scenario": "actual-v3-view-native-local-enforcement",
       "variant": "candidate",
       "production_billing": false,
-      "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+      "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
       "seconds": 6.204,
       "view": {
         "binding_hash": "2f849265f8794fcd4faf58fe9d17ab753b37871a56ac2a39afe86520b04b11c5",
@@ -258,7 +258,7 @@
       "scenario": "actual-v3-view-native-local-enforcement",
       "variant": "baseline",
       "production_billing": false,
-      "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+      "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
       "seconds": 5.438,
       "view": {
         "binding_hash": "2f849265f8794fcd4faf58fe9d17ab753b37871a56ac2a39afe86520b04b11c5",
@@ -453,7 +453,7 @@
       "cache_path_lengths": [
         306
       ],
-      "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+      "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
       "runtime": {
         "version": "2.1.310",
         "sha256": "f9a3920634ae3b961ee92c2eb58d0051f5f8852b120983d0a4f57b6a5efeba61",
@@ -531,7 +531,7 @@
       "cache_path_lengths": [
         305
       ],
-      "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+      "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
       "runtime": {
         "version": "2.1.310",
         "sha256": "f9a3920634ae3b961ee92c2eb58d0051f5f8852b120983d0a4f57b6a5efeba61",
@@ -609,7 +609,7 @@
       "cache_path_lengths": [
         307
       ],
-      "profile_hash": "36295da57bd958b6cfc85d44ebcbf66538f0b04e5a9f61dd05a313c2155bc3eb",
+      "profile_hash": "c95dbc8847bf2aff279bffc309abedd06a3f24d81d3c4decd018d19ec9f52fb0",
       "runtime": {
         "version": "2.1.310",
         "sha256": "f9a3920634ae3b961ee92c2eb58d0051f5f8852b120983d0a4f57b6a5efeba61",

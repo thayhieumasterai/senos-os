@@ -57,6 +57,7 @@
     packs: "package",
     logs: "scroll-text",
     account: "circle-user",
+    users: "users",
     usage: "chart-column",
     // Không phải "smile" của Lucide: trang Linh vật mang chính khuôn mặt linh vật (vành cam,
     // mắt liếc), xem RIENG trong dashboard/icons.js. Cái tab dẫn tới con pet mà không giống
@@ -111,7 +112,7 @@
   const RAIL_ITEMS = [
     "home", "chat", "settings", "workspace", "teams", "skills", "chatbots", "conversations", "files",
     "terminal", "coding", "tasks", "webhooks", "learn", "models", "channels", "mcp", "plugins",
-    "packs", "logs", "account", "usage", "logins", "pet", "share",
+    "packs", "logs", "account", "users", "usage", "logins", "pet", "share",
   ].map(id => ({ id, icon: ICON[id], get label() { return t(`page.${id}.label`); } }));
 
   // ---- Gom rail thành nhóm theo chức năng (dễ tìm hơn danh sách phẳng 18 mục) ----
@@ -133,7 +134,7 @@
     { id: "nang_luc", get label() { return t("nav.group.nang_luc"); },    icon: GICON.nang_luc,    ids: ["workspace", "teams", "conversations", "skills", "plugins", "terminal"] },
     { id: "viec", get label() { return t("nav.group.viec"); },        icon: GICON.viec,        ids: ["tasks", "webhooks"] },
     { id: "ket_noi", get label() { return t("nav.group.ket_noi"); },     icon: GICON.ket_noi,     ids: ["mcp", "packs", "channels", "logins"] },
-    { id: "he_thong", get label() { return t("nav.group.he_thong"); },    icon: GICON.he_thong,    ids: ["models", "settings", "share", "account"], foot: true },
+    { id: "he_thong", get label() { return t("nav.group.he_thong"); },    icon: GICON.he_thong,    ids: ["models", "settings", "share", "users", "account"], foot: true },
   ];
   const RAIL_BY_ID = Object.fromEntries(RAIL_ITEMS.map(i => [i.id, i]));
   // Rows that stand ALONE at the very top of the rail, outside every group: no header, never folded, always on screen.
@@ -157,13 +158,36 @@
   // "coding" (0.347.0): coding happens in any chat with a folder attached, so the Coding page left
   // the rail with the Code group; its id still opens it.
   const RAIL_AN = new Set(["chatbots", "usage", "pet", "logs", "coding"]);
+  // Multi-user (2026-11-22): what the signed-in person may open. /auth/status gives `pages` (null = everything) and
+  // `is_owner`; only the owner sees Users. The server refuses the rest anyway (users_guard.py), this keeps the rail honest.
+  let PAGE_ACCESS = null, IS_OWNER = true, ME = null;
+  function pageAllowed(id) {
+    if (id === "users") return IS_OWNER;
+    return !PAGE_ACCESS || PAGE_ACCESS.has(id);
+  }
+  async function loadAccess() {
+    let a = null;
+    try { a = await (await fetch("/auth/status")).json(); } catch (e) { return; }
+    if (!a || !a.authed) return;
+    PAGE_ACCESS = Array.isArray(a.pages) ? new Set(a.pages) : null;
+    IS_OWNER = a.is_owner !== false;
+    ME = a.user || null;
+    window.SenOSMe = { isOwner: IS_OWNER, user: ME, pages: a.pages || null, personalBrain: a.personal_brain || "" };
+    document.body.classList.toggle("senos-limited", !!PAGE_ACCESS);
+    if (window.Alpine) {
+      const nav = Alpine.store("nav");
+      nav.i18nTick++;
+      if (!pageAllowed(nav.active)) nav.go("chat");
+    }
+  }
+  if (typeof window !== "undefined") window.SenOSLoadAccess = loadAccess;
   // Trả về [{label, foot, items:[...]}], bỏ id không tồn tại. Mục nào chưa xếp nhóm → dồn vào "Khác".
   function railGroups() {
     const seen = new Set(RAIL_TOP);
     const top = RAIL_TOP.map(id => RAIL_BY_ID[id]).filter(Boolean);
     const groups = RAIL_GROUPS.map(g => {
       const items = (g.ids || [])
-        .map(id => { seen.add(id); return RAIL_AN.has(id) ? null : RAIL_BY_ID[id]; })
+        .map(id => { seen.add(id); return RAIL_AN.has(id) || !pageAllowed(id) ? null : RAIL_BY_ID[id]; })
         .filter(Boolean);
       return { label: g.label, icon: g.icon || "", foot: !!g.foot, items };
     }).filter(g => g.items.length);
@@ -172,7 +196,7 @@
     // nào, nên `seen` không bao giờ chứa nó, nên nó rơi vào nhánh "dồn vào nhóm cuối" và
     // hiện ra ở cuối nhóm Hệ thống - đúng chỗ chẳng ai ngờ (chủ repo thấy 21/09). Chú thích
     // của RAIL_AN thì vẫn khẳng định nó đã bị ẩn.
-    const rest = RAIL_ITEMS.filter(i => !seen.has(i.id) && !RAIL_AN.has(i.id));
+    const rest = RAIL_ITEMS.filter(i => !seen.has(i.id) && !RAIL_AN.has(i.id) && pageAllowed(i.id));
     if (rest.length) {
       const foot = groups.find(g => g.foot);
       if (foot) foot.items.push(...rest); else groups.push({ label: t("nav.group.khac"), foot: false, items: rest });
@@ -196,7 +220,7 @@
   //
   // `page.<id>.title` cho phép tiêu đề trang KHÁC nhãn trên rail khi cần (rail chật nên
   // "Việc", trang rộng nên "Việc (Kanban)"); thiếu key đó thì tự rơi về `page.<id>.label`.
-  const VIEW_META = Object.fromEntries(["home", "chat", "settings", "workspace", "teams", "skills", "files", "terminal", "coding", "tasks", "webhooks", "chatbots", "conversations", "learn", "models", "channels", "mcp", "plugins", "packs", "logs", "account", "usage", "pet", "share", "logins"].map(id => [id, {
+  const VIEW_META = Object.fromEntries(["home", "chat", "settings", "workspace", "teams", "skills", "files", "terminal", "coding", "tasks", "webhooks", "chatbots", "conversations", "learn", "models", "channels", "mcp", "plugins", "packs", "logs", "account", "users", "usage", "pet", "share", "logins"].map(id => [id, {
     icon: VIEW_ICON[id],
     get label() {
       const rieng = t(`page.${id}.title`);
@@ -413,6 +437,7 @@
     }
     if (id === "selfimprove") { try { localStorage.setItem("senos.nv.view", "rep"); } catch (e) {} }
     id = TRANG_GOP[id] || id;
+    if (typeof pageAllowed === "function" && !pageAllowed(id)) id = "chat";   // multi-user: a page this person may not open
     const store = Alpine.store("nav");
     const oldTab = { pet: "pet", usage: "usage", logs: "updates" }[id];
     let tab = oldTab || (id === "settings" ? arguments[2] || "general" : null);
@@ -709,6 +734,8 @@
       return;
     }
     if (id === "channels") return renderChannels(el);
+    if (id === "users")    return window.SenOSUsers ? window.SenOSUsers.render(el) : null;
+    if (id === "account" && !IS_OWNER && ME && window.SenOSUsers) return window.SenOSUsers.renderSelf(el, ME);
     if (id === "account")  return renderAccount(el);
     if (id === "files")    return renderFiles(el);
     if (id === "coding")   return renderCoding(el);
@@ -9765,6 +9792,7 @@
   // Alpine store + boot
   // ============================================
   document.addEventListener("alpine:init", () => {
+    setTimeout(loadAccess, 0);
     Alpine.store("nav", {
       active: "home",
       items: RAIL_ITEMS,

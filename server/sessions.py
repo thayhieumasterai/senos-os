@@ -229,6 +229,28 @@ class DmReactionError(Exception):
         self.en = en or message
 
 
+def _current_user_id():
+    """The added user making this request (users.py), or None for the owner."""
+    try:
+        import users
+        u = users.CURRENT.get()
+        return None if users.is_owner(u) else u.get("id")
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def owner_filter(cot: str = "s.owner_user"):
+    """(WHERE part, params) keeping only the caller's own chats unless they are the owner; ("", []) for the owner."""
+    try:
+        import users
+        u = users.CURRENT.get()
+        if users.is_owner(u):
+            return "", []            # the owner sees every chat; everyone else (full users too) only their own
+        return f"{cot} = ?", [u.get("id") or "-"]
+    except Exception:  # noqa: BLE001
+        return "", []
+
+
 def loc_brain(brain, cot: str = "s.brain"):
     """(mệnh_đề_WHERE, params) cho bộ lọc brain. ("", []) nghĩa là không lọc.
 
@@ -670,7 +692,10 @@ class SessionStore:
                               # lượt. NULL/rỗng = phiên chưa có lượt dashboard nào (hoặc phiên
                               # Telegram) → theo mặc định chung ở settings.json.
                               ("pinned_provider", "TEXT"),
-                              ("pinned_model", "TEXT")):
+                              ("pinned_model", "TEXT"),
+                              # Multi-user (2026-11-22): the added user who started the chat (users.py). NULL = the
+                              # owner, which is every chat made before this. A "limited" user lists only their own.
+                              ("owner_user", "TEXT")):
                 if name not in cols:
                     self._conn.execute(f"ALTER TABLE sessions ADD COLUMN {name} {ddl}")
             # Index cho cột vừa thêm phải chạy SAU vòng ALTER: DB cũ chưa có cột thì CREATE
@@ -815,11 +840,11 @@ class SessionStore:
             conn.execute(
                 """INSERT INTO sessions
                    (id, title, brain, engine, model, channel, cli_session_id, codex_thread_id,
-                    created_at, updated_at)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    created_at, updated_at, owner_user)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                    ON CONFLICT(id) DO NOTHING""",
                 (sid, title, brain, engine, model, channel or "web", cli_session_id,
-                 codex_thread_id, now, now),
+                 codex_thread_id, now, now, _current_user_id()),
             )
         self._write(_do)
         return sid
@@ -1576,6 +1601,10 @@ class SessionStore:
         if cond:
             where.append(cond)
             params += bparams
+        own, oparams = owner_filter()
+        if own:
+            where.append(own)
+            params += oparams
         if archived_only:
             where.append("s.archived = 1")
         elif not include_archived:
@@ -2521,6 +2550,10 @@ class SessionStore:
 
         _bcond, _bparams = loc_brain(brain)
         brain_clause = (" AND " + _bcond) if _bcond else ""
+        _own, _oparams = owner_filter()
+        if _own:
+            brain_clause += " AND " + _own
+            _bparams = list(_bparams) + _oparams
         ch = str(channel or "").strip()
         if ch:
             chs = [ch] + [c for c in (also_channels or []) if c and c != ch]
