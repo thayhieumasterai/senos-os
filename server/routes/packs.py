@@ -348,6 +348,12 @@ def _make_router() -> APIRouter:
         # chuyển dữ liệu sang mã mới (pack_install._thay_the).
         bi_thay = {o for g in d.get("packs") or [] for o in (g.get("replaces") or [])}
         d["packs"] = [g for g in d.get("packs") or [] if g["id"] not in bi_thay]
+        # License: SenOS Cloud is a paid service, so a pack whose license forbids commercial use is not offered there
+        # (and `pack_install.cai` refuses it). Everywhere else the card only carries the kind, to show a note.
+        import pack_license
+        d["packs"] = [g for g in d.get("packs") or [] if not pack_license.blocked(g.get("license") or "")]
+        for g in d.get("packs") or []:
+            g["license_kind"] = pack_license.kind(g.get("license") or "")
         for g in d.get("packs") or []:
             hang = da_cai.get(g["id"])
             if not hang:

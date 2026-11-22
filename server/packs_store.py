@@ -142,6 +142,8 @@ def _lam_sach(m: dict) -> dict:
         "verified": bool(m.get("verified")),
         "updated": _chuoi(m.get("updated"), 32),
         "homepage": _chuoi(m.get("homepage"), 300),
+        # Shown on the card when it limits business use (see pack_license); SenOS Cloud hides noncommercial packs.
+        "license": _chuoi(m.get("license"), 64),
         "upstream": _upstream(m.get("upstream")),
         # Logo trên thẻ. Đường dẫn TƯƠNG ĐỐI so với file index (như `download.url`), ghép ở
         # `lay()`. Không nhận URL tuyệt đối: logo phải nằm CÙNG nơi với index, để một mục trong

@@ -8,6 +8,11 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.625.0] - 2026-11-22
+### Added
+- **Sen Market cards note licenses that limit business use.** A noncommercial or vendor-specific license (such as Remotion's) shows a line to read its terms; MIT, Apache and BSD packs show nothing extra.
+- **SenOS Cloud does not offer noncommercial packs.** They are hidden from Sen Market and refused at install on the cloud; self-hosted SenOS still lists every pack.
+
 ## [0.624.3] - 2026-11-22
 ### Fixed
 - **Sen Market cards show pack ids as senos.*.** The id line under each card still read javis.*; it now matches the details dialog, including ids with javis in the middle.

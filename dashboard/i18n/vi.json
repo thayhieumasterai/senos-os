@@ -3427,6 +3427,8 @@
   "store.kind.all_kinds": "Mọi loại",
   "store.search_all": "Tìm trong Tất cả ({count})",
   "store.tier.code": "Có chạy mã",
+  "store.license.noncommercial": "Giấy phép {ten}: cấm dùng vào kinh doanh",
+  "store.license.custom": "Giấy phép riêng ({ten}): đọc điều kiện trước khi dùng cho kinh doanh",
   "store.vault.agents": "{count} trợ lý",
   "store.vault.agents.one": "{count} trợ lý",
   "store.vault.agents.other": "{count} trợ lý",

@@ -6,6 +6,11 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.625.0] - 2026-11-22
+### Thêm mới
+- **Thẻ gói trong Chợ Sen ghi chú giấy phép khi nó giới hạn việc kinh doanh.** Gói cấm dùng thương mại hoặc có giấy phép riêng (như Remotion) hiện một dòng nhắc đọc điều kiện; gói MIT, Apache, BSD không hiện gì thêm.
+- **Bản SenOS Cloud không cung cấp gói cấm dùng thương mại.** Gói đó không hiện trong Chợ Sen và không cài được trên Cloud; bản tự cài trên máy riêng vẫn thấy đủ.
+
 ## [0.624.3] - 2026-11-22
 ### Sửa lỗi
 - **Thẻ trong Chợ Sen hiện mã gói dạng senos.*.** Trước đây dòng mã dưới mỗi thẻ vẫn ghi javis.*, giờ đổi giống trong hộp xem chi tiết, kể cả mã có chữ javis ở giữa.

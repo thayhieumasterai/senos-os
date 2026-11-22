@@ -622,6 +622,15 @@
       + (u.synced ? ' · ' + esc(tw("store.upstream_synced", { ngay: u.synced })) : "") + '</div>';
   }
 
+  // License note (owner, 2026-11-22): only when the license limits business use; open licenses show nothing.
+  function dongGiayPhep(g) {
+    const k = g.license_kind;
+    if (k !== "noncommercial" && k !== "custom") return "";
+    return '<div class="prov-meta kho-giay-phep" title="' + esc(g.license || "") + '">'
+      + esc(k === "noncommercial" ? tw("store.license.noncommercial", { ten: g.license || "" })
+                                 : tw("store.license.custom", { ten: g.license || "" })) + '</div>';
+  }
+
   // `showKind`: the card says its kind. Only the All tab asks for it, the one place where the open tab does not.
   function theKho(g, showKind) {
     const lo = LOAI[g.kind] || LOAI.bundle;
@@ -656,6 +665,7 @@
       + '<div class="cat-desc kho-mo-ta">' + esc(moTa) + '</div>'
       + (dai ? infoBody(esc(moTa)) : "")
       + '<div class="prov-meta">' + meta + '</div>'
+      + dongGiayPhep(g)
       + dongGoc(g)
       + dongDaCai(g)
       + '<div class="kho-nut">'

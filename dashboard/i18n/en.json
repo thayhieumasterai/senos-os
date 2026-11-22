@@ -3427,6 +3427,8 @@
   "store.kind.all_kinds": "All kinds",
   "store.search_all": "Search in All ({count})",
   "store.tier.code": "Runs code",
+  "store.license.noncommercial": "License {ten}: no commercial use",
+  "store.license.custom": "Own license ({ten}): read its terms before business use",
   "store.vault.agents": "{count} agents",
   "store.vault.agents.one": "{count} agent",
   "store.vault.agents.other": "{count} agents",

@@ -424,6 +424,11 @@ def cai(staging_id: str, consent_sha256: str, *, enable: bool = False,
     kiem = packs._nap_mot(tam, set())
     if not kiem["ok"]:
         return {"ok": False, "stage": "validate", "error": kiem["error"]}
+    import pack_license
+    if pack_license.blocked(kiem.get("license") or ""):
+        return {"ok": False, "stage": "validate",
+                "error": localefmt.chu(f"Gói này dùng giấy phép {kiem.get('license')}, cấm dùng vào kinh doanh, nên SenOS Cloud không cài.",
+                                       f"This pack's license ({kiem.get('license')}) forbids commercial use, so SenOS Cloud does not install it.")}
 
     packs.PACKS_DIR.mkdir(parents=True, exist_ok=True)
     dich = packs.PACKS_DIR / pid

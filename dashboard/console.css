@@ -1656,6 +1656,8 @@ body.has-rail .hud { margin-left: var(--rail-w); width: calc(100% - var(--rail-w
 .kho-nhom { color: var(--text3); }
 .kho-chip-ma { color: var(--warn-ink); background: var(--warn-wash); border-color: var(--warn-line);
   font-weight: 600; }
+/* License note under the meta line: amber text only, a pack whose license limits business use. */
+.kho-giay-phep { color: var(--warn-ink); }
 .kho-ten { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 6px;
   flex-wrap: wrap; }
 .kho-ava { width: 40px; height: 40px; flex: none; border-radius: 11px; display: grid;
