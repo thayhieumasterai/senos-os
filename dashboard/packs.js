@@ -22,7 +22,10 @@
 
   // Packs come from upstream's store and keep their ids (javis.*) and file names (javis-*.zip): those are the keys for
   // install, update and the file check. Only what the owner READS says SenOS; every data-* attribute keeps the real id.
-  const hienMa = (s) => (s || "").toString().replace(/^javis([.-])/, "senos$1");
+  // display only: upstream pack ids/files keep "javis" (store contract), shown as senos; javis.javis-vu-soul -> senos.senos-vu-soul
+  const hienMa = (s) => (s || "").toString().replace(/(^|[.\-])javis(?=[.\-]|$)/g, "$1senos");
+  // display only: packs written by the upstream author show the product name, like the other upstream team packs
+  const hienTacGia = (s) => /^nguy[e\u1ec5]n minh qu[y\u00fd]$/i.test((s || "").toString().trim()) ? "SenOS" : (s || "");
 
   // Từ điển vi.json khi file này chạy DƯỚI NODE (test nạp nó bằng `new Function`). Trong thân
   // một `new Function` thì `require` KHÔNG tồn tại - nó là biến của module, không phải biến
@@ -308,7 +311,7 @@
           + (d.version ? '<span class="pkm-ver">v' + esc(d.version) + '</span>' : ""),
         '<code>' + esc(hienMa(d.id)) + '</code>'
           + (d.author && d.author.name
-              ? ' · ' + tw("store.inspect.author", { ten: esc(d.author.name) }) : ""))
+              ? ' · ' + tw("store.inspect.author", { ten: esc(hienTacGia(d.author.name)) }) : ""))
       + '<div class="pkm-than">'
       + (nn(d.description) ? '<p class="pkm-mota">' + esc(nn(d.description)) + '</p>' : "")
       + '<div class="pkm-bang">' + bang + '</div>'
@@ -627,8 +630,8 @@
     // của một gói đã cài bản cũ hiện "v1.0.1" ngay trên dòng "Đã cài trên máy" - tức là nói
     // với người dùng rằng họ đang chạy 1.0.1, đúng lúc họ chạy 1.0.0. Gói đã cài thì để dòng
     // "Đã cài" kể chuyện phiên bản, một chỗ duy nhất và nói đủ cả hai số.
-    const meta = [g.id, g.installed ? "" : (g.version ? "v" + g.version : ""),
-                  (g.author && g.author.name) || ""].filter(Boolean).map(esc).join(" · ");
+    const meta = [hienMa(g.id), g.installed ? "" : (g.version ? "v" + g.version : ""),
+                  hienTacGia(g.author && g.author.name)].filter(Boolean).map(esc).join(" · ");
     // A description shows at most three lines and an ellipsis (`.kho-mo-ta`, 0.407.0); a long one
     // also gets the (i) on the name, which holds the full text.
     const moTa = nn(g.description);
@@ -1253,7 +1256,7 @@
       pkmDau({ id: d.slug || "", name: d.name || d.slug || "", icon: "puzzle" }, esc(d.name || d.slug)
           + (d.version ? '<span class="pkm-ver">v' + esc(d.version) + '</span>' : ""),
         '<code>' + esc(d.slug) + '</code>'
-          + (d.author ? ' · ' + tw("store.inspect.author", { ten: esc(d.author) }) : ""))
+          + (d.author ? ' · ' + tw("store.inspect.author", { ten: esc(hienTacGia(d.author)) }) : ""))
       + '<div class="pkm-than">'
       + (d.description ? '<p class="pkm-mota">' + esc(d.description) + '</p>' : "")
       + thayHtml
