@@ -56,12 +56,12 @@
     },
     "pins_before_after_identical": true,
     "pins": {
-      "server/improvement_sandbox.py": "e7e8b6263b7eb4e4410b5eeb237a5ff3a3541bf6b285a0d5a2b5411640a66dc6",
-      "server/improvement_qualification_environment.py": "b0c36fe2a44f7982ea1c1046a411516d5f37e81f6c9c32e64de2b0935471cad2",
+      "server/improvement_sandbox.py": "4e78487f8fba393af3fab407d01e2a27a7abe501289c2c05a43d9c3087b7c636",
+      "server/improvement_qualification_environment.py": "7fe59dfa0415fbcd275e1f5c2486b6b6b23f972cfa32f7d2ee147fc356200874",
       "tests/python/test_improvement_qualification_protocol.py": "5e16faac3505a1ce3502c201036fdb29463d05a8346cd9c5e7b50b4f8268fb79",
-      "tests/python/test_improvement_qualification_environment.py": "917e3607b8abe9665f3c594d2ecb3edccc70e21bad15e4c9da1617be2b9b3489",
+      "tests/python/test_improvement_qualification_environment.py": "ab069e8bab3fe77fd1290d24d79a0b0908ba1211ce7d18b92933d9a554d0ed74",
       "server/improvement_native_transport.py": "5bb7cb41f655c176a7ee6ff926a6342eef93ab42e3122a7f6a35b1bf43c01a15",
-      "tests/python/test_improvement_native_protocol.py": "f2147beed13e2f3736130c6f14ff4085ffa2d5ecd5805aba25c3c3130aa2c7cb",
+      "tests/python/test_improvement_native_protocol.py": "a656333cb0229686528e0df4bb959a42b1f0a33dc87b01ed66bbfa3a7d64961c",
       "server/improvement_qualification_records.py": "96917a3e70eeb3309512b2d81cc214a0da0d915c2d2c382b516d87842dc07fff",
       "server/improvement_native_protocol.py": "9ddcd57cd81378e814a96f5d3f2a29278e967a45e4a1c581e22ac45999ad3744",
       "tests/python/test_improvement_native_sdk.py": "d5562bf2ab0da6518899ce1d04b466a710360f98af61efb23f0103684ab2e4b2",
@@ -71,7 +71,7 @@
       "tests/python/_paths.py": "57e241397ca969a4b942398d173123c2779ec6db58950e079e6d2c4883c68eb3",
       "server/improvement_qualification_protocol.py": "c01fc4026593ee306536d34861bb7be5e93de159989f08ad4e0a43d732bea9fa",
       "server/improvement_claude.py": "8d51fce8e7be96d7615e14c50ca2c8eeada8ff40291572886e9725e5e3cc9d56",
-      "tests/python/test_improvement_qualification_session.py": "bbf7291dc9283b7e0ab4453302db3a35248c599a41bb9a81c51a3a679e6da315",
+      "tests/python/test_improvement_qualification_session.py": "2ccb217fb2599987b7e0165a30cfbb733a778888b3bd961f87cc1542281442bc",
       "server/improvement_native_release.py": "cdec514e2ae63f4e33ce63b56c1e525153cc2bacd88897a95605ac6f69f3593b"
     },
     "limitations": [
@@ -126,7 +126,7 @@
       "tree": "29753e93a7cb09289c7d0d50b43a0743297a34b2",
       "selected_raw_sha256": {
         "server/improvement_qualification_session.py": "a4aac824518ba76a926a53aa4388559e90776e307ccaf8ab5399f444a62adb85",
-        "tests/python/test_improvement_qualification_session.py": "bbf7291dc9283b7e0ab4453302db3a35248c599a41bb9a81c51a3a679e6da315",
+        "tests/python/test_improvement_qualification_session.py": "2ccb217fb2599987b7e0165a30cfbb733a778888b3bd961f87cc1542281442bc",
         "server/improvement_qualification_protocol.py": "c01fc4026593ee306536d34861bb7be5e93de159989f08ad4e0a43d732bea9fa",
         "tests/python/test_improvement_qualification_protocol.py": "5e16faac3505a1ce3502c201036fdb29463d05a8346cd9c5e7b50b4f8268fb79",
         "requirements.txt": "295c551d3738ec40e97adf508ed95b9af1d8e149c2b70973553cc933df916bd9"

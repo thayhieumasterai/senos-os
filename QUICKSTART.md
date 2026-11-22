@@ -9,19 +9,20 @@ Chạy SenOS trong vài phút. Chi tiết từng phần: [docs/](docs/README.md)
 Cài SenOS như một ứng dụng bình thường: tải một file, bấm mở, xong thì có biểu tượng SenOS để bấm vào mỗi ngày. Bộ cài tự kiểm tra máy còn thiếu gì (Git, Python, Node, các bộ não AI) và tự cài phần thiếu.
 
 - **Windows 10/11:** tải [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe), bấm đúp, bấm Next tới hết. Tiến trình cài hiện ngay trong cửa sổ Setup, từng bước một (vài phút), không còn cửa sổ đen riêng. Xong thì có biểu tượng SenOS trên Desktop và Start menu.
-- **macOS 11 trở lên:** tải [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), mở ra, kéo **SenOS** vào **Applications**, rồi mở từ Launchpad. Lần đầu Terminal mở ra để cài (có thể hỏi đặt tài khoản quản trị SenOS và mật khẩu máy Mac một lần).
-
-Bấm vào biểu tượng là SenOS mở thành cửa sổ riêng (không thanh địa chỉ), SenOS tự chạy cùng máy, nút **Cập nhật** trong app dùng được như thường. Dữ liệu nằm ở thư mục `SenOS` trong thư mục người dùng; gỡ app không xoá thư mục này.
-
-**Cách cài không bị màn hình cảnh báo (khuyên dùng).** Hai bộ cài chưa ký số, nên tải bằng trình duyệt thì lần đầu máy sẽ chặn lại. Dán một dòng lệnh dưới đây thì không bị chặn, vẫn ra đúng bộ cài có logo SenOS:
-- **Windows:** bấm Start, gõ `PowerShell`, mở lên, dán dòng này rồi Enter:
-  ```
-  irm https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/windows/get-senos.ps1 | iex
-  ```
-- **macOS:** mở **Terminal** (Launchpad, gõ Terminal), dán dòng này rồi Enter:
+- **macOS 11 trở lên:** mở **Terminal** (Launchpad, gõ Terminal), dán dòng này rồi Enter. Cài cách này macOS không hiện cảnh báo:
   ```
   curl -fsSL https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/macos/get-senos.sh | bash
   ```
+  Lệnh này tải SenOS về, chép **SenOS** vào **Applications** rồi cài luôn trong cửa sổ Terminal đó (có thể hỏi đặt tài khoản quản trị SenOS và mật khẩu máy Mac một lần). Xong thì mở SenOS từ Launchpad.
+
+  Thích tải file hơn? Tải [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), mở ra, kéo **SenOS** vào **Applications**, rồi mở từ Launchpad. File chưa ký bằng Apple Developer ID, nên lần mở đầu macOS sẽ chặn: cách mở nằm ở mục "bị chặn" bên dưới.
+
+Bấm vào biểu tượng là SenOS mở thành cửa sổ riêng (không thanh địa chỉ), SenOS tự chạy cùng máy, nút **Cập nhật** trong app dùng được như thường. Dữ liệu nằm ở thư mục `SenOS` trong thư mục người dùng; gỡ app không xoá thư mục này.
+
+**Windows: cách cài không bị màn hình cảnh báo (khuyên dùng).** Bộ cài Windows chưa ký số, nên tải bằng trình duyệt thì lần đầu máy sẽ chặn lại. Dán một dòng lệnh thì không bị chặn, vẫn ra đúng bộ cài có logo SenOS: bấm Start, gõ `PowerShell`, mở lên, dán dòng này rồi Enter:
+```
+irm https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/windows/get-senos.ps1 | iex
+```
 
 Bộ cài thay đổi gì trên máy, ai ký số, SenOS gửi gì đi đâu: [Code signing policy](docs/code-signing-policy.md) · [Privacy policy](PRIVACY.md) (tiếng Anh).
 

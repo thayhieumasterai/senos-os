@@ -1210,9 +1210,12 @@ class TaskStore:
 
     def ask(
         self, task_id: str, worker_id: str, question: str, result: str = "",
-        extra_meta: Optional[dict] = None,
+        extra_meta: Optional[dict] = None, qa_extra: Optional[dict] = None,
     ) -> Optional[dict]:
         """Chặn việc ở `needs_input` VÀ ghi câu hỏi vào `metadata.qa` (0.235.0).
+
+        `qa_extra`: thêm vào ĐÚNG mục hỏi này (vd `wf_wait` của một mốc duyệt workflow), để câu
+        trả lời gắn với đúng chỗ đang dừng chứ không với cả việc.
 
         Trước đây câu hỏi chỉ nằm lẫn trong `block_reason`, và đường duy nhất để gỡ là Thử lại:
         việc chạy lại từ đầu mà không ai nói cho nó câu trả lời, nên nó hỏi lại y hệt. Giờ mỗi
@@ -1228,6 +1231,7 @@ class TaskStore:
             "q": (question or "").strip()[:QA_TEXT_MAX],
             "asked_at": now(),
             "progress": (result or "").strip()[:QA_PROGRESS_MAX],
+            **(qa_extra or {}),
         })
         meta["qa"] = qa[-QA_KEEP:]
         meta.update(extra_meta or {})
@@ -1445,7 +1449,8 @@ class TaskStore:
                 raise
         return self.get_task(task_id), ""
 
-    def set_acceptance(self, task_id: str, state: str, why: str = "") -> Optional[dict]:
+    def set_acceptance(self, task_id: str, state: str, why: str = "",
+                       handoff: Optional[list] = None) -> Optional[dict]:
         """Record a re-check of a finished job (0.411.0). `state`: "checking" while it runs, "ai" when it passed,
         "failed" when it did not, "unverified" when the checker could not run again. Only a done or review job is
         touched. A failed re-check goes straight to the owner as `acceptance_failed` (fix and run again, or accept
@@ -1472,6 +1477,11 @@ class TaskStore:
                     self._event(task_id, "acceptance_failed", reason[:500])
                 else:
                     meta["acceptance_check"] = state
+                    if handoff:
+                        # 2026-11-21: steps the checker moved to the owner ("Left for you") on a passing re-check.
+                        old = [str(x) for x in (meta.get("handoff") or []) if str(x).strip()]
+                        meta["handoff"] = (old + [str(x).strip() for x in handoff
+                                                  if str(x).strip() and str(x).strip() not in old])[:10]
                     self._db.execute("UPDATE tasks SET metadata_json=?, updated_at=? WHERE id=?",
                                      (_json(meta), now(), task_id))
                     if state != "checking":

@@ -17,7 +17,7 @@ unimplemented tasks complete. See docs/handoffs/claude-opus-5-5/HANDOFF.md.
 
 **Tech Stack:** Existing Python/SQLite/Fernet/GoalStore and actual Harness² Library component; no installation, native/provider call, new executor or duplicate ledger.
 
-**Spec:** docs/superpowers/specs/2026-10-24-recipe-destination-authority-design.md; full agent-skill-evidence-improvement-design §15.3 and AGENT-SKILL-IMPROVEMENT-GOAL §§3,12–17. Builder check: nothing important left. Current baseb3e8901a, preceding immutable recipe-archive-views proof d632b12330bce64cdb4537f6963d6c2644a6065d8a2cb928f8d1aeedd7fa4196.
+**Spec:** docs/superpowers/specs/2026-10-24-recipe-destination-authority-design.md; full agent-skill-evidence-improvement-design §15.3 and AGENT-SKILL-IMPROVEMENT-GOAL §§3,12–17. Builder check: nothing important left. Current baseb3e8901a, preceding immutable recipe-archive-views proof bb70b847d8793f540d89bd519cc503cc67ad9a0b5cf03e551eadbce122873e54.
 
 ## Global Constraints
 

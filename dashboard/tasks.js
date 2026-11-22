@@ -123,7 +123,9 @@
         var title = r.label || r.text || "";
         var mode = r.mode === "notify" ? "remind" : "do", rwho = whoOf("r:" + r.id, r.created_by, r.agent);
         if (rep) {
-          recurring.push({ id: "r:" + r.id, src: "reminder", ref: r.id, title: title, who: rwho, sc: rep, next: r.due_at || 0,
+          // Issue 1480: runs skipped because an earlier one was late or long show next to the schedule.
+          var sc = rep + (Number(r.missed_total) > 0 ? " · " + tw("nv.rep.missed", { n: Number(r.missed_total) }) : "");
+          recurring.push({ id: "r:" + r.id, src: "reminder", ref: r.id, title: title, who: rwho, sc: sc, next: r.due_at || 0,
             on: !paused, running: !!r.running, mode: mode, raw: r });
         }
         if (paused) return;
@@ -1310,6 +1312,13 @@
       : it.st === "done" ? (it.result || tw("nv.log.empty")) : it.st === "ask" ? (it.reason || tw("nv.st.ask")) : it.st === "calm" ? (it.reason || tw("nv.st.calm"))
       : it.st === "run" ? tw("nv.st.run") : it.st === "cancel" ? tw("nv.st.cancel") : it.st === "queue" ? tw("nv.prog.queue") : tw("nv.prog.sched");
     h += '<div class="nv-sec2"><div class="nv-cap">' + esc(it.st === "done" ? tw("nv.cap.result") : it.blockKind === "acceptance_failed" && it.st === "ask" ? tw("nv.acc.cap") : tw("nv.cap.progress")) + '</div><div class="nv-res">' + esc(prog) + "</div>" + (acts ? '<div class="nv-acts">' + acts + "</div>" : "") + "</div>";
+    // 2026-11-21: steps only the owner can do (listen, approve, upload a file past a tool's cap), set aside by the
+    // specifier or the checker instead of failing the job over them.
+    var left = !isRep && it.src === "kanban" ? ((it.raw && it.raw.metadata) || {}).handoff : null;
+    if (left && left.length) {
+      h += '<div class="nv-sec2"><div class="nv-cap">' + esc(tw("nv.handoff.cap")) + '</div><ul class="nv-left">'
+        + left.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
+    }
     if (!isRep && it.src === "kanban" && it.st === "ask" && it.blockKind === "needs_input") {
       h += '<form class="nv-sec2 nv-answer" data-answer="' + esc(it.id) + '"><label class="nv-cap" for="nvAns">' + esc(tw("nv.answer")) + '</label><textarea id="nvAns" class="nv-ta" required></textarea><div class="nv-acts"><button type="submit" class="nv-btn pri">' + esc(tw("nv.send")) + "</button></div></form>";
     }
@@ -2548,15 +2557,22 @@
   }
 
   // SenOS opens a Kanban job on screen (ui-actions.js, action open_task): SenOS tab, details of that job.
-  async function show(ref) {
+  function show(ref) { return openItem("k:" + String(ref || "").replace(/^k:/, "")); }
+  // A `#task=<id>` link (console.js runDeepLink) opens one item: a Kanban job (k:), a reminder (r:) or one of the
+  // owner's own tasks (m:). It picks the tab the item lives on, reloads once when the item is not in the lists yet
+  // (made a moment ago), and answers false when this brain has no such item.
+  async function openItem(id) {
     if (!S || !S.ai) return false;
-    var id = "k:" + String(ref || "").replace(/^k:/, "");
-    if (S.tab !== "ai") setTab("ai");
+    id = String(id || "");
+    var tab = id.indexOf("m:") === 0 ? "me" : "ai";
+    if (S.tab !== tab) setTab(tab);
     if (!find(id)) { await load(); if (!S) return false; }
     if (!find(id)) return false;
+    // The morning sheet setTab("me") may have raised would sit on top of the item the link asked for.
+    if (S.sheet && S.sheet.kind === "morning") S.sheet = null;
     openDetail(id);
     return true;
   }
 
-  window.SenOSTasks = { mount: mount, unmount: unmount, show: show, ready: function () { return !!(S && S.ai); }, morning: function (force) { return morning(force); }, _model: model_ };
+  window.SenOSTasks = { mount: mount, unmount: unmount, show: show, ready: function () { return !!(S && S.ai); }, openItem: openItem, morning: function (force) { return morning(force); }, _model: model_ };
 })();

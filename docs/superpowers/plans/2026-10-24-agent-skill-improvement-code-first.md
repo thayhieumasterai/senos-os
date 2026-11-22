@@ -15,7 +15,7 @@ request pins, grant-before-binding-read and final historical-view SQL fences.
 Local64PASS; earlyLinux40078670232 exact13pins76PASS/5modules, complete raw log
 retained. Fresh specPASS/qualityApproved,0Critical/0Important; T2-R1 timing-log
 noise deferred explicitly without suppression. Checkpointrecipe-archive-views
-SHAd632b12330bce64cdb4537f6963d6c2644a6065d8a2cb928f8d1aeedd7fa4196.
+SHAbb70b847d8793f540d89bd519cc503cc67ad9a0b5cf03e551eadbce122873e54.
 PROFILE98 UNQUALIFIED/registriesclosed; original309proof/VERSIONunchanged.
 Both archive-authority tasks complete. Next actual destination consent/grants/
 max3 and historical source freshness, owned Library crash lifecycle and actual
@@ -31,7 +31,7 @@ outcome. Initial review T1-R1 negative conflict acceptance added,3PASS/no produc
 delta; narrowed review ADDRESSED/no new/spec-qualityPASS. Linux40074394806 exact7
 v2pins48PASS plus40075062683 exact7v3pinsfocused3PASS; full raw logs retained,
 ResourceWarnings0. Checkpointrecipe-archive-authoring
-SHAb19e63eb1f6a5401c7386ad265c89744ad64d7ae80bc4023d70b2f4dd0fa0745.
+SHA895f42c1f0b403fe5a8263666aa06c2b79d9d3bdb2f7d21960ae49bce1a3fa48.
 PROFILE97 UNQUALIFIED/registriesclosed; actual309 proof intact. Mandatory Task2
 schema10/actual v4 ordinary+typed3 acceptance follows immediately, then destination
 grants/max3/owned snapshot crash recovery/downstream native/candidate/view/Trial/
@@ -43,7 +43,7 @@ schema9, immutable same-brain historical refs and monotone availability; old8 co
 read/compose role guards/history/ciphertext/leases preserved. SQL REPLACE/case
 collision self-review fixes, independent ImportantR1 NUL digest RED/fix/re-review
 ADDRESSED/no new. Local28PASS (unchanged compose6 explicitly reused), earlyLinux
-40071193085 exact7pins23PASS. Checkpointrecipe-archive-schema SHA29db52f3f7f56a07915075a16ad780b18d08066ca8704a42a2255102b82a0712.
+40071193085 exact7pins23PASS. Checkpointrecipe-archive-schema SHAbda3416fca65417745479a95a4dfa618e0466d5756ebd009021dc61882a7aaa5.
 PROFILE96dbd31ee0… UNQUALIFIED/registriesclosed/309proofintact. Next actual encrypted
 host capture/grades/source availability/shorterTTL, separate destination retrieval,
 plaintext crash ownership and downstream dependency propagation. No archive SQL
@@ -55,7 +55,7 @@ minimal attributed dependencies/3tree boundary-line adaptations, checked owned
 procedure-only filesystem lifetime. Windows31pass+1explicitPOSIXskip/32run;
 earlyLinux40069793207 exact7pins25pass+1explicitWindowsskip/26run. Independent
 static spec/quality approved0/no execution; root reconciled terminal logs/pins.
-Publicharness2-library-snapshot SHA0fc8b025b27af47068f4d9ddc86ee7c26f87c4046e136d7d08027595a9584603.
+Publicharness2-library-snapshot SHA221e227b9c05c81adb2d2979db1235c3116e847007348c1f471bcd79648c35ae.
 No canonical authority/product/native consumer yet. Next normalized canonical
 encrypted recipe authority/retention/grants/crash ownership and actual downstream
 dependency integration before orchestration comparison. PROFILE95raw7f7f77da...
@@ -67,7 +67,7 @@ mounted explicit preview/consent/run/revoke preserve immutable budget, current
 grant generations, exact uncertain retry and independent checks of composed bytes.
 Local14Python plus controller/info/i18n/syntax; early Linux40068923965 SUCCESS on
 exact12pins, not final task-head full CI. Root desktop vi/en browser check is a
-labelled metadata fixture only. Public checkpoint compose-owner-panel SHA06224f4b71acf3a4382505c8500f77709ffc9489b18451fa809596e7cdc5c8c7.
+labelled metadata fixture only. Public checkpoint compose-owner-panel SHA56570ba0c5da000d93f05e90816cdac5baeb59e7b89d6ce66195679e0bba02e5.
 Current PROFILE95raw7f7f77da63c0814fb08e55f58849899de0786023c0feb977b81e0778b2573044 UNQUALIFIED; actual309 proof unchanged.
 Next pre-code plan2026-10-24-harness2-library-snapshot.md extracts actual Library
 with checked private filesystem ownership; canonical encrypted authority/grants/
@@ -85,7 +85,7 @@ write claim). Windows86PASS/13modules, early isolated Linux67PASS/9scripts,
 40066405520/exact9pins. Fresh independent static review P2HTTPjoin reproduced and
 closed in focused fix re-review; no reviewer execution. Root reconciled all
 terminal evidence; publiccompose-owner-controls SHA
-de6eda2890334dcaeb7df9d17379cbd1bccaa41c84ad4a978e44251c3836809a.
+1800090add07769889f22d9ad49aed51e66682e1bb98b4b61bd9e297cce74599.
 PROFILE95raw4042a5083575db4354008675a333b4bdc5fa6022571c6f31334f80f1d7457831
 is UNQUALIFIED/registries closed/actual309 proof intact. Next Task2 cold recorded
 outcomes and actual operator panel, then actual upstream library. Full Goal,
@@ -100,7 +100,7 @@ Actual selection still requires fresh tuning; multiplicity60 applies to all3arms
 KEEP_BASE/cold off replay retained; common legacy baseline gate refuses before
 native verification. Local137PASS, fresh independent15PASS/15stablepins/no findings,
 early isolated Linux145PASS/17scripts40064018472. Publiccompose-checked-arms SHA
-a4532ac0fef6678e222c64f3c492865aae675d36eca4c9037a6d059c7f026f82.
+64ec06bf1561860205e965d4d327ecfe8139f5d9e9536afcad83e1c56c5c8ba7.
 PROFILE95 raw70f584395f5d91cf9d265c712178dfe420d9db8e9cc41f7808b9afc9075769cb
 remains unqualified, registries closed/actual309 test intact. Positive controls
 are synthetic, not actual native/account/model/business proof. Next actual owned
@@ -116,7 +116,7 @@ inherited region/edit/semantic pass; ordinary staging remains cap2. Actual cold
 native history/decision and callerTx CallLedger gaps have meaningful REDs and
 shared-reader/binder fixes. Independent ROOT4PASS44.395s/24pins, root impact61PASS
 +manual TC; early separate Linux69PASS+manual TC/10scripts/10pins40061864692.
-Publiccompose-owned-publication SHA1129532c0510ec9c7a839a0a4be07a8454308aa5c48e11fd77c117b2f660e3c3.
+Publiccompose-owned-publication SHA9939f63f73eb00e9b080f9e62d702938234a5ba502cc485dfd057317740b72c2.
 PROFILE95 is unqualified/registries closed; all positive native/qualification
 predicates in these tests are explicitly unexecuted storage controls. Actual309
 exact-evidence test remains intact. Next2026-10-24-compose-checked-arm-policy.md:

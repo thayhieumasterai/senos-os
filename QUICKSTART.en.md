@@ -9,19 +9,20 @@ Get SenOS running in a few minutes. Full guides: [docs/en/](docs/en/README.md).
 Install SenOS like any other app: download one file, open it, and you get a SenOS icon to click every day. The installer checks what the computer is missing (Git, Python, Node, the AI brains) and installs only that.
 
 - **Windows 10/11:** download [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe), double-click it and press Next to the end. The install progress shows inside the Setup window itself, step by step (a few minutes), with no separate black window. When it is done there is a SenOS icon on the Desktop and in the Start menu.
-- **macOS 11 or newer:** download [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), open it, drag **SenOS** into **Applications**, then open it from Launchpad. The first time, Terminal opens to install (it may ask you to set a SenOS admin account and for your Mac password once).
-
-Clicking the icon opens SenOS in its own window (no address bar), SenOS starts with the computer, and the in-app **Update** button works as usual. Your data lives in the `SenOS` folder in your user folder; uninstalling the app keeps that folder.
-
-**Install without the warning screen (recommended).** Both installers are not code-signed yet, so a browser download gets blocked the first time. Paste one line instead and you get the same installer with the SenOS logo, unblocked:
-- **Windows:** press Start, type `PowerShell`, open it, paste this line and press Enter:
-  ```
-  irm https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/windows/get-senos.ps1 | iex
-  ```
-- **macOS:** open **Terminal** (Launchpad, type Terminal), paste this line and press Enter:
+- **macOS 11 or newer:** open **Terminal** (Launchpad, type Terminal), paste this line and press Enter. Installed this way, macOS shows no warning:
   ```
   curl -fsSL https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/macos/get-senos.sh | bash
   ```
+  It downloads SenOS, copies **SenOS** into **Applications** and installs it right there in the Terminal window (it may ask you to set a SenOS admin account and for your Mac password once). After that, open SenOS from Launchpad.
+
+  Prefer a file? Download [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), open it, drag **SenOS** into **Applications**, then open it from Launchpad. It is not signed with an Apple Developer ID yet, so macOS blocks the first open: how to allow it is under "blocked" below.
+
+Clicking the icon opens SenOS in its own window (no address bar), SenOS starts with the computer, and the in-app **Update** button works as usual. Your data lives in the `SenOS` folder in your user folder; uninstalling the app keeps that folder.
+
+**Windows: install without the warning screen (recommended).** The Windows installer is not code-signed yet, so a browser download gets blocked the first time. Paste one line instead and you get the same installer with the SenOS logo, unblocked: press Start, type `PowerShell`, open it, paste this line and press Enter:
+```
+irm https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/windows/get-senos.ps1 | iex
+```
 
 What the installers change on your computer, who signs them and what SenOS sends where: [Code signing policy](docs/code-signing-policy.md) · [Privacy policy](PRIVACY.md).
 

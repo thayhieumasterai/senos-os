@@ -2253,7 +2253,8 @@ async def schedule_cancel_gateway(messages, mcp_tools, mcp_route):
     if not _schedule_cancel_request(messages):
         return None
     names = {t.get("fn") for t in (mcp_tools or [])}
-    if "senos_schedule" not in names:
+    # Lazy tier on: senos_schedule is hidden behind senos_run_tool, and call_route still reaches it.
+    if "senos_schedule" not in names and "senos_run_tool" not in names:
         return {
             "handled": False,
             "error": "senos_schedule không có trong MCP của phiên",

@@ -161,7 +161,7 @@ Trial/call/link publication is Task3's completion gate.
 Task1 local implementation evidence: six sequential affected scripts passed104
 tests in221.921s, source/runtime/log-bound in
 `../evidence/2026-10-23-m2d1-task1-verification.json` (SHA256
-b9d7c51fd9725111678365f667b4af2168738b73329e89475ba2d700d52f76f8).
+b3cb3ddb568e7c8431f271a31e66ac4495d33a7ba54a18149bd02cc217c9b427).
 The actual task-done verifier checks committed bytes against the full retained
 dependency/log evidence, without repeating already-passed tests. This is local
 foundation completion; checkpoint Linux CI and full D1 review/runtime/final CI
@@ -232,7 +232,7 @@ checkpoint. No branch integration, new native qualification or live claim.
 
 The three Linux-feedback fixtures are now corrected locally and their74 tests
 passed sequentially34.537s. Evidence SHA256
-641a71c203e8e42d2a09ee51c17195bcf2b1ce2af999fe2f8dc043a73bdaa5e0.
+b550e45b92e30819a21888d58f700e3e281b0db183a4087dc77906dc15f108d6.
 Only three named test methods changed; AST comparison verifies all imports,
 fixture helpers and other methods unchanged from verified Task2 commit68dc6c26.
 Application and all Task2 selected source bytes remain exact. Reuse its scoped
@@ -321,7 +321,7 @@ authorization remains a separate mandatory boundary. Six new checks plus one
 added independent owner-history case and49 existing affected checks passed
 (56 total;492.648s of recorded unittest/subprocess time, with basis per row).
 Portable evidence `../evidence/2026-10-23-m2d1-task3-history.json`, SHA256
-170d0de3145bf6932c1d01b5040a55db71be3f3287d3d08b1fd3ba8bdea45d8a.
+8683bd1cedf52eef773712c087767f134bbc76fd41204af8f65b7226ea4aa4ba.
 No real v4 Trial/Call has yet been created; root dispatch still rejects4. Task3
 remains OPEN. No actual query, new native qualification or business/live proof.
 
@@ -333,7 +333,7 @@ reads. Descriptor mismatch denies before plaintext, and source edits after real
 ledger reservation or the last history read roll back/deny. The first focused
 RED/GREEN preceded nine sequential affected checks:140 tests,231.248s wall time.
 Evidence `../evidence/2026-10-23-m2d1-task3-reservations.json`, SHA256
-bde6b073ae78acbf4e220cd5363fa40fd16e1f4bc5dd3d2ac225cd83a0b8a796.
+e4d314a547a34456032c167234d31dae7290ebdabd98a42d074cc588824a6995.
 The reachable source footprint expanded in the SAME change to76 files, hash
 51b62052babed7b4ceee02f8edf5a7101c92cefe0873280fc6148a6b7dcf7e3c.
 No registration matches it; actual native readiness remains false. Engine markers
@@ -367,7 +367,7 @@ Both new modules joined the native footprint in the SAME reachable change.
 Seven scoped next/handoff/cancellation checks plus64 affected API/lifetime/stop/
 profile checks passed (71 total;401.851s recorded time, basis per evidence row).
 Evidence `../evidence/2026-10-23-m2d1-task3-owned-next.json`, SHA256
-4d9df2ba736bf8fc736dc2d8e0e19d10b8f24cf406d7ee0dc99684b1aa944221.
+a5f95ce10f7733cc1088f184eb50fe67f12069b79270da5843105af95a7ffc28.
 Current78-source profile058166e7 remains unregistered, with zero real model calls.
 Retained-host/closed-workflow v4 resolver lifecycle still needs its scoped audit;
 no task/resume support is claimed. Actual v4 report projection, existing final
@@ -396,7 +396,7 @@ replacement. Frozen rows/requests/hashes stay unchanged. Original2 GREEN33.064s,
 then one added failure-state check plus affected next/API/lifetime/worker/stop
 checks passed32 total (276.518s recorded, basis per row). Evidence
 `../evidence/2026-10-23-m2d1-task3-view-lifetime.json`, SHA256
-c56e88ee52a9813711021db8d93984f53594d0ee42bdbb519eab8679dcf7c60e.
+a48e83b59e7b2a674bc0e4d71f709cc7740ac66549a1426bc0926b1d4e058c90.
 Current78-source profilebfda8912 remains unregistered. This resolves concrete
 service reconstruction only; D2 ordinary task/session resume is still unverified.
 Task3 v4 report projection/final registry and Tasks4/5 remain OPEN.
@@ -425,7 +425,7 @@ historical replay/read preserves exact report bytes, including all-absent result
 refs on the older metadata-only schema7 prototype. Explicit v4 projection retains
 all18 native checks and the comparison-report v1 envelope. Portable evidence
 `../evidence/2026-10-23-m2d1-task3-reports.json`, SHA256
-aabb253c30404d6155ba2bba92981285462da56e9e6439c5218abc363567609d.
+fe47993f8930b15d0904c0c134bb5da0bf819d2e7a71a8d01dcce84de8b0faaa.
 Current78-source profile4e3ecee0 remains unregistered. Final registry, actual
 workspace/native and public controls remain OPEN; Task3 is not complete.
 
@@ -507,7 +507,7 @@ with reasoning/asset-use unknown. Native Profile derives receipt2 from its real
 workspace2 and returns detached descriptors. Legacy Claude/checks/results and
 actual v2 execution regressions pass. Evidence
 `../evidence/2026-10-23-m2d1-task4-view-execution.json`, SHA256
-4d7c1b9f7ea74b27e1b335ae93274561fb8290e2a82915ed61bc66bb54aea721.
+31eaa2ca176cff6fe2a37c397b8e7c75bdddb65c0d147069340c8268523c5d97.
 Profile79/2192bf86b6a49e0fa2d524324db79c4a52493d91f37c56b9f183a4fa8b922e4d
 is UNREGISTERED. Final registry, exact native qualification and public controls
 remain OPEN; neither Task3 nor Task4 is complete.
@@ -529,7 +529,7 @@ view_sources16 and actual pair reservation/native-footprint2 passed31 checks,
 plaintext; cold metadata remains exact. AST extraction confirms both original
 improver SQL statements remain identical after sharing. Evidence
 `../evidence/2026-10-23-m2d1-task3-view-holdout.json`, SHA256
-07ef50951c43236be3128be3e9740bed1521e94e1e31c1a0bf178c88517cf6fc.
+e1f5430733d0543b58c036e18ccaf95947aa995fa1d831f125959e01b935f0cc.
 Source79/b46e2cc3744067a9d367781b544df8b036de760c385319d7f5a4d4621459b771
 remains unregistered. No final claim/eligible evidence fabricated; Task3 OPEN.
 
@@ -628,7 +628,7 @@ old event replay/metadata remains cold. AST/source proof preserves the earlier
 v4 current branch, trial materialization/reserve methods and owned qualifier/
 history code; reuse that70-test scope, not a claim of final native readiness.
 Evidence `../evidence/2026-10-23-m2d1-task3-legacy-alias.json`, SHA256
-fa40a4baf1887cc1c873be511546b3d45311f3636c48c5e6c7ba18422180ee40.
+101cec499430b2004d3f660b8428f1924137d4d81ac2c1de218cc844e296508f.
 Source81/c2e7968e01bcc0434cf9368602d694ca8d7c53de6c9df487d0bd99f1e1f75dc3
 remains unregistered. Genuine positive selected-final and Task3/native/public
 acceptance remain OPEN; no model query or quality eligibility was invented.
@@ -696,7 +696,7 @@ log/source record is preserved. Moving the actual cleanup proof inside the
 existing real-Popen scope fixed the harness without weakening an assertion or
 changing product source. Sanitized evidence
 `../evidence/2026-10-23-m2d1-native-view-enforcement.json`, SHA256
-0691a727db9dd81b91e814ccfaa4278f04d9c90c5a325cc789b282de31f6a10c.
+166a9f7cea1d47705749f5302c7eb0449671431ddd67a3f70f38b7714dee0e8d.
 Native account calls remain0 and profile is still UNREGISTERED. Shared solver/
 typed-role/death/quiescence composite qualification, genuine native TrialRunner
 feasibility/positive final, whole-D1 review and final CI remain open. Prior owner
@@ -749,7 +749,7 @@ Existing B/C APIs, service/stop/lifetime workflows and actual v4 paired reservat
 also pass. No native verify/query occurs through the new view controls. Guide:
 `docs/dev/agent-skill-m2d1-views.md`. Evidence
 `../evidence/2026-10-23-m2d1-task5-view-controls.json`, SHA256
-b3a617be7e9eda67398ff166b28ff7ff833908e2f779089bfa670f088b3305a9.
+ea01b2624255f39dfa40738d2fa1546ef163e6d1aa6ff950b3307a39d76f22ed.
 Current81-source profile2221a859 is unregistered. Genuine selected-final positive,
 exact D1 native qualification, independent whole-D1 review and exact-final CI
 remain OPEN; this checkpoint does not complete Task3/4/5 or authorize rollout.
@@ -785,11 +785,11 @@ cover refusal before private/native work, unchanged bound resolver, successful
 later rebuild/admission, usable live semantic workflow with a new owner, all
 invalid owner-close futures, owner API/main/service and v4 handoff/cancel.
 Evidence `../evidence/2026-10-23-m2d1-review-lifetime-fix.json`, SHA256
-fb8333f444f84ac85f03d3f0c71402eb30f599e1a025499802b860739e7d94b5.
+bbdace4d0af552e95ede7b178e55c2730758df57bb68562e1a521654a77487f3.
 Scoped independent recheck is pending. The earlier source-identical81/2221a859
 composite native solver5/roles5/quiescence9 passed60.609s, artifact
 `../evidence/2026-10-23-m2d1-native-qualification.json`, SHA256
-96adabecf47773debc2988098a68cc3a9c592a00ad2ed9b0d8a6e4cab096936b.
+fceda2a093465bde55ea1341252733be6e680dc1360c652d62edd23970f4892f.
 That profile was never registered and is historical after this source change.
 Current81/d0705506 is unregistered and needs exact-source native requalification
 after the scoped fix review; no real account query or positive final is claimed.
@@ -827,7 +827,7 @@ passed actual paired-view1, solver5, roles5 and quiescence9:20 tests in96.767s
 on identical full source maps. Actual --version is checked inside the hidden
 owned job before SDK query; public adapter guards22 passed1.711s. Source-bound
 artifact `../evidence/2026-10-23-m2d1-native-qualification-final.json`, SHA256
-012d9e37690e8711da75a344dfee0677df8d6c690b90f689ddbb14574c82f295.
+537a5a9955b0d0b429f1f4a04c2ddbea74205c259d91e9c1d45e44029a9ac76a.
 Registration RED proves the exact entry absent; GREEN2/0.045s matches actual
 artifact/source hashes and refuses changed tuple/platform. The new exact309
 entry lives outside the native footprint; lookup function and historical C
@@ -835,7 +835,7 @@ entry remain unchanged. AST proof preserves all native adapter behavior except
 one known-runtime tuple and all paired fixture helpers except the unexecuted
 registration-test class. Do not rerun native20 solely for this post-proof entry.
 Checkpoint `../evidence/2026-10-23-m2d1-source-checkpoint.json`, SHA256
-99c01d1afdc91f2516b57a12cecfb81bec13dd184295cfd934a37fd502661253,
+7660a09ca9452a55df9aae0d0793ad8a9e5a6ca05df45ca32c939f1fcb89c31d,
 also qualifies the independent fix recheck/rebase/component evidence reuse.
 Small runtime309 delta still requires scoped independent recheck; final CI,
 actual native TrialRunner/account feasibility and genuine selected-final positive

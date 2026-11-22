@@ -7,7 +7,7 @@ language below. Preserve existing actual Google compose/derived Library/archive
 code and proofs; finish only genuine M2 engineering prerequisites and handoff.
 Current source unit269d3892 is scoped approved: Windows42pass+1skip, exact6pin
 Linux40081705134/43PASS, review0findings; proofrecipe-source-observer
-SHAa0ec009bb3eab3e53756cd37e560429f7f7dc8107de99760b4b6045a9fe43cf9.
+SHAc92a8dc6224164ad44c72641e93bc468c96c7472f4cf29ea666fe9b5cdbd689f.
 PROFILE99 UNQUALIFIED; no new Google code/runtime/ledger or measured token claim.
 Undispatched destination consent/ranking/further native Library integration and
 orchestration comparison move to Claude backlog; no prototype is promoted to
@@ -24,7 +24,7 @@ Meaningful pin/grant-order/final-callback REDs fixed; local64PASS and Linux
 40078670232 exact13pins76PASS/5modules. Independent specPASS/qualityApproved,
 0Critical/0Important; timing-log MinorT2-R1 retained for final hygiene review.
 Publicrecipe-archive-views
-SHAd632b12330bce64cdb4537f6963d6c2644a6065d8a2cb928f8d1aeedd7fa4196.
+SHAbb70b847d8793f540d89bd519cc503cc67ad9a0b5cf03e551eadbce122873e54.
 PROFILE98 stays UNQUALIFIED. Next explicit destination authority/max3/historical
 source validation and actual owned Library/native/downstream consumers; no
 orchestration comparison or native/business/fullGoal claim yet. Prior checkpoint
@@ -40,7 +40,7 @@ remain distinct from destination permission. Shared sealed history keeps origina
 proposer bytes/recipes=[]. Scoped review T1-R1 acceptance repaired and re-reviewed
 ADDRESSED/no new; Linux40074394806 full48PASS plus40075062683 focused3PASS on
 exact frozen pins. Publicrecipe-archive-authoring
-SHAb19e63eb1f6a5401c7386ad265c89744ad64d7ae80bc4023d70b2f4dd0fa0745.
+SHA895f42c1f0b403fe5a8263666aa06c2b79d9d3bdb2f7d21960ae49bce1a3fa48.
 PROFILE97 UNQUALIFIED/registriesclosed. Current9 refuses actual v4 after refs
 atomically; mandatory trigger-only10/ordinary+typed3 acceptance is Task2 of
 2026-10-24-recipe-archive-authority.md, preserving9 SQL/history and cold reads.
@@ -53,7 +53,7 @@ Actual owner panel/outcome consumer5490cde6/95790edb scoped approved: actual
 compose_round/ComposerService/shared owners and existing exact-byte review remain
 the implementation. New cold metadata and UI do not duplicate executor/ledger or
 grant activation. Local14Python plus UI checks; Linux40068923965 exact12pins;
-independent3P2closed/static-only. Checkpoint compose-owner-panel SHA06224f4b71acf3a4382505c8500f77709ffc9489b18451fa809596e7cdc5c8c7.
+independent3P2closed/static-only. Checkpoint compose-owner-panel SHA56570ba0c5da000d93f05e90816cdac5baeb59e7b89d6ce66195679e0bba02e5.
 
 Canonical archive decision now implemented narrowly inefef01c2/6d677d71:
 existing resonance DB/GoalStore transaction/backup and RevisionBlobs history,
@@ -61,7 +61,7 @@ additive schema9 with3normalized metadata/control tables. Upstream Library remai
 the actual derived serializer/index, not a canonical permission/tombstone store.
 This avoids event-JSON replay scans/duplicate ledger and retains old histories.
 Independent R1 NUL fix re-review addressed/no new; local28PASS/earlyLinux23PASS
-40071193085 exact7pins. Checkpointrecipe-archive-schema SHA29db52f3f7f56a07915075a16ad780b18d08066ca8704a42a2255102b82a0712.
+40071193085 exact7pins. Checkpointrecipe-archive-schema SHAbda3416fca65417745479a95a4dfa618e0466d5756ebd009021dc61882a7aaa5.
 Actual encrypted capture/source/trace/shorterTTL, destination grants, plaintext
 crash ownership and all downstream consumers are still the next required work.
 No new upstream algorithm was needed for DB ownership, nor a retrieval/M8 claim.
@@ -70,7 +70,7 @@ Snapshot component9e098a52 now implements the plan below using actual Library
 methods,20definition provenance and exactly3 documented tree boundary-line edits.
 Independent static spec/quality approved0; Windows31pass+1skip and earlyLinux
 40069793207 exact7pins25pass+1skip exercise complementary junction/symlink paths.
-Checkpointharness2-library-snapshot SHA0fc8b025b27af47068f4d9ddc86ee7c26f87c4046e136d7d08027595a9584603.
+Checkpointharness2-library-snapshot SHA221e227b9c05c81adb2d2979db1235c3116e847007348c1f471bcd79648c35ae.
 The actual implementation replaces a new derived serializer/index, while SenOS
 still owns canonical encrypted authority. No product/native consumer exists yet;
 canonical records/grants/retention/crash recovery and downstream dependency

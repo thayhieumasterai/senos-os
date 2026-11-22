@@ -1,4 +1,4 @@
-<!-- translated-from: QUICKSTART.en.md sha256:2f4928f341af -->
+<!-- translated-from: QUICKSTART.en.md sha256:338011fb77ad -->
 # SenOS - Mulai cepat
 
 *[English](../../../QUICKSTART.en.md) · [Tiếng Việt](../../../QUICKSTART.md) · [简体中文](../zh/QUICKSTART.md) · [Español](../es/QUICKSTART.md) · [日本語](../ja/QUICKSTART.md) · [हिन्दी](../hi/QUICKSTART.md) · [Português](../pt-BR/QUICKSTART.md) · [한국어](../ko/QUICKSTART.md) · [Русский](../ru/QUICKSTART.md) · [Deutsch](../de/QUICKSTART.md) · [Français](../fr/QUICKSTART.md) · **Bahasa Indonesia***
@@ -11,13 +11,31 @@ Jalankan SenOS dalam beberapa menit. Panduan lengkap: [docs/en/](../../../docs/e
 
 Pasang SenOS seperti aplikasi biasa: unduh satu file, buka, lalu Anda punya ikon SenOS untuk diklik setiap hari. Penginstal memeriksa apa yang belum ada di komputer (Git, Python, Node, otak AI) dan hanya memasang itu.
 
-- **Windows 10/11:** unduh [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe), klik dua kali, lalu tekan Next sampai selesai. Jendela hitam menampilkan kemajuan pemasangan (beberapa menit). Setelah selesai ada ikon SenOS di Desktop dan menu Start.
-- **macOS 11 atau lebih baru:** unduh [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), buka, seret **SenOS** ke **Applications**, lalu buka dari Launchpad. Pertama kali, Terminal terbuka untuk memasang (mungkin meminta Anda membuat akun admin SenOS dan kata sandi Mac sekali).
+- **Windows 10/11:** unduh [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe), klik dua kali, lalu tekan Next sampai selesai. Kemajuan pemasangan tampil di dalam jendela Setup itu sendiri, langkah demi langkah (beberapa menit), tanpa jendela hitam terpisah. Setelah selesai ada ikon SenOS di Desktop dan menu Start.
+- **macOS 11 atau lebih baru:** buka **Terminal** (Launchpad, ketik Terminal), tempel baris ini lalu tekan Enter. Dengan cara ini macOS tidak menampilkan peringatan:
+  ```
+  curl -fsSL https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/macos/get-senos.sh | bash
+  ```
+  Perintah ini mengunduh SenOS, menyalin **SenOS** ke **Applications**, dan memasangnya langsung di jendela Terminal itu (mungkin meminta Anda membuat akun admin SenOS dan kata sandi Mac sekali). Setelah itu, buka SenOS dari Launchpad.
+
+  Lebih suka file? Unduh [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg), buka, seret **SenOS** ke **Applications**, lalu buka dari Launchpad. File ini belum ditandatangani dengan Apple Developer ID, jadi macOS memblokir saat pertama dibuka: cara mengizinkannya ada di bagian unduhan yang diblokir di bawah.
 
 Mengklik ikon membuka SenOS di jendelanya sendiri (tanpa bilah alamat), SenOS berjalan bersama komputer, dan tombol **Update** di aplikasi berfungsi seperti biasa. Data Anda ada di folder `SenOS` dalam folder pengguna; mencopot aplikasi tetap menyimpan folder itu.
 
-Kedua penginstal belum ditandatangani kode, jadi komputer akan bertanya sekali:
+**Windows: pasang tanpa layar peringatan (disarankan).** Penginstal Windows belum ditandatangani kode, jadi unduhan lewat browser diblokir pada kali pertama. Tempel satu baris saja dan Anda mendapat penginstal yang sama dengan logo SenOS, tanpa diblokir: tekan Start, ketik `PowerShell`, buka, tempel baris ini lalu tekan Enter:
+```
+irm https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/windows/get-senos.ps1 | iex
+```
+
+Apa yang diubah penginstal di komputer Anda, siapa yang menandatanganinya, dan apa yang dikirim SenOS ke mana: [Code signing policy](../../../docs/code-signing-policy.md) · [Privacy policy](../../../PRIVACY.md) (dalam bahasa Inggris).
+
+Jika Anda sudah mengunduh file lewat browser dan diblokir:
+- Edge atau Chrome menampilkan "SenOS-Setup.exe isn't commonly downloaded" dan tidak menyimpan file: di kotak Downloads, arahkan kursor ke baris itu, klik tiga titik, pilih **Keep**, lalu **Show more** dan **Keep anyway**.
 - Windows menampilkan "Windows protected your PC": klik **More info**, lalu **Run anyway**.
+- Antivirus menghapus file, atau Windows memblokirnya tanpa tombol **Run anyway** (Smart App Control aktif): pasang tanpa file .exe. Pasang [Git](https://git-scm.com/download/win), buka PowerShell, tempel baris ini lalu tekan Enter. Setelah selesai, SenOS terbuka di http://localhost:7777 dan berjalan bersama komputer:
+  ```
+  git clone https://github.com/thayhieumasterai/senos-os.git "$env:USERPROFILE\SenOS"; cd "$env:USERPROFILE\SenOS"; powershell -ExecutionPolicy Bypass -File install.ps1
+  ```
 - macOS bilang tidak bisa membuka aplikasi: buka **System Settings → Privacy & Security**, gulir ke bawah, klik **Open Anyway**, lalu buka SenOS lagi.
 
 ## Opsi 1 - VPS Hostinger (Docker Manager, sekali klik)

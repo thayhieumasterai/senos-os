@@ -12,7 +12,7 @@
     "server/skill_router.py": "b9d719894c3a31c4a23ebaefc943ac92716215736cc96394394c38d7b8665781",
     "tests/python/test_improvement_task_skill_scope.py": "64502c488d418bc9287b29238b5d2e7a4690e1b832344683fe9e6cf36e388ecb",
     "tests/python/test_improvement_task_skill_turn.py": "e5fa58f557e16f7635ff49ee1fb4753b70f43c00a2aaac05d52b7bb1ce598491",
-    "tests/python/test_improvement_task_skill_consumers.py": "32db8b17524b5490dafcee88f0e900ce2952f446fde35ade24476ae82dfadd3d"
+    "tests/python/test_improvement_task_skill_consumers.py": "97ad7a19badba1416dae137e80498119fca65af4870cff632afc08db1ae84197"
   },
   "core_author": "m2d1_whole_review",
   "core_independent_reviewer_executor": "root",

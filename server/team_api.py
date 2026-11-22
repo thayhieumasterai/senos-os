@@ -807,6 +807,18 @@ def register(app, deps: TeamApiDeps) -> TeamApi:
             return {"ok": True, "teams": rows, "next": nxt}
         return await api.io(_do)
 
+    @app.get("/teams/unread")
+    async def teams_unread(brain: str = "brain"):
+        """How many teams of the brain have messages the owner has not read (owner, 2026-11-19): the red dot on the
+        Team entry of the rail, in place of a bell notification for every team answer."""
+        def _do():
+            root = _root(brain)
+            if root is None or not api.exists():
+                return {"ok": True, "teams": 0}
+            teams = api.teams().list_teams(root, limit=200)
+            return {"ok": True, "teams": sum(1 for t in teams if (api.unread(t) or {}).get("n"))}
+        return await api.io(_do)
+
     @app.post("/teams")
     async def teams_create(request: Request, brain: str = "brain"):
         body = await _body(request)
@@ -1115,6 +1127,32 @@ def register(app, deps: TeamApiDeps) -> TeamApi:
             # có bản tổng hợp (review T3 P P3).
             runner.pulse_task_event("revise", team_id, list(shares), f"revise:{task_id}:{rev}", shares=shares)
             return {"ok": True, "revision": rev}
+        return await api.io(_do)
+
+    @app.post("/teams/{team_id}/tasks/{task_id}/answer")
+    async def teams_task_answer(team_id: str, task_id: str, request: Request, brain: str = "brain"):
+        """19/11/2026: the owner answers a job stopped on a step (the "Reply" box of a "Waiting for you" card). The
+        answer goes to the chat and the stopped step runs again with it."""
+        body = await _body(request)
+        answer = str(body.get("answer") or "").strip()
+        text = str(body.get("text") or "").strip()
+        cmid = str(body.get("client_msg_id") or "").strip()[:120]
+
+        def _do():
+            team, err = _team(team_id, brain)
+            if err:
+                return err
+            if not _own_task(team_id, task_id):
+                return _err(404, "Không có việc này trong nhóm", "No such job in this team")
+            if not answer:
+                return _err(400, "Gõ câu trả lời trước khi gửi", "Type your answer first")
+            res = api.runner().answer_blocked(task_id, answer, text=text, client_msg_id=cmid)
+            if res is None:
+                return _err(409, "Việc này không còn chờ câu trả lời; tải lại để xem trạng thái mới",
+                            "This job no longer waits for an answer; reload to see where it stands")
+            api.kick()
+            api.runner()._state(team_id)
+            return {"ok": True, **res}
         return await api.io(_do)
 
     @app.post("/teams/{team_id}/tasks/{task_id}/unblock")

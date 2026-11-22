@@ -64,7 +64,7 @@
     "early_linux_passed": 43,
     "scoped_review": "spec_compliant_quality_approved_zero_findings",
     "public_proof": "docs/superpowers/evidence/2026-10-24-recipe-source-observer.json",
-    "public_proof_sha256": "a0ec009bb3eab3e53756cd37e560429f7f7dc8107de99760b4b6045a9fe43cf9",
+    "public_proof_sha256": "c92a8dc6224164ad44c72641e93bc468c96c7472f4cf29ea666fe9b5cdbd689f",
     "native_profile_sources": 99,
     "native_qualification": "invalidated_UNQUALIFIED_registries_closed",
     "unit_owned_processes": 0,
@@ -79,7 +79,7 @@
     "scoped_review": "source_compliant_quality_approved_0critical_0important_1minor",
     "minor": "T1-R1 post-GREEN freeze timing limitation retained for final review",
     "proof": "docs/superpowers/evidence/2026-10-24-m2-future-schema-controls.json",
-    "proof_sha256": "74a92878248c7a22f3d49e13b06a7c57c88f88688406daf1760a5d02569cf6fa",
+    "proof_sha256": "b101a8144430910305592b81793b5b49e1a1960be632d8fb9cd689261015d9a8",
     "serial_slot": "released"
   },
   "M2_qualification_product_exclusion": {
@@ -93,7 +93,7 @@
     "scoped_review": "spec_compliant_quality_approved_0critical_0important_1minor",
     "minor_M1": "async fixture slow-task noise retained for final review; report count corrected only",
     "proof": "docs/superpowers/evidence/2026-10-24-m2-qualification-capability-exclusion.json",
-    "proof_sha256": "ac258798bd7cf5221bbf9c80fbd0d218cea3e3225120c0ef811122562d2d23b7",
+    "proof_sha256": "7ba52d1f2e0a37b086542b79481f24015934cd66842204f9c8587291cf697baf",
     "serial_slot": "released",
     "is_native_or_M2_completion": false
   },
@@ -137,7 +137,7 @@
       "P1M2 disclosed interim serialization violation"
     ],
     "proof": "docs/superpowers/evidence/2026-10-24-m2-owned-technical-preflight.json",
-    "proof_sha256": "52b482e0a894e75d4fdc29486abbae3d4a830344552bd9935dda0f4fad2f8827",
+    "proof_sha256": "5f25364f0b1fbbbd18fe986ca9b80ff24f3e368b605d1c04d8ecffd5ad1f0b0d",
     "serial_slot": "released",
     "installed_selected_CLI_gate": "OPEN_mandatory_final_stable_query_closure",
     "is_M2_completion": false
@@ -221,7 +221,7 @@
       "scope": "affected_only"
     },
     "proof": "docs/superpowers/evidence/2026-10-24-m2-owned-baseline-query.json",
-    "proof_sha256": "1bc070983ab57e4c3b39394bf058c7a7c6f6376d894619fc41b2637cd4f2727b",
+    "proof_sha256": "e26cef2d9d85a04627dedd4ea71c6247d8188bc727d71b43df804db7aca01ef3",
     "root_audit": {
       "indexed_files": 132,
       "cleanup_receipts": 97,

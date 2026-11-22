@@ -164,7 +164,16 @@ Nhờ vậy:
 
 > ⚠️ **Quan trọng về bảo mật:** SenOS chạy bộ não AI với **toàn quyền** trên máy. Khi chạy public (Docker/VPS/Hostinger), SenOS **tự bắt buộc đăng nhập** - mở app ra là màn tạo tài khoản / đăng nhập, không ai điều khiển được khi chưa có mật khẩu.
 
-> 💻 **Cài trên máy tính Windows hoặc Mac của bạn?** Tải bộ cài về rồi mở như mọi ứng dụng: [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe) (Windows 10/11) hoặc [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg) (macOS 11+). Bộ cài tự kiểm tra máy thiếu gì (Git, Python, Node, các bộ não AI), tự cài, rồi để lại biểu tượng SenOS để bấm. Các bước: [QUICKSTART.md](../../../QUICKSTART.md).
+> 💻 **Cài trên máy tính Windows hoặc Mac của bạn?** SenOS cài như mọi ứng dụng: tự kiểm tra máy thiếu gì (Git, Python, Node, các bộ não AI), tự cài, rồi để lại biểu tượng SenOS để bấm.
+>
+> - **Windows 10/11:** tải [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe) về rồi mở.
+> - **macOS 11+:** mở **Terminal** (Launchpad, gõ Terminal), dán dòng này rồi Enter. Cài cách này macOS không hiện cảnh báo:
+>   ```
+>   curl -fsSL https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/macos/get-senos.sh | bash
+>   ```
+>   Thích tải file hơn? [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg) cài ra đúng app đó. File chưa ký bằng Apple Developer ID, nên lần mở đầu macOS sẽ chặn cho tới khi bạn vào **System Settings → Privacy & Security** bấm **Open Anyway**.
+>
+> Các bước: [QUICKSTART.md](../../../QUICKSTART.md).
 
 ### Cách 1 - Hostinger Docker Manager (tên miền + HTTPS) ⚡
 

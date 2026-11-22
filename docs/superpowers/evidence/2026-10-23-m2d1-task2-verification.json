@@ -103,7 +103,7 @@
   "total_tests": 76,
   "total_script_seconds": 392.83,
   "reuse": {
-    "task1_sha256": "b9d7c51fd9725111678365f667b4af2168738b73329e89475ba2d700d52f76f8",
+    "task1_sha256": "b3cb3ddb568e7c8431f271a31e66ac4495d33a7ba54a18149bd02cc217c9b427",
     "all_task1_selected_source_bytes_unchanged": true,
     "c_profile_source_hash": "9dcf718470e70957d07454bb8b50fbde79575a3b23d8c06e24cc9b749051116b",
     "all_34_profile_source_bytes_equal_released_c": true,

@@ -9,9 +9,9 @@
     "server/improvement_harness2_tree.py": "44e30fee114e1526593bba6b2f043f26c1b3d088ee679175c275c82ab0451c0a",
     "server/improvement_harness2_context.py": "e38e72f407f783dd7657bcb4eb9d5c4936569371020a65ecdb2ecdb5a1f588b2",
     "server/improvement_recipe_snapshot.py": "b59330fe3a7929825c41ebf17c7f094af9c03868b728f5c83b59eccafa845546",
-    "tests/python/test_improvement_recipe_snapshot.py": "d9f1a5c3de164675e6db483c3da59d172b7e85c27c2376639dbb4c74db2d83a4",
+    "tests/python/test_improvement_recipe_snapshot.py": "58676d859bed74ac70ccc189fbfc3f99f118fd76465097cf7ef57ec8575baa5e",
     "third_party/harness2/LIBRARY-PROVENANCE.json": "f12366cd3cf62c7860103cc2a20d3ac1814937375b0b7a8d308c48abf76821b1",
-    "third_party/harness2/PROVENANCE.md": "f85cd054f7efdd8047fcf039c7849cdf3722dc57ededfe82b357ec7a372b1e62"
+    "third_party/harness2/PROVENANCE.md": "9f96587f9736bcf780ec108892f32b6b934ea21e95be92ed261beace54a4e0f1"
   },
   "upstream_commit": "1cfe254e8d25b15f37048c3730134686abe60335",
   "provenance": {

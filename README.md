@@ -247,7 +247,16 @@ flowchart LR
 > [!IMPORTANT]
 > SenOS runs an AI brain with **full rights** on the machine. When it runs publicly (Docker, VPS, Hostinger), SenOS **forces login by itself**: opening the app shows a create-account or sign-in screen, and nobody can drive it without a password.
 
-> 💻 **On your own Windows or Mac computer?** Download the installer and open it like any app: [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe) (Windows 10/11) or [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg) (macOS 11+). It checks what is missing (Git, Python, Node, AI brains), installs it, and leaves a SenOS icon to click. Steps: [QUICKSTART.en.md](QUICKSTART.en.md).
+> 💻 **On your own Windows or Mac computer?** SenOS installs like any app: it checks what is missing (Git, Python, Node, AI brains), installs it, and leaves a SenOS icon to click.
+>
+> - **Windows 10/11:** download [SenOS-Setup.exe](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-Setup.exe) and open it.
+> - **macOS 11+:** open **Terminal** (Launchpad, type Terminal), paste this line and press Enter. Installed this way, macOS shows no warning:
+>   ```
+>   curl -fsSL https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/packaging/macos/get-senos.sh | bash
+>   ```
+>   Prefer a file? [SenOS-macOS.dmg](https://github.com/thayhieumasterai/senos-os/releases/download/desktop/SenOS-macOS.dmg) installs the same app. It is not signed with an Apple Developer ID yet, so macOS blocks the first open until you allow it under **System Settings → Privacy & Security → Open Anyway**.
+>
+> Steps: [QUICKSTART.en.md](QUICKSTART.en.md).
 
 <details open>
 <summary><b>Option 1: Hostinger Docker Manager (domain + HTTPS, one click)</b></summary>

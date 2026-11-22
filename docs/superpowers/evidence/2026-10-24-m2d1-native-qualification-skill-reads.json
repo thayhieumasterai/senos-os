@@ -172,10 +172,10 @@
     "native-skill-reads-record.json": "b6494a8184a999607ca2aa176326ed168eae27bc8eb3b86792e795f3659130c8"
   },
   "qualification_test_hashes": {
-    "tests/python/test_improvement_view_native_qualification.py": "af4fb3a0ad7486def4a806ead6172a46aa47d692f7f439cae0b2189dd93cc47f",
+    "tests/python/test_improvement_view_native_qualification.py": "d8101a0339760199114f355f2da6d9ee0cf7dcfcc3aad0fd723aa3c02049917b",
     "tests/python/test_improvement_runtime_qualification.py": "44cf41ff607e1491571a6765e9d986c06d4941d9e9b28be6faba748ab437837f",
-    "tests/python/test_improvement_role_qualification.py": "8e3e5362fa7571589324a4c67098ee07ecbeef00100997cfc55df7d1da3d8832",
-    "tests/python/test_improvement_native.py": "b7741e4719ad606e5c72faf5f0b0809860ce7bbd450d12042183d334f7f6aac9",
+    "tests/python/test_improvement_role_qualification.py": "9bd338dc1ca8e9e409841d03fbb11681d7bf618f7061c3d6efd3d29ef5f4a2f4",
+    "tests/python/test_improvement_native.py": "907b8b3f426ee354b4f784e0acca39040dc002152010183f5b553629cc69c87d",
     "tests/python/test_improvement_worker_quiescence.py": "a4326bedc6893749281145465f34d2ace628c222e0e4f81d59af99d262653e8d",
     "tests/python/test_improvement_native_skill_reads.py": "a664a6c6bd431ea5fd7a63b9516be6e2d4027b004f29441138a04088bd96c515"
   },

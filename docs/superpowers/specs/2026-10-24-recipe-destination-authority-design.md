@@ -17,7 +17,7 @@ the present unit alone does not complete Library integration or the full Goal.
 Current base b3e8901ad7e822ea6746467f32acc50ed61fd7be includes source archive
 bc1a3a68: local64PASS, exact13-pin Linux76PASS, scoped spec/quality approved.
 Immutable evidence: 2026-10-24-recipe-archive-views.json,
-SHAd632b12330bce64cdb4537f6963d6c2644a6065d8a2cb928f8d1aeedd7fa4196.
+SHAbb70b847d8793f540d89bd519cc503cc67ad9a0b5cf03e551eadbce122873e54.
 The actual Harness² Library component9e098a52 is a checked derived serializer;
 canonical encrypted archive, source rights and immutable Trial history remain
 owned by SenOS. PROFILE_SOURCES98 is UNQUALIFIED and registries remain closed.

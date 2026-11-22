@@ -34,7 +34,7 @@ pattern;1PID reuse là conhost khác được giữ nguyên.13workspacewitness p
 release; không còn owner không rõ do unit này. Ignored history/helpers/raw
 diagnostics tại `.superpowers/sdd/2026-10-24-m2-owned-baseline-query/` giữ private,
 không force-add/copy blobs/key. ProofSHA
-`1bc070983ab57e4c3b39394bf058c7a7c6f6376d894619fc41b2637cd4f2727b`.
+`e26cef2d9d85a04627dedd4ea71c6247d8188bc727d71b43df804db7aca01ef3`.
 
 Tiếp theo: lập Q2view4/operation2 plan từ interface622332 đã review; thêm hai
 ordinary marker fences trước positive paths. Không làm lại Q1/P0/P1. Chỉ owned
@@ -132,7 +132,7 @@ Further owned Library/native/downstream consumers và orchestration comparison
   26PASS/37platformskip. Review phát hiện I1 final-thread-handoff race;3case
   RED thật rồi focusedWindows8PASS, Linux fix-source3PASS/5Windows skip tại
   [40086473971](https://github.com/thayhieumasterai/senos-os/actions/runs/40086473971).
-  Scoped re-review I1 ADDRESSED,0new breakage. ProofSHA `52b482e0a894e75d4fdc29486abbae3d4a830344552bd9935dda0f4fad2f8827`.
+  Scoped re-review I1 ADDRESSED,0new breakage. ProofSHA `5f25364f0b1fbbbd18fe986ca9b80ff24f3e368b605d1c04d8ecffd5ad1f0b0d`.
   Retain2Minor: raw slowcallbacks và disclosed interim serialization violation;
   final/fixchecks serial, không suppress/rerun nguyên63bài. Root đã kiểm93+15+25
   indexedreceipts và12committedpins; slotreleased/0ownedprocess/2Oct23dirs untouched.
@@ -146,7 +146,7 @@ Further owned Library/native/downstream consumers và orchestration comparison
   cleanRED12marker failures, Windows13PASS/Linux13PASS,0skip.
   Early Linux [40083817343](https://github.com/thayhieumasterai/senos-os/actions/runs/40083817343)
   exact5pins, scoped specPASS/qualityApproved0Critical/0Important/1MinorM1.
-  ProofSHA `ac258798bd7cf5221bbf9c80fbd0d218cea3e3225120c0ef811122562d2d23b7`.
+  ProofSHA `7ba52d1f2e0a37b086542b79481f24015934cd66842204f9c8587291cf697baf`.
   M1: slow-task noise17Windows09/14Linux, thêm1ở Windows operation selector;
   count trong report đã sửa đúng bằng chứng, không rerun/suppress. Giữ Minor
   để finalwholebranch triage. Root kiểm87artifacts/committedbytes/current0owned;
@@ -156,7 +156,7 @@ Further owned Library/native/downstream consumers và orchestration comparison
   source `269d3892`, review snapshot `429d9334`; Windows42pass+1skip và
   early Linux [40081705134](https://github.com/thayhieumasterai/senos-os/actions/runs/40081705134)
   exact6pins/43PASS. ProofSHA
-  `a0ec009bb3eab3e53756cd37e560429f7f7dc8107de99760b4b6045a9fe43cf9`.
+  `c92a8dc6224164ad44c72641e93bc468c96c7472f4cf29ea666fe9b5cdbd689f`.
   Root verified69raw artifacts/frozen bytes/cleanup; no final M2/native claim.
 - [Archive view proof](../../superpowers/evidence/2026-10-24-recipe-archive-views.json):
   implementation `bc1a3a68`, docs checkpoint `b3e8901a`; local64PASS,
@@ -187,7 +187,7 @@ Further owned Library/native/downstream consumers và orchestration comparison
   đã sửa bằng raw logs; chưa thay fixture để xử lý timing, không suppress.
   Hai future9 fixtures đã sửa tại `21a5c0b1` theo current+1, giữ nguyên asserts;
   actual2GREEN/scoped qualityApproved. [Proof](../../superpowers/evidence/2026-10-24-m2-future-schema-controls.json)
-  SHA `74a92878248c7a22f3d49e13b06a7c57c88f88688406daf1760a5d02569cf6fa`.
+  SHA `b101a8144430910305592b81793b5b49e1a1960be632d8fb9cd689261015d9a8`.
 - Fresh final exact-head full required CI và một whole-branch review mạnh nhất
   còn mở. Scoped reviews/early CI chỉ chứng minh đúng phạm vi/bytes đã ghi.
 

@@ -35,7 +35,7 @@ CLAUDE_MD_PATH = Path(__file__).resolve().parent.parent / "CLAUDE.md"
 # sha256 of the CLAUDE.md this contract was checked against. Changing CLAUDE.md fails
 # tests/python/test_background_prompt.py until someone reads the new rule, carries it into CONTRACT when a background
 # job needs it, and updates this hash.
-REVIEWED_CLAUDE_MD_SHA256 = "7dfdc92d8cbe14af119bde861dbd44fbb5e35f77bfa7ade41d5cc6cf9ec3b340"
+REVIEWED_CLAUDE_MD_SHA256 = "1c93e13d4f63e8d09f40a52fe3002b147c245bcaea6623115c7e325459cca7da"
 DEFAULT_BASIS_POINTS = 1000   # 10% of background jobs
 SALT = "background-prompt-v1"
 
@@ -77,12 +77,13 @@ not do and why. With no such instruction, end with ONE short question in words; 
 `<!-- SENOS_ASK: {"question":"...","header":"...","options":[{"label":"...","desc":"..."}]} -->` (at most 4 \
 options, no "Other") may follow it.
 - Zalo (store pack `javis.zalo`; absent means tell the owner to install it): read with `zalo_get_*`, \
-`zalo_list_threads`, `zalo_search_threads`; send text with `zalo_send_message`, images or files with \
-`zalo_send_image`; tag people or make a group note/reminder/poll with `zalo_send_mention`, \
+`zalo_list_threads`, `zalo_search_threads`; send text with `zalo_send_message`, a link as a preview card with \
+`zalo_send_link`, images or files with `zalo_send_image`; tag people or make a group note/reminder/poll with `zalo_send_mention`, \
 `zalo_create_note|reminder|poll`; see images with `zalo_read_images`; react with `zalo_add_reaction`. Never the old \
 `senos_zalo_send`. Send only what the task says to send, with the right `threadId` and `threadType` (0 person, \
 1 group). A name matching several chats: never guess, ask. Exactly one exact match: send.
-- Customer chats from every channel are on the Chatbot page; store pack `javis.crm` adds `crm_*` tools.
+- Customer chats from every channel are on the Chatbot page; reply to one on its own channel with `inbox_find`, \
+then `inbox_reply` (several matches for a name: never guess, ask). Store pack `javis.crm` adds `crm_*` tools.
 - Images: create or edit with `senos_generate_image` (signed-in ChatGPT plan); it takes real reference images in \
 `images`. Show an image or file in the result with a path relative to the vault root: `![name](attachments/x.jpg)`, \
 `[name.pdf](exports/x.pdf)`. An .html app to SHARE (`/s/<token>/`) reads data by a relative path (`./data.json`), \

@@ -16,7 +16,7 @@ Status: source21a5c0b1 complete, actual2isolatedGREEN, independent source-spec
 compliant/qualityApproved0Critical/0Important/1Minor. T1-R1: pins were recorded
 post-GREEN/no intervening edits, not pre-run; retain timing limitation for final
 wholebranch. Proof2026-10-24-m2-future-schema-controls.json
-SHA74a92878248c7a22f3d49e13b06a7c57c88f88688406daf1760a5d02569cf6fa.
+SHAb101a8144430910305592b81793b5b49e1a1960be632d8fb9cd689261015d9a8.
 
 - Work only in C:/Users/admin/.codex/worktrees/agent-skill-improvement-m2a/SenOS; never modify/reset/clean D:/Project/SenOS. Its .venv Python may execute with -B. VERSION0.299.0 unchanged.
 - Direct owner Goal18 ends current Goal at M2 engineering plus committed Claude Opus5.5 handoff. No M3–M8 expansion, new Goal, real account/model/business/pilot/canary run, deploy/restart or activation.
