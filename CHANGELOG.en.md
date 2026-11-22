@@ -8,6 +8,10 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.624.3] - 2026-11-22
+### Fixed
+- **Sen Market cards show pack ids as senos.*.** The id line under each card still read javis.*; it now matches the details dialog, including ids with javis in the middle.
+
 ## [0.624.2] - 2026-11-22
 ### Added
 - **Several users in one workspace.** The owner adds people on the Users page, as Full access or Limited access. A limited user has their own brain and sees only the shared brains (read only or read and edit), agents and inbox channels the owner grants.

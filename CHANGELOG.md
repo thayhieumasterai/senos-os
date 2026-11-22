@@ -6,6 +6,10 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.624.3] - 2026-11-22
+### Sửa lỗi
+- **Thẻ trong Chợ Sen hiện mã gói dạng senos.*.** Trước đây dòng mã dưới mỗi thẻ vẫn ghi javis.*, giờ đổi giống trong hộp xem chi tiết, kể cả mã có chữ javis ở giữa.
+
 ## [0.624.2] - 2026-11-22
 ### Thêm mới
 - **Nhiều người dùng trong một workspace.** Chủ thêm người ở trang Người dùng, chọn vai trò Toàn quyền hoặc Một phần quyền. Người một phần quyền có bộ não riêng, và chỉ thấy những bộ não chung (chỉ xem hoặc xem và sửa), Agent, kênh trong Hộp thư bot mà chủ cấp.
