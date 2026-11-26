@@ -113,6 +113,6 @@ desktop.ini
 packaging/
 dist/
 
-# SenOS Cloud control plane: runtime data and secrets never enter an image
-saas/data/
-saas/.env
+# SenOS Cloud control plane and marketing material: private, and a tenant has a shell inside its image
+saas/
+marketing/

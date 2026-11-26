@@ -8,6 +8,10 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.625.1] - 2026-11-26
+### Fixed
+- **The model and Effort chips under the chat box are no longer cut off by the bottom of the window.** The chat box keeps room for that row, also in a short window.
+
 ## [0.625.0] - 2026-11-22
 ### Added
 - **Sen Market cards note licenses that limit business use.** A noncommercial or vendor-specific license (such as Remotion's) shows a line to read its terms; MIT, Apache and BSD packs show nothing extra.

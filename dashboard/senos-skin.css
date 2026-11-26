@@ -91,7 +91,9 @@ body { background: var(--bg); }
   .hud-left, .hud-right { background: var(--bg2); }
 
   /* composer: a centred dock rather than a full-width bar */
-  .hud-voice { justify-self: center; width: min(100% - 28px, 940px); margin: 0 auto 10px; }
+  /* The model / Effort row hangs under the card (#cpUnder, since 0.624): keep its room (--cp-under-h) below the card,
+     or the window edge cuts the row off. */
+  .hud-voice { justify-self: center; width: min(100% - 28px, 940px); margin: 0 auto calc(6px + var(--cp-under-h, 0px)); }
 }
 
 /* ---- Rail: plain wordmark, quiet items, one accent mark on the active one ---- */

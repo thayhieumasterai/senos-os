@@ -6,6 +6,10 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.625.1] - 2026-11-26
+### Sửa lỗi
+- **Ô chọn model và mức suy nghĩ dưới khung chat không còn bị mép dưới cửa sổ che mất.** Khung chat chừa đủ chỗ cho hàng ô này, kể cả khi cửa sổ thấp.
+
 ## [0.625.0] - 2026-11-22
 ### Thêm mới
 - **Thẻ gói trong Chợ Sen ghi chú giấy phép khi nó giới hạn việc kinh doanh.** Gói cấm dùng thương mại hoặc có giấy phép riêng (như Remotion) hiện một dòng nhắc đọc điều kiện; gói MIT, Apache, BSD không hiện gì thêm.
