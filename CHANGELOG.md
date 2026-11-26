@@ -6,6 +6,10 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.626.1] - 2026-11-26
+### Sửa lỗi
+- **Thử nghiệm tự cải tiến chạy lại được.** Bản 0.626.0 đổi hai câu thông báo trong plugin Mục tiêu (Cộng hưởng) nên bước kiểm tra plugin từ chối nó; mã kiểm đã cập nhật sau khi rà lại thay đổi.
+
 ## [0.626.0] - 2026-11-26
 ### Thêm mới
 - **Trợ lý biết giao diện của chính SenOS.** Hỏi "đổi model ở đâu", "Bản đồ tri thức là gì" là SenOS tra công cụ mới `senos_app_guide`: thanh bên đúng tên đang hiện trên màn hình, kèm đoạn hướng dẫn liên quan. Trước đây nó chỉ tìm trong brain nên đoán sai tên trang.

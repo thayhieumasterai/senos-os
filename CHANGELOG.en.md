@@ -8,6 +8,10 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.626.1] - 2026-11-26
+### Fixed
+- **Self-improvement trials run again.** 0.626.0 reworded two messages in the Goal (Resonance) plugin, so the plugin check refused it; its pinned hash is updated after a review of the change.
+
 ## [0.626.0] - 2026-11-26
 ### Added
 - **The assistant knows SenOS's own screens.** Asked "where do I change the model" or "what is the Knowledge map", SenOS looks it up with the new `senos_app_guide` tool: the sidebar with the exact names on screen, plus the matching guide sections. Before, it searched the brain only and guessed page names.
