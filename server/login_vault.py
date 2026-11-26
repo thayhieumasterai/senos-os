@@ -431,14 +431,14 @@ class LoginVault:
         def read_only(row):
             return localefmt.chu(
                 f"Đăng nhập '{row['name']}' đang ở mức chỉ đọc. Chủ bật 'Cho bấm và điền form' ở thẻ đó trong "
-                "trang Cookies thì SenOS mới thao tác được.",
+                "trang Phiên đăng nhập thì SenOS mới thao tác được.",
                 f"The sign-in '{row['name']}' is read-only. The owner turns on 'Let SenOS click and fill forms' on "
-                "its card on the Cookies page before SenOS can act with it.")
+                "its card on the Sign-ins page before SenOS can act with it.")
         if login:
             row = self.store.get(login) or self.store.find_name(login)
             if not row:
-                return None, [], localefmt.chu(f"Không có đăng nhập nào tên '{login}' trong trang Cookies.",
-                                               f"No sign-in named '{login}' on the Cookies page.")
+                return None, [], localefmt.chu(f"Không có đăng nhập nào tên '{login}' trong trang Phiên đăng nhập.",
+                                               f"No sign-in named '{login}' on the Sign-ins page.")
             if only_allowed and not row.get("allow_ai"):
                 return None, [], localefmt.chu(f"Đăng nhập '{row['name']}' đang tắt quyền cho SenOS dùng.",
                                                f"The sign-in '{row['name']}' is not allowed for SenOS.")
@@ -466,8 +466,8 @@ class LoginVault:
         if not best and held_back:
             return None, [], read_only(held_back)
         if not best:
-            return None, [], localefmt.chu(f"Trang Cookies chưa có đăng nhập nào cho {host or 'địa chỉ này'}.",
-                                           f"The Cookies page has no sign-in for {host or 'this address'}.")
+            return None, [], localefmt.chu(f"Trang Phiên đăng nhập chưa có đăng nhập nào cho {host or 'địa chỉ này'}.",
+                                           f"The Sign-ins page has no sign-in for {host or 'this address'}.")
         return best[1], best[2], ""
 
     # ---------- writing ----------

@@ -27,20 +27,20 @@ There are **two** chat surfaces sharing one conversation, so switching between t
 
 ### The main "SenOS" screen
 
-Left navigation rail, group **Assistant** → item **SenOS**. This is also the default screen when you open the dashboard (port 7777 by default), so it is already open when the page loads.
+Left navigation rail, group **Knowledge** → item **Knowledge map**. This is also the default screen when you open the dashboard (port 7777 by default), so it is already open when the page loads.
 
 | Area | Position | Contents |
 |---|---|---|
 | VAULT | Left column | The folder tree of the selected brain, a **Find note...** box, two filter modes **Name** / **Content**, and three buttons **＋** (new file), **📁** (new folder), **⟳** (refresh the tree) |
 | Knowledge graph + status | Centre | The note network, the status line (READY, LISTENING...), and the **AGENTS** / **SKILLS** / **WORKFLOWS** counters at the bottom |
-| CONVERSATION | Right column | Chat history, the engine badge, and the **⛶** button that opens the Chat page |
+| CONVERSATION | Right column | Chat history, the engine badge, and the **⛶** button that opens the Conversations page |
 | Composer | Bottom | One rounded card: attachments, the text box, then a row with **＋**, the model chip, the Effort chip, the Fast mode bolt, the pinned folder chip (when there is one), the mic and the send button (which becomes a stop button while a turn runs) |
 
-The left column **no longer** holds a grid of business metric cards; it is the vault explorer, and clicking a note opens it for editing right there (see [File manager](05-file-manager.md)). Clicking the AGENTS / SKILLS / WORKFLOWS numbers jumps straight to the matching page in the **Capabilities** group.
+The left column **no longer** holds a grid of business metric cards; it is the vault explorer, and clicking a note opens it for editing right there (see [File manager](05-file-manager.md)). Clicking the AGENTS / SKILLS / WORKFLOWS numbers jumps straight to the matching page in the **AI crew** group.
 
-### The dedicated "Chat" page
+### The dedicated "Conversations" page
 
-Rail, group **Assistant** → item **Chat**. This is a full-screen chat page with no globe and no vault tree:
+Rail, the **Conversations** item at the top. This is a full-screen chat page with no globe and no vault tree:
 
 - The left column is the **conversation history** (reopen, search, rename, delete old sessions).
 - The top bar reads **Chat with SenOS**, with the engine badge on the right.
@@ -84,7 +84,7 @@ During a call, SenOS **speaks every answer** out loud. The graph pulses along wi
 - Typed chat outside a call is answered in text only.
 - There is no separate speaker button or voice switch any more: the call decides whether SenOS speaks.
 
-To change the voice, go to **Settings → Voice**, see **Voice settings** below.
+To change the voice, go to **Preferences → Voice**, see **Voice settings** below.
 
 ### Step 4 - Stop SenOS mid-answer
 
@@ -246,8 +246,8 @@ The pinned chip is also a **way back**: click it and the file reopens in the edi
 
 The reverse direction works too: SenOS can put images and files from the brain straight into an answer.
 
-- **Images**: SenOS writes `![description](attachments/image-name.png)` and the dashboard renders the real image in the chat bubble. Click the image to open that exact file in the **Files** page.
-- **Other files** (pdf, docx, xlsx...): SenOS writes a markdown link that opens the file in the Files page.
+- **Images**: SenOS writes `![description](attachments/image-name.png)` and the dashboard renders the real image in the chat bubble. Click the image to open that exact file in the **Documents** page.
+- **Other files** (pdf, docx, xlsx...): SenOS writes a markdown link that opens the file in the Documents page.
 - **Paths in backticks** such as `SenOS/loops/morning-report.md` also become links that open the file.
 - **Wikilinks** `[[Note name]]` become Wikipedia-style navigation links: clicking one makes SenOS find that note in the vault and open it.
 - Images that **can no longer be loaded** (expired from the cache area, deleted by hand or renamed) render as a grey box reading **"Image expired"** instead of a broken icon. The brain's `attachments/` and `inbox/` folders are cache areas: they are cleaned after 30 days or when they hit the 300MB ceiling.
@@ -288,9 +288,9 @@ Generated images are saved into the selected brain's `attachments/` folder, then
 
 A few things to know:
 
-- **You must connect ChatGPT first.** Without it, the tool answers plainly that ChatGPT (OAuth) is not connected and points you at the **Models** page to sign in. See [Models & engines](10-models-and-engines.md).
+- **You must connect ChatGPT first.** Without it, the tool answers plainly that ChatGPT (OAuth) is not connected and points you at the **AI models** page to sign in. See [Models & engines](10-models-and-engines.md).
 - Image generation is a `safe`-level action (it writes a file and spends quota), so background work running in read-only mode will not generate images on its own.
-- AI-generated images carry provenance marks (Content Credentials). **Settings → Interface & Brain → AI image provenance** has **Keep marks** / **Strip marks**; the default is to keep them.
+- AI-generated images carry provenance marks (Content Credentials). **Preferences → Interface & Brain → AI image provenance** has **Keep marks** / **Strip marks**; the default is to keep them.
 - Outside chat you can call it directly through `POST /image/generate` with the fields `prompt`, `aspect_ratio`, `quality`, `brain`.
 
 ## Summarising YouTube videos
@@ -339,14 +339,14 @@ Common points:
 - **Long** messages of yours (over 10 lines or over 900 characters) collapse, with **Show more** / **Show less** buttons.
 - Every code block has its own **⧉ Copy** button in the corner.
 - An answer that is still streaming has no pin button yet: it appears as soon as the answer is saved. Pins are kept on the server, so another device shows them too; rewinding past an answer removes its pin with it.
-- The small line under an answer now shows only the engine, the model and the context mode. The token count is gone from the chat; the **Usage** page has it.
+- The small line under an answer now shows only the engine, the model and the context mode. The token count is gone from the chat; the **Quota** page has it.
 - If you have scrolled up to reread something while SenOS answers, the chat does NOT jump down; a **↓ New messages** button appears at the bottom to jump when you are ready.
 
 ## Choosing a model, Effort and the engine badge
 
 The row under the text box holds three controls side by side:
 
-- **Model chip**: shows the short name of the provider and model in use. Clicking it opens a picker with a **Find model...** box and a provider list, each expanding into its models. Providers that are not configured show a 🔒 with the line "+ Add an API key on the Models page to unlock".
+- **Model chip**: shows the short name of the provider and model in use. Clicking it opens a picker with a **Find model...** box and a provider list, each expanding into its models. Providers that are not configured show a 🔒 with the line "+ Add an API key on the AI models page to unlock".
 - **Effort chip** (thinking depth): separate from the model chip because you change it more often. Clicking it opens a six-stop slider **Off / Light / Medium / High / Extra / Ultra**, with "Faster" on the left, "Smarter" on the right and "Recommended" under Medium. Drag it or use the arrow keys, Home and End. Antigravity models that carry the level in their name (e.g. `-high`) lock the slider.
 - **Fast mode bolt**: click to turn it on and the bolt starts an orange wave; click again to turn it off. There is no on/off label; hover to see "Fast mode" and a cost note for the selected brain. Brains or models that do not support it show a dimmed bolt.
 
@@ -361,7 +361,7 @@ The row under the text box holds three controls side by side:
 
   When a provider refuses Fast mode (account not eligible, limit reached), SenOS resends at normal speed and the turn does not fail; hover the bolt to see why. Background runs (loops, reminders, Kanban, teams) always run at normal speed.
 
-The badge next to **CONVERSATION** (and in the top right of the Chat page) shows the **real** engine and model of the last turn, taken from the server rather than from what the model claims about itself. If the badge disagrees with what you expected, trust the badge.
+The badge next to **CONVERSATION** (and in the top right of the Conversations page) shows the **real** engine and model of the last turn, taken from the server rather than from what the model claims about itself. If the badge disagrees with what you expected, trust the badge.
 
 On phones, the model chip stays in the input card next to the Effort chip, just as on a computer, and the picker opens right above the card.
 
@@ -372,7 +372,7 @@ On phones, the model chip stays in the input card next to the Effort chip, just 
 - Once pinned, a 📁 chip with the folder name appears next to the bolt. Hover for the full path; click to change it or **Unpin**.
 - The pin is **per conversation**: a new conversation starts in the brain as usual. Pinning on an empty chat carries the folder into the conversation from its first message.
 - CLI brains (Claude Code, ChatGPT via Codex, Grok Build, Antigravity) run commands right inside that folder. API brains read and write files through the brain's tools, so they work with folders **inside** the brain; a folder outside the brain only works with CLI brains.
-- The Coding page uses the same chip instead of its own folder button. The branch, worktree, restore point and permission chips stay on the Coding page.
+- The Code studio page uses the same chip instead of its own folder button. The branch, worktree, restore point and permission chips stay on the Code studio page.
 
 ## How SenOS formats answers
 
@@ -390,18 +390,18 @@ Short questions still get a one-sentence answer. Formatting exists for readabili
 
 Plain-text channels are stricter because they cannot render: **Telegram** and **Zalo** have no markdown tables, and the **terminal** has no tables, inline images or markdown links. All three still use ordinary bullets. See [Telegram](11-telegram.md) and [CLI in the terminal](24-cli.md).
 
-> If SenOS still answers in long prose: most likely the brain's long-term memory still holds an old fact such as "dislikes markdown tables, prefers short spoken prose" from when you used voice, and that memory is loaded into **every** turn. Open `memory/MEMORY.md` in the **Files** page, find the line about answer style, and delete it along with the matching file in `memory/facts/`. See [Second Brain, memory & wiki](13-second-brain.md).
+> If SenOS still answers in long prose: most likely the brain's long-term memory still holds an old fact such as "dislikes markdown tables, prefers short spoken prose" from when you used voice, and that memory is loaded into **every** turn. Open `memory/MEMORY.md` in the **Documents** page, find the line about answer style, and delete it along with the matching file in `memory/facts/`. See [Second Brain, memory & wiki](13-second-brain.md).
 
 ## Voice settings
 
-Everything about the voice lives in **Settings → Voice**. The page is a single card, and every field saves itself as soon as you change it; there is no Save button.
+Everything about the voice lives in **Preferences → Voice**. The page is a single card, and every field saves itself as soon as you change it; there is no Save button.
 
 The card holds two things:
 
 - **The "Using: ..." line**: the call path in use, **ChatGPT Live**, **Live (provider name)** with an API key, or **Basic**. On Basic it also says which brain gives quick replies, for example Antigravity CLI on your Google plan.
 - **SenOS's voice**: the list depends on the call path, see below.
 
-When SenOS had to fall back to a lower path, the "Using" line says why and what to do, for example connect ChatGPT on the **Models** page, install Codex CLI, or update Codex CLI to 0.153 or later.
+When SenOS had to fall back to a lower path, the "Using" line says why and what to do, for example connect ChatGPT on the **AI models** page, install Codex CLI, or update Codex CLI to 0.153 or later.
 
 ### SenOS's voice
 
@@ -409,7 +409,7 @@ The voice list depends on the call path:
 
 - **ChatGPT Live**: 9 voices, juniper (default), maple, spruce, ember, vale, breeze, arbor, sol, cove. **▶ Preview** plays a recorded sample.
 - **Live with an API key**: that provider's voices, with no preview button.
-- **Basic**: 7 free Edge voices, Emma (default), Hoài My, Nam Minh, Ava, Andrew, Brian, William. With an OpenAI API key on the **Models** page you also get the 11 OpenAI voices (alloy, ash, ballad, coral, echo, fable, nova, onyx, sage, shimmer, verse). Last in the list is **Your ElevenLabs voice**. **▶ Preview** reads a sample sentence.
+- **Basic**: 7 free Edge voices, Emma (default), Hoài My, Nam Minh, Ava, Andrew, Brian, William. With an OpenAI API key on the **AI models** page you also get the 11 OpenAI voices (alloy, ash, ballad, coral, echo, fable, nova, onyx, sage, shimmer, verse). Last in the list is **Your ElevenLabs voice**. **▶ Preview** reads a sample sentence.
 
 Picking a voice also picks the provider (Edge, OpenAI or ElevenLabs). Since 0.298.0 the Edge voice is also saved on the server, so a voice picked on the laptop is used on the phone too, and by the voice notes sent through Telegram and Zalo. The speaking rate is still stored per device.
 
@@ -429,11 +429,11 @@ If a paid voice fails (quota used up, wrong key, no network), SenOS reports the 
 - **Speaking rate**: 0.85× to 1.45×, default 1.10×. Shown only on the Basic path.
 - **ElevenLabs API key** and **Voice ID** (from ElevenLabs → Voices): shown only when the ElevenLabs voice is picked. Leaving the key box empty keeps the saved key.
 
-OpenAI voices need an OpenAI API key on the **Models** page; the voice page no longer has an OpenAI key field.
+OpenAI voices need an OpenAI API key on the **AI models** page; the voice page no longer has an OpenAI key field.
 
 ### ChatGPT Live: call SenOS on your ChatGPT plan
 
-**ChatGPT Live** uses the ChatGPT plan you connected on the **Models** page, no API key needed. SenOS picks this path itself when the ChatGPT plan is connected and the machine has Codex CLI 0.153 or later; there is nothing to select.
+**ChatGPT Live** uses the ChatGPT plan you connected on the **AI models** page, no API key needed. SenOS picks this path itself when the ChatGPT plan is connected and the machine has Codex CLI 0.153 or later; there is nothing to select.
 
 - Press the mic to start talking: SenOS listens continuously, answers in under a second, and you can interrupt at any time.
 - Small talk gets an instant answer. Anything that needs real data or an action (revenue, calendar, email, files, opening a page) is handed to the main brain you chose (Claude or another), which works with all your MCPs and tools; SenOS reads back a summary and the full result (with tables) appears as a chat bubble. The spoken summary does not show up as a second bubble.
@@ -445,7 +445,7 @@ OpenAI voices need an OpenAI API key on the **Models** page; the voice page no l
 
 ### Live with an API key
 
-Without ChatGPT Live, SenOS uses **Gemini Live**, **OpenAI Realtime** or **OpenAI GPT-Live**, with the Gemini or OpenAI API key you pasted on the **Models** page. Expressive voices, natural interruptions, and a two-way transcript in the chat. When real data is needed, the model hands the work to the main brain in the background and keeps talking, then relays the result (the Gemini 3.1 line still waits silently because Google does not support background work yet).
+Without ChatGPT Live, SenOS uses **Gemini Live**, **OpenAI Realtime** or **OpenAI GPT-Live**, with the Gemini or OpenAI API key you pasted on the **AI models** page. Expressive voices, natural interruptions, and a two-way transcript in the chat. When real data is needed, the model hands the work to the main brain in the background and keeps talking, then relays the result (the Gemini 3.1 line still waits silently because Google does not support background work yet).
 
 ### The Basic path and quick replies
 
@@ -462,9 +462,9 @@ If none is available, spoken turns go to the main brain. Questions that need dat
 
 On the Basic path the browser only hears one language, so a sentence like "Mở dashboard Facebook ads" often comes out as "Mở double Facebook add". The **listening ear** is a multilingual model that listens to the audio of what you just said again before settling the text in the bubble. The browser's interim text still shows instantly while you talk.
 
-- SenOS always picks the ear itself, there is nothing to set. The ear of **the main brain's own vendor** goes first: with ChatGPT as the brain your **ChatGPT plan** hears (ChatGPT connected on the **Models** page is enough, no key), with Groq it is **Groq Whisper**, with the OpenAI API it is **gpt-4o-transcribe**.
+- SenOS always picks the ear itself, there is nothing to set. The ear of **the main brain's own vendor** goes first: with ChatGPT as the brain your **ChatGPT plan** hears (ChatGPT connected on the **AI models** page is enough, no key), with Groq it is **Groq Whisper**, with the OpenAI API it is **gpt-4o-transcribe**.
 - Claude, Antigravity and Grok offer no speech-to-text on their plans, so with one of them as the brain SenOS uses the best ear it has, in this order: Groq, the ChatGPT plan, then an OpenAI key. With no ear at all it keeps the browser's text as before.
-- **Agents hear with their own ear**: an agent on a vendor's model has the dictation in its chat and the voice messages to its dedicated bot heard by that vendor. An agent left on Default follows the main brain. The Teams page (several agents at once) and the Conversations page use the main brain's ear.
+- **Agents hear with their own ear**: an agent on a vendor's model has the dictation in its chat and the voice messages to its dedicated bot heard by that vendor. An agent left on Default follows the main brain. The Squads page (several agents at once) and the Bot inbox page use the main brain's ear.
 - When an ear fails (network, quota, the plan refusing), the next ear hears that sentence. Telegram and Zalo voice messages follow the same order.
 - **Each ear's model upgrades by itself**: once a day SenOS asks Groq, OpenAI and Google for their models and uses the newest speech-to-text one (full size, stable, hears Vietnamese; never a preview, a lite version or an English-only one). The ChatGPT plan picks its model on ChatGPT's side. If a vendor refuses the new model, the old one hears that sentence again and the new one is left aside for a day. To keep one Groq model fixed, put its name in `voice.stt_model`.
 - **Scored before a switch**: when a new model appears, it and the model in use hear the same 13 sample sentences (Vietnamese, English, and Vietnamese with English terms such as "Mở dashboard Facebook ads") read by an Edge voice, and SenOS counts word errors and the terms heard right. The new model is used only if it is **not worse**; otherwise the old one stays and that new model is not scored again for a month. Each scoring costs about a minute of audio per model and only runs when a vendor releases a model. The result is kept in `stt_models.json` in SenOS's data folder, and the server log shows a `[stt gate]` line.
@@ -490,11 +490,11 @@ These fields were removed from the page because the machine decides them:
 
 ## Enlarging the chat
 
-When you work in chat for a while on the **SenOS** screen, click the **⛶** button in the corner of the CONVERSATION panel to jump to the **Chat** page: a full-screen chat, with the **conversation history** on the left (reopen, search, rename, delete old sessions, see [Sessions](04-sessions.md)) and the chat centred on the right for easier reading, with a taller input for longer writing.
+When you work in chat for a while on the **SenOS** screen, click the **⛶** button in the corner of the CONVERSATION panel to jump to the **Conversations** page: a full-screen chat, with the **conversation history** on the left (reopen, search, rename, delete old sessions, see [Sessions](04-sessions.md)) and the chat centred on the right for easier reading, with a taller input for longer writing.
 
-To go back to the SenOS screen: click **‹ Shrink** in the Chat page title bar.
+To go back to the SenOS screen: click **‹ Shrink** in the Conversations page title bar.
 
-It is still **one single conversation**: chatting on the SenOS screen or on the Chat page is the same thread, the same model bar, the same attachment area. Since version 0.12.4, the enlarge button no longer opens a separate overlay; before that there were two nearly identical chat frames that behaved differently, which was easy to confuse.
+It is still **one single conversation**: chatting on the SenOS screen or on the Conversations page is the same thread, the same model bar, the same attachment area. Since version 0.12.4, the enlarge button no longer opens a separate overlay; before that there were two nearly identical chat frames that behaved differently, which was easy to confuse.
 
 ## Asking for business numbers
 
@@ -536,10 +536,10 @@ Below 860px wide, the interface changes to fit the screen:
 - The **+** button (new conversation) moves into the header. The model chip stays in the input card next to the Effort chip, as on a computer.
 - The **System** group (brain picker, light/dark toggle, the SYSTEM and MCP strips) moves to the bottom of the navigation drawer.
 - The input shortens its placeholder to "Speak or type to SenOS…".
-- The **🕘 History** button in the header is hidden (the **Chat** page has the history built in).
+- The **🕘 History** button in the header is hidden (the **Conversations** page has the history built in).
 - There is no speaker button anywhere: the call (the mic button) decides whether SenOS speaks out loud.
 - There is no mouse to hover with, so **tap a message** to reveal its button row; tapping elsewhere hides it again.
-- On the **Chat** page, the **🕘** button in the title bar opens and closes the history drawer sliding in from the left.
+- On the **Conversations** page, the **🕘** button in the title bar opens and closes the history drawer sliding in from the left.
 
 ## What the status line in the middle means
 
@@ -559,7 +559,7 @@ Buttons around the chat frame:
 
 | Button | Where | What it does |
 |---|---|---|
-| ＋ | Start of the button row | Open the menu: attach a file or photo, **pin a working folder**, pick a file from the brain, commands and skills "/", **Connections** (with health), **Assistants and workflows** |
+| ＋ | Start of the button row | Open the menu: attach a file or photo, **pin a working folder**, pick a file from the brain, commands and skills "/", **Apps** (with health), **Assistants and workflows** |
 | Mic | Next to send | Call SenOS; during a call it becomes **Hang up** |
 | Arrow | End of the button row | Send the message |
 | Square | Replaces send while running | Stop the running turn and stop speaking |
@@ -587,10 +587,10 @@ Keyboard shortcuts:
 - To speak several sentences without SenOS sending early, call SenOS (the mic button) and talk continuously; only pause fully when you are actually done.
 - To read in silence: hang up and type; SenOS answers in text only.
 - Send several screenshots at once by dragging them all into the window; SenOS processes each one.
-- If you normally speak English, switch the interface language to English (**Settings → General**): SenOS listens in the interface language.
+- If you normally speak English, switch the interface language to English (**Preferences → General**): SenOS listens in the interface language.
 - Feel free to paste a whole long article into the chat box: SenOS turns it into an attached `.txt` file and the chat stays tidy.
 - To reask a question with a few words changed: click **✎** on the old message, edit it in the input and send, instead of retyping.
-- The **⛶** button on the CONVERSATION panel and the **Chat** item in the Assistant group lead to the same place; use whichever is closer.
+- The **⛶** button on the CONVERSATION panel and the **Conversations** item at the top of the rail lead to the same place; use whichever is closer.
 
 ## Common problems
 
@@ -598,12 +598,12 @@ Keyboard shortcuts:
 - **The browser cannot hear.** SenOS reports that the browser does not support speech and suggests Chrome or Edge. Open the dashboard in Chrome or Edge.
 - **The microphone does not work.** The browser is blocking microphone permission. Open the site permissions in your browser, allow the microphone, then reload the page.
 - **Pressing Esc but the answer keeps appearing.** That is by design: Esc hangs up, turning off the mic and the voice, while the answer keeps being written as text. To stop the turn for good, click the stop button (the square) on the input bar or type `/stop`.
-- **You cannot hear SenOS.** SenOS only speaks during a call, so click the mic to call. If it is still silent during a call, check the system volume, then click "▶ Preview" in **Settings → Voice** to test speech on its own. If you use an OpenAI or ElevenLabs voice, check whether SenOS reported a voice error (quota used up, wrong key, no network); SenOS does not switch to another voice on its own.
+- **You cannot hear SenOS.** SenOS only speaks during a call, so click the mic to call. If it is still silent during a call, check the system volume, then click "▶ Preview" in **Preferences → Voice** to test speech on its own. If you use an OpenAI or ElevenLabs voice, check whether SenOS reported a voice error (quota used up, wrong key, no network); SenOS does not switch to another voice on its own.
 - **Typing "/" shows no menu.** The menu only opens when "/" starts the input with no space after it. If there are still no skill rows, the selected brain has no enabled skills.
 - **Clicking one of SenOS's option buttons does nothing.** That row belongs to an older turn and froze when you sent a new message. Just type the answer instead.
 - **An image in the conversation became a grey "Image expired" box.** The file lived in the `attachments/` cache area and passed 30 days, or was cleaned when the 300MB ceiling was hit. Ask SenOS to regenerate it, or next time copy important images into another folder in the brain.
 - **A diagram does not render, only the code shows.** The diagram library is fetched from the internet; the machine is offline or blocked. The content is still intact on the source tab.
-- **Asking for an image reports that ChatGPT is not connected.** Go to the **Models** page and sign into ChatGPT (OAuth), no API key needed, then try again.
+- **Asking for an image reports that ChatGPT is not connected.** Go to the **AI models** page and sign into ChatGPT (OAuth), no API key needed, then try again.
 - **An empty answer.** If the answer area shows a hint to retry or change model, the selected model may be having trouble. See [Models & engines](10-models-and-engines.md) to switch model or engine.
 - **A file never finishes uploading.** Large file or slow network; the file chip reports the specific error (upload timeout, server error). Try a smaller file or check the connection.
 
@@ -613,7 +613,7 @@ Keyboard shortcuts:
 - [Skills](06-skills.md) - write and call skills with `/slug`.
 - [Models & engines](10-models-and-engines.md) - the providers and how to switch engines.
 - [Connections & business data](09-connections-and-business-data.md) - connect data sources to ask for real numbers.
-- [File manager](05-file-manager.md) - the VAULT column and the Files page.
+- [File manager](05-file-manager.md) - the VAULT column and the Documents page.
 - [Tasks & Dataview in notes](19-tasks-and-dataview.md) - `dataview` and `tasks` blocks in answers.
 - [Telegram channel](11-telegram.md) and [Zalo](12-zalo-agent-mcp.md) - chat with SenOS outside the dashboard.
 

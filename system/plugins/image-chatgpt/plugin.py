@@ -22,7 +22,7 @@ def register(ctx):
     def _check():
         try:
             if not openai_oauth.status().get("connected"):
-                return ("Chưa kết nối ChatGPT (OAuth). Vào trang Model đăng nhập ChatGPT rồi thử lại - "
+                return ("Chưa kết nối ChatGPT (OAuth). Vào trang Mô hình AI đăng nhập ChatGPT rồi thử lại - "
                         "tạo ảnh dùng chính gói ChatGPT, không cần API key.")
         except Exception as e:
             return f"Không kiểm tra được kết nối ChatGPT: {e}"

@@ -145,7 +145,7 @@
         </button>
         <div class="hud-actions">
           <button class="studio-open-btn" id="studioOpenBtn" title="Studio - Agents, Skills, Workflows" data-i18n-title="top.studio_title">▦ Studio</button>
-          <button class="hud-icon-btn" id="settingsBtn" title="Cài đặt" data-i18n-title="page.settings.label">
+          <button class="hud-icon-btn" id="settingsBtn" title="Thiết lập" data-i18n-title="page.settings.label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
               <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
@@ -355,7 +355,7 @@
                Rỗng thì span co về 0 nên hàng vẫn là "nhãn ... nút" như cũ. -->
           <span class="proj-chip-host" id="projChipHost"></span>
           <span class="panel-acts">
-            <button class="mini-btn" id="chatZoomBtn" title="Mở trang Trò chuyện (khung chat toàn màn)" data-i18n-title="chat.zoom"><i data-ic="maximize"></i></button>
+            <button class="mini-btn" id="chatZoomBtn" title="Mở trang Hội thoại (khung chat toàn màn)" data-i18n-title="chat.zoom"><i data-ic="maximize"></i></button>
             <button class="mini-btn chatcol-thu-btn" id="chatColThu" title="Thu khung hội thoại sang phải (như thu sidebar)" data-i18n-title="chat.col_collapse"><i data-ic="panel-left"></i></button>
           </span>
         </div>
@@ -524,7 +524,7 @@
                     <option value="1.45" data-i18n="qs.rate_opt_veryfast">Rất nhanh · 1,45×</option>
                   </select>
                 </div>
-                <div class="qs-hint" id="vcOpenaiNote" data-i18n="settings.vc_openai_note" hidden>Muốn giọng OpenAI: dán API key OpenAI ở trang Models.</div>
+                <div class="qs-hint" id="vcOpenaiNote" data-i18n="settings.vc_openai_note" hidden>Muốn giọng OpenAI: dán API key OpenAI ở trang Mô hình AI.</div>
               </details>
               <div class="gcard-meta" id="vcStatus" role="status"></div>
               <div class="gcard-meta" id="v2LastErr" hidden></div>
@@ -849,7 +849,7 @@
         #wzProvHint code{background:var(--surface-3);color:var(--text);padding:1px 5px;border-radius:4px;font-size:13px;word-break:break-all}
         #wzProvHint{margin-top:8px;font-size:15px;color:var(--text2);line-height:1.5}
         </style>
-        <div class="set-note"><span data-i18n="wz.intro">Vài bước nhanh để bắt đầu. Mọi thứ đổi lại được sau trong</span> <i data-ic="settings"></i> <span data-i18n="page.settings.label">Cài đặt</span>.</div>
+        <div class="set-note"><span data-i18n="wz.intro">Vài bước nhanh để bắt đầu. Mọi thứ đổi lại được sau trong</span> <i data-ic="settings"></i> <span data-i18n="page.settings.label">Thiết lập</span>.</div>
         <div class="set-sec">
           <h4 data-i18n="wz.s1">1. Workspace</h4>
           <label data-i18n="wz.ws_name">Tên hiển thị</label><input id="wzWsName" placeholder="SenOS">
@@ -875,7 +875,7 @@
         </div>
         <div class="set-sec">
           <h4 data-i18n="wz.s3">3. Nhà cung cấp AI (bộ não)</h4>
-          <div class="set-note"><span data-i18n="wz.prov_note">Chọn 1 nhà cung cấp chính. Đổi lại được trong</span> <i data-ic="cpu"></i> <b>Models</b>.</div>
+          <div class="set-note"><span data-i18n="wz.prov_note">Chọn 1 nhà cung cấp chính. Đổi lại được trong</span> <i data-ic="cpu"></i> <b data-i18n="page.models.label">Mô hình AI</b>.</div>
           <div class="wz-prov" id="wzProv">
             <label class="wz-card" data-prov="anthropic-cli">
               <input type="radio" name="wzprov" value="anthropic-cli" checked>
@@ -894,7 +894,7 @@
             </label>
           </div>
           <div id="wzOrKey" style="display:none">
-            <label>OpenRouter API key <span class="dim" data-i18n="wz.or_key_later">(có thể dán sau ở Models)</span></label>
+            <label>OpenRouter API key <span class="dim" data-i18n="wz.or_key_later">(có thể dán sau ở Mô hình AI)</span></label>
             <input id="wzOrKeyInput" placeholder="Ví dụ: sk-or-v1-… (tùy chọn)" data-i18n-ph="wz.or_key_ph">
           </div>
           <div id="wzProvHint"></div>
@@ -944,7 +944,7 @@
         <div class="auth-reset" id="authResetInfo" style="display:none">
           <span data-i18n="auth.reset1">Trên máy tính chạy SenOS, mở thư mục cài SenOS rồi bấm đúp</span> <code>reset-auth.bat</code>
           <span data-i18n="auth.reset2">(Mac:</span> <code>reset-auth.command</code><span data-i18n="auth.reset3">).</span>
-          <span data-i18n="auth.reset4">Mật khẩu cũ bị xoá, mở lại SenOS rồi vào Tài khoản đặt mật khẩu mới.</span>
+          <span data-i18n="auth.reset4">Mật khẩu cũ bị xoá, mở lại SenOS rồi vào Hồ sơ đặt mật khẩu mới.</span>
           <div class="auth-reset-srv" data-i18n="auth.reset_server">Chạy trên máy chủ (Docker, Hostinger): đổi SENOS_ADMIN_PASSWORD trong Environment rồi Redeploy. SenOS đặt lại mật khẩu theo giá trị mới, 2FA giữ nguyên.</div>
         </div>
       </div>
@@ -1020,7 +1020,7 @@
                Nội dung do console.js đổ vào (renderTfaRow) vì nó cần hỏi /auth/status. -->
           <div class="set-tfa" id="setTfaRow" hidden></div>
         </div>
-        <div class="set-note" style="opacity:.7" data-i18n="setm.more">Ảnh đại diện, tên miền, giọng nói &amp; tốc độ nằm trong trang Cài đặt.</div>
+        <div class="set-note" style="opacity:.7" data-i18n="setm.more">Ảnh đại diện, tên miền, giọng nói &amp; tốc độ nằm trong trang Thiết lập.</div>
       </div>
     </div>
   </div>

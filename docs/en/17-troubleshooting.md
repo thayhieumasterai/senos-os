@@ -26,13 +26,13 @@ A great many errors disappear after one of these, so try them before worrying:
 | **Port 7777 is held** and the new build will not come up | Kill the old process FIRST, then start again. Windows: run `stop-senos.bat`, or `taskkill /F /PID <pid>` with the PID holding the port. Docker: `docker compose down` then `docker compose up -d`. |
 | **Hostinger cannot pull the image** | Set the GHCR package to **Public** (GitHub, the repo, Packages, choose `senos`, Package settings, Visibility = Public). Then wait for the GitHub Action build to finish (the repo's Actions tab) and Deploy again. |
 | Opening the app shows the **create-admin screen** on a public server | No admin exists yet, so whoever opens the link first can create it. Create the account now (password at least 8 characters), or next time preset the env vars `SENOS_ADMIN_USER` and `SENOS_ADMIN_PASSWORD` at deploy time and sign straight in. Once inside, turn on 2FA. |
-| **Claude reports it is not signed in** (SenOS cannot answer) | Sign the Claude "brain" in once. In the app: open **Models**, on the Claude Code card click **Sign in to Claude**, open the link, paste the code if asked. By command: `claude auth login --claudeai` (on Docker, run it in the App terminal). |
-| **The Files page errors at "Loading..."** | The server has no Files endpoint yet (a 404). **Restart the server** to load the new endpoint, then press **Ctrl+Shift+R**. |
+| **Claude reports it is not signed in** (SenOS cannot answer) | Sign the Claude "brain" in once. In the app: open **AI models**, on the Claude Code card click **Sign in to Claude**, open the link, paste the code if asked. By command: `claude auth login --claudeai` (on Docker, run it in the App terminal). |
+| **The Documents page errors at "Loading..."** | The server has no Files endpoint yet (a 404). **Restart the server** to load the new endpoint, then press **Ctrl+Shift+R**. |
 | Images in old conversations show a grey **Image expired** box | By design: `attachments/` and `inbox/` are a cache, and files over 30 days (or when the 300MB ceiling is passed) are cleared. See "Old images and files disappear" below for how to keep them or turn clearing off. |
 | Voice / microphone will not turn on | Browsers only grant microphone permission over **HTTPS** (or on localhost). Opening `http://<ip>:7777` is always blocked. Use an `https://` URL (Hostinger `*.hstgr.cloud`, Cloudflare Tunnel, or a custom domain with SSL). See [Branding and custom domains](15-branding-and-domains.md). |
 | You updated in the app but **the version did not change** | Wait a little longer; if it still reports the old build, check the update log: `update.log` in the state folder (`server/update.log` locally, `/data/state/update.log` on Docker), or `docker compose logs`. |
-| **`senos` reports 401** or "invalid token" | The token is wrong or was revoked. Create a new one at **Integrations > API tokens** then run `senos login <address>` again. See [The SenOS CLI](24-cli.md). |
-| **`senos task add` / `senos brain ls` report 403** | Your token is the **chat only** kind. These commands need a **full power** token, so create one at Integrations > API tokens. |
+| **`senos` reports 401** or "invalid token" | The token is wrong or was revoked. Create a new one at **Webhooks > API token (for the CLI)** then run `senos login <address>` again. See [The SenOS CLI](24-cli.md). |
+| **`senos task add` / `senos brain ls` report 403** | Your token is the **chat only** kind. These commands need a **full power** token, so create one at Webhooks > API token (for the CLI). |
 | **`senos up` reports it cannot find a SenOS install** | Exactly as it says: the CLI package does NOT contain the server. Point `SENOS_HOME` at the SenOS folder, run the command from inside that folder, or use `senos login <address>` to connect to a SenOS running elsewhere. |
 
 The sections below explain each row in more detail.
@@ -71,7 +71,7 @@ When SenOS runs public (Docker/VPS/Hostinger) with no admin yet, opening the app
 
 1. **Preset the admin at deploy time (recommended)**: the two env vars `SENOS_ADMIN_USER` and `SENOS_ADMIN_PASSWORD` in the compose file or `.env`. Then opening the app takes you straight to sign-in.
 2. **Without the env vars**: create the account right after deploying, with a password of at least 8 characters.
-3. **Once inside**: turn on two-factor authentication (2FA) on the **Account** page.
+3. **Once inside**: turn on two-factor authentication (2FA) on the **Profile** page.
 
 Security details and how to set a password: [Security and accounts](14-security-and-accounts.md).
 
@@ -79,16 +79,16 @@ Security details and how to set a password: [Security and accounts](14-security-
 
 When you run the Claude engine, SenOS borrows the `claude` CLI's own login session on the machine: sign in once and it survives every restart and update. If SenOS does not answer or reports it is not signed in:
 
-1. **In the interface:** open **Models** (the **Connections** group on the left nav rail). On the Claude Code card, the status line reads **○ Not signed in**. Click **Sign in to Claude**, the app shows a link; open it to sign in to claude.ai; if the page shows a code, paste it into the field and click **Send code**. When it finishes, the status changes to **● Connected**. There is a **↻ Check again** button to refresh the status.
+1. **In the interface:** open **AI models** (the **Admin** group on the left nav rail). On the Claude Code card, the status line reads **○ Not signed in**. Click **Sign in to Claude**, the app shows a link; open it to sign in to claude.ai; if the page shows a code, paste it into the field and click **Send code**. When it finishes, the status changes to **● Connected**. There is a **↻ Check again** button to refresh the status.
 2. **By command:** run `claude auth login --claudeai` once (on Docker, run it in the **App terminal**), open the link, paste the code.
 
 The login token lives in `~/.claude` (Docker: the `claude-auth` volume), so it survives updates. If you already signed in on another machine, you can copy the `~/.claude` folder across. See also [Models and engines](10-models-and-engines.md).
 
-## The Files page errors at "Loading..."
+## The Documents page errors at "Loading..."
 
-If you open **Files** (**Brain** group) and the file list errors instead of appearing, the server is usually running an old build with no Files endpoint (a 404). The interface itself says so: **restart the server** (Windows: `stop-senos.bat` then `start-senos.vbs`) then **reload the page** with Ctrl+Shift+R.
+If you open **Documents** (**Knowledge** group) and the file list errors instead of appearing, the server is usually running an old build with no Files endpoint (a 404). The interface itself says so: **restart the server** (Windows: `stop-senos.bat` then `start-senos.vbs`) then **reload the page** with Ctrl+Shift+R.
 
-If it reports an expired session (a 401), just reload the page and sign in again. The full Files guide is at [File manager](05-file-manager.md).
+If it reports an expired session (a 401), just reload the page and sign in again. The full Documents guide is at [File manager](05-file-manager.md).
 
 ## Old images and files disappear (the grey "Image expired" box)
 
@@ -120,14 +120,14 @@ A note if you have GitHub sync on: `attachments/` and `inbox/` ARE within the sy
 
 The free tiers of API providers (Groq most visibly) tighten **four things in parallel**, and each demands a completely different response. SenOS reads the error message and classifies it, so reading the notice in chat tells you which one you hit:
 
-- **Tokens per minute, this turn is too large.** SenOS shortens the context itself and resends. If it still does not fit, turn on the **Optimised** level at the top of the Usage page, or ask a shorter question.
+- **Tokens per minute, this turn is too large.** SenOS shortens the context itself and resends. If it still does not fit, turn on the **Optimised** level at the top of the Quota page, or ask a shorter question.
 - **Tokens per minute, the window is full.** Earlier turns have not aged out. SenOS waits exactly the number of seconds the provider states then resends. Shortening the question does not help.
 - **Requests per minute.** Calls came too thick and fast. Wait a moment then ask again.
-- **A DAILY limit** (tokens or requests). The day's quota is spent. Shortening the question does not help at all. You have to wait for the new day, switch temporarily to another brain on the **Models** page, or upgrade your plan with the provider.
+- **A DAILY limit** (tokens or requests). The day's quota is spent. Shortening the question does not help at all. You have to wait for the new day, switch temporarily to another brain on the **AI models** page, or upgrade your plan with the provider.
 
 If SenOS cannot classify it, it shows the **provider's error message verbatim** rather than guessing. Sending that exact sentence in a bug report makes it far easier to trace.
 
-To hit this far less often: choose the **Optimised** or **Ultra-saving** level at the top of the **Usage** page (since 0.24.7 new machines default to Ultra-saving). After the first refusal, SenOS remembers that account's real limits (as stated by the provider itself) and keeps the context under the threshold on later turns, with nothing to declare.
+To hit this far less often: choose the **Optimised** or **Ultra-saving** level at the top of the **Quota** page (since 0.24.7 new machines default to Ultra-saving). After the first refusal, SenOS remembers that account's real limits (as stated by the provider itself) and keeps the context under the threshold on later turns, with nothing to declare.
 
 ### When the provider stumbles once, SenOS re-asks by itself
 
@@ -144,9 +144,9 @@ If all three attempts fail, SenOS reports the provider's error verbatim with the
 
 There are several places, depending on what you want to see:
 
-1. **The log of SenOS running in the background**: open the **Work** group on the left nav rail, choose **Recurring jobs**, and scroll to **Recent log**. This is where turns of SenOS waking to do a job are recorded, filterable per loop. See [Recurring jobs and reminders](08-recurring-jobs.md).
-2. **The self-learning log**: the **Self-learning** page (**Brain** group) has two separate panels, **What SenOS taught itself (latest commit)** and **Learning log**. See [Self-learning](22-self-learning.md).
-3. **The Updates page** (**System** group, the page title is **Update log**): this is where you see the running version and the feature history per release. There is no separate "Logs" or "Activity log" page any more; the `logs` item on the rail is this page.
+1. **The log of SenOS running in the background**: open **Jobs** (**Operations** group on the left nav rail), choose **Recurring**, and scroll to **Recent log**. This is where turns of SenOS waking to do a job are recorded, filterable per loop. See [Recurring jobs and reminders](08-recurring-jobs.md).
+2. **The self-learning log**: the **Training** page (**Knowledge** group) has two separate panels, **What SenOS has learned (latest commits)** and **Learning log**. See [Self-learning](22-self-learning.md).
+3. **The Releases tab** (**Admin → Preferences → Releases**, the page title is **Update log**): this is where you see the running version and the feature history per release. There is no separate "Logs" or "Activity log" page any more; the `logs` page now opens this tab.
 4. **The server's technical log** (when you need to dig into an error):
    - Windows running in the background through `start-senos.vbs`: the log is at `server\senos.log`.
    - Docker / VPS: `docker compose logs senos` (add `-f` to follow: `docker compose logs -f`).
@@ -157,15 +157,15 @@ There are several places, depending on what you want to see:
 
 ### Is data lost during an update?
 
-No, if you run Docker. Every note, brain, setting and even the Claude login token lives in a **Docker volume** (`senos-data`, `claude-auth`), separate from the image. When you update (clicking **⬆ Update now** on the **Updates** page, a Redeploy on Hostinger, or `./update.sh` on a VPS), the image is replaced but the volumes stay, so data is **not** lost. On a native install the data is in the repo's `brains/` folder, which `git pull` does not delete either.
+No, if you run Docker. Every note, brain, setting and even the Claude login token lives in a **Docker volume** (`senos-data`, `claude-auth`), separate from the image. When you update (clicking **⬆ Update now** on **Preferences → Releases**, a Redeploy on Hostinger, or `./update.sh` on a VPS), the image is replaced but the volumes stay, so data is **not** lost. On a native install the data is in the repo's `brains/` folder, which `git pull` does not delete either.
 
 ### How does in-app updating work?
 
-Open **System → Settings → Updates**; the **SenOS** card shows the running version and checks GitHub for a newer one. If there is one, the status line reads **🆕 New version available** with a **What's new** panel, and the **⬆ Update now** button appears when the environment supports it. Click it, confirm, and the app runs through the 6 steps shown on the progress bar (Prepare, Download code, Install libraries, Restart, Health check, Done) then reloads the page. If the new build is broken, SenOS **rolls back by itself** and reports **↩ The new build failed, rolled back**. Below the card is the update-log timeline of released versions.
+Open **Admin → Preferences → Releases**; the **SenOS** card shows the running version and checks GitHub for a newer one. If there is one, the status line reads **🆕 New version available** with a **What's new** panel, and the **⬆ Update now** button appears when the environment supports it. Click it, confirm, and the app runs through the 6 steps shown on the progress bar (Prepare, Download code, Install libraries, Restart, Health check, Done) then reloads the page. If the new build is broken, SenOS **rolls back by itself** and reports **↩ The new build failed, rolled back**. Below the card is the update-log timeline of released versions.
 
 An install directly on the machine (Windows, Linux, macOS) can always update itself. The Docker build only updates in place when the **Watchtower** container is running.
 
-Since 0.55.56 Watchtower **ships by default** in both the VPS compose and the Hostinger compose, so a fresh install has the button. Still missing it means the stack is running from an older compose file: Watchtower used to sit under `profiles: ["update"]` (which `docker compose up -d` does not start) and the Hostinger stack shipped without it. The way out is to fetch the new compose and bring it up again - on a VPS run `curl -fsSLO https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/docker-compose.yml` then `docker compose up -d --pull always`; on Hostinger hit **Redeploy** in Docker Manager. Not ready to swap the file? `docker compose --profile update up -d` starts it on its own. The Updates panel tells you which case your machine is in.
+Since 0.55.56 Watchtower **ships by default** in both the VPS compose and the Hostinger compose, so a fresh install has the button. Still missing it means the stack is running from an older compose file: Watchtower used to sit under `profiles: ["update"]` (which `docker compose up -d` does not start) and the Hostinger stack shipped without it. The way out is to fetch the new compose and bring it up again - on a VPS run `curl -fsSLO https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/docker-compose.yml` then `docker compose up -d --pull always`; on Hostinger hit **Redeploy** in Docker Manager. Not ready to swap the file? `docker compose --profile update up -d` starts it on its own. The Releases panel tells you which case your machine is in.
 
 **The stack reports "Partially running" after updating the compose file**: almost always the `<name>-watchtower` container failing to reach the host's Docker socket (Hostinger has hit exactly this). The SenOS app is unaffected - it is a separate container and keeps running; you simply lose the "Update now" button and fall back to Redeploy. The real reason is in the log: `docker logs senos-watchtower`.
 
@@ -184,7 +184,7 @@ Since 0.55.56 Watchtower **ships by default** in both the VPS compose and the Ho
 Yes. SenOS manages several brains in the `brains/` folder. From the brain dropdown in the interface you can:
 
 1. Create a new brain: click the add-brain button and give it a name when asked.
-2. Switch brain: pick another one in the dropdown; the Files page, the graph and the memory all follow the selected brain.
+2. Switch brain: pick another one in the dropdown; the Documents page, the knowledge map and the memory all follow the selected brain.
 3. Delete a brain: select it and click the delete button, and the interface requires you to **type the brain name exactly** to confirm (against accidental deletion). The **default brain** cannot be deleted.
 
 Details in [Second Brain: memory, Wiki, INGEST](13-second-brain.md).
@@ -219,4 +219,4 @@ Browsers require **HTTPS** before granting microphone permission (localhost asid
 1. Collect the server log (see "Where to see the logs" above) to find the specific error.
 2. Try in order: restart the server, then Ctrl+Shift+R.
 3. Check that the environment variables in `.env` are set correctly, see [.env configuration](16-env-configuration.md).
-4. Check that the "brain" is still signed in (on **Models**, the card of the engine you use must read **● Connected**).
+4. Check that the "brain" is still signed in (on **AI models**, the card of the engine you use must read **● Connected**).

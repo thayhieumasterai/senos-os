@@ -626,6 +626,6 @@ def allowed(connector, perm, mode, tool, args=None):
                 con_chay = "Lệnh đọc (LIST, GET, FETCH, SEARCH...) vẫn chạy được ở mức này"
             return False, (f"Lệnh {', '.join(ten[:8])} qua '{tool}' bị chặn: thao tác {loai} trong khi "
                            f"{vi_sao} (mức hiệu lực: {eff}). {con_chay}. Muốn sửa/gửi/xoá thì bảo "
-                           f"người dùng nâng quyền ở trang Kết nối.")
+                           f"người dùng nâng quyền ở trang Ứng dụng.")
     return False, (f"Tool '{tool}' bị chặn: thao tác {loai} trong khi {vi_sao} (mức hiệu lực: {eff}). "
-                   f"Nâng quyền ở trang Kết nối nếu thật sự cần.")
+                   f"Nâng quyền ở trang Ứng dụng nếu thật sự cần.")

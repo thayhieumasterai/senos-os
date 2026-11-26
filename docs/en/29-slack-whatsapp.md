@@ -4,15 +4,15 @@
 
 Since 0.71.0 SenOS talks on Slack and WhatsApp, in the same two ways as Telegram and Zalo:
 
-- **Control channel:** you chat with SenOS itself (your brain, your tools, background work). Set it up on the **Admin channels** page.
-- **Customer bot:** a dedicated agent answers your customers or team, with every chat in the shared inbox and takeover when a human is needed. Set it up on the **Chatbot** page.
+- **Control channel:** you chat with SenOS itself (your brain, your tools, background work). Set it up on the **Control channels** page.
+- **Customer bot:** a dedicated agent answers your customers or team, with every chat in the shared inbox and takeover when a human is needed. Set it up on the **Bot inbox** page.
 
 | | Slack | WhatsApp |
 |---|---|---|
 | How SenOS connects | Socket Mode: SenOS opens the connection, **no domain needed** | Webhook: Meta calls SenOS, **needs an HTTPS domain** |
 | Groups | Channels (SenOS answers when mentioned, in the thread) | Private chats only |
 | Files | Images and documents, both ways | Images and documents, both ways |
-| Voice messages | Transcribed (needs a Groq key on the Models page) | Transcribed (same) |
+| Voice messages | Transcribed (needs a Groq key on the AI models page) | Transcribed (same) |
 | Writing first | Anytime | Only within 24 hours of the person's last message |
 
 ---
@@ -74,7 +74,7 @@ settings:
 
 ### 2a. Control channel (you talk to SenOS)
 
-1. **Admin channels** page → **Slack** tab: paste the bot token and the app token, click **Save and turn on**.
+1. **Control channels** page → **Slack** tab: paste the bot token and the app token, click **Save and turn on**.
 2. Open Slack, find the app under **Apps**, send it any message. You appear on the card with a 4-digit code; check the code and click **Allow**. The list starts empty on purpose: nobody can reach your brain until you allow them.
 3. From then on: DM the bot, or mention `@SenOS` in a channel it was invited to (`/invite @SenOS`); it answers in the thread.
 
@@ -83,7 +83,7 @@ Bot commands start with `!` instead of `/` on Slack, because Slack keeps `/` for
 ### 2b. Customer bot
 
 1. Use a **separate** Slack app (repeat step 1 with another name) so customers never reach your control channel.
-2. **Chatbot** page → **Accounts** → add an account, channel **Slack**, paste both tokens **separated by a space**: `xoxb-... xapp-...`.
+2. **Bot inbox** page → **Channels** → add an account, channel **Slack**, paste both tokens **separated by a space**: `xoxb-... xapp-...`.
 3. Create the bot on the same page and attach the account.
 
 ---
@@ -107,15 +107,15 @@ WhatsApp only works through Meta's official **WhatsApp Business Cloud API**. Sen
 
 ### 2a. Control channel
 
-1. **Admin channels** page → **WhatsApp** tab: fill in Phone number ID, Access token, App secret, click **Save and turn on**.
+1. **Control channels** page → **WhatsApp** tab: fill in Phone number ID, Access token, App secret, click **Save and turn on**.
 2. The card shows a **Callback URL** and a **Verify token**. In Meta: **WhatsApp → Configuration → Webhook → Edit**, paste both, **Verify and save**, then subscribe to the **messages** field.
 3. Message the business number from your own WhatsApp. You appear on the card with a code; click **Allow**.
 
 ### 2b. Customer bot
 
 1. Use another number (each number belongs to one bot).
-2. **Chatbot** page → **Accounts** → add an account, channel **WhatsApp**, paste the three values **separated by spaces**: `<phone number id> <access token> <app secret>`.
-3. The webhook is the same Callback URL and Verify token as on the Admin channels page: one URL serves every number, and SenOS routes each message by the number it was sent to.
+2. **Bot inbox** page → **Channels** → add an account, channel **WhatsApp**, paste the three values **separated by spaces**: `<phone number id> <access token> <app secret>`.
+3. The webhook is the same Callback URL and Verify token as on the Control channels page: one URL serves every number, and SenOS routes each message by the number it was sent to.
 
 ### The 24-hour window
 

@@ -325,7 +325,7 @@ def read_plugin(slug: str, vault_root: Optional[str], scope: str = "") -> dict:
     if d is None:
         raise _err("Không có plugin {s}. Xem op=list.", "No plugin {s}. See op=list.", s=repr(slug))
     if d["source"] not in ("user", "vault"):
-        raise _err("{s} là plugin hệ thống hoặc của gói, chỉ đọc qua trang Plugins, không sửa được.",
+        raise _err("{s} là plugin hệ thống hoặc của gói, chỉ đọc qua trang Tiện ích, không sửa được.",
                    "{s} is a system or pack plugin; it cannot be read or edited with this tool.", s=repr(slug))
     pdir = Path(d["dir"])
     files, truncated, skipped = {}, [], []
@@ -413,8 +413,8 @@ def write_plugin(slug: str, files, vault_root: Optional[str], scope: str = "glob
                    "{s} is a system plugin that ships with the app; it cannot be edited or cloned. Pick another slug.",
                    s=repr(slug))
     if slug in _pack_slugs():
-        raise _err("{s} thuộc một gói trong Kho cài đặt. Đặt slug khác.",
-                   "{s} belongs to a pack from the Store. Pick another slug.", s=repr(slug))
+        raise _err("{s} thuộc một gói trong Chợ Sen. Đặt slug khác.",
+                   "{s} belongs to a pack from Sen Market. Pick another slug.", s=repr(slug))
     base = _base_dir(scope, vault_root)
     new_files = _normalise_files(files)
     removing = sorted({clean_rel_path(x) for x in (remove or [])})
@@ -568,11 +568,11 @@ def write_plugin(slug: str, files, vault_root: Optional[str], scope: str = "glob
         owner = localefmt.chu("Chỉ sửa phần mô tả, plugin vẫn BẬT như trước.",
                               "Only the description changed; the plugin stays ON as before.")
     elif forced_off:
-        owner = localefmt.chu("Mã hoặc khai báo đã đổi nên plugin đã được TẮT. Đọc lại thay đổi rồi bật ở trang Plugins.",
-                              "The code or declarations changed, so the plugin was switched OFF. Review the change, then turn it on in the Plugins page.")
+        owner = localefmt.chu("Mã hoặc khai báo đã đổi nên plugin đã được TẮT. Đọc lại thay đổi rồi bật ở trang Tiện ích.",
+                              "The code or declarations changed, so the plugin was switched OFF. Review the change, then turn it on in the Add-ons page.")
     else:
-        owner = localefmt.chu("Plugin đã cài và đang TẮT. Bật nó ở trang Plugins khi đã xem mã.",
-                              "The plugin is installed and OFF. Turn it on in the Plugins page once you have read the code.")
+        owner = localefmt.chu("Plugin đã cài và đang TẮT. Bật nó ở trang Tiện ích khi đã xem mã.",
+                              "The plugin is installed and OFF. Turn it on in the Add-ons page once you have read the code.")
     return {"ok": True, "op": "write", "slug": slug, "scope": scope, "path": str(pdir),
             "created": not exists, "enabled": enabled, "switched_off": forced_off,
             "code_changed": bool(code_changed), "declarations_changed": bool(decl_changed),
@@ -606,12 +606,12 @@ def delete_plugin(slug: str, vault_root: Optional[str], scope: str = "") -> dict
     pdir = base / slug
     key = _ledger_key(sc, base, slug)
     if key not in _read_ledger():
-        raise _err("Plugin {s} không do SenOS tạo trong chat, nên chỉ gỡ được ở trang Plugins.",
-                   "Plugin {s} was not created by SenOS in chat, so only the Plugins page can remove it.", s=repr(slug))
+        raise _err("Plugin {s} không do SenOS tạo trong chat, nên chỉ gỡ được ở trang Tiện ích.",
+                   "Plugin {s} was not created by SenOS in chat, so only the Add-ons page can remove it.", s=repr(slug))
     manifest, _e = plugins_host._read_manifest(pdir)
     if manifest.get("enabled"):
-        raise _err("Plugin {s} đang BẬT. Chủ phải tắt nó ở trang Plugins trước.",
-                   "Plugin {s} is ON. The owner has to turn it off in the Plugins page first.", s=repr(slug))
+        raise _err("Plugin {s} đang BẬT. Chủ phải tắt nó ở trang Tiện ích trước.",
+                   "Plugin {s} is ON. The owner has to turn it off in the Add-ons page first.", s=repr(slug))
     bak = base / STAGING / "bak" / slug
     try:
         if bak.exists():

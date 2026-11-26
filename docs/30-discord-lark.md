@@ -4,7 +4,7 @@
 
 Từ 0.85.0 bạn nói chuyện được với SenOS ngay trong Discord và Lark (hay Feishu, bản Trung Quốc của Lark). Hai kênh này là **kênh admin**: người nhắn là chính bạn, đủ quyền như trên dashboard (brain, công cụ, việc nền). Cài ở trang **Kênh Admin**, mỗi kênh một tab.
 
-Bot trả lời **khách hàng** là chuyện khác, nằm ở trang **Chatbot**. Từ 0.102.0 Lark có ở đó (xem mục [Bot khách hàng trên Lark](#bot-khách-hàng-trên-lark)); Discord thì chưa.
+Bot trả lời **khách hàng** là chuyện khác, nằm ở trang **Hộp thư bot**. Từ 0.102.0 Lark có ở đó (xem mục [Bot khách hàng trên Lark](#bot-khách-hàng-trên-lark)); Discord thì chưa.
 
 | | Discord | Lark / Feishu |
 |---|---|---|
@@ -12,7 +12,7 @@ Bot trả lời **khách hàng** là chuyện khác, nằm ở trang **Chatbot**
 | Cần gì | Một bot token | App ID và App Secret của một app tự dùng |
 | Trong nhóm | SenOS trả lời khi được @nhắc hoặc khi bạn trả lời tin của bot | SenOS trả lời khi được @nhắc |
 | File | Ảnh và tài liệu, cả hai chiều (tối đa 10 MB khi gửi đi) | Ảnh và tài liệu, cả hai chiều |
-| Tin thoại | Chép thành chữ (cần key Groq ở trang Models) | Chép thành chữ (như trên) |
+| Tin thoại | Chép thành chữ (cần key Groq ở trang Mô hình AI) | Chép thành chữ (như trên) |
 | Lệnh bot | `!stop`, `!new`... (Discord giữ dấu `/` cho lệnh riêng của nó) | `/stop` hoặc `!stop` đều được |
 
 Cả hai kênh **khoá mặc định**: chưa cho phép ai thì không ai dùng được. Người lạ nhắn cho bot sẽ nhận một mã ghép nối 4 số và hiện ở tab của kênh đó, bạn bấm **Cho phép** là xong. Không phải đi tra ID bằng tay.
@@ -31,7 +31,7 @@ Không cần bật **Message Content Intent** hay intent đặc quyền nào. Se
 
 ### 2. Nối vào SenOS
 
-1. Trang **Kênh Admin** → tab **Discord**: dán token vào ô **Bot token**, bấm **Lưu và bật kênh**.
+1. Trang **Kênh quản trị** → tab **Discord**: dán token vào ô **Bot token**, bấm **Lưu và bật kênh**.
 2. Nhãn cạnh tên kênh chuyển sang **Đang chạy**.
 3. Nhắn riêng cho bot một câu trên Discord (bạn phải ở chung ít nhất một server với bot). Bot trả về mã ghép nối, còn trên tab Discord hiện tên bạn kèm đúng mã đó. Bấm **Cho phép**.
 4. Bấm **Gửi tin thử** để chắc chiều SenOS gửi đi cũng thông.
@@ -62,7 +62,7 @@ Lark (open.larksuite.com) và Feishu (open.feishu.cn) là hai nền tảng tách
 
 Thứ tự quan trọng: console Lark chỉ cho lưu chế độ "kết nối dài" khi đã có một kết nối đang mở, nên bật SenOS trước.
 
-1. Trang **Kênh Admin** → tab **Lark**: chọn **Nền tảng** (Lark hoặc Feishu), dán **App ID** và **App Secret**, bấm **Lưu và bật kênh**. Nhãn chuyển sang **Đang chạy**.
+1. Trang **Kênh quản trị** → tab **Lark**: chọn **Nền tảng** (Lark hoặc Feishu), dán **App ID** và **App Secret**, bấm **Lưu và bật kênh**. Nhãn chuyển sang **Đang chạy**.
 2. Quay lại console, mục **Events & Callbacks**: ở cách nhận sự kiện chọn **Receive events through persistent connection** (nhận qua kết nối dài), lưu. Bấm **Add Events**, thêm sự kiện **Message received** (`im.message.receive_v1`).
 3. Mục **Version Management & Release**: tạo phiên bản và phát hành. Công ty có quản trị viên thì cần họ duyệt.
 4. Trong Lark, tìm bot theo tên rồi nhắn riêng một câu. Bot trả mã ghép nối, tab Lark hiện bạn kèm mã đó: bấm **Cho phép**.
@@ -71,11 +71,11 @@ Trong nhóm, thêm bot vào nhóm rồi gõ `@SenOS câu hỏi`. SenOS trả l�
 
 ### Bot khách hàng trên Lark
 
-Từ 0.102.0 một bot ở trang **Chatbot** trả lời được khách trên Lark hoặc Feishu, mọi cuộc chat vào **Hộp thư** chung, tiếp quản được khi cần người thật.
+Từ 0.102.0 một bot ở trang **Hộp thư bot** trả lời được khách trên Lark hoặc Feishu, mọi cuộc chat vào **Hộp thư** chung, tiếp quản được khi cần người thật.
 
 1. Tạo một app **riêng** cho bot (làm lại bước 1 với tên khác). Không dùng chung app với kênh admin: Lark chia tin ngẫu nhiên giữa các kết nối cùng một app, SenOS cũng từ chối app đó.
 2. Ngoài các quyền ở bước 1, nên cấp thêm: đọc **mọi tin trong nhóm** (không chỉ tin gọi tên bot) nếu muốn bot tự theo dõi nhóm, đọc **thông tin người dùng** (contact) và **thông tin nhóm** (`im:chat`) để Hộp thư hiện tên khách và tên nhóm thay vì mã `ou_...`. Thiếu hai quyền sau thì bot vẫn chạy, chỉ hiện mã.
-3. Trang **Chatbot** → **Tài khoản** → thêm tài khoản, kênh **Lark**, dán **App ID** và **App Secret** cách nhau một dấu cách: `cli_... SECRET`. SenOS tự dò app thuộc Lark hay Feishu; muốn chỉ định thì thêm chữ `feishu` (hoặc `lark`) ở cuối.
+3. Trang **Hộp thư bot** → tab **Kênh** → thêm tài khoản, kênh **Lark**, dán **App ID** và **App Secret** cách nhau một dấu cách: `cli_... SECRET`. SenOS tự dò app thuộc Lark hay Feishu; muốn chỉ định thì thêm chữ `feishu` (hoặc `lark`) ở cuối.
 4. Tạo bot ở cùng trang và gắn tài khoản vừa thêm, rồi bật bot. Sau đó làm bước 2 ở trên trong console (chọn kết nối dài, thêm sự kiện `im.message.receive_v1`, phát hành phiên bản).
 
 ### Sự cố thường gặp

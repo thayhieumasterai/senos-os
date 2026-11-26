@@ -9,7 +9,7 @@ Từ 0.134.0 một Bot chuyên trách trả lời được hộp thư Fanpage Fa
 | SenOS kết nối thế nào | Webhook: Meta gọi vào SenOS, **cần tên miền HTTPS** |
 | Nhóm | Không, chỉ chat riêng với Page |
 | File | Ảnh và tài liệu, cả hai chiều |
-| Tin thoại | Chép thành chữ (cần key Groq ở trang Models) |
+| Tin thoại | Chép thành chữ (cần key Groq ở trang Mô hình AI) |
 | Trả lời | Chỉ trong 24 giờ kể từ tin cuối của khách |
 | Định dạng | Chữ thường: Messenger không hiện Markdown, SenOS tự bỏ ký hiệu |
 | Bình luận Fanpage | Có (từ 0.434.0): mỗi bình luận gốc là một hội thoại trong Hộp thư |
@@ -19,12 +19,12 @@ Từ 0.134.0 một Bot chuyên trách trả lời được hộp thư Fanpage Fa
 Không cần Graph API Explorer, không cần chép Page ID hay token. Làm lần đầu và muốn xem từng cú bấm trên trang Meta: [Nối Messenger từng bước](31-messenger-tung-buoc.md).
 
 1. Trên [developers.facebook.com/apps](https://developers.facebook.com/apps), tạo app có trường hợp sử dụng Messenger và thêm bốn quyền `pages_read_engagement`, `pages_read_user_content`, `pages_manage_engagement`, `pages_manage_posts` (một lần).
-2. Mở SenOS bằng tên miền HTTPS, vào **Kết nối**, thẻ **Facebook Messenger**, bấm **Kết nối**. Form hiện sẵn hai địa chỉ kèm nút **Chép**:
+2. Mở SenOS bằng tên miền HTTPS, vào **Ứng dụng**, thẻ **Facebook Messenger**, bấm **Kết nối**. Form hiện sẵn hai địa chỉ kèm nút **Chép**:
    - **Địa chỉ quay về**: dán vào ô **Valid OAuth Redirect URIs** trong cài đặt **Facebook Login** của app (chưa có Facebook Login thì thêm sản phẩm đó trước).
    - **Link chính sách quyền riêng tư**: SenOS tự phục vụ trang này. Dán vào **Cài đặt ứng dụng, Thông tin cơ bản**, ô Chính sách quyền riêng tư và ô Hướng dẫn xoá dữ liệu.
 3. Dán **App ID** và **App secret**, chọn cách xử lý bình luận, bấm **Đăng nhập Facebook**. Một tab Facebook mở ra: đăng nhập, tick các Fanpage, đồng ý các quyền.
 4. Quay lại tab SenOS: danh sách Fanpage hiện ra, tick Trang muốn nối, bấm **Kết nối các Trang đã chọn**. SenOS tự lấy token Trang không hết hạn, khai webhook, gắn Trang vào app và hiện bảng kiểm tra cho từng Trang.
-5. Vào **Chatbot**, **Bot**, tick kênh vừa nối vào một bot và bật bot. Chưa có bot thì SenOS chưa nhận tin.
+5. Vào **Hộp thư bot**, **Bot**, tick kênh vừa nối vào một bot và bật bot. Chưa có bot thì SenOS chưa nhận tin.
 6. Chuyển app sang chế độ **Live** (mục 4), rồi thử bằng một nick Facebook không có vai trò trong app.
 
 ## Đăng bài lên Fanpage (từ 0.438.0)
@@ -53,9 +53,9 @@ Phần dễ sai nhất khi tự làm là token: dán token người dùng thay v
 
 1. Trên Meta, tạo app có trường hợp sử dụng Messenger và kết nối Trang (bước 1.1 đến 1.3 bên dưới, chưa cần bấm Generate).
 2. Mở [Graph API Explorer](https://developers.facebook.com/tools/explorer), chọn đúng app, thêm quyền `pages_show_list`, `pages_messaging`, `pages_manage_metadata`, `pages_read_engagement`, bấm **Generate Access Token** và tick đúng Trang. Chép chuỗi `EAA...`.
-3. Mở SenOS bằng tên miền HTTPS, vào **Kết nối**, thẻ **Facebook Messenger**, bấm **Kết nối**, rồi bấm **Dán token thay vì đăng nhập**. Dán App ID, App secret, Page ID và token vừa chép, bấm **Kết nối và kiểm tra**.
+3. Mở SenOS bằng tên miền HTTPS, vào **Ứng dụng**, thẻ **Facebook Messenger**, bấm **Kết nối**, rồi bấm **Dán token thay vì đăng nhập**. Dán App ID, App secret, Page ID và token vừa chép, bấm **Kết nối và kiểm tra**.
 4. SenOS đổi sang token Trang không hết hạn, khai webhook của app với `messages`, `messaging_postbacks` và `message_echoes` (để bot thấy file nhân viên gửi từ hộp thư Trang), gắn Trang vào app, lưu kênh rồi hiện bảng kiểm tra từng dòng xanh hoặc đỏ kèm cách sửa.
-5. Vào **Chatbot**, **Bot** để tạo bot cho kênh vừa nối (mục 3).
+5. Vào **Hộp thư bot**, **Bot** để tạo bot cho kênh vừa nối (mục 3).
 
 Mỗi Trang đã nối có nút **Kiểm tra**, **Sửa tự động** (khai lại webhook và gắn lại Trang) và **Đổi token**. Bộ não nào cũng gọi được tool `messenger_check` và `messenger_repair` khi bot im lặng. Muốn SenOS nhắn khách từ khung chat ("trả lời chị Lan là còn size M"), bộ não dùng `inbox_find` để tìm cuộc chat và `inbox_reply` để gửi, đi đúng Page hoặc Instagram của cuộc đó. Messenger chỉ nhận tin trong 24 giờ kể từ tin cuối của khách. Xác minh doanh nghiệp và nộp duyệt `pages_messaging` (mục 4) vẫn làm trên trang Meta.
 
@@ -71,15 +71,15 @@ Cách làm tay bên dưới vẫn dùng được.
 
 ## 2. Thêm tài khoản Messenger trong SenOS
 
-> Đã nối Fanpage ở thẻ Facebook Messenger trang Kết nối thì **bỏ qua mục này**: Trang đó đã có sẵn trong danh sách kênh, sang thẳng mục 3. Thẻ đó cũng hiện Địa chỉ webhook và Mã xác minh nếu bạn cần dán tay.
+> Đã nối Fanpage ở thẻ Facebook Messenger trang Ứng dụng thì **bỏ qua mục này**: Trang đó đã có sẵn trong danh sách kênh, sang thẳng mục 3. Thẻ đó cũng hiện Địa chỉ webhook và Mã xác minh nếu bạn cần dán tay.
 
-1. Mở SenOS **bằng tên miền HTTPS** (không phải localhost hay IP), vào trang **Chatbot**, tab **Bot**, bấm **Thêm kênh**, chọn **Messenger**.
+1. Mở SenOS **bằng tên miền HTTPS** (không phải localhost hay IP), vào trang **Hộp thư bot**, tab **Bot**, bấm **Thêm kênh**, chọn **Messenger**.
 2. Form hiện **Địa chỉ webhook** và **Mã xác minh**. Quay lại app Meta, mục **Configure webhooks** của Messenger: dán hai thứ này vào Callback URL và Verify token, bấm **Verify and save**. Tick ba trường **messages**, **messaging_postbacks** và **message_echoes**.
 3. Về SenOS, dán vào ô token ba thứ cách nhau dấu cách: `Page ID`, `Page access token`, `App secret`. Bấm **Kiểm tra** (SenOS hỏi Meta tên Page), rồi **Lưu**.
 
 ## 3. Gắn bot
 
-- **Dùng lại bot đang trực Zalo:** mở bot đó ở trang Chatbot, bấm **Sửa**, tick thêm tài khoản Messenger vừa tạo, **Lưu**. Bot trả lời cả Zalo lẫn Messenger bằng cùng một Agent và cùng giờ trực.
+- **Dùng lại bot đang trực Zalo:** mở bot đó ở trang Hộp thư bot, bấm **Sửa**, tick thêm tài khoản Messenger vừa tạo, **Lưu**. Bot trả lời cả Zalo lẫn Messenger bằng cùng một Agent và cùng giờ trực.
 - **Hoặc tạo bot mới** chỉ cho Messenger.
 
 Bật bot. Lúc bật, SenOS tự đăng ký Page với webhook của app (bạn không phải làm bước này tay); lỗi gì thì thẻ bot báo bằng lời. Nếu token thiếu quyền để tự đăng ký, bot vẫn chạy và thẻ bot nhắc bạn gắn tay một lần: app Meta, Messenger, Webhooks, **Add Subscriptions** cho Page.

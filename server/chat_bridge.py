@@ -934,7 +934,7 @@ def sync_setup(source: str, senos_url: str = "", system: str = "", gate_url: str
     mine = [t for t in cfgmod.list_api_tokens() if t.get("scope") == "sync"]
     if len(mine) >= MAX_SYNC_TOKENS:
         return {"ok": False, "error": (
-            f"SenOS already has {len(mine)} SenOS Sync tokens. Ask the owner to revoke unused ones on the Integrations "
+            f"SenOS already has {len(mine)} SenOS Sync tokens. Ask the owner to revoke unused ones on the Webhook (Webhooks) "
             "page, API tokens tab, then try again.")}
     tok = cfgmod.create_api_token(f"SenOS Sync ({ten_nguon(source)})", "sync")["token"]
     win = str(system or "").strip().lower().startswith("win")

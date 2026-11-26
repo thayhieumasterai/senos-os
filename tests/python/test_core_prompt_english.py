@@ -12,7 +12,7 @@ What stays Vietnamese on purpose, and is allowed below:
 - the `# === ... ===` block headers: `context_runtime` measures blocks by them and CLAUDE.md names them;
 - names the program itself writes or reads: `[Phiên chat: ...]`, `[Giờ gửi tin này: ...]`,
   `[NGỮ CẢNH GIAO DIỆN: ...]` with `trang=`, `chọn=`, `ngắt_lời=`, `kênh=giọng`;
-- the Vietnamese page names next to the English ones ("the Tasks page (Nhiệm vụ)"), because the
+- the Vietnamese page names next to the English ones ("the Công việc (Jobs) page"), because the
   interface can be in either language.
 Data is not rules: memory, profiles, skill descriptions and tool results stay in whatever language they are.
 """
@@ -54,7 +54,8 @@ def check(name, cond, extra=""):
 
 
 VI = re.compile(r"[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]", re.I)
-ALLOWED = ("`# === NGÔN NGỮ ===`", "(Nhiệm vụ)", "(Kết nối)", "\"AI tự vận hành\"", "`[NGỮ CẢNH GIAO DIỆN: ...]`",
+ALLOWED = ("`# === NGÔN NGỮ ===`", "(Nhiệm vụ)", "(Kết nối)", "Công việc (Jobs)", "Ứng dụng (Apps)",
+           "Thiết lập (Preferences)", "Tài liệu (Documents)", "\"AI tự vận hành\"", "`[NGỮ CẢNH GIAO DIỆN: ...]`",
            "`[Phiên chat: web:<id>]`", "`trang=`", "`chọn=`", "`ngắt_lời=`", "`kênh=giọng`",
            "`[Giờ gửi tin này: ...]`")
 

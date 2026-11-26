@@ -6,6 +6,14 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.626.0] - 2026-11-26
+### Thêm mới
+- **Trợ lý biết giao diện của chính SenOS.** Hỏi "đổi model ở đâu", "Bản đồ tri thức là gì" là SenOS tra công cụ mới `senos_app_guide`: thanh bên đúng tên đang hiện trên màn hình, kèm đoạn hướng dẫn liên quan. Trước đây nó chỉ tìm trong brain nên đoán sai tên trang.
+### Cải thiện
+- **Mọi chỗ gọi đúng tên trang hiện tại.** Thông báo, gợi ý, tiêu đề trang, tên thẻ trong Thiết lập và toàn bộ hướng dẫn sử dụng (tiếng Việt và tiếng Anh) đã đổi sang tên mới: Mô hình AI, Thiết lập, Ứng dụng, Chợ Sen, Công việc, Hộp thư bot, Trợ lý, Nghiệp vụ, Tiện ích, Hồ sơ, Hạn mức... Vị trí menu không đổi.
+- **Gói trong hướng dẫn ghi mã senos.*** (senos.zalo, senos.crm, senos.gate) cho khớp Chợ Sen.
+- **Lệnh nói "mở trang ..." hiểu tên trang mới**, như "mở trang Ứng dụng", "mở Chợ Sen", "mở Mô hình AI".
+
 ## [0.625.1] - 2026-11-26
 ### Sửa lỗi
 - **Ô chọn model và mức suy nghĩ dưới khung chat không còn bị mép dưới cửa sổ che mất.** Khung chat chừa đủ chỗ cho hàng ô này, kể cả khi cửa sổ thấp.
@@ -5986,7 +5994,7 @@ Cảm ơn người dùng đã gửi báo lỗi kèm bản vá chạy thử trên
 
 ## [0.55.30] - 2026-09-05
 ### Thêm mới
-- **Kho cài đặt chuyển sang kho riêng: [senos-store](https://github.com/blogminhquy/javis-store).** Từ giờ thêm một món vào kho là mọi máy đang chạy SenOS **thấy ngay**, không phải chờ bản cập nhật nào cả.
+- **Kho cài đặt chuyển sang kho riêng: [senos-store](https://github.com/thayhieumasterai/senos-store).** Từ giờ thêm một món vào kho là mọi máy đang chạy SenOS **thấy ngay**, không phải chờ bản cập nhật nào cả.
 - **Ai cũng góp được món vào kho.** Repo kho công khai, kèm hướng dẫn gửi bài và danh sách những gì sẽ bị soi khi duyệt. Mọi món đều được đọc mã trước khi vào kho.
 - Mã nguồn từng món nằm ngay cạnh tệp tải về, nên bạn đọc được nó **trước khi** cài chứ không phải tải rồi mới xem.
 
@@ -8823,15 +8831,15 @@ Thêm công tắc tự chọn: giữ hay gỡ dấu nguồn gốc AI trên ảnh
 ### Thêm mới
 - **Công tắc "Dấu nguồn gốc ảnh AI"** ở Cài đặt, nhóm Giao diện & Brain. Ảnh sinh ra mang sẵn Content Credentials (C2PA) ghi rằng ảnh do AI tạo, và Facebook đọc dấu đó để gắn nhãn "Nội dung do AI tạo" lên bài. Công tắc cho chọn **Giữ dấu** (mặc định) hoặc **Gỡ dấu**.
 - **Mặc định là GIỮ**, và có test khoá mặc định đó lại: bản fork nào cũng khởi đầu ở trạng thái an toàn, muốn gỡ thì chủ workspace phải tự bật. Lúc bật có hộp xác nhận nói rõ nghĩa vụ công bố nội dung AI vẫn thuộc về người đăng.
-- **Nhãn tác giả javisos.com luôn được giữ** ở cả hai chế độ. Gỡ dấu chỉ là gỡ, không đánh tráo nguồn gốc thành của người khác.
+- **Nhãn tác giả senos.bizzy.vn luôn được giữ** ở cả hai chế độ. Gỡ dấu chỉ là gỡ, không đánh tráo nguồn gốc thành của người khác.
 - Chỉ ảnh tạo từ lúc bật trở đi mới bị ảnh hưởng; ảnh đã tạo trước đó không đổi.
 ### Kiểm thử
 - `test_image_gen.py` thêm 8 case: gỡ đúng chunk caBX và không đụng phần còn lại, ảnh không có dấu thì trả nguyên xi, mặc định phải là False, và hai nhánh bật/tắt cho ra file khác nhau đúng như mong đợi.
 
 ## [0.9.214] - 2026-07-28
-Ảnh SenOS tạo ra tự mang nhãn tác giả javisos.com.
+Ảnh SenOS tạo ra tự mang nhãn tác giả senos.bizzy.vn.
 ### Thêm mới
-- **Gắn nhãn tác giả vào ảnh**: mọi ảnh sinh bằng `senos_generate_image` nay được ghi sẵn metadata `Software = SenOS`, `Source = https://javisos.com` và thời điểm tạo, dưới dạng chunk tEXt chuẩn PNG. Ai mở file bằng công cụ xem metadata sẽ thấy ảnh do SenOS tạo.
+- **Gắn nhãn tác giả vào ảnh**: mọi ảnh sinh bằng `senos_generate_image` nay được ghi sẵn metadata `Software = SenOS`, `Source = https://senos.bizzy.vn` và thời điểm tạo, dưới dạng chunk tEXt chuẩn PNG. Ai mở file bằng công cụ xem metadata sẽ thấy ảnh do SenOS tạo.
 - Việc gắn nhãn **chỉ THÊM chunk, không gỡ gì**: phần Content Credentials (C2PA) mà nhà cung cấp ảnh nhúng sẵn vẫn nằm nguyên trong file, pixel không bị đụng vào. File không phải PNG hợp lệ thì trả nguyên xi, không làm hỏng ảnh.
 ### Kiểm thử
 - `test_image_gen.py` thêm 8 case, trong đó có case khoá hành vi "KHÔNG gỡ chunk C2PA có sẵn" để sau này không ai lặng lẽ đổi thành gỡ nguồn gốc rồi ghi đè tên mình.
@@ -9991,7 +9999,7 @@ Tinh chỉnh nút thu/mở rail (bản 0.9.72) theo góp ý: đổi icon, dời 
 ### Cải thiện
 - **Icon nút thu/mở đổi sang kiểu "panel sidebar"**: thay mũi tên kép `«` bằng khung vuông chia hai với cột trái có các dòng nội dung (giống icon toggle sidebar quen thuộc). Icon tĩnh, bỏ hiệu ứng xoay 180° khi thu (kiểu panel không cần chỉ hướng, trạng thái đã có tooltip).
 - **Dời nút thu/mở nằm CẠNH dòng version thay vì phía trên**: `.rail-foot` đổi từ xếp dọc sang hàng ngang, nút ở trái kề số phiên bản + "by Cát Tường Group". Khi thu gọn vẫn ẩn version/tác giả, chỉ còn mỗi nút căn giữa.
-- **Link "by Cát Tường Group" trỏ về javisos.com** thay cho Cát Tường Group.
+- **Dòng "by Cát Tường Group"** ghi tên đơn vị phát hành SenOS.
 
 ## [0.9.72] - 2026-07-18
 Làm gọn thanh điều hướng bên trái (rail) theo góp ý trực tiếp: chữ khó đọc vì dùng font monospace, header nhóm trơ không icon, và rail chiếm quá nhiều bề ngang màn hình.

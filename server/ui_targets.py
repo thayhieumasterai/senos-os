@@ -79,6 +79,18 @@ ALIASES = {
     "agents": "workspace", "workflows": "workspace",
     # Trang Nhóm (nhóm chat team, 0.140.0): thanh bên gọi là "Nhóm". "nhom" trơn KHÔNG nằm ở đây (xem _EXACT_PAGE).
     "nhom chat": "teams", "team": "teams", "teams": "teams",
+    # Page labels after the SenOS rename (vi.json / en.json page.<id>.label): say what you see and it opens.
+    # "hinh ai": the "mo " prefix strip eats the first word of "Mô hình AI", so the rest must match too.
+    "ban do tri thuc": "home", "knowledge map": "home", "tai lieu": "files", "documents": "files",
+    "ren luyen": "learn", "training": "learn", "assistants": "workspace", "nhom ai": "teams", "squads": "teams",
+    "hop thu bot": "conversations", "bot inbox": "conversations", "bot tra loi": "chatbots", "reply bots": "chatbots",
+    "nghiep vu": "skills", "playbooks": "skills", "add ons": "plugins", "dong lenh": "terminal",
+    "command line": "terminal", "code studio": "coding", "jobs": "tasks", "lich tu dong": "tasks",
+    "automations": "tasks", "ung dung": "mcp", "apps": "mcp", "cho sen": "packs", "sen market": "packs",
+    "kenh quan tri": "channels", "control channels": "channels", "phien dang nhap": "logins", "sign ins": "logins",
+    "mo hinh ai": "models", "hinh ai": "models", "ai models": "models", "preferences": "settings", "lien ket cong khai": "share",
+    "public links": "share", "nguoi dung": "users", "ho so": "account", "profile": "account",
+    "han muc": "usage", "quota": "usage", "releases": "logs", "be sen": "pet", "lotus buddy": "pet",
 }
 
 # Bí danh chỉ khớp khi CẢ CÂU (sau khi bỏ "mở", "trang"...) đúng bằng nó, không khớp cụm con. "nhom" khớp cụm con thì cướp
@@ -102,6 +114,10 @@ GROUP_ALIASES = {
     "viec": "viec", "cong viec": "viec", "task": "viec",
     "ket noi": "ket_noi", "connect": "ket_noi", "ket noi va model": "ket_noi",
     "he thong": "he_thong", "system": "he_thong", "cai dat chung": "he_thong",
+    # Group labels after the SenOS rename (nav.group.<id>).
+    "tri thuc": "bo_nao", "knowledge": "bo_nao", "doi ngu ai": "nang_luc", "ai crew": "nang_luc",
+    "dieu phoi": "viec", "operations": "viec", "cong ket noi": "ket_noi", "gateways": "ket_noi",
+    "quan tri": "he_thong", "admin": "he_thong",
 }
 
 # Tiền tố người nói hay kèm theo. Lột LẶP LẠI: "mở trang kỹ năng" có hai lớp, lột một lớp thì

@@ -69,7 +69,7 @@ async def _run(args, repair: bool):
     import messenger_setup
     accs = _accounts(str((args or {}).get("page") or "").strip())
     if not accs:
-        return json.dumps({"ok": False, "error": "No Messenger account matches. Connect a Page on the Connections page "
+        return json.dumps({"ok": False, "error": "No Messenger account matches. Connect a Page on the Ứng dụng (Apps) page "
                                                  "(card Facebook Messenger) first."}, ensure_ascii=False)
     verify = str((cfgmod.read_settings().get("messenger") or {}).get("verify_token") or "")
     results = []
@@ -87,7 +87,7 @@ async def _run(args, repair: bool):
             errs = []
             if repair:
                 if not app_id or not verify:
-                    errs.append("App id or verify token unknown; reconnect the Page from the Connections page.")
+                    errs.append("App id or verify token unknown; reconnect the Page from the Ứng dụng (Apps) page.")
                 else:
                     errs = (await messenger_setup.repair(c, cr["page_id"], cr["access_token"], app_id,
                                                          cr["app_secret"], url, verify)).get("errors", [])

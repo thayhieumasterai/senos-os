@@ -8,7 +8,7 @@ Hướng dẫn này đi từng cú bấm, dành cho người làm lần đầu. 
 
 Trước khi bắt đầu, bạn cần:
 
-- SenOS mở được bằng **tên miền HTTPS** (Cài đặt, Truy cập từ xa). Meta không gửi tin tới localhost hay địa chỉ IP.
+- SenOS mở được bằng **tên miền HTTPS** (Thiết lập, Truy cập từ xa). Meta không gửi tin tới localhost hay địa chỉ IP.
 - Tài khoản Facebook là **quản trị viên** của Fanpage.
 - Một app Meta của riêng bạn. Chưa có thì làm Phần 0. Đã có app (ví dụ app tạo cho thẻ Facebook Trang trong store) thì dùng lại được, bỏ qua Phần 0: một app phục vụ được mọi Fanpage của bạn.
 
@@ -81,7 +81,7 @@ Kết quả đúng: các quyền đều hiện **Sẵn sàng thử nghiệm**. T
 
 **2.1. Lấy hai địa chỉ từ SenOS**
 
-- Mở SenOS bằng tên miền HTTPS, vào trang **Kết nối**, thẻ **Facebook Messenger**, bấm **Kết nối**.
+- Mở SenOS bằng tên miền HTTPS, vào trang **Ứng dụng**, thẻ **Facebook Messenger**, bấm **Kết nối**.
 - Form hiện sẵn hai dòng, mỗi dòng có nút **Chép**:
   - **Địa chỉ quay về**, dạng `https://<tên-miền-SenOS-của-bạn>/messenger/oauth/callback`
   - **Link chính sách quyền riêng tư**, dạng `https://<tên-miền-SenOS-của-bạn>/messenger/privacy`
@@ -134,7 +134,7 @@ SenOS tự làm phần còn lại cho từng Trang: lấy token Trang không h�
 
 Chưa có bot thì SenOS chưa nhận tin, Hộp thư cũng trống.
 
-- Vào **Chatbot, Bot**, tạo bot mới hoặc bấm **Sửa** ở bot đang có (ví dụ bot đang trực Zalo).
+- Vào **Hộp thư bot, Bot**, tạo bot mới hoặc bấm **Sửa** ở bot đang có (ví dụ bot đang trực Zalo).
 - Tick kênh Messenger vừa nối. Kênh đã có sẵn trong danh sách, không cần **Thêm kênh**.
 - Bấm **Lưu**, bật bot.
 

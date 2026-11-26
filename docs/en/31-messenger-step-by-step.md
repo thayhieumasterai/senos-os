@@ -4,11 +4,11 @@
 
 This guide walks through every click, for people doing it the first time. The first setup takes about 20 minutes, mostly setting up the app on Meta's site. Each extra Page later is a few clicks.
 
-> **Connect once, use it for three jobs:** the bot answers messages, replies to comments, and SenOS posts to the Page (when you ask or automatically on a schedule). Everything in SenOS happens in one place: the **Facebook Messenger** card on the **Connections** page. Once connected, the Page is already in the channel list on the Chatbot page; there is nothing to add anywhere else.
+> **Connect once, use it for three jobs:** the bot answers messages, replies to comments, and SenOS posts to the Page (when you ask or automatically on a schedule). Everything in SenOS happens in one place: the **Facebook Messenger** card on the **Apps** page. Once connected, the Page is already in the channel list on the Bot inbox page; there is nothing to add anywhere else.
 
 Before you start you need:
 
-- SenOS reachable through an **HTTPS domain** (Settings, Remote access). Meta does not send messages to localhost or an IP address.
+- SenOS reachable through an **HTTPS domain** (Preferences, Remote access). Meta does not send messages to localhost or an IP address.
 - A Facebook account that is an **admin** of the Page.
 - A Meta app of your own. If you have none, do Part 0. If you already have one (for example the app made for the Facebook Pages card in the store), reuse it and skip Part 0: one app serves all your Pages.
 
@@ -81,7 +81,7 @@ Done right: every permission shows **Ready for testing**. A missing one shows up
 
 **2.1. Take the two addresses from SenOS**
 
-- Open SenOS through its HTTPS domain, go to **Connections**, card **Facebook Messenger**, click **Connect**.
+- Open SenOS through its HTTPS domain, go to **Apps**, card **Facebook Messenger**, click **Connect**.
 - The form shows two rows, each with a **Copy** button:
   - **Redirect address**, shaped like `https://<your-senos-domain>/messenger/oauth/callback`
   - **Privacy policy link**, shaped like `https://<your-senos-domain>/messenger/privacy`
@@ -134,13 +134,13 @@ SenOS does the rest for each Page: a non-expiring Page token, the webhook in the
 
 Until a bot is on, SenOS does not take in messages and the inbox stays empty.
 
-- Open **Chatbot, Bots**, create a bot or click **Edit** on one you have (for example the bot already on Zalo).
+- Open **Bot inbox, Bots**, create a bot or click **Edit** on one you have (for example the bot already on Zalo).
 - Tick the Messenger channel you just connected. It is already in the list; no need for **Add channel**.
 - Click **Save** and switch the bot on.
 
 One bot can serve several channels at once (several Pages, Zalo too) with one Agent and one set of active hours. One bot serves up to **100 Pages** (Instagram rides on its Page, so it counts with it); other channels allow 20 accounts per bot.
 
-**Posting:** nothing else to install. Ask SenOS "post this to the Page with these 3 photos" or "every day at 8am post a product introduction" and it uses this same connection. Publishing and editing posts are real, public actions, so they only run when SenOS is at Full access. To change comment handling later: **Connections**, Facebook Messenger card, **View details**, the Page comments box on each Page.
+**Posting:** nothing else to install. Ask SenOS "post this to the Page with these 3 photos" or "every day at 8am post a product introduction" and it uses this same connection. Publishing and editing posts are real, public actions, so they only run when SenOS is at Full access. To change comment handling later: **Apps**, Facebook Messenger card, **View details**, the Page comments box on each Page.
 
 ---
 

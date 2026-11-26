@@ -6,8 +6,8 @@
 
 ## Tính năng này là gì
 
-- **Agent** là một "nhân viên AI" có vai trò cố định. Mỗi agent gồm: một cái tên, một mô tả vai trò, một hướng dẫn làm việc chi tiết (system prompt), danh sách kỹ năng (skill) được phép dùng, một **model chạy**, và một **bộ nhớ riêng** tích luỹ theo thời gian. Model chọn được từ **mọi nhà cung cấp bạn đã kết nối** ở trang Models: Claude (Claude Code), ChatGPT (Codex), Grok Build CLI, Antigravity CLI, OpenRouter, Anthropic API, OpenAI, Google Gemini, Groq. Danh sách trong ô chọn lấy thẳng từ các nhà đã kết nối, nên kết nối thêm là có thêm lựa chọn. Nhà nào cũng đọc/ghi được file trong vault và dùng được MCP; riêng Claude Code và Codex có thêm lệnh máy cùng khả năng tự mở web. Nhà đã chọn trục trặc lúc chạy thì SenOS tự lùi sang bộ não khác thay vì để agent chết lặng. (Ollama chưa chạy được agent nên không xuất hiện ở đây.) Model của agent được áp THẬT khi workflow chạy.
-  - Lưu ý an toàn: khi workflow chạy **nền tự động** (dispatcher Kanban, chế độ giới hạn công cụ file), agent dùng Claude Code để giữ giới hạn công cụ an toàn, kể cả khi bạn chọn nhà khác. Model bạn chọn áp khi bạn gửi tin ở trang **Cộng sự**.
+- **Agent** là một "nhân viên AI" có vai trò cố định. Mỗi agent gồm: một cái tên, một mô tả vai trò, một hướng dẫn làm việc chi tiết (system prompt), danh sách kỹ năng (skill) được phép dùng, một **model chạy**, và một **bộ nhớ riêng** tích luỹ theo thời gian. Model chọn được từ **mọi nhà cung cấp bạn đã kết nối** ở trang Mô hình AI: Claude (Claude Code), ChatGPT (Codex), Grok Build CLI, Antigravity CLI, OpenRouter, Anthropic API, OpenAI, Google Gemini, Groq. Danh sách trong ô chọn lấy thẳng từ các nhà đã kết nối, nên kết nối thêm là có thêm lựa chọn. Nhà nào cũng đọc/ghi được file trong vault và dùng được MCP; riêng Claude Code và Codex có thêm lệnh máy cùng khả năng tự mở web. Nhà đã chọn trục trặc lúc chạy thì SenOS tự lùi sang bộ não khác thay vì để agent chết lặng. (Ollama chưa chạy được agent nên không xuất hiện ở đây.) Model của agent được áp THẬT khi workflow chạy.
+  - Lưu ý an toàn: khi workflow chạy **nền tự động** (dispatcher Kanban, chế độ giới hạn công cụ file), agent dùng Claude Code để giữ giới hạn công cụ an toàn, kể cả khi bạn chọn nhà khác. Model bạn chọn áp khi bạn gửi tin ở trang **Trợ lý**.
   - Riêng agent chọn **ChatGPT** thì bước nền giới hạn đó chạy đúng bằng ChatGPT (Codex): chỉ được gọi đúng danh sách công cụ của bước qua SenOS Hub, giữ mức quyền của việc, còn lệnh máy, web, tác tử con và ứng dụng ngoài Hub đều tắt; ghi file đi qua Hub. Máy chưa có Codex hoặc không dựng được môi trường giới hạn thì bước đó chạy bằng Claude Code như trước.
 - **Workflow** là một chuỗi nhiều bước, mỗi bước giao cho một agent làm một nhiệm vụ. Kết quả bước trước có thể chảy sang bước sau. Bạn có thể gắn thêm một **bước kiểm chứng**: một agent khác đóng vai người soi lỗi, mặc định giả định kết quả đang sai và phải tự chứng minh; nếu chưa đạt, workflow tự sửa lại vài lần.
 - Mọi agent và workflow được lưu thành **file .md trong vault** (bộ não đang chọn), nên bạn xem được, sửa tay được, và SenOS cũng tạo được bằng lời qua chat.
@@ -16,7 +16,7 @@ Liên quan: chọn model cho agent xem [Models & engine](10-models-va-engine.md)
 
 ## Mở ở đâu trong SenOS
 
-Mở **Năng lực > Cộng sự** trên thanh bên của dashboard (mặc định tại cổng 7777). Trang có hai tab **Trợ lý | Quy trình**. Skills và Plugins vẫn nằm trong nhóm Năng lực.
+Mở **Đội ngũ AI > Trợ lý** trên thanh bên của dashboard (mặc định tại cổng 7777). Trang có hai tab **Trợ lý | Quy trình**. Nghiệp vụ và Tiện ích vẫn nằm trong nhóm Đội ngũ AI.
 
 - Cột trái: chọn tab, tìm theo tên hoặc lọc theo tag (quy trình: theo nhóm), rồi chọn cộng sự. Trợ lý vừa trò chuyện và quy trình vừa chạy được xếp lên đầu.
 - Cột giữa: khung chat của cộng sự đang chọn.
@@ -79,15 +79,15 @@ Từ 0.205.0 danh sách cộng sự chạy như danh sách tin nhắn:
 - Thẻ cộng sự hiện **số tin chưa đọc** ở góc dưới, cạnh giờ nhắn. Mở hội thoại của cộng sự đó là số này tự xoá, ở mọi tab đang mở.
 - Nút **⋮** của mỗi thẻ có **Tắt thông báo**, chọn **Trong 1 giờ**, **Trong 4 giờ**, **Cho đến 8:00 sáng** hoặc **Cho đến khi được mở lại**. Thẻ đang tắt có biểu tượng chuông gạch và số chưa đọc màu xám. Tin vẫn vào hội thoại và chuông thông báo, chỉ là không kêu và không gửi thông báo đẩy. Bấm **Bật thông báo** để mở lại.
 
-## Tạo mới, tìm kiếm và SenOS Store
+## Tạo mới, tìm kiếm và Chợ Sen
 
-Chọn tab cần dùng rồi bấm nút tạo trợ lý hoặc quy trình ở cuối cột trái. **SenOS Store** mở kho gói tương ứng để thêm cộng sự có sẵn. Trợ lý được phân loại bằng **tag**, quy trình bằng **nhóm** (xem dưới).
+Chọn tab cần dùng rồi bấm nút tạo trợ lý hoặc quy trình ở cuối cột trái. **Chợ Sen** mở kho gói tương ứng để thêm cộng sự có sẵn. Trợ lý được phân loại bằng **tag**, quy trình bằng **nhóm** (xem dưới).
 
 Ô tìm lọc theo tên, slug, vai trò, mô tả và tên tag, hỗ trợ gõ không dấu. Bộ lọc tag (ở tab Quy trình là bộ lọc nhóm) kết hợp với ô tìm. Mục chưa dùng nằm sau các mục đã dùng và được xếp theo tên.
 
 ## Tạo một Agent (từng bước, qua form)
 
-1. Mở **Cộng sự > Trợ lý**.
+1. Mở trang **Trợ lý**, tab **Trợ lý**.
 2. Bấm nút tạo trợ lý ở cuối cột trái. Một khung soạn thảo mở ra bên phải màn hình.
 3. Điền các ô sau:
 
@@ -120,7 +120,7 @@ Ghi chú về ô Skills: danh sách skill lấy từ thư mục skill của vaul
 
 Dưới ô Model có dòng ghi chú: "Agent chạy qua CLI của nhà cung cấp: chọn Claude → Claude Code; chọn ChatGPT → Codex (cần đã đăng nhập ChatGPT ở máy/VPS). Cả hai đều đọc/ghi file vault + dùng MCP."
 
-**"Mặc định (theo CLI)" thật ra làm gì:** để trống thì SenOS lấy **model phụ** bạn đặt ở trang **Models** trước (chỉ khi model phụ là một model Claude); không có model phụ Claude nào thì mới rơi về model mặc định của CLI. Nếu bạn muốn một agent luôn chạy đúng một model bất kể cấu hình chung, hãy chọn thẳng model cho nó thay vì để trống.
+**"Mặc định (theo CLI)" thật ra làm gì:** để trống thì SenOS lấy **model phụ** bạn đặt ở trang **Mô hình AI** trước (chỉ khi model phụ là một model Claude); không có model phụ Claude nào thì mới rơi về model mặc định của CLI. Nếu bạn muốn một agent luôn chạy đúng một model bất kể cấu hình chung, hãy chọn thẳng model cho nó thay vì để trống.
 
 ### Tài liệu và link của một trợ lý
 
@@ -167,7 +167,7 @@ Phân biệt: bộ nhớ này là của **riêng một agent**; bộ nhớ chung
 
 Tạo ít nhất một trợ lý ở tab **Trợ lý** trước khi tạo quy trình.
 
-1. Mở **Cộng sự > Quy trình**.
+1. Mở **Trợ lý > Quy trình**.
 2. Bấm **Tạo quy trình** ở cuối cột trái.
 3. Điền:
    - **Tên**: tên workflow. Bắt buộc.
@@ -210,13 +210,13 @@ Chọn quy trình ở cột trái. Cột phải có nút **Sửa**, **Xuất** v
 
 ## Chạy quy trình
 
-1. Mở **Cộng sự > Quy trình**, chọn một quy trình ở cột trái.
+1. Mở **Trợ lý > Quy trình**, chọn một quy trình ở cột trái.
 2. Gửi yêu cầu vào khung chat. Mỗi tin nhắn bắt đầu một lần chạy; nội dung tin là đầu vào `{{input}}`.
 3. Theo dõi tiến độ từng bước ở cột phải. Nếu quy trình có kiểm chứng, bước đó có thể chạy lại theo phản hồi của người kiểm chứng và số lần thử đã cấu hình.
 4. Nếu cần duyệt, đọc yêu cầu và dùng nút duyệt ở cột phải để tiếp tục. Lỗi và trạng thái chờ cũng được báo trong chat.
 5. Khi hoàn tất, kết quả về khung chat. Tin tiếp theo trong cùng hội thoại nhớ kết quả lần trước, nên bạn có thể góp ý và chạy lại, ví dụ: "Giữ ý chính, viết ngắn hơn".
 
-**Lịch sử chạy** ở cột phải liệt kê các lần chạy gần nhất. Bấm một lần chạy để xem chi tiết và mở lại hội thoại nếu lần chạy có phiên chat. Quy trình vừa chạy tự lên đầu danh sách. Bạn cũng có thể hỏi SenOS ở khung chat chính: "Quy trình chạy gần nhất ra sao?" để tra lịch sử đã lưu, bao gồm lần chạy từ Cộng sự và Kanban.
+**Lịch sử chạy** ở cột phải liệt kê các lần chạy gần nhất. Bấm một lần chạy để xem chi tiết và mở lại hội thoại nếu lần chạy có phiên chat. Quy trình vừa chạy tự lên đầu danh sách. Bạn cũng có thể hỏi SenOS ở khung chat chính: "Quy trình chạy gần nhất ra sao?" để tra lịch sử đã lưu, bao gồm lần chạy từ trang Trợ lý và Bảng việc.
 
 Mỗi bước vẫn ghi nhật ký của trợ lý tại `memory/agents/<slug>/runs/`. Nếu mất kết nối, kiểm tra lịch sử chạy trước khi gửi lại để tránh chạy trùng.
 
@@ -228,7 +228,7 @@ Bạn không bắt buộc phải dùng form. Trong khung trò chuyện với Sen
 - "Tạo workflow nghiên cứu rồi viết bài."
 - "Thêm bước biên tập vào workflow X."
 
-Khi đó SenOS tự ghi file .md tương ứng vào vault, tự đặt slug không dấu, tự gắn tag cho agent hay xếp nhóm cho workflow (đọc tag và nhóm đang dùng trong brain rồi lấy cái sát nhất), tự gán skill hợp lý từ skill có sẵn, và nếu workflow nhắc tới một agent chưa tồn tại thì tạo agent đó trước. Sau khi làm xong, SenOS báo ngắn gọn đã tạo/sửa file nào. Bạn quay lại trang Cộng sự là thấy ngay, không cần thao tác thêm.
+Khi đó SenOS tự ghi file .md tương ứng vào vault, tự đặt slug không dấu, tự gắn tag cho agent hay xếp nhóm cho workflow (đọc tag và nhóm đang dùng trong brain rồi lấy cái sát nhất), tự gán skill hợp lý từ skill có sẵn, và nếu workflow nhắc tới một agent chưa tồn tại thì tạo agent đó trước. Sau khi làm xong, SenOS báo ngắn gọn đã tạo/sửa file nào. Bạn quay lại trang Trợ lý là thấy ngay, không cần thao tác thêm.
 
 Cách này tiện khi bạn mô tả được ý định bằng lời nhưng ngại điền form, hoặc muốn chỉnh nhiều bước cùng lúc.
 
@@ -236,18 +236,18 @@ Cách này tiện khi bạn mô tả được ý định bằng lời nhưng ng�
 
 Trong brain theo cấu trúc mới, mỗi agent là một file `agents/<slug>.md` và mỗi workflow là một file `workflows/<slug>.md`. `slug` là tên viết thường, có gạch ngang, không dấu (ví dụ "viết email" thành `viet-email`).
 
-**Brain cũ chưa chuyển cấu trúc** thì hai thư mục đó nằm ở `SenOS/agents/` và `SenOS/workflows/`. SenOS tự dò: có thư mục mới thì dùng thư mục mới, không có thì dùng đường cũ. Nên nếu bạn mở trang Tệp tin mà không thấy `agents/` ở gốc brain, hãy tìm trong `SenOS/`.
+**Brain cũ chưa chuyển cấu trúc** thì hai thư mục đó nằm ở `SenOS/agents/` và `SenOS/workflows/`. SenOS tự dò: có thư mục mới thì dùng thư mục mới, không có thì dùng đường cũ. Nên nếu bạn mở trang Tài liệu mà không thấy `agents/` ở gốc brain, hãy tìm trong `SenOS/`.
 
 Vì là file văn bản, bạn có thể mở qua [Quản lý tệp tin](05-quan-ly-tep-tin.md) để xem hoặc sửa tay. Cấu trúc file:
 
 - Agent: phần đầu (frontmatter) chứa tên, vai trò, tag (`tags`, một danh sách), danh sách skill, model, và tài liệu đã gắn (`assets` gồm `files` và `links`); phần thân là system prompt chi tiết. Bộ nhớ riêng và nhật ký chạy nằm ngoài file này, ở `memory/agents/<slug>/`.
 - Workflow: phần đầu chứa tên, trạng thái (active hoặc off), nhóm (`group`), mô tả và danh sách các bước (mỗi bước có agent, task, và tuỳ chọn agent kiểm chứng cùng số lần sửa).
-  - Viết tay thì để `status: 'off'` CÓ dấu nháy: `off` trần bị YAML đọc thành giá trị đúng/sai. Từ 0.107.0 SenOS hiểu được cả hai cách viết, nhưng giữ nháy cho chắc. Quy trình tắt không chạy nền từ Kanban hay nhắc hẹn; bấm Chạy ở Cộng sự thì vẫn chạy để bạn thử trước khi bật.
+  - Viết tay thì để `status: 'off'` CÓ dấu nháy: `off` trần bị YAML đọc thành giá trị đúng/sai. Từ 0.107.0 SenOS hiểu được cả hai cách viết, nhưng giữ nháy cho chắc. Quy trình tắt không chạy nền từ Kanban hay nhắc hẹn; bấm Chạy ở trang Trợ lý thì vẫn chạy để bạn thử trước khi bật.
   - Một bước có thể khai `tools: [senos_generate_image, senos_describe_image]` để lấy đúng tool đó khi quy trình chạy nền dưới Toàn quyền (bình thường lúc đó agent chỉ có công cụ file). Nhận tên tool plugin và `WebFetch`, `WebSearch`; Bash không bao giờ được cấp theo cách này. Mức quyền riêng của tool vẫn được kiểm khi gọi, nên một bước không tự nâng mức được.
 
 Sửa tay trong file cũng được. Agent: ghi `tags: [Marketing, Viết nội dung]`; có trường `tags` (kể cả `tags: []`) thì SenOS chỉ đọc nó. File agent cũ chỉ có `group: Marketing` vẫn đọc thành một tag Marketing; lần lưu đầu SenOS ghi thêm `tags` và giữ `group` bằng tag đầu tiên để bản cũ hơn vẫn đọc được. Workflow và skill dùng `group`; thiếu trường này thì vào nhóm "Chung".
 
-Sửa file rồi lưu thì trang Cộng sự tự nhận nội dung mới ở lần tải lại.
+Sửa file rồi lưu thì trang Trợ lý tự nhận nội dung mới ở lần tải lại.
 
 ## Mẹo
 
@@ -272,7 +272,7 @@ Lưu ý: gói xuất chỉ chứa file định nghĩa. **Bộ nhớ riêng và n
 
 ## Chia sẻ cả một Team
 
-Ở trang Team, menu **⋯** của một team có **Chia sẻ team**: tải về một file `.team.senos.zip` gồm các cộng sự của team, kỹ năng của họ, trưởng nhóm và các tin đã ghim (thành hướng dẫn chung). File **không** có lịch sử chat, khoá, mật khẩu, model hay công tắc Auto; chữ trông giống khoá API, mã bot hay dòng `password: ...` bị thay bằng `[REDACTED]` trước khi ghi.
+Ở trang Nhóm AI, menu **⋯** của một team có **Chia sẻ team**: tải về một file `.team.senos.zip` gồm các cộng sự của team, kỹ năng của họ, trưởng nhóm và các tin đã ghim (thành hướng dẫn chung). File **không** có lịch sử chat, khoá, mật khẩu, model hay công tắc Auto; chữ trông giống khoá API, mã bot hay dòng `password: ...` bị thay bằng `[REDACTED]` trước khi ghi.
 
 Người nhận bấm **Nhập team** ở đầu danh sách team, chọn file, xem trước có những cộng sự nào và bao nhiêu kỹ năng rồi xác nhận. Cộng sự trùng tên đã có trong brain thì giữ nguyên bản của người nhận; model và Auto người nhận tự chọn sau. File này vẫn mở được bằng nút Nhập ở trang Cộng sự của bản SenOS cũ (khi đó chỉ nhập cộng sự, không dựng team).
 
@@ -289,7 +289,7 @@ Trong việc giao cho Team, một cộng sự cần bạn quyết (chọn phươ
 
 Sửa yêu cầu của việc hay huỷ việc làm thẻ cũ hết hiệu lực. Chữ trong chat (của bạn hay của cộng sự) không bao giờ thay cho nút Duyệt. Mỗi lần bấm có mã riêng, nên mạng chập chờn bấm lại không làm hai lần, và mở hai tab thì tab sau được báo là đã quyết.
 
-**Quyền của nhóm** (tab Nhóm, mục **Hành động ra ngoài của nhóm**):
+**Quyền của nhóm** (tab Team, mục **Hành động ra ngoài của nhóm**):
 - **Cần chủ duyệt** (mặc định, cả nhóm cũ): cộng sự tự đọc, tìm, ghi file trong bộ não và thư mục của nhóm, chạy lệnh chỉ đọc. Gửi, đăng, thanh toán, đặt hàng, xoá dữ liệu hay lệnh máy khác bị chặn TRƯỚC khi chạy và thành thẻ xin duyệt.
 - **Nhóm tự làm, không hỏi**: quyền như khi bạn chat riêng với từng cộng sự (cách Team chạy ở 0.194.0 tới 0.206.0).
 
@@ -297,10 +297,10 @@ Sửa yêu cầu của việc hay huỷ việc làm thẻ cũ hết hiệu lực
 
 ## Mục tiêu phòng ban của Team (từ 0.208.0)
 
-Ở tab Nhóm có mục **Mục tiêu phòng ban**. Nhóm cũ không có mục tiêu nên không có gì tự chạy cho tới khi bạn đặt và bấm **Bật**.
+Ở tab Team có mục **Mục tiêu phòng ban**. Nhóm cũ không có mục tiêu nên không có gì tự chạy cho tới khi bạn đặt và bấm **Bật**.
 
 - **Mục tiêu**: nhóm này để làm gì. **Cách đo**: mỗi dòng một tiêu chí.
-- **Nguồn được giao**, mỗi dòng một nguồn: `folder:bao-cao` (thư mục trong bộ não), `kanban` (việc Kanban lỗi của bộ não), `mcp:<mã kết nối>` (kết nối có đang lỗi không), `test:<lệnh kiểm tra>` (lệnh chạy ở mức Ghi nháp của trang Coding nên chạy được mã như `pytest` hay `npm test`, chỉ bạn đặt được; mã thoát khác 0 hay chạy quá 2 phút là lỗi).
+- **Nguồn được giao**, mỗi dòng một nguồn: `folder:bao-cao` (thư mục trong bộ não), `kanban` (việc Kanban lỗi của bộ não), `mcp:<mã kết nối>` (kết nối có đang lỗi không), `test:<lệnh kiểm tra>` (lệnh chạy ở mức Ghi nháp của trang Lập trình nên chạy được mã như `pytest` hay `npm test`, chỉ bạn đặt được; mã thoát khác 0 hay chạy quá 2 phút là lỗi).
 - **Phạm vi**, **chu kỳ quan sát**, **số lần quan sát mỗi ngày**, **số việc tự mở mỗi ngày**, và **dừng mở việc khi đang có N việc**.
 - Với mỗi loại cơ hội (tài liệu thay đổi, việc Kanban lỗi, lệnh kiểm tra báo lỗi, kết nối lỗi) chọn: **Chỉ ghi nhận**, **Đề xuất cho tôi**, **Mở việc, chờ tôi duyệt** hay **Tự mở việc**.
 
@@ -315,7 +315,7 @@ Việc do mục tiêu mở ghi dấu vết mục tiêu, bản, quan sát, cơ h�
 - `file: bao-cao/tuan.md`: file phải có.
 - `contains: bai-viet/a.md | 300 | giá, liên hệ`: ít nhất 300 ký tự và có đủ các cụm chữ.
 - `json: data.json | doanh_thu, don`: JSON hợp lệ, có đủ các khoá.
-- `cmd: pytest -q`: lệnh kiểm tra phải trả mã 0 (chạy ở mức Ghi nháp của trang Coding).
+- `cmd: pytest -q`: lệnh kiểm tra phải trả mã 0 (chạy ở mức Ghi nháp của trang Lập trình).
 - `confirm: bao-cao/tuan.md`: bạn tự xác nhận.
 
 Khi cộng sự nộp kết quả, SenOS kiểm chính sản phẩm (file) theo từng tiêu chí: **đạt**, **chưa đạt** hay **chưa rõ**, kèm bằng chứng (đường dẫn, mã băm sha256, kích thước, giờ sửa). Ý kiến của model không bao giờ là kết luận.
@@ -328,11 +328,11 @@ Sửa yêu cầu của việc làm bằng chứng cũ hết hiệu lực. Sau kh
 
 ## Giao việc cho Team ngay từ chat (từ 0.357.0)
 
-Bạn không cần mở trang Nhóm để giao việc. Cứ nói với SenOS ở khung chat web, Telegram hay Zalo, ví dụ "giao cho Phòng nội dung viết 3 bài về nước mắm", SenOS chọn đúng Team của brain đang mở và giao **một việc** vào Team đó. Việc chạy y như khi bạn tự giao ở trang Nhóm: trưởng nhóm điều phối, có hàng đợi, nghiệm thu và lịch sử của Team.
+Bạn không cần mở trang Nhóm AI để giao việc. Cứ nói với SenOS ở khung chat web, Telegram hay Zalo, ví dụ "giao cho Phòng nội dung viết 3 bài về nước mắm", SenOS chọn đúng Team của brain đang mở và giao **một việc** vào Team đó. Việc chạy y như khi bạn tự giao ở trang Nhóm AI: trưởng nhóm điều phối, có hàng đợi, nghiệm thu và lịch sử của Team.
 
 - **Kết quả tự báo về đúng khung chat đã giao**: khi việc xong, bị huỷ, bị chặn hay đang chờ bạn quyết. Mỗi trạng thái báo một lần, và luôn có một bản trong hòm thư.
 - **XONG khác ĐẠT**: tin báo nói rõ việc đã qua nghiệm thu chưa. Team không bật nghiệm thu thì SenOS nói thẳng là chưa ai xác nhận đạt.
-- **Cổng duyệt vẫn là của bạn**: việc cần bạn duyệt hay xác nhận nghiệm thu vẫn dừng ở thẻ việc trên trang Nhóm. SenOS chỉ báo, không bấm duyệt thay.
+- **Cổng duyệt vẫn là của bạn**: việc cần bạn duyệt hay xác nhận nghiệm thu vẫn dừng ở thẻ việc trên trang Nhóm AI. SenOS chỉ báo, không bấm duyệt thay.
 - **Không giao trùng**: SenOS lỡ gọi lại cùng yêu cầu thì vẫn chỉ có một việc. Trong khung chat nhóm, tin giao việc có nhãn "qua SenOS Core".
 - Hỏi "việc đó tới đâu rồi" thì SenOS đọc lại trạng thái, kết quả và nghiệm thu của việc.
 
@@ -340,7 +340,7 @@ Chỉ chủ (hoặc việc nền chủ đã lên lịch) mới giao được. Bo
 
 ## Thao tác nhanh và khắc phục sự cố
 
-- **Tạo mới:** chọn tab rồi bấm nút tạo ở cuối cột trái; hoặc mở **SenOS Store**.
+- **Tạo mới:** chọn tab rồi bấm nút tạo ở cuối cột trái; hoặc mở **Chợ Sen**.
 - **Hội thoại mới:** bắt đầu phiên riêng với cộng sự đang chọn.
 - **Sửa / Xuất / Xoá:** nằm ở cột phải của cộng sự.
 - **Danh sách trống:** kiểm tra brain đang chọn, ô tìm và bộ lọc tag (hay nhóm), rồi tạo cộng sự nếu chưa có.
@@ -352,7 +352,7 @@ Chỉ chủ (hoặc việc nền chủ đã lên lịch) mới giao được. Bo
 ## Liên quan
 
 - [Skills](06-skills.md) - tạo, bật/tắt và gán kỹ năng cho agent.
-- [Plugins](20-plugins.md) - mục trong nhóm Năng lực, dành cho tool chạy code thật.
+- [Plugins](20-plugins.md) - mục trong nhóm Đội ngũ AI, dành cho tool chạy code thật.
 - [Models & engine](10-models-va-engine.md) - chọn model chính, model phụ và các nhà cung cấp.
 - [Việc / Kanban](21-viec-kanban.md) - nơi workflow chạy nền tự động theo task.
 - [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md) - phân biệt bộ nhớ riêng của agent với bộ nhớ chung của SenOS.

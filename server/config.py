@@ -909,7 +909,7 @@ def _nan_provider_da_go(cfg: dict) -> None:
             continue
         _DA_BAO_GO.add(khoa)
         print(f"[config] {cho} đang trỏ vào provider đã gỡ '{prov}' "
-              f"({_PROVIDER_DA_GO[prov]}) - đã đưa về mặc định. Chọn lại ở trang Models.",
+              f"({_PROVIDER_DA_GO[prov]}) - đã đưa về mặc định. Chọn lại ở trang Mô hình AI.",
               file=__import__("sys").stderr)
 
 

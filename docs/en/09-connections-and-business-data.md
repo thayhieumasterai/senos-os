@@ -2,20 +2,20 @@
 
 *[Tiếng Việt](../09-mcp-va-so-lieu.md) · **English***
 
-The **Connections** page is where you wire SenOS into the tools you already use: Pancake POS, Zalo, Webcake Landing, Botcake, Meta/Google/TikTok ads, calendars, CRMs and more. Once connected, SenOS reads REAL numbers and, if you grant permission, takes real actions in those tools. This page covers connecting a service from the Store, wiring several accounts, permissions, the call log, and how to read the numbers.
+The **Apps** page is where you wire SenOS into the tools you already use: Pancake POS, Zalo, Webcake Landing, Botcake, Meta/Google/TikTok ads, calendars, CRMs and more. Once connected, SenOS reads REAL numbers and, if you grant permission, takes real actions in those tools. This page covers connecting a service from Sen Market, wiring several accounts, permissions, the call log, and how to read the numbers.
 
-> **Since version 0.55.36: most services live in the SenOS Store rather than shipping with the app.**
+> **Since version 0.55.36: most services live in Sen Market rather than shipping with the app.**
 >
 > The app now bundles only **Composio**, the **Google set** (Calendar, Gmail, Drive/Docs, Sheets, Tasks, Keep,
 > Ads, Search Console, NotebookLM), **Zalo**, **Botcake**, **Substack**, and the **Add your own (advanced)** card.
 >
 > Every other service in this document (Pancake POS, Shopify, Meta Ads, Facebook Pages, TikTok
 > Ads, Slack, Lark, n8n, Hostinger, Webcake...) works exactly the same, with ONE extra first step: open the
-> **SenOS Store** tab on the Connections page, find the service and click **Install**. It then appears under
+> **Sen Market** page (**Gateways** group), find the service and click **Install**. It then appears under
 > **Available connections** and every instruction below applies verbatim.
 >
 > In exchange, a service update reaches you through the store rather than waiting for a new SenOS release. If you
-> already connected an account, the Connections page shows a button to reinstall exactly that service, and once installed
+> already connected an account, the Apps page shows a button to reinstall exactly that service, and once installed
 > the old connection continues with the old login.
 
 ## What this feature is
@@ -24,13 +24,13 @@ Underneath, each connection is an MCP (Model Context Protocol) pipe joining SenO
 
 - **A built-in connection store**: pick a service, paste an API key (or scan a QR code for Zalo) and you are done. SenOS checks the key and names the account itself (taking the shop name straight from Pancake POS, for example). No more typing URLs or headers.
 - **One service, many accounts**: 3 Pancake shops = 3 accounts inside one Pancake POS card. 2 Zalo numbers = 2 Zalo accounts running side by side. Each account is enabled, permissioned and defaulted separately.
-- **Every brain shares them**: Claude Code, ChatGPT (Codex), OpenRouter, OpenAI API, Anthropic API and Google Gemini (API) all use this same Connections store through SenOS's hub, so you wire once and change model freely. Gemini has one discrepancy: the runtime already calls tools through the hub, but the Connections page still shows a yellow warning saying the main model is Google Gemini (API) and does not support tool calling, because the interface list has not been updated. Use it normally.
+- **Every brain shares them**: Claude Code, ChatGPT (Codex), OpenRouter, OpenAI API, Anthropic API and Google Gemini (API) all use this same Connections store through SenOS's hub, so you wire once and change model freely. Gemini has one discrepancy: the runtime already calls tools through the hub, but the Apps page still shows a yellow warning saying the main model is Google Gemini (API) and does not support tool calling, because the interface list has not been updated. Use it normally.
 - **Hard permissions**: each account has a permission level. SenOS genuinely BLOCKS over-permission actions (rather than merely discouraging them in words), for example creating an order while set to Read only.
 
 ## Where to find it in SenOS
 
 1. Open the dashboard (port `7777` by default).
-2. In the left sidebar, open the **Connections** group and click **Connections** (the plug icon, subtitled "Data sources & tools").
+2. In the sidebar, open the **Gateways** group and click **Apps** (the plug icon, subtitled "Data sources & tools").
 3. The page has 3 areas:
    - **◆ Connected** - the accounts you have wired, with a "Only use SenOS connections (ignore the machine's own)" checkbox.
    - **◆ Available connections** - services present on the machine, ready to take an account, with a "Find a service…" box and filter buttons: **All**, App store, Sales, Messaging, Marketing, Office, Ads, Social, Creative. The six Google services collapse into ONE **Google** card reading "6 services"; click **Pick a service** on that card to see the sub-list.
@@ -49,7 +49,7 @@ Pancake POS defaults to **Read only**, so SenOS can see revenue, orders and cust
 
 ### 1b. Connecting TTS Dropship (token copied from the browser)
 
-The dropship.thitruongsi.com marketplace **issues no API keys**, so this card signs in with your own browser session token. Install **TTS Dropship** from the SenOS Store tab first, then:
+The dropship.thitruongsi.com marketplace **issues no API keys**, so this card signs in with your own browser session token. Install **TTS Dropship** from Sen Market first, then:
 
 1. Open [dropship.thitruongsi.com](https://dropship.thitruongsi.com) and log in as usual.
 2. Press **F12** (Mac: Cmd + Option + I) > the **Application** tab (Chrome/Edge) or **Storage** (Firefox) > **Local Storage** > the row for the TTS site.
@@ -158,7 +158,7 @@ Both are identical except for where you open Facebook Login (step 2). If you can
 4. Keep the app in **Development** mode (the toggle at the top stays on "In development"). Make sure you are an **Admin** of the app and of the ad account you want to read; that is what lets `ads_read` be granted without App Review.
 5. **Skip "Business verification" and "App review"** even though the app's "To do" panel suggests them. Those only matter when your app serves OTHER businesses accessing their data; using it for your own account needs neither, and doing it only adds days of waiting.
 6. Go to **App settings > Basic** and copy the **App ID** and **App Secret**.
-7. Back in SenOS, on the **Connections** page > the **Meta Ads (Facebook & Instagram)** card > paste the App ID and App Secret > **Connect**. The browser opens Facebook for you to approve; afterwards return to SenOS and refresh.
+7. Back in SenOS, on the **Apps** page > the **Meta Ads (Facebook & Instagram)** card > paste the App ID and App Secret > **Connect**. The browser opens Facebook for you to approve; afterwards return to SenOS and refresh.
 
 Once connected, ask SenOS in words: "how much did my Facebook ad account spend this week, and how did it perform?". SenOS has read tools for the ad account list, performance (spend, impressions, clicks, CTR, CPC, reach, conversions) over a period, and the campaign list. All READ ONLY: SenOS does not create or edit campaigns and does not spend your money.
 
@@ -168,7 +168,7 @@ On expiry: Facebook tokens live about 60 days and SenOS refreshes them while in 
 
 These two live in the **Social** group in the store and serve very different purposes:
 
-- **Facebook Pages (posts, comments)**: manage YOUR OWN Pages when you ask. **From 0.438.0 the store no longer lists this card**: connecting the Page on the Facebook Messenger card on the Connections page covers messages, comments and posting ([31 - Messenger](31-messenger.md)). Machines that installed it keep using it; the rest of this entry is for that case. Read only shows the Page list, posts and comments; Full power posts text, photos, multi-photo albums and video, edits published posts, and replies to and deletes comments. The setup is identical to Meta Ads (Graph API) above and **reuses the same Facebook App**, with Page scopes added. When Facebook asks for permissions, remember to TICK the Pages. Defaults to **Read only**; deleting a post cannot be undone (Pages have no recycle bin), so only raise to Full power when you genuinely want SenOS publishing.
+- **Facebook Pages (posts, comments)**: manage YOUR OWN Pages when you ask. **From 0.438.0 the store no longer lists this card**: connecting the Page on the Facebook Messenger card on the Apps page covers messages, comments and posting ([31 - Messenger](31-messenger.md)). Machines that installed it keep using it; the rest of this entry is for that case. Read only shows the Page list, posts and comments; Full power posts text, photos, multi-photo albums and video, edits published posts, and replies to and deletes comments. The setup is identical to Meta Ads (Graph API) above and **reuses the same Facebook App**, with Page scopes added. When Facebook asks for permissions, remember to TICK the Pages. Defaults to **Read only**; deleting a post cannot be undone (Pages have no recycle bin), so only raise to Full power when you genuinely want SenOS publishing.
 - **Facebook Monitoring (Apify)**: monitor other people's **public** Pages and Groups to find viral posts, returning share/reaction/comment counts so you can filter the hot ones. The important part: it scrapes through the Apify service and does NOT use your personal Facebook account, so there is no lock-out risk and it runs fine on a VPS 24/7. To connect: sign up at apify.com, go to Console > Settings > API & Integrations, copy the "Personal API token" and paste it in. Cost is per scrape, roughly 2.6 USD per 1000 posts. This connection is **read only** with no write path. Private groups are not supported yet (they would need a cookie).
 
 ### 5c. The remaining connections in the store
@@ -253,8 +253,8 @@ Unchanged from before: ask directly in chat ("how much did we sell today, compar
 - **You cannot find "Facebook Login for Business" even in the right place**: the "for Business" version only appears for apps created with the **Business** type, and an app's type cannot be changed. But SenOS's setup uses **regular Facebook Login**, so you do not need the business version.
 - **The QR code expired**: click retry for a new one (Zalo QR codes live about 3 minutes).
 - **A tool was blocked with a note about a restricted permission level**: that is by design. Raise the account's permission in the chip menu if you genuinely want SenOS doing that.
-- **A source that flickers, such as "the first order goes through, the second drops the connection"** (common with Pancake POS): fixed in **0.52.8**. Each source has one session, and every chat turn re-asks that session for its tool list. That re-ask queues behind the order in flight, and after 20 seconds the old build **killed the whole session**, killing the half-created order with it, after which the source vanished from the toolbox and SenOS reported that no POS was connected. Now a source that is running a tool is left alone, and the previous tool list is kept. The Connections page also stops flagging a busy source as broken.
-- **After updating from an older build**: old MCP servers migrate into accounts on the Connections page automatically (the original is backed up in `mcp_servers.v1.bak.json`), so nothing needs redeclaring.
+- **A source that flickers, such as "the first order goes through, the second drops the connection"** (common with Pancake POS): fixed in **0.52.8**. Each source has one session, and every chat turn re-asks that session for its tool list. That re-ask queues behind the order in flight, and after 20 seconds the old build **killed the whole session**, killing the half-created order with it, after which the source vanished from the toolbox and SenOS reported that no POS was connected. Now a source that is running a tool is left alone, and the previous tool list is kept. The Apps page also stops flagging a busy source as broken.
+- **After updating from an older build**: old MCP servers migrate into accounts on the Apps page automatically (the original is backed up in `mcp_servers.v1.bak.json`), so nothing needs redeclaring.
 - **You want the old mechanism back** (one entry per server, no hub): set `"mcp": {"hub": false}` in `server/settings.json` and restart.
 
 ## Related

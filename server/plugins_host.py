@@ -718,11 +718,11 @@ def _pack_duoc_nap(pdir: Path) -> Tuple[bool, str]:
         return True, ""                          # gói không có mã thì không có gì để gác
     if not packs.da_dong_y_ma(pid):
         return False, ("gói này chưa đi qua trình cài nên mã của nó không tự chạy - "
-                       "cài lại ở Kho cài đặt để xác nhận")
+                       "cài lại ở Chợ Sen để xác nhận")
     ghi = packs.digest_ma(pid)
     if ghi and ghi != thuc:
         return False, ("mã trong gói đã đổi so với lúc bạn đồng ý cài - "
-                       "cài lại ở Kho cài đặt để xem và xác nhận lại")
+                       "cài lại ở Chợ Sen để xem và xác nhận lại")
     return True, ""
 
 
@@ -1046,7 +1046,7 @@ def _cap_job_level(name: str, args: dict, mode: str):
     op = str(a.get("op") or ("create" if name == "senos_schedule" else "")).strip().lower()
     if name == "senos_schedule" and op == "update":
         return a, ("ERROR: việc chạy dưới mức Toàn quyền không được sửa việc đã lên lịch (việc đó có thể đang chạy "
-                   "toàn quyền). Nhờ chủ sửa ở trang Việc, hoặc tạo việc mới.")
+                   "toàn quyền). Nhờ chủ sửa ở trang Công việc, hoặc tạo việc mới.")
     if name == "senos_task" and op != "add":
         return a, ""
     xin = str(a.get(field) or "full").strip().lower()
@@ -1458,8 +1458,8 @@ def set_enabled(slug: str, enabled: bool, vault_root: Optional[str] = None) -> d
         # tắt. Ghi `enabled` vào manifest trong thư mục gói sẽ làm chữ ký mã lệch ngay lần nạp
         # sau, tức tự tay biến gói thành "đã đổi so với lúc đồng ý".
         return {"ok": False, "source": source,
-                "error": localefmt.chu("Plugin này đến từ một gói. Bật hoặc tắt cả gói ở Kho cài đặt.",
-                                       "This plugin comes from a pack. Turn the whole pack on or off in the Store.")}
+                "error": localefmt.chu("Plugin này đến từ một gói. Bật hoặc tắt cả gói ở Chợ Sen.",
+                                       "This plugin comes from a pack. Turn the whole pack on or off in Sen Market.")}
     if source == "bundled":
         st = _read_state()
         en = set(st.get("enabled") or [])

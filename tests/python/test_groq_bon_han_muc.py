@@ -108,7 +108,7 @@ _m = _noi(_groq("tokens per day (TPD)", 100000, 100000, 3200, "Please try again 
 check("[ngày] nói rõ là hạn mức theo NGÀY", "NGÀY" in _m)
 # Đây là chỗ bản trước chỉ sai đường cho người đang bí.
 check("CANARY: [ngày] nói THẲNG rút gọn không giúp gì", "không giúp gì" in _m)
-check("[ngày] chỉ ra lối ra có thật", "sang ngày" in _m and "Models" in _m)
+check("[ngày] chỉ ra lối ra có thật", "sang ngày" in _m and "Mô hình AI" in _m)
 check("[ngày] KHÔNG bảo SenOS đã tự rút gọn", "đã tự rút gọn" not in _m)
 
 _m = _noi(_groq("requests per minute (RPM)", 30, 30, 1))

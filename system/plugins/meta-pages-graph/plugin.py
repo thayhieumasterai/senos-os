@@ -74,7 +74,7 @@ def _messenger_pages():
 
 def _check():
     if not _connected_id() and not _messenger_pages():
-        return ("Chưa nối Fanpage nào. Vào trang Kết nối, thẻ 'Facebook Messenger', bấm Kết nối rồi Đăng nhập "
+        return ("Chưa nối Fanpage nào. Vào trang Ứng dụng, thẻ 'Facebook Messenger', bấm Kết nối rồi Đăng nhập "
                 "Facebook và tick Trang (một lần dùng cho cả tin nhắn, bình luận và đăng bài). "
                 "Sau đó gọi lại tool này.")
     return None
@@ -148,7 +148,7 @@ def _fmt(d):
         out = "ERROR: Facebook API: " + str(msg)
         if "pages_manage_posts" in str(msg) or (isinstance(e, dict) and str(e.get("code")) in ("10", "200")):
             # A Page connected on the Messenger card before 0.438.0 has no posting permission yet.
-            out += (" (Gợi ý: Trang nối trước bản 0.438.0 chưa có quyền đăng bài. Vào trang Kết nối, thẻ "
+            out += (" (Gợi ý: Trang nối trước bản 0.438.0 chưa có quyền đăng bài. Vào trang Ứng dụng, thẻ "
                     "Facebook Messenger, bấm Kết nối, Đăng nhập Facebook lại và đồng ý quyền pages_manage_posts.)")
         return out
     return json.dumps(d, ensure_ascii=False, default=str)

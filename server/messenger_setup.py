@@ -367,8 +367,8 @@ async def run_checks(client, page_id: str, page_token: str, app_secret: str, app
     items.append(insights_item(info["scopes"]))
     if bot_running is not None:
         items.append(_item("bot", None if not bot_running else True, ("Có bot đang trực", "A bot is answering"), "",
-                           ("Vào Chatbot, Bot, tạo hoặc bật bot cho kênh này.",
-                            "Open Chatbot, Bots and create or turn on a bot for this channel.")))
+                           ("Vào Hộp thư bot, thẻ Bot, tạo hoặc bật bot cho kênh này.",
+                            "Open Bot inbox, Bots tab, and create or turn on a bot for this channel.")))
     return {"ok": all(i["ok"] is not False for i in items), "app_id": app_id, "page_name": page_name, "items": items}
 
 
@@ -406,7 +406,7 @@ async def connect(page_id: str, app_id: str, app_secret: str, token: str, webhoo
                                                                     "The token is too short, copy the whole EAA... string.")}
     if not str(webhook_url or "").startswith("https://"):
         return {"ok": False, "step": "https", "error": localefmt.chu(
-            "SenOS cần địa chỉ HTTPS (Cài đặt, Truy cập từ xa) và bạn phải mở SenOS bằng địa chỉ đó.",
+            "SenOS cần địa chỉ HTTPS (Thiết lập, Truy cập từ xa) và bạn phải mở SenOS bằng địa chỉ đó.",
             "SenOS needs an HTTPS address (Settings, Remote access) and you must open SenOS through it.")}
     own = client is None
     client = client or httpx.AsyncClient(timeout=25)

@@ -391,21 +391,21 @@ def availability(spec: dict, settings: dict = None) -> tuple:
     if prov == "ollama-local":
         s = settings if settings is not None else cfgmod.read_settings()
         if not (s.get("model", {}) or {}).get("ollama_local_endpoint"):
-            return False, "Chưa đặt địa chỉ Ollama - vào trang Models, tab Local Model."
+            return False, "Chưa đặt địa chỉ Ollama - vào trang Mô hình AI, tab Local Model."
         return True, ""
     if prov == "openai-compat":
         s = settings if settings is not None else cfgmod.read_settings()
         if not (s.get("model", {}) or {}).get("openai_compat_base"):
-            return False, "Chưa đặt Base URL cho OpenAI Compatible - vào trang Models."
+            return False, "Chưa đặt Base URL cho OpenAI Compatible - vào trang Mô hình AI."
         return True, ""
     if prov == "anthropic-compat":
         s = settings if settings is not None else cfgmod.read_settings()
         if not (s.get("model", {}) or {}).get("anthropic_compat_base"):
-            return False, "Chưa đặt Base URL cho Anthropic Compatible - vào trang Models."
+            return False, "Chưa đặt Base URL cho Anthropic Compatible - vào trang Mô hình AI."
         return True, ""
     if prov in API_PROVIDERS:
         if not api_key_for(prov, settings):
-            return False, f"Chưa có API key cho {prov} - vào trang Model dán key trước."
+            return False, f"Chưa có API key cho {prov} - vào trang Mô hình AI dán key trước."
         return True, ""
     return False, f"Provider lạ: {prov}"
 

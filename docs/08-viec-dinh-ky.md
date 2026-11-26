@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/08-recurring-jobs.md)*
 
-Trang **Việc định kỳ** là nơi bạn giao cho SenOS những việc tự chạy khi bạn không ngồi trước máy: việc lặp theo chu kỳ (gọi là **loop**) và nhắc hẹn theo mốc giờ. Mỗi việc lặp tự thức dậy đúng chu kỳ, làm đúng một nhiệm vụ bạn mô tả, tự kiểm chứng rồi ghi nhật ký và nhắn kết quả về Telegram cho bạn.
+Trang **Lịch tự động** là nơi bạn giao cho SenOS những việc tự chạy khi bạn không ngồi trước máy: việc lặp theo chu kỳ (gọi là **loop**) và nhắc hẹn theo mốc giờ. Mỗi việc lặp tự thức dậy đúng chu kỳ, làm đúng một nhiệm vụ bạn mô tả, tự kiểm chứng rồi ghi nhật ký và nhắn kết quả về Telegram cho bạn.
 
 Trang này gộp việc của **mọi brain**, không chỉ brain đang chọn ở thanh bên.
 
@@ -26,8 +26,8 @@ Việc lặp được sửa trực tiếp bằng cách mở file `.md` trong Obs
 ## Mở ở đâu trong SenOS
 
 1. Mở dashboard SenOS (mặc định `http://localhost:7777`).
-2. Nhìn thanh điều hướng bên trái, bấm nhóm **Việc** để mở ra.
-3. Bấm mục **Việc định kỳ**.
+2. Nhìn thanh điều hướng bên trái, bấm nhóm **Điều phối** để mở ra.
+3. Bấm mục **Công việc**, rồi chọn danh sách **Lặp lại**.
 
 Trang mở ra với phụ đề "Việc định kỳ + nhắc hẹn đang chờ". Từ trên xuống dưới bạn thấy: một đoạn giới thiệu ngắn, hàng nút **+ Thêm việc** và **■ Dừng vòng đang chạy**, ô tìm kiếm, danh sách thẻ việc gom theo brain, cuối cùng là khối **Nhật ký gần đây**.
 
@@ -193,7 +193,7 @@ Nhắc hẹn và việc "tự làm rồi báo" chỉ có giá trị khi tới gi
 
 Nếu bạn vẫn muốn tạo (ví dụ định đấu Telegram sau), bấm **Vẫn tạo** ngay cạnh lời cảnh báo. Việc sẽ chạy đúng giờ, kết quả lưu trong SenOS, chỉ là chưa gửi đi đâu.
 
-Khi trang Việc định kỳ phát hiện chưa có kênh báo, nó hiện một dải cảnh báo ở đầu trang, vì các việc đã tạo từ trước vẫn đang chạy mà không tới tay bạn.
+Khi trang Lịch tự động phát hiện chưa có kênh báo, nó hiện một dải cảnh báo ở đầu trang, vì các việc đã tạo từ trước vẫn đang chạy mà không tới tay bạn.
 
 Đặt lịch bằng lời qua chat cũng theo luật này: SenOS phải soát trước xem nguồn dữ liệu đã đấu chưa và có chỗ báo kết quả chưa, thiếu thì nói thẳng rồi hỏi bạn, không tạo cho xong.
 
@@ -258,7 +258,7 @@ Nhật ký cũng nằm trong brain dưới dạng file thật: `SenOS/loop-log/Y
 
 ## Đặt lịch bằng lời trong chat
 
-Bạn không bắt buộc phải vào trang này. Nói thẳng với SenOS trong [Trò chuyện](02-tro-chuyen-va-giong-noi.md) hoặc qua Telegram cũng được, ví dụ:
+Bạn không bắt buộc phải vào trang này. Nói thẳng với SenOS trong [Hội thoại](02-tro-chuyen-va-giong-noi.md) hoặc qua Telegram cũng được, ví dụ:
 
 - "Tạo cho anh việc mỗi 2 tiếng quét đơn mới rồi tổng hợp."
 - "7h sáng nào cũng nhắc anh xem doanh thu hôm qua."
@@ -270,14 +270,14 @@ SenOS dùng công cụ `senos_schedule` (một plugin đi kèm app) để tự c
 
 Hai rào an toàn cứng của đường này, không tham số nào đổi được:
 
-- Việc lặp tạo qua chat **luôn** ở `enabled: false`, và mặc định `mode: full` (nói "chỉ đọc" hoặc "chỉ ghi nháp" nếu muốn nhẹ hơn). Bạn phải vào trang Việc định kỳ bấm **Bật** thì nó mới chạy thật.
+- Việc lặp tạo qua chat **luôn** ở `enabled: false`, và mặc định `mode: full` (nói "chỉ đọc" hoặc "chỉ ghi nháp" nếu muốn nhẹ hơn). Bạn phải vào trang Lịch tự động bấm **Bật** thì nó mới chạy thật.
 - Không rõ chu kỳ (ví dụ bạn chỉ nói "mỗi sáng" mà không kèm giờ) thì công cụ báo lỗi và hỏi lại, tuyệt đối không tự đoán.
 
 ## Webhook: hệ thống bên ngoài gọi SenOS làm việc
 
 Nhắc hẹn chạy theo giờ. Webhook chạy theo **sự kiện**: khách vừa điền form trên landing page, vừa thanh toán, hay một app khác vừa có dữ liệu mới thì SenOS vào việc ngay, không phải chờ tới lượt lịch kế tiếp.
 
-**Tạo một webhook:** từ 0.204.0 webhook có trang riêng: mở nhóm **Việc** trên thanh bên, chọn **Webhook**, bấm **+ Thêm webhook**. Đặt tên, chọn brain, rồi chọn chạy gì:
+**Tạo một webhook:** từ 0.204.0 webhook có trang riêng: mở nhóm **Điều phối** trên thanh bên, chọn **Webhook**, bấm **+ Thêm webhook**. Đặt tên, chọn brain, rồi chọn chạy gì:
 
 - **Một quy trình**: chọn quy trình có sẵn trong brain. Dữ liệu sự kiện thành đầu vào của quy trình.
 - **Một việc viết tay**: viết việc cần làm, ví dụ "Gọi lại cho khách trong 5 phút, ghi vào sổ khách hàng".
@@ -307,7 +307,7 @@ Việc nền nào hỏng (việc Kanban, việc lặp tự tạm dừng, nhắc 
 
 Quyết định do model việc nền đưa ra ở chế độ chỉ chữ (không công cụ nào), nhưng luật cứng do SenOS giữ: lỗi về đăng nhập hay khoá không bao giờ được chạy lại, mỗi sự cố chạy lại tối đa một lần, và chạy lại vẫn hỏng thì chỉ báo đúng một tin. Không có model sẵn sàng thì SenOS tự phân loại theo chữ lỗi.
 
-Tab **Sự cố** của trang Việc định kỳ hiện các sự cố đang mở (bấm **Đã xử lý** để đóng) và các lỗi 24 giờ qua gom theo nguyên nhân. Muốn tắt hẳn việc báo cho SenOS Core thì đặt `incidents.enabled` thành `false` trong cài đặt.
+Tab **Sự cố** của trang Lịch tự động hiện các sự cố đang mở (bấm **Đã xử lý** để đóng) và các lỗi 24 giờ qua gom theo nguyên nhân. Muốn tắt hẳn việc báo cho SenOS Core thì đặt `incidents.enabled` thành `false` trong cài đặt.
 
 **Khi SenOS không mở được:** chạy `python tools/sentinel.py` trên máy chủ. Lệnh này chỉ đọc dữ liệu, không gọi model, in danh sách lỗi gom theo nguyên nhân; thêm `--json` để lấy bản máy đọc, `--out <thư mục>` để lưu báo cáo (thư mục phải nằm ngoài thư mục dữ liệu của SenOS).
 

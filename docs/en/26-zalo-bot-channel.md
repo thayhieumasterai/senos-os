@@ -12,9 +12,9 @@ SenOS touches Zalo in three places. Read this table once and you never have to g
 
 | | Page | Who it is | What it is for |
 |---|---|---|---|
-| **The Zalo Bot channel** (this page) | Channels | A dedicated bot | **You** messaging SenOS |
-| [Chatbot](25-chatbots.md) | Chatbot | A dedicated bot, under an Agent's name | **Customers** messaging SenOS |
-| [Zalo Agent MCP](12-zalo-agent-mcp.md) | Connections | Your own Zalo account | SenOS **acting on your behalf** |
+| **The Zalo Bot channel** (this page) | Control channels | A dedicated bot | **You** messaging SenOS |
+| [Chatbot](25-chatbots.md) | Bot inbox | A dedicated bot, under an Agent's name | **Customers** messaging SenOS |
+| [Zalo Agent MCP](12-zalo-agent-mcp.md) | Apps | Your own Zalo account | SenOS **acting on your behalf** |
 
 The first two use the official API and are safe, but they only see what people send directly to the bot. The third signs into your real account so it can read conversations and message anyone, at the cost of the account possibly being restricted or locked.
 
@@ -31,7 +31,7 @@ The token **does not expire** until you reset it yourself in Zalo Bot Manager. K
 
 ## Turning the channel on
 
-1. Open the dashboard, the **Connections** group, the **Channels** item.
+1. Open the dashboard, the **Gateways** group, the **Control channels** item.
 2. Scroll to the **Zalo** card.
 3. Tick **Enable the Zalo bot** and paste the token into the Bot token field.
 4. **Leave the "Allowed Chat IDs" field empty.** Click **Save and enable**.
@@ -66,7 +66,7 @@ Results of background work and reminders set from Zalo **come back to that same 
 
 Hold the microphone in Zalo, speak, release. SenOS turns that into text and acts exactly as if you had typed it.
 
-**A Groq API key is required**, which is where SenOS borrows speech-to-text (the Whisper model). In the dashboard, go to the **Models** page, the **Groq (API)** section, paste the key from [console.groq.com](https://console.groq.com) and save. Without it, sending a voice message makes SenOS state plainly that the key is needed rather than going silent. Once pasted it works immediately, with no need to restart the bot.
+**A Groq API key is required**, which is where SenOS borrows speech-to-text (the Whisper model). In the dashboard, go to the **AI models** page, the **Groq (API)** section, paste the key from [console.groq.com](https://console.groq.com) and save. Without it, sending a voice message makes SenOS state plainly that the key is needed rather than going silent. Once pasted it works immediately, with no need to restart the bot.
 
 It is **the same key as the Telegram channel**: attach it once and both channels can listen.
 

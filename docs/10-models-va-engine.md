@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/10-models-and-engines.md)*
 
-Trang **Models** là nơi bạn chọn "bộ não" cho SenOS: đăng nhập vào nhà cung cấp AI, xếp thứ tự dùng các nhà đó (thẻ trên cùng là model chính, các thẻ sau là dự phòng), chọn model và mức suy nghĩ cho từng nhà, và chọn model rẻ cho việc chạy nền. Đây là trang quyết định SenOS thông minh tới đâu và tiêu hạn mức của gói nào.
+Trang **Mô hình AI** là nơi bạn chọn "bộ não" cho SenOS: đăng nhập vào nhà cung cấp AI, xếp thứ tự dùng các nhà đó (thẻ trên cùng là model chính, các thẻ sau là dự phòng), chọn model và mức suy nghĩ cho từng nhà, và chọn model rẻ cho việc chạy nền. Đây là trang quyết định SenOS thông minh tới đâu và tiêu hạn mức của gói nào.
 
 Nếu bạn mới bắt đầu, xem trước [Bắt đầu & thiết lập lần đầu](01-bat-dau-thiet-lap.md). Khi cần gắn thêm công cụ ngoài cho SenOS, xem [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md).
 
@@ -13,7 +13,7 @@ SenOS có thể chạy trên nhiều "engine" (nhà cung cấp AI) khác nhau. C
 - **Model việc nền**: model rẻ hơn cho những việc SenOS tự chạy khi bạn không ngồi đó - loop, việc Kanban, nhắc hẹn, tự học, tiêu hoá nguồn.
 - **Effort (mức suy nghĩ)**: mức độ model động não trước khi trả lời. Mỗi thẻ nhà cung cấp có mức riêng, model việc nền cũng có mức riêng.
 
-Điểm quan trọng nhất cần hiểu: **đổi model KHÔNG làm SenOS mất chức năng.** Mọi provider đều được cấp cùng một bộ đồ nghề qua trung tâm kết nối (MCP Hub) của SenOS: gọi kho Kết nối đã đấu, đọc/ghi file trong brain, chạy skill, giao việc Kanban (tool `senos_task`), tạo agent/workflow/loop/nhắc hẹn (tool `senos_schedule`).
+Điểm quan trọng nhất cần hiểu: **đổi model KHÔNG làm SenOS mất chức năng.** Mọi provider đều được cấp cùng một bộ đồ nghề qua trung tâm kết nối (MCP Hub) của SenOS: gọi kho Ứng dụng đã đấu, đọc/ghi file trong brain, chạy skill, giao việc Kanban (tool `senos_task`), tạo agent/workflow/loop/nhắc hẹn (tool `senos_schedule`).
 
 | Cách gọi | Provider | MCP SenOS · tool file brain · skill | Chạy lệnh máy (Bash) |
 |---|---|---|---|
@@ -23,7 +23,7 @@ SenOS có thể chạy trên nhiều "engine" (nhà cung cấp AI) khác nhau. C
 | **Gọi API thẳng** | OpenRouter | Có - MCP qua hub + tool file vault + skill qua router | Không |
 | **Gọi API thẳng** | OpenAI (API) | Có - như trên | Không |
 | **Gọi API thẳng** | Anthropic (API) | Có - như trên | Không |
-| **Gọi API thẳng** | Google Gemini (API) | Có - như trên (từ 0.9.270 trang Kết nối cũng hết báo nhầm) | Không |
+| **Gọi API thẳng** | Google Gemini (API) | Có - như trên (từ 0.9.270 trang Ứng dụng cũng hết báo nhầm) | Không |
 | **Gọi API thẳng** | Groq (API) | Có - như trên | Không |
 | **Gọi API thẳng** | DeepSeek (API) | Có - như trên | Không |
 | **Gọi API thẳng** | Ollama Cloud | Có - như trên | Không |
@@ -50,10 +50,10 @@ Nói ngắn gọn: **năng lực nằm ở SenOS, không nằm ở model.** Ba e
 ## Mở ở đâu trong SenOS
 
 1. Mở dashboard SenOS (mặc định ở cổng `7777`).
-2. Ở thanh bên trái, mở nhóm **Kết nối**, rồi bấm mục **Models**.
+2. Ở thanh bên (cạnh phải màn hình), mở nhóm **Quản trị**, rồi bấm mục **Mô hình AI**.
 3. Tab **Cloud Model** hiện 2 khối theo thứ tự: **◆ Thứ tự dùng** ("nhà đã đăng nhập, thẻ trên cùng là MAIN") và **◆ Model việc nền** ("loop · việc Kanban · nhắc hẹn · tự học"). Dưới cùng là nút **＋ Kết nối thêm nhà cung cấp (N)**, bấm vào mới hiện các nhà chưa kết nối. Từ 0.406.0, khi chưa có nhà nào đăng nhập (lần đầu vào), nút này lên **trên cùng** và danh sách các nhà mở sẵn để bắt đầu ngay. Mỗi khối có nút (i) bên cạnh tên, bấm để đọc giải thích ngắn.
 
-> **Trang Models gọn lại ở 0.351.0.** Trước đó trang có 4 khối (**◆ Main Model**, **◆ Providers**, **◆ Model việc nền**, **◆ Suy nghĩ**) cộng một ô Model Telegram. Nay Main Model và Providers gộp thành **Thứ tự dùng**, mức Suy nghĩ chung thay bằng chip **Effort** trên từng thẻ, còn Telegram đi theo MAIN (xem [Telegram](11-telegram.md) để ghim model cho riêng một cuộc trò chuyện bằng `/model`).
+> **Trang Mô hình AI gọn lại ở 0.351.0.** Trước đó trang có 4 khối (**◆ Main Model**, **◆ Providers**, **◆ Model việc nền**, **◆ Suy nghĩ**) cộng một ô Model Telegram. Nay Main Model và Providers gộp thành **Thứ tự dùng**, mức Suy nghĩ chung thay bằng chip **Effort** trên từng thẻ, còn Telegram đi theo MAIN (xem [Telegram](11-telegram.md) để ghim model cho riêng một cuộc trò chuyện bằng `/model`).
 
 ## Mười provider có sẵn
 
@@ -62,8 +62,8 @@ Bảng dưới là các nhà cung cấp có sẵn. Nhà **đã kết nối** n�
 | Provider (nhãn trên màn hình) | Kiểu kết nối | Ghi chú |
 |---|---|---|
 | **Claude Code** | Đăng nhập Claude Code, không cần key | Đầy đủ MCP/skill/tool máy. Thường là thẻ MAIN mặc định |
-| **OpenAI OAuth (ChatGPT)** | Device code (đăng nhập gói ChatGPT) | Chạy qua Codex, đấu kho Kết nối qua hub + dùng skill qua router |
-| **xAI Grok Build CLI** | Đăng nhập **ngay trên trang Models** (device code), không cần key | Dùng gói **SuperGrok / X Premium+** sẵn có. Chạy qua binary `grok`. Đầy đủ MCP/skill/tool máy, nối lại được mạch hội thoại. Là thẻ CLI **duy nhất đăng nhập được khi SenOS chạy trên VPS** - xem [B1a](#b1a-kết-nối-grok-build-cli-dùng-gói-supergrok--x-premium) |
+| **OpenAI OAuth (ChatGPT)** | Device code (đăng nhập gói ChatGPT) | Chạy qua Codex, đấu kho Ứng dụng qua hub + dùng skill qua router |
+| **xAI Grok Build CLI** | Đăng nhập **ngay trên trang Mô hình AI** (device code), không cần key | Dùng gói **SuperGrok / X Premium+** sẵn có. Chạy qua binary `grok`. Đầy đủ MCP/skill/tool máy, nối lại được mạch hội thoại. Là thẻ CLI **duy nhất đăng nhập được khi SenOS chạy trên VPS** - xem [B1a](#b1a-kết-nối-grok-build-cli-dùng-gói-supergrok--x-premium) |
 | **Google Antigravity CLI** | Gõ `agy` **một lần trong terminal**, không cần key | Bản Google chỉ định thay Gemini CLI. Chạy qua binary `agy`. Đầy đủ MCP/skill/tool máy, và chọn được **đúng dàn model của Antigravity IDE** (có cả model không phải của Google) |
 | **OpenRouter** | Dán API key | Nhiều model 1 chỗ, MCP + tool file + skill qua hub |
 | **Anthropic (API)** | Dán API key | MCP + tool file + skill qua hub (từ 0.9) |
@@ -75,7 +75,7 @@ Bảng dưới là các nhà cung cấp có sẵn. Nhà **đã kết nối** n�
 
 Mỗi card provider hiển thị trạng thái **● Đã kết nối** hoặc **○ Chưa kết nối**, kèm số model khả dụng, và một nhãn kiểu bên cạnh tên: **MCP/skill** (Claude Code), **Device code** (ChatGPT), **MCP SenOS** (các provider API). Trong Thứ tự dùng, card trên cùng có nhãn **MAIN**, các card sau ghi **Dự phòng 1**, **Dự phòng 2**... (xem mục D).
 
-> Nhãn của các provider API trước 0.9.270 ghi là **chat**, khiến nhiều người tưởng chúng chỉ chat suông. Sai: chúng gọi kho Kết nối, đọc/ghi brain và chạy skill y như hai engine CLI. Nhãn giờ là **MCP SenOS** cho đúng.
+> Nhãn của các provider API trước 0.9.270 ghi là **chat**, khiến nhiều người tưởng chúng chỉ chat suông. Sai: chúng gọi kho Ứng dụng, đọc/ghi brain và chạy skill y như hai engine CLI. Nhãn giờ là **MCP SenOS** cho đúng.
 
 ## Cách dùng (từng bước)
 
@@ -83,7 +83,7 @@ Mỗi card provider hiển thị trạng thái **● Đã kết nối** hoặc *
 
 Đây là engine mặc định. Nó dùng được toàn bộ công cụ, skill và bộ nhớ, cộng thêm chạy lệnh máy. Không bắt buộc: nếu bạn không có gói Claude thì bỏ qua mục này và đi thẳng xuống mục B (ChatGPT) hoặc C (API key) - SenOS chạy đủ chức năng như nhau, chỉ thiếu phần lệnh máy khi đi bằng API key.
 
-1. Vào **Models**, tìm card **Claude Code** (chưa đăng nhập thì nó nằm sau nút **＋ Kết nối thêm nhà cung cấp** ở cuối trang).
+1. Vào **Mô hình AI**, tìm card **Claude Code** (chưa đăng nhập thì nó nằm sau nút **＋ Kết nối thêm nhà cung cấp** ở cuối trang).
 2. Nếu chưa đăng nhập, card báo **○ Chưa đăng nhập** và có hai nút: **Đăng nhập Claude** và **↻ Kiểm tra lại**. Nếu máy chạy SenOS chưa có lệnh `claude`, card báo **○ Chưa cài Claude Code**, hiện một khung hướng dẫn cài (bản Docker: cập nhật SenOS; bản cài tay: một lệnh để chép) và chỉ có nút **↻ Kiểm tra lại**.
 3. Bấm **Đăng nhập Claude**. SenOS hiện dòng "**1)** Mở link này để đăng nhập claude.ai" kèm đường link.
 4. Mở link đó để đăng nhập tài khoản claude.ai của bạn.
@@ -126,13 +126,13 @@ Lưu ý: đây là kênh thử nghiệm (chạy nền Codex). Nếu cần ổn �
 
 ### B1a. Kết nối Grok Build CLI (dùng gói SuperGrok / X Premium+)
 
-Đây là đường **xAI** dùng gói bạn đang trả tiền, không phải mua API key riêng. Điểm khác biệt lớn nhất so với hai thẻ CLI của Google: **đăng nhập xong ngay trên trang Models**, kể cả khi SenOS chạy trên VPS không có trình duyệt.
+Đây là đường **xAI** dùng gói bạn đang trả tiền, không phải mua API key riêng. Điểm khác biệt lớn nhất so với hai thẻ CLI của Google: **đăng nhập xong ngay trên trang Mô hình AI**, kể cả khi SenOS chạy trên VPS không có trình duyệt.
 
 1. Cài CLI một lần trên máy chạy SenOS:
    - Linux/macOS: `curl -fsSL https://x.ai/cli/install.sh | bash`
    - Windows PowerShell: `irm https://x.ai/cli/install.ps1 | iex`
    - Bản Docker (từ 0.85.1): **không cần làm bước này**, SenOS tự cài lúc khởi động. Trong lúc đang cài, thẻ hiện "SenOS đang tự cài"; khoảng một phút sau bấm **Kiểm tra lại**.
-2. Vào **Models**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **xAI Grok Build CLI**, bấm **Đăng nhập**. Nó hiện ra một đường link và một mã. Mở link đó trên máy bạn (điện thoại cũng được), nhập mã, xác nhận. Thẻ tự chuyển sang **● Đã đăng nhập**, không phải bấm gì thêm.
+2. Vào **Mô hình AI**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **xAI Grok Build CLI**, bấm **Đăng nhập**. Nó hiện ra một đường link và một mã. Mở link đó trên máy bạn (điện thoại cũng được), nhập mã, xác nhận. Thẻ tự chuyển sang **● Đã đăng nhập**, không phải bấm gì thêm.
 3. Thẻ vừa đăng nhập vào cuối **Thứ tự dùng**. Kéo nó lên đầu (hoặc bấm **⇅ Đảo**) để nó thành MAIN, rồi chọn model bằng chip model trên thẻ.
 
 **Cần gói gì:** Grok Build đi kèm **SuperGrok** hoặc **X Premium+**. Có mỗi API key `XAI_API_KEY` thì CLI vẫn chạy được về mặt kỹ thuật, nhưng quyền dùng Grok Build gắn vào GÓI chứ không vào key - nên nếu thẻ báo *"Tài khoản đăng nhập không có quyền dùng Grok Build"* thì đó là chuyện gói, không phải lỗi cấu hình. Bấm **Kiểm tra lại** là biết chắc: nút đó chạy thử một lượt chat thật chứ không chỉ soi file.
@@ -161,7 +161,7 @@ Vài chỗ đáng biết:
 2. Gõ `agy` một lần **trong terminal của máy chạy SenOS** (trang **Code** trong SenOS là chắc ăn nhất - đúng user đang chạy SenOS). Máy để bàn có màn hình thì nó tự mở trình duyệt. Máy chủ không có màn hình (VPS, Docker - kể cả Docker trên chính máy Mac của bạn) thì nó in ra một đường link: mở link đó bằng trình duyệt trên máy bạn, đăng nhập Google xong trình duyệt sẽ nhảy sang một địa chỉ `http://localhost:...` **báo không mở được - đó là bước đúng**, copy nguyên địa chỉ trên thanh URL rồi dán ngược vào terminal và Enter. Phiên lưu trong keyring của hệ điều hành nên chỉ phải làm một lần.
 
    > Vì sao phải dán tay: `agy` nhận mã về qua một cổng loopback trên chính máy chạy nó. Trình duyệt của bạn ở máy khác nên không với tới cổng đó. Từ 0.55.46, terminal của SenOS tự khai đây là phiên từ xa (`SSH_CONNECTION`) để `agy` hỏi chỗ dán thay vì nằm chờ im lặng. Bản `agy` cũ không hỏi thì mở thêm một phiên terminal rồi chạy `curl "<địa chỉ localhost vừa copy>"` cũng xong. Bố trí lạ (X11 forwarding, máy để bàn có màn hình) muốn tắt hành vi này thì đặt `SENOS_TERMINAL_REMOTE=0`.
-3. Quay lại **Models**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **Google Antigravity CLI**, bấm **Kiểm tra lại** (nó chạy thử một lượt chat thật). Thẻ đổi sang **● Đã đăng nhập**.
+3. Quay lại **Mô hình AI**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **Google Antigravity CLI**, bấm **Kiểm tra lại** (nó chạy thử một lượt chat thật). Thẻ đổi sang **● Đã đăng nhập**.
 4. Thẻ vừa đăng nhập vào cuối **Thứ tự dùng**. Kéo nó lên đầu (hoặc bấm **⇅ Đảo**) để nó thành MAIN, rồi chọn model bằng chip model trên thẻ.
 
 Danh sách model **hỏi thẳng `agy models`** chứ SenOS không giữ bảng chép tay, nên tài khoản bạn được cấp model nào là thấy đúng model đó, và Google đổi tên model cũng không làm picker lạc hậu. Model mới chỉ hiện khi chính `agy` đã lên bản biết model đó, nên từ 0.137.0 SenOS tự chạy `agy update` mỗi ngày một lần, cả trong bản Docker (tắt bằng biến môi trường `SENOS_AGY_AUTO_UPDATE=0`). `agy` đã mới nhất mà vẫn không thấy một model thì tài khoản Google của bạn chưa được cấp model đó.
@@ -182,7 +182,7 @@ Vài chỗ đáng biết, nói trước cho khỏi hiểu nhầm:
 
   Hệ quả phải biết: file HOME là **của bạn** và dùng chung với Antigravity IDE, nên IDE cũng sẽ thấy tool của SenOS; và hai brain chạy `agy` cùng lúc thì brain sau ghi đè brain trước. Không muốn SenOS đụng vào HOME thì đặt `SENOS_AGY_MCP_HOME=0` (khi đó chỉ còn đường workspace, tức chỉ chạy trên bản `agy` đã vá issue #60). Muốn chỉ định một file khác thì đặt `SENOS_AGY_MCP_CONFIG=/đường/dẫn/mcp_config.json`. Bản `agy` của bạn từ chối cấu hình vì có khoá lạ thì đặt `SENOS_AGY_MCP_KEY=serverUrl` (hoặc `=url` cho bản 1.0.x cũ) để SenOS chỉ ghi đúng một khoá.
 
-  **Tự kiểm trong 10 giây:** vào **Models**, thẻ **Google Antigravity CLI**, bấm **Kiểm tra lại**. Nó ghi lại cấu hình rồi đọc lại chính file đó, và báo một trong ba câu: *tool của SenOS đã đấu*, *chưa đấu được tool của SenOS*, hoặc *trung tâm kết nối đang tắt*. Xem tận file thì: `cat ~/.gemini/config/mcp_config.json` - phải thấy một entry tên `senos` có `serverUrl` trỏ về `/hub/mcp`.
+  **Tự kiểm trong 10 giây:** vào **Mô hình AI**, thẻ **Google Antigravity CLI**, bấm **Kiểm tra lại**. Nó ghi lại cấu hình rồi đọc lại chính file đó, và báo một trong ba câu: *tool của SenOS đã đấu*, *chưa đấu được tool của SenOS*, hoặc *trung tâm kết nối đang tắt*. Xem tận file thì: `cat ~/.gemini/config/mcp_config.json` - phải thấy một entry tên `senos` có `serverUrl` trỏ về `/hub/mcp`.
 
 - **Dấu tiếng Việt không vỡ dọc đường** (từ 0.33.6). Triệu chứng cũ: chữ "gồm" thành `g<?><?>m`, mỗi ký tự tiếng Việt 3 byte hoá đúng 3 dấu `<?>`. Đó là chữ ký của một bên đọc cắt mẩu ống dẫn giữa một ký tự rồi giải mã từng mẩu rời. Đã đo và loại trừ phía SenOS (bộ đọc của nó dùng giải mã tăng dần, cắt byte giữa ký tự vẫn ghép lại đúng), nên chỗ vỡ nằm ở bộ đọc của `agy`. SenOS không vá được CLI, nhưng chỉnh được chỗ mình đặt ranh giới: nay nó bơm prompt theo từng mẩu kết thúc đúng biên ký tự, nên bên kia đọc kiểu gì cũng không vỡ. Chữ về mà vẫn có ký tự hỏng thì SenOS tự đổi sang đường file rồi hỏi lại một lần; vẫn hỏng thì nó nói thẳng là lỗi nằm trong CLI.
 
@@ -192,7 +192,7 @@ Vài chỗ đáng biết, nói trước cho khỏi hiểu nhầm:
 
 ### C. Kết nối provider bằng API key (OpenRouter / Anthropic API / OpenAI API / Gemini / Groq / DeepSeek)
 
-1. Vào **Models**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm card provider tương ứng.
+1. Vào **Mô hình AI**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm card provider tương ứng.
 2. Dán API key vào ô nhập (ô ghi "Dán API key để kết nối").
 3. Bấm **Kết nối**.
 4. Card chuyển sang **● Đã kết nối** kèm số model, và vào cuối **Thứ tự dùng**. Muốn chat bằng nó thì kéo thẻ lên đầu (hoặc bấm **⇅ Đảo**) để nó thành MAIN, rồi chọn model bằng chip model trên thẻ.
@@ -230,7 +230,7 @@ Dùng khi bạn mua key Claude (hoặc model khác) từ một bên bán lại, 
 
 **Kết nối:**
 
-1. Vào **Models**, chọn tab **Cloud Model**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **Anthropic Compatible**.
+1. Vào **Mô hình AI**, chọn tab **Cloud Model**, bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang, tìm thẻ **Anthropic Compatible**.
 2. Điền 3 ô từ trên xuống: Base URL, tên model (nhiều model thì cách nhau bằng dấu phẩy), API key.
 3. Bấm **Kết nối**. SenOS gửi thử một tin rất ngắn tới bên bán để kiểm tra, xong thì thẻ hiện **● Đã kết nối** kèm số model.
 4. Đặt làm model chính như mục D: thẻ **Anthropic Compatible** vừa vào cuối Thứ tự dùng, kéo nó lên đầu (hoặc bấm **⇅ Đảo**) rồi chọn tên model bằng chip model trên thẻ. Chat thử một câu, dưới câu trả lời có dòng nhỏ ghi "Anthropic Compatible · tên-model" là đã chạy đúng đường.
@@ -373,14 +373,14 @@ SenOS có ba chỗ đặt model, và câu hỏi hay gặp nhất là "cái nào 
 | Bạn đang ở đâu | Model chạy thật |
 |---|---|
 | Chat thường trên dashboard / Telegram | Thẻ MAIN của Thứ tự dùng, hết lượt thì xuống Dự phòng 1, 2... (hoặc ghim riêng của phiên web, hay của đúng cuộc trò chuyện Telegram đã gõ `/model`) |
-| Chat với một trợ lý ở trang Cộng sự | Model của trợ lý đó; để **Mặc định** thì model chính |
+| Chat với một trợ lý ở trang Trợ lý | Model của trợ lý đó; để **Mặc định** thì model chính |
 | **Chatbot** trả lời khách ngoài | Model của trợ lý mà bot trỏ tới; để **Mặc định** thì model chính |
 | Một bước trong quy trình (workflow) | Model của trợ lý ở bước đó; để **Mặc định** thì **model việc nền** |
 | Loop, việc Kanban, nhắc hẹn, tự học, tiêu hoá nguồn | Model việc nền |
 
 Nhà cung cấp mà trợ lý đã chọn nếu bị gỡ key thì SenOS lui về model chính, chứ không để trợ lý hay bot chết câm.
 
-Ô **Model** trong Cài đặt trợ lý dùng đúng bảng chọn của thanh model dưới khung chat: gõ để tìm, và nhà chưa cắm API key vẫn hiện ra kèm ổ khoá, bấm vào là sang trang Models để mở. (Riêng bảng chọn ở khung chat thì nay chỉ liệt kê nhà đã kết nối.)
+Ô **Model** trong Cài đặt trợ lý dùng đúng bảng chọn của thanh model dưới khung chat: gõ để tìm, và nhà chưa cắm API key vẫn hiện ra kèm ổ khoá, bấm vào là sang trang Mô hình AI để mở. (Riêng bảng chọn ở khung chat thì nay chỉ liệt kê nhà đã kết nối.)
 
 ### F. Đặt mức suy nghĩ (Effort)
 
@@ -407,7 +407,7 @@ Mức này áp dụng khác nhau tuỳ engine:
 
 ### G. Local Model - Ollama chạy trên máy bạn hoặc trên VPS
 
-Tab **Local Model** (cạnh tab Cloud Model trên trang Models) nối SenOS với một Ollama do bạn tự chạy: model mã nguồn mở, ngoại tuyến, không tốn lượt. Provider tương ứng trong ô chọn model là **Ollama (Local)**, khác với **Ollama Cloud** ở tab Cloud (bản trả phí qua ollama.com).
+Tab **Local Model** (cạnh tab Cloud Model trên trang Mô hình AI) nối SenOS với một Ollama do bạn tự chạy: model mã nguồn mở, ngoại tuyến, không tốn lượt. Provider tương ứng trong ô chọn model là **Ollama (Local)**, khác với **Ollama Cloud** ở tab Cloud (bản trả phí qua ollama.com).
 
 **SenOS chạy thẳng trên máy (Windows/Mac/Linux):** cài Ollama bằng lệnh tab hiện sẵn, bấm Kết nối với địa chỉ `http://127.0.0.1:11434` đã điền sẵn. Xong.
 
@@ -433,14 +433,14 @@ Từ bản 0.9.37, engine Claude của SenOS chạy **duy nhất qua Claude Agen
 Đây là điểm dễ nhầm nhất, cần nắm rõ:
 
 - **MAIN = Claude Code**: mạnh nhất - đọc/ghi file native, chạy lệnh máy, gọi MCP, skill native, loop tự động, session resume. Chế độ khai thác hết sức mạnh SenOS.
-- **MAIN = ChatGPT OAuth (Codex)**: gọi được toàn bộ kho Kết nối (hub tự đẩy sang Codex, gồm cả kết nối local như Zalo), có tool file của Codex, và dùng được skill qua router (SenOS bơm danh sách skill vào system prompt + tool `senos_use_skill`; Codex chạy cwd=brain nên đọc thẳng `skills/<slug>/SKILL.md`). Ngoài ra Codex còn nạp kho MCP GỐC của chính nó (server bạn tự đăng ký bằng `codex mcp add`, xem trong khối gập "◆ Kết nối sẵn của Claude Code và Codex" ở trang Kết nối) - tương tự cách engine Claude dùng MCP gốc của Claude Code.
-- **MAIN = OpenRouter / OpenAI (API) / Anthropic (API) / Gemini**: từ bản 0.9 cả bốn đều gọi được kho Kết nối qua vòng gọi tool, kèm tool đọc/ghi file trong vault và kích hoạt skill (`senos_use_skill`). **Việc nền cũng chạy được bằng những provider này** (xem mục E). Khác biệt còn lại so với Claude Code: không có tool chạy lệnh máy (Bash), không có WebFetch, và không resume được session CLI.
+- **MAIN = ChatGPT OAuth (Codex)**: gọi được toàn bộ kho Ứng dụng (hub tự đẩy sang Codex, gồm cả kết nối local như Zalo), có tool file của Codex, và dùng được skill qua router (SenOS bơm danh sách skill vào system prompt + tool `senos_use_skill`; Codex chạy cwd=brain nên đọc thẳng `skills/<slug>/SKILL.md`). Ngoài ra Codex còn nạp kho MCP GỐC của chính nó (server bạn tự đăng ký bằng `codex mcp add`, xem trong khối gập "◆ Kết nối sẵn của Claude Code và Codex" ở trang Kết nối) - tương tự cách engine Claude dùng MCP gốc của Claude Code.
+- **MAIN = OpenRouter / OpenAI (API) / Anthropic (API) / Gemini**: từ bản 0.9 cả bốn đều gọi được kho Ứng dụng qua vòng gọi tool, kèm tool đọc/ghi file trong vault và kích hoạt skill (`senos_use_skill`). **Việc nền cũng chạy được bằng những provider này** (xem mục E). Khác biệt còn lại so với Claude Code: không có tool chạy lệnh máy (Bash), không có WebFetch, và không resume được session CLI.
 
 Kết luận thực dụng: để SenOS "làm việc" trọn vẹn nhất, giữ thẻ **Claude Code** trên cùng (MAIN). Chuyển sang provider API khi bạn muốn thử một model cụ thể của hãng khác, hoặc muốn đẩy phần việc nền sang một gói rẻ hơn cho đỡ hạn mức Claude.
 
 ## Tiết kiệm token áp cho cả gói thuê bao
 
-Khối **Chế độ tiết kiệm token** ở đầu trang **Mức dùng** (nhóm Hệ thống) cho SenOS gửi ít chữ hơn mỗi lượt: chỉ nạp phần bộ nhớ liên quan tới câu hỏi, chỉ nạp skill khi cần thay vì liệt kê hết.
+Khối **Chế độ tiết kiệm token** ở đầu trang **Hạn mức** (tab trong **Thiết lập**) cho SenOS gửi ít chữ hơn mỗi lượt: chỉ nạp phần bộ nhớ liên quan tới câu hỏi, chỉ nạp skill khi cần thay vì liệt kê hết.
 
 Từ bản 0.12.4, phần này chạy được cho **cả ba loại bộ não**, không riêng bộ não dùng API key:
 
@@ -458,9 +458,9 @@ Từ 0.55.44, khi nhà cung cấp nói rõ **mốc mở lại**, dưới câu b�
 
 ## Đổi nhanh model
 
-Trên trang Models: kéo thẻ nhà bạn muốn lên đầu **Thứ tự dùng** (hoặc bấm **⇅ Đảo**) và chọn model bằng chip model trên thẻ đó. Thẻ trên cùng thành MAIN ngay. Khối **◆ Model việc nền** có nút **Đổi model ▾** riêng của nó (mở bảng **MODEL VIỆC NỀN**), còn chip **Effort** trên từng thẻ áp dụng ngay khi chọn.
+Trên trang Mô hình AI: kéo thẻ nhà bạn muốn lên đầu **Thứ tự dùng** (hoặc bấm **⇅ Đảo**) và chọn model bằng chip model trên thẻ đó. Thẻ trên cùng thành MAIN ngay. Khối **◆ Model việc nền** có nút **Đổi model ▾** riêng của nó (mở bảng **MODEL VIỆC NỀN**), còn chip **Effort** trên từng thẻ áp dụng ngay khi chọn.
 
-Không cần mở trang Models cũng được: chọn model ở chip model dưới khung chat. Chọn model của một nhà khác thì thẻ nhà đó tự lên đầu Thứ tự dùng.
+Không cần mở trang Mô hình AI cũng được: chọn model ở chip model dưới khung chat. Chọn model của một nhà khác thì thẻ nhà đó tự lên đầu Thứ tự dùng.
 
 ## Đổi model giữa chừng một cuộc trò chuyện
 
@@ -523,7 +523,7 @@ Từ 0.42.1 trở về trước có lỗi ở đúng chỗ này: chỉ mạch c�
 - **Bấm chip model mà danh sách trống**: nhà đó chưa trả được danh sách model, hoặc chưa có model. Bấm **Kiểm tra lại** hoặc kết nối lại nhà đó, hoặc thêm model vào `settings.json` (mục `model.catalog`). Xem [Cấu hình .env](16-cau-hinh-env.md).
 - **Không thấy một nhà trong Thứ tự dùng**: nhà đó chưa kết nối (hoặc Claude Code chưa đăng nhập). Bấm **＋ Kết nối thêm nhà cung cấp** ở cuối trang.
 - **Model trả về rỗng**: thử lại hoặc chọn model khác bằng chip model trên thẻ MAIN. Với Anthropic API, thông báo còn kèm lý do (ví dụ hết max_tokens: nhắn "tiếp tục" để model viết tiếp).
-- **Trang Kết nối hiện dòng vàng "⚠ Main Model đang là ... - chưa hỗ trợ gọi công cụ. Đổi ở trang Models."**: từ 0.9.270 **không provider có sẵn nào** làm nổ dòng này nữa. Trước đó Google Gemini bị sót khỏi danh sách nên báo nhầm dù bên dưới đã chạy MCP qua hub bình thường. Dòng vàng giờ chỉ còn để chặn provider lạ. Sáu provider Claude Code, OpenRouter, OpenAI, Anthropic API, Gemini và Groq hiện thẻ XANH; riêng ChatGPT OAuth có thẻ xanh riêng nói rõ nó chạy qua Codex CLI.
+- **Trang Ứng dụng hiện dòng vàng "⚠ Main Model đang là ... - chưa hỗ trợ gọi công cụ. Đổi ở trang Mô hình AI."**: từ 0.9.270 **không provider có sẵn nào** làm nổ dòng này nữa. Trước đó Google Gemini bị sót khỏi danh sách nên báo nhầm dù bên dưới đã chạy MCP qua hub bình thường. Dòng vàng giờ chỉ còn để chặn provider lạ. Sáu provider Claude Code, OpenRouter, OpenAI, Anthropic API, Gemini và Groq hiện thẻ XANH; riêng ChatGPT OAuth có thẻ xanh riêng nói rõ nó chạy qua Codex CLI.
 
 - **Banner đỏ "⚠ Bộ não claude mất đăng nhập" trên máy chưa từng cài Claude**: sửa ở 0.9.270. Đèn báo não giữ trạng thái trong RAM và không ai dọn, nên đèn đỏ thắp hồi Claude còn là Main Model treo mãi sau khi bạn đổi sang OpenRouter. Giờ đèn chỉ tính những bộ não bạn THẬT SỰ chọn (Main Model + model việc nền khi đặt rõ provider), và tự tắt ngay khi bạn đổi sang nhà cung cấp khác - không phải chờ vòng quét 10 phút.
 - **Bấm Ngắt (hoặc gỡ key cuối) của nhà đang là MAIN**: nhà đó rời Thứ tự dùng và thẻ kế tiếp lên làm MAIN để chat không gãy. Đây là hành vi cố ý, không phải lỗi.

@@ -100,7 +100,7 @@ def check() -> Optional[str]:
         return ("Máy chạy SenOS chưa có Node.js 20+ (lệnh npx) nên chưa dùng được tính năng này. "
                 "Cài tại nodejs.org rồi thử lại.")
     if not connections():
-        return ("Chưa đấu tài khoản Zalo nào. Vào trang Kết nối, chọn 'Zalo Agent MCP', "
+        return ("Chưa đấu tài khoản Zalo nào. Vào trang Ứng dụng, chọn 'Zalo Agent MCP', "
                 "quét QR bằng app Zalo rồi gọi lại tool này.")
     return None
 
@@ -452,7 +452,7 @@ async def send_files(conn_id: str, home: str, thread_id: str, files: List[Path],
             why = re.sub(r"^\s*Error:\s*", "", str(e)).strip() or type(e).__name__
             if _old_mcp(why):
                 return False, None, ("kết nối Zalo đang chạy bản senos-zalo cũ chưa có tool gửi file. Cập nhật SenOS rồi "
-                                     "tắt-bật lại kết nối Zalo ở trang Kết nối (không phải quét QR lại).")
+                                     "tắt-bật lại kết nối Zalo ở trang Ứng dụng (không phải quét QR lại).")
             return False, None, why
         if not isinstance(data, dict) or not data.get("success"):
             return False, None, f"MCP Zalo trả kết quả lạ: {json.dumps(data, ensure_ascii=False)[:200]}"

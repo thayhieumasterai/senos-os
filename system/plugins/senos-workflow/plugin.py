@@ -116,7 +116,7 @@ def register(ctx):
         "slug nếu có, limit mặc định 10. op=show: một lần chạy đầy đủ (đầu vào, từng bước, kết quả) "
         "theo id. Dùng khi người dùng hỏi quy trình vừa chạy ra sao, kết quả lần trước, hay quy "
         "trình nào đang chờ duyệt. Chỉ đọc; muốn chạy quy trình thì dùng senos_task với route "
-        "wf:<slug> hoặc trang Cộng sự.",
+        "wf:<slug> hoặc trang Trợ lý.",
         _chay,
         schema={
             "type": "object",

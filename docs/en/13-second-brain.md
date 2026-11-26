@@ -24,7 +24,7 @@ A Second Brain (a "brain" or "vault" for short) is a folder on your machine or V
 The three core layers of a "second brain" in the proper sense are **Sources + Wiki + Memory**:
 
 - **Sources** holds raw, unprocessed material.
-- **Wiki** is refined knowledge, linked into a network, which is exactly what SenOS draws in the [Knowledge graph](03-knowledge-graph.md).
+- **Wiki** is refined knowledge, linked into a network, which is exactly what SenOS draws in the [Knowledge map](03-knowledge-graph.md).
 - **Memory** is the long-term memory that lets SenOS "remember you".
 
 The operating principle: **Sources -> (INGEST) -> Wiki**. Knowledge accumulates gradually, thickening the brain, instead of being rediscovered on every question.
@@ -42,11 +42,11 @@ The starting brain is named **Brain Default** and lives at `brains/Brain Default
 The Second Brain does not live on one dedicated page but is spread across several places on the dashboard (default port `7777`). The left navigation rail groups pages, so you have to open a group to see its items:
 
 1. **Top bar, left corner**: the brain selector plus 3 small buttons ➕ 🗑 📁. This is where you create, choose and delete brains.
-2. **The chat box** (the **SenOS** screen or the **Chat** page, **Assistant** group): where you drop files to INGEST and say "remember this".
-3. **The Self-learning page** (**Brain** group): number of memories learned, the learn-now button, the Curator cleanup, and the block that syncs the brain to GitHub. See [Self-learning](22-self-learning.md).
-4. **The Files page** (**Brain** group): browse, edit, upload and download every file in the brain. See [File manager](05-file-manager.md).
-5. **The Recurring jobs page** (**Work** group): set up a loop so SenOS digests sources on a schedule. See [Recurring jobs and reminders](08-recurring-jobs.md).
-6. **The Settings page** (**System** group): the **Interface and Brain** group, item **Brain structure**, to normalise the folders.
+2. **The chat box** (the **SenOS** screen or the **Conversations** page, alone at the top of the rail): where you drop files to INGEST and say "remember this".
+3. **The Training page** (**Knowledge** group): number of memories learned, the learn-now button, the Curator cleanup, and the block that syncs the brain to GitHub. See [Self-learning](22-self-learning.md).
+4. **The Documents page** (**Knowledge** group): browse, edit, upload and download every file in the brain. See [File manager](05-file-manager.md).
+5. **The Jobs page** (**Operations** group, **Recurring** list): set up a loop so SenOS digests sources on a schedule. See [Recurring jobs and reminders](08-recurring-jobs.md).
+6. **The Preferences page** (**Admin** group): the **Interface & Brain** group, card **Normalise brain**, to normalise the folders.
 
 ## Multi-brain: several brains in one SenOS
 
@@ -113,8 +113,8 @@ For an external folder (📁), the 🗑 button behaves entirely differently: it 
 
 If a brain has the old structure (notes under `SenOS/agents`, `Memory` capitalised, skills in `.claude/skills`), you can collapse it into the uniform flat layout:
 
-1. Go to **Settings** (**System** group on the rail).
-2. Open the **Interface and Brain** group and scroll to **Brain structure**.
+1. Go to **Preferences** (**Admin** group on the rail).
+2. Open the **Interface & Brain** group and scroll to **Normalise brain**.
 3. Click **Normalise the selected brain**, then confirm the dialog, which explains it moves `SenOS/agents`→`agents`, `SenOS/workflows`→`workflows`, `Memory`→`memory`, with a git backup.
 
 The operation is safe: it only moves when the destination folder does not exist yet, never overwriting. It folds `SenOS/agents` into `agents/`, `SenOS/workflows` into `workflows/`, `Memory` into `memory/`, and moves old skills from `.claude/skills` into `skills/` (including the disabled-skill branch, so skills you turned off do not come back on).
@@ -165,9 +165,9 @@ Two more things worth knowing:
 
 ### Seeing how many memories were learned
 
-The memory count is on the **Metrics** line of the **Self-learning** page (**Brain** group), shaped like `Metrics · Memories: 87 · Wiki: 42 · MEMORY.md: 18363B ...`. The "Memories" number is exactly the file count in `memory/facts/` for the selected brain; switch brains and the number follows.
+The memory count is on the **Metrics** line of the **Training** page (**Knowledge** group), shaped like `Metrics · Memories: 87 · Wiki: 42 · MEMORY.md: 18363B ...`. The "Memories" number is exactly the file count in `memory/facts/` for the selected brain; switch brains and the number follows.
 
-The old "LONG-TERM MEMORY" widget in the chat column has been removed; everything about learning and memory now lives on the Self-learning page.
+The old "LONG-TERM MEMORY" widget in the chat column has been removed; everything about learning and memory now lives on the Training page.
 
 ### Forcing SenOS to remember something
 
@@ -188,7 +188,7 @@ The loop now runs automatically at the server layer after each chat turn (with a
 
 The key point of this loop: SenOS clearly separates two things. Facts about you and the business go to `memory/facts/`. Reusable concepts, frameworks and procedures are distilled into Wiki pages (with `[[wikilink]]`). Each in its own place, which is how the knowledge graph thickens rather than getting mixed up with personal notes.
 
-Turning it on and off, choosing the write mode, choosing what to learn, learning now, seeing "what SenOS taught itself", and undoing one learning run: all on the **Self-learning** page. See [Self-learning](22-self-learning.md).
+Turning it on and off, choosing the write mode, choosing what to learn, learning now, seeing "what SenOS taught itself", and undoing one learning run: all on the **Training** page. See [Self-learning](22-self-learning.md).
 
 ## INGEST: digesting documents into knowledge
 
@@ -196,7 +196,7 @@ INGEST is the process that turns a raw file (an article, a screenshot, a note) i
 
 ### How to use it (step by step)
 
-1. Open the chat box (the **SenOS** screen or the **Chat** page).
+1. Open the chat box (the **SenOS** screen or the **Conversations** page).
 2. Drop a file into the chat input (drag and drop, the drop zone reads "📎 Drop files here → saved to Sources"), or click the paperclip attach button next to the input (tooltip "Attach a file (image, text, document) → saved to Sources"). Images and text files both work. The file uploads and waits in the staging area.
 3. By default SenOS **only reads the file and answers**, saving nothing anywhere. If you just want a quick summary, type your question normally.
 4. To make SenOS save and digest it, say one of these phrases in the message: **"save to source"**, **"ingest"**, or **"write to the second brain"**.
@@ -211,7 +211,7 @@ Remember the cache rule above: the original image in `attachments/` expires afte
 
 If you have piled up unprocessed sources, you can hand SenOS a **loop** running in the background:
 
-1. Go to **Recurring jobs** (**Work** group on the rail).
+1. Go to **Jobs** (**Operations** group on the rail) and open the **Recurring** list.
 2. Click **+ Add job**.
 3. Under **Job type**, keep **🔁 Loop**.
 4. Set a **Name** (for example "Digest new sources").
@@ -225,9 +225,9 @@ Details of each mode, how to enable and disable, reading the log and safety tips
 
 Once the Wiki is thick, you should audit it periodically. LINT only **reads and lists problems**, it never fixes anything, so it is very safe.
 
-The standalone "LINT Wiki" button of old is gone. LINT now runs inside the **Curator** on the **Self-learning** page (**Brain** group), described on screen as: clean the index, LINT the Wiki (suggestions only), compact MEMORY.md. Nothing is deleted.
+The standalone "LINT Wiki" button of old is gone. LINT now runs inside the **Curator** on the **Training** page (**Knowledge** group), described on screen as: clean the index, LINT the Wiki (suggestions only), compact MEMORY.md. Nothing is deleted.
 
-1. Go to **Self-learning** in the **Brain** group on the rail.
+1. Go to **Training** in the **Knowledge** group on the rail.
 2. Click **🧹 Curator now** to run one pass immediately. The button changes to "Cleaning...".
 3. Or click the status button under **Curator (periodic maintenance)** to flip it from "○ Off" to "● On", then click **💾 Save configuration** so SenOS runs it on a cycle (the Curator is off by default, and the cycle when on is 24 hours).
 
@@ -242,14 +242,14 @@ The result changes nothing, it only pours into the **Learning log** block as "Wi
 | Delete a brain (30-day trash) | Top bar, left corner | 🗑, then type the exact brain name |
 | Point at an existing Obsidian vault | Top bar, left corner | 📁 |
 | Remove an external folder from the menu | Select the external folder, then click | 🗑 (does not touch the disk) |
-| See memory count and Wiki page count | Brain group → Self-learning | Read the **Metrics** line |
-| Force one learning pass now | Brain group → Self-learning | **▶ Learn now** |
-| Lint the Wiki | Brain group → Self-learning | **🧹 Curator now** |
-| Undo the latest learning run | Brain group → Self-learning | **↶ Undo the latest learning run** |
-| Back the brain up to GitHub | Brain group → Self-learning | The **⇅ Sync brain with GitHub (two-way)** block |
-| Browse/edit files in the brain | Brain group → Files | The folder tree on the left |
-| Assign a loop that digests sources | Work group → Recurring jobs | **+ Add job** |
-| Normalise brain folders | System group → Settings | **Normalise the selected brain** |
+| See memory count and Wiki page count | Knowledge group → Training | Read the **Metrics** line |
+| Force one learning pass now | Knowledge group → Training | **▶ Learn now** |
+| Lint the Wiki | Knowledge group → Training | **🧹 Curator now** |
+| Undo the latest learning run | Knowledge group → Training | **↶ Undo the latest learning run** |
+| Back the brain up to GitHub | Knowledge group → Training | The **⇅ Sync brain with GitHub (two-way)** block |
+| Browse/edit files in the brain | Knowledge group → Documents | The folder tree on the left |
+| Assign a loop that digests sources | Operations group → Jobs → Recurring | **+ Add job** |
+| Normalise brain folders | Admin group → Preferences | **Normalise the selected brain** |
 
 ## Tips
 
@@ -257,17 +257,17 @@ The result changes nothing, it only pours into the **Learning log** block as "Wi
 - **Say "remember this" for what is durable.** Product niche, main sales channel, pricing decisions. Do not record the transient (busy today, a message just sent), which SenOS skips anyway.
 - **To digest a document you must say so.** Dropping a file is not enough to save it, you have to add "save to source" or "ingest". Ask an ordinary question and SenOS just reads and moves on.
 - **Memory travels with the folder.** Change machines or move to a VPS and you only need to point SenOS at the right brain folder for every memory and Wiki page to be intact.
-- **Do not hand-roll git to sync.** SenOS already has the **⇅ Sync brain with GitHub (two-way)** block on the Self-learning page: it pushes the whole brains folder to a private repo and pulls changes back from another machine. Step by step in [Backing the brain up to GitHub](18-github-backup.md).
-- **See the knowledge visually** in the [Knowledge graph](03-knowledge-graph.md): every source and Wiki page is a node, `[[...]]` links are the edges.
+- **Do not hand-roll git to sync.** SenOS already has the **⇅ Sync brain with GitHub (two-way)** block on the Training page: it pushes the whole brains folder to a private repo and pulls changes back from another machine. Step by step in [Backing the brain up to GitHub](18-github-backup.md).
+- **See the knowledge visually** in the [Knowledge map](03-knowledge-graph.md): every source and Wiki page is a node, `[[...]]` links are the edges.
 
 ## Common problems
 
-- **The "LONG-TERM MEMORY" section or the "Learn from conversation now" button is missing from the chat column.** That widget was removed. Everything about learning and memory is now on the **Self-learning** page (**Brain** group): the memory count on the **Metrics** line, manual learning through **▶ Learn now**.
-- **The memory count is still 0 after a lot of chatting.** A memory is only written when durable, memorable information appears, or when you say "remember this", or after a learning pass runs. Small talk creates no memories. Also check on the Self-learning page whether self-learning is on and whether the write mode is **Write automatically**.
+- **The "LONG-TERM MEMORY" section or the "Learn from conversation now" button is missing from the chat column.** That widget was removed. Everything about learning and memory is now on the **Training** page (**Knowledge** group): the memory count on the **Metrics** line, manual learning through **▶ Learn now**.
+- **The memory count is still 0 after a lot of chatting.** A memory is only written when durable, memorable information appears, or when you say "remember this", or after a learning pass runs. Small talk creates no memories. Also check on the Training page whether self-learning is on and whether the write mode is **Write automatically**.
 - **A dropped file never appears in Sources.** That is by design: reading only is the default. You have to include "save to source" or "ingest" in the message for SenOS to create the `.md` in `sources/`.
 - **Old images in a conversation turn into a grey "Image expired" box.** By design: `attachments/` is a cache and images over 30 days are cleared. Content already extracted into an `.md` in `sources/` at ingest time is still there.
 - **You deleted the wrong brain.** It is not lost right away: the folder is in `brain-trash` inside SenOS's state folder, named like `Brain name__20260729-153012`, kept 30 days. The safe way to recover: click ➕ and recreate the brain with **exactly the old name** (this removes the tombstone so the brain is not deleted again on sync), then copy the contents from the trash into that folder.
-- **A brain reports a non-standard structure.** Go to Settings, the Interface and Brain group, the Brain structure item, and click **Normalise the selected brain** so SenOS collapses the folders.
+- **A brain reports a non-standard structure.** Go to Preferences, the Interface & Brain group, the Normalise brain card, and click **Normalise the selected brain** so SenOS collapses the folders.
 - **Memories did not follow to a new machine.** Check that you pointed at the right brain folder, the one containing `memory/`. Memory lives in the folder, not in the account. To keep two machines matched automatically, turn on GitHub sync, see [Backing the brain up to GitHub](18-github-backup.md).
 - **After a GitHub backup, conversation logs and images are missing.** By design: `memory/conversations/`, `attachments/` and `inbox/` are all outside the brain's git. The backup only keeps distilled knowledge.
 
@@ -276,7 +276,7 @@ The result changes nothing, it only pours into the **Learning log** block as "Wi
 - [Self-learning](22-self-learning.md) - turning self-learning on and off, write modes, the Curator, undoing a learning run.
 - [File manager](05-file-manager.md) - browsing and editing brain files directly, cache details.
 - [Backing the brain up to GitHub](18-github-backup.md) - two-way sync of every brain across machines.
-- [Knowledge graph](03-knowledge-graph.md) - seeing Sources and Wiki as a network.
+- [Knowledge map](03-knowledge-graph.md) - seeing Sources and Wiki as a network.
 - [Skills](06-skills.md) - skills living in the brain's `skills/`.
 - [Agents and Workflows](07-agents-and-workflows.md) - the operating layer in `agents/` and `workflows/`.
 - [Recurring jobs and reminders](08-recurring-jobs.md) - assigning a loop that digests sources on a schedule.

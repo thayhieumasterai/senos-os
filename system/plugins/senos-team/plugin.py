@@ -31,7 +31,7 @@ _LIST_MAX = 30
 _OPS = ("list", "get", "list_agents", "create", "update", "archive", "unarchive", "delete", "add_member",
         "remove_member", "set_leader", "create_agent", "set_agent_model", "dispatch", "job")
 _NO_OPS = ("ERROR: bộ quản lý nhóm chưa sẵn sàng (máy chủ đang khởi động?). Thử lại sau vài giây, "
-           "hoặc làm ở trang Nhóm trên dashboard.")
+           "hoặc làm ở trang Nhóm AI trên dashboard.")
 
 
 class _Fail(Exception):
@@ -73,7 +73,7 @@ def _dispatch(ops, root, team, args, turn) -> str:
     if got["quality"]:
         out.append("Nhóm bật nghiệm thu: việc chỉ tính ĐẠT khi qua kiểm hay chủ xác nhận trên thẻ; SenOS không tự duyệt.")
     if got["paused"]:
-        out.append("CẢNH BÁO: nhóm đang tạm dừng nên việc NẰM CHỜ, chưa chạy. Nói rõ với chủ: bật lại nhóm ở trang Nhóm.")
+        out.append("CẢNH BÁO: nhóm đang tạm dừng nên việc NẰM CHỜ, chưa chạy. Nói rõ với chủ: bật lại nhóm ở trang Nhóm AI.")
     return "\n".join(out)
 
 
@@ -187,7 +187,7 @@ def _do(op: str, args: dict, root: str, turn=None) -> str:
         head = "Nhóm này đã có từ trước (cùng mã yêu cầu), không tạo thêm." if got["duplicate"] else "Đã tạo nhóm."
         extra = f" Trợ lý mới tạo: {', '.join(created)}." if created else ""
         return (f"{head}{extra}\n{_team_line(ops, team, _agent_models(root))}\n"
-                "Chủ mở trang Nhóm để nhắn vào nhóm.")
+                "Chủ mở trang Nhóm AI để nhắn vào nhóm.")
     if op == "create_agent":
         slug = _new_agent(ops, root, args)
         msg = f"Đã tạo trợ lý '{slug}'" + (f" với model {_s(args.get('model'))}" if _s(args.get("model")) else "") + "."
@@ -264,7 +264,7 @@ async def _run(args, ctx) -> str:
         return "ERROR: op phải là một trong: " + ", ".join(_OPS) + "."
     if not ctx.vault_root:
         return ("ERROR: chưa biết đang làm việc trên brain nào nên không thao tác nhóm được. "
-                "Làm ở trang Nhóm trên dashboard, ở đó brain đã xác định rõ.")
+                "Làm ở trang Nhóm AI trên dashboard, ở đó brain đã xác định rõ.")
     try:
         root = _ops().root(str(ctx.vault_root))
         # Lượt đang chạy đọc Ở ĐÂY (luồng của lượt), không trong luồng phụ: danh tính người giao việc (op=dispatch).

@@ -132,7 +132,7 @@ for prov in ("grok-cli", "antigravity-cli"):
             team_engine.build({"provider": prov, "model": ""}, Base(), "team-x", {})
         check(f"{prov}: chưa có cơ chế chỉ chữ, báo rõ thay vì chạy", False)
     except team_engine.TeamEngineUnavailable as ex:
-        check(f"{prov}: chưa có cơ chế chỉ chữ, báo rõ thay vì chạy", prov in ex.reason and "Cộng sự" in ex.reason)
+        check(f"{prov}: chưa có cơ chế chỉ chữ, báo rõ thay vì chạy", prov in ex.reason and "Trợ lý" in ex.reason)
 try:
     with patch.object(aux_engine, "availability", return_value=(False, "Chưa cài Codex CLI")):
         team_engine.build({"provider": "openai-oauth", "model": ""}, Base(), "team-x", {})

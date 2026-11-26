@@ -274,7 +274,7 @@ def khoi_quy_trinh_dang_mo(ten: str, slug: str, duong_dan: str, so_buoc: int,
     Liệt kê luôn tên các bước - hỏi "gộp bớt bước được không" mà phải đi đọc file mới biết có
     những bước gì thì lượt trả lời nào cũng tốn thêm một vòng đọc file.
     """
-    dong = [f"[QUY TRÌNH ĐANG MỞ trong trang Cộng sự: {ten} (slug: {slug}, {int(so_buoc)} bước)",
+    dong = [f"[QUY TRÌNH ĐANG MỞ trong trang Trợ lý: {ten} (slug: {slug}, {int(so_buoc)} bước)",
             f"File quy trình: {duong_dan}"]
     for i, b in enumerate(buoc or []):
         t = str((b or {}).get("task") or "").strip().replace("\n", " ")

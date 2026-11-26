@@ -133,7 +133,7 @@ try:
     vl.make_provider({"voice": {"live_provider": "gemini"}, "model": {}})
 except RuntimeError as e:
     err = str(e)
-check("make_provider: thiếu key -> nhắc trang Models", "Models" in err)
+check("make_provider: thiếu key -> nhắc trang Mô hình AI", "Mô hình AI" in err or "AI models" in err)
 p = vl.make_provider({"voice": {"live_provider": "openai", "live_model": "gpt-realtime-mini", "live_voice": "cedar"},
                       "model": {"openai_api_key": "sk"}})
 check("make_provider: openai đúng model/giọng", isinstance(p, vl.OpenAIRealtime) and p.model == "gpt-realtime-mini" and p.voice == "cedar")

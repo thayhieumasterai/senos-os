@@ -97,8 +97,8 @@ def _collision(slug: str) -> dict:
                     code="bundled")
     if slug in _pack_slugs():
         return _err("validate",
-                    f"'{slug}' trùng tên một plugin đến từ gói trong SenOS Store. Đổi slug trong plugin.yaml rồi thử lại.",
-                    f"'{slug}' is the name of a plugin from a SenOS Store pack. Change the slug in plugin.yaml and try again.",
+                    f"'{slug}' trùng tên một plugin đến từ gói trong Chợ Sen. Đổi slug trong plugin.yaml rồi thử lại.",
+                    f"'{slug}' is the name of a plugin from a Sen Market pack. Change the slug in plugin.yaml and try again.",
                     code="pack")
     return {}
 

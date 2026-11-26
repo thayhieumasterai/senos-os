@@ -35,7 +35,7 @@ CLAUDE_MD_PATH = Path(__file__).resolve().parent.parent / "CLAUDE.md"
 # sha256 of the CLAUDE.md this contract was checked against. Changing CLAUDE.md fails
 # tests/python/test_background_prompt.py until someone reads the new rule, carries it into CONTRACT when a background
 # job needs it, and updates this hash.
-REVIEWED_CLAUDE_MD_SHA256 = "1c93e13d4f63e8d09f40a52fe3002b147c245bcaea6623115c7e325459cca7da"
+REVIEWED_CLAUDE_MD_SHA256 = "8e03b9bf1bf6fc4554186650d0b478f97c1e408f93fca89f06d68c24ca86119b"
 DEFAULT_BASIS_POINTS = 1000   # 10% of background jobs
 SALT = "background-prompt-v1"
 
@@ -76,14 +76,14 @@ result with `[[NEEDS_INPUT]]` and ONE question; a reminder at full access does n
 not do and why. With no such instruction, end with ONE short question in words; a hidden block \
 `<!-- SENOS_ASK: {"question":"...","header":"...","options":[{"label":"...","desc":"..."}]} -->` (at most 4 \
 options, no "Other") may follow it.
-- Zalo (store pack `javis.zalo`; absent means tell the owner to install it): read with `zalo_get_*`, \
+- Zalo (pack `senos.zalo` in Chợ Sen; absent means tell the owner to install it): read with `zalo_get_*`, \
 `zalo_list_threads`, `zalo_search_threads`; send text with `zalo_send_message`, a link as a preview card with \
 `zalo_send_link`, images or files with `zalo_send_image`; tag people or make a group note/reminder/poll with `zalo_send_mention`, \
 `zalo_create_note|reminder|poll`; see images with `zalo_read_images`; react with `zalo_add_reaction`. Never the old \
 `senos_zalo_send`. Send only what the task says to send, with the right `threadId` and `threadType` (0 person, \
 1 group). A name matching several chats: never guess, ask. Exactly one exact match: send.
-- Customer chats from every channel are on the Chatbot page; reply to one on its own channel with `inbox_find`, \
-then `inbox_reply` (several matches for a name: never guess, ask). Store pack `javis.crm` adds `crm_*` tools.
+- Customer chats from every channel are on the Hộp thư bot (Bot inbox) page; reply to one on its own channel with `inbox_find`, \
+then `inbox_reply` (several matches for a name: never guess, ask). Pack `senos.crm` in Chợ Sen adds `crm_*` tools.
 - Images: create or edit with `senos_generate_image` (signed-in ChatGPT plan); it takes real reference images in \
 `images`. Show an image or file in the result with a path relative to the vault root: `![name](attachments/x.jpg)`, \
 `[name.pdf](exports/x.pdf)`. An .html app to SHARE (`/s/<token>/`) reads data by a relative path (`./data.json`), \
@@ -94,7 +94,7 @@ does that follow-up itself.
 - Never say "I will report back", "give me a moment", "I will wait and then summarize": your run ends when you stop. \
 Either do it now and give the real result, or queue it (`senos_task`, a reminder) and say what was queued and where \
 the result lands; otherwise say plainly it was not done. "Queued" is not "running": if the tool says orchestration is \
-off, report exactly that and point to "AI tự vận hành" on the Tasks page.
+off, report exactly that and point to "AI tự vận hành" on the Công việc (Jobs) page.
 
 ## Creating things from a job
 - Create an agent, workflow, loop, reminder, skill or plugin only when the task itself asks for it. A plan or next \

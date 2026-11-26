@@ -352,7 +352,7 @@ check("5xx giữ nhịp nhanh như cũ (một giây sau thường đã ngon)",
 _cuoi = chay(lambda: engine.thu_lai_khi_tam_thoi(lam_stream([[LOI_429]], []), nhan="t"))[-1]
 check("hết đường thì nói rõ đây là hạn mức, không chỉ dán JSON",
       "hạn mức" in _cuoi["content"])
-check("và chỉ luôn đường đi tiếp", "Models" in _cuoi["content"])
+check("và chỉ luôn đường đi tiếp", "Mô hình AI" in _cuoi["content"])
 check("vẫn giữ nguyên lỗi gốc để còn tra được",
       "Anthropic 429" in _cuoi["content"] and "rate_limit_error" in _cuoi["content"])
 check("không em dash", "—" not in _cuoi["content"])

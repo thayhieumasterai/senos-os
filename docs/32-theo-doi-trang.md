@@ -16,9 +16,9 @@ Dùng khi việc cần làm chỉ là canh một trang: giá bên đối thủ, 
 
 Nói với SenOS như: "canh giúp anh trang này, giá áo xuống dưới 900k thì báo" kèm đường link. SenOS dùng tool `senos_watch` và báo lại mã mục theo dõi. Mọi engine đều dùng được.
 
-## Tạo trên trang Việc định kỳ
+## Tạo trên trang Lịch tự động
 
-1. Vào **Việc định kỳ**, mở tab **Theo dõi trang**.
+1. Vào **Lịch tự động**, mở tab **Theo dõi trang**.
 2. Dán **Địa chỉ trang**, chọn **Báo khi**, điền cụm chữ hoặc ngưỡng giá nếu cần.
 3. Đặt **Canh mỗi** (từ 5 phút tới 7 ngày, mặc định 60 phút) và một tên dễ nhớ.
 4. Bấm **Bắt đầu theo dõi**. Lượt canh đầu chạy trong vòng 30 giây.

@@ -2,11 +2,11 @@
 
 ***Tiếng Việt** · [English](en/05-file-manager.md)*
 
-Trang "Tệp tin" là trình quản lý tệp ngay trong dashboard SenOS. Bạn tìm file, duyệt thư mục, mở và sửa file văn bản (.md, .txt...) trực tiếp trên trình duyệt rồi lưu, tải file lên, tải file về (mọi loại file), tải cả thư mục về dạng .zip, tạo thư mục, đổi tên và xoá. Điểm vào luôn là "brain" (bộ não) bạn đang chọn, không cần mở File Explorer hay dùng lệnh.
+Trang "Tài liệu" là trình quản lý tệp ngay trong dashboard SenOS. Bạn tìm file, duyệt thư mục, mở và sửa file văn bản (.md, .txt...) trực tiếp trên trình duyệt rồi lưu, tải file lên, tải file về (mọi loại file), tải cả thư mục về dạng .zip, tạo thư mục, đổi tên và xoá. Điểm vào luôn là "brain" (bộ não) bạn đang chọn, không cần mở File Explorer hay dùng lệnh.
 
 ## Tính năng này là gì
 
-Mỗi brain của SenOS thực chất là một thư mục trên máy/VPS chứa toàn bộ tri thức: ghi chú nguồn, Wiki, bộ nhớ, agents, workflows... Trang "Tệp tin" cho bạn xem và chỉnh sửa các file đó một cách trực quan:
+Mỗi brain của SenOS thực chất là một thư mục trên máy/VPS chứa toàn bộ tri thức: ghi chú nguồn, Wiki, bộ nhớ, agents, workflows... Trang "Tài liệu" cho bạn xem và chỉnh sửa các file đó một cách trực quan:
 
 - Tìm file trong toàn brain theo **tên** hoặc theo **nội dung**.
 - Duyệt cây thư mục (nhấp vào thư mục để đi sâu vào, có breadcrumb để quay lại).
@@ -35,7 +35,7 @@ Cách chỉnh biến môi trường xem [Cấu hình .env](16-cau-hinh-env.md).
 ## Mở ở đâu trong SenOS
 
 1. Mở dashboard SenOS (mặc định ở cổng 7777).
-2. Trên rail điều hướng bên trái, mở nhóm **Bộ não** rồi bấm mục **Tệp tin**.
+2. Trên rail điều hướng bên trái, mở nhóm **Tri thức** rồi bấm mục **Tài liệu**.
 3. Trang hiện ô tìm kiếm ở trên cùng, dưới đó là thanh công cụ, dưới nữa là danh sách file/thư mục. Lần đầu vào, SenOS hiển thị thư mục gốc của brain đang chọn.
 
 Nếu danh sách báo lỗi kiểu "Máy chủ SenOS chưa có chức năng Tệp tin", hãy khởi động lại server (chạy `stop-senos.bat` rồi `start-senos.vbs`) và tải lại trang. Xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
@@ -46,7 +46,7 @@ Trình quản lý tệp luôn thao tác trên brain đang được chọn. Bạn
 
 1. Tìm ô danh sách brain trên thanh trên cùng (mặc định là "Brain Default").
 2. Bấm vào ô đó và chọn brain bạn muốn. Mỗi brain hiển thị dạng "🧠 tên brain" (kèm số note nếu có).
-3. Trang Tệp tin **tự nạp lại** theo brain mới ngay khi bạn đổi, không cần bấm ↻ cũng không cần F5. Cây vault ở cột trái cũng làm mới theo.
+3. Trang Tài liệu **tự nạp lại** theo brain mới ngay khi bạn đổi, không cần bấm ↻ cũng không cần F5. Cây vault ở cột trái cũng làm mới theo.
 
 Cạnh ô chọn brain còn có ba nút nhỏ:
 
@@ -62,9 +62,9 @@ Về nút 🗑, có ba điều cần nhớ:
 - Với mục folder ngoài (📁): nút này chỉ **gỡ khỏi danh sách chọn**, không đụng dữ liệu trên ổ đĩa. Hộp xác nhận nói rõ "Chỉ gỡ khỏi menu chọn não, KHÔNG xoá dữ liệu trên ổ đĩa."
 - Brain mặc định không xoá được, SenOS báo "Không thể xoá Brain mặc định (não khởi đầu)."
 
-Đừng nhầm nút này với nút "Xoá" từng dòng file bên trong trang Tệp tin. Chi tiết về brain và bộ nhớ xem [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md).
+Đừng nhầm nút này với nút "Xoá" từng dòng file bên trong trang Tài liệu. Chi tiết về brain và bộ nhớ xem [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md).
 
-## Giao diện trang Tệp tin
+## Giao diện trang Tài liệu
 
 **Hàng trên cùng - tìm kiếm**, gồm:
 
@@ -158,11 +158,11 @@ Bản SenOS **trước 0.33.4** có một lỗi âm thầm: mở note `.md` tron
 
 Bản này đã bịt đường đó. Với file lỡ hỏng rồi:
 
-1. Vào trang **Tệp tin**. SenOS tự soi cả brain một lượt ngay khi bạn vào. **Không có file nào hỏng thì không hiện gì cả** - im lặng là tin tốt.
+1. Vào trang **Tài liệu**. SenOS tự soi cả brain một lượt ngay khi bạn vào. **Không có file nào hỏng thì không hiện gì cả** - im lặng là tin tốt.
 2. Có thì hiện một khung vàng ở đầu trang, kèm danh sách file và hỏng ở chỗ nào.
 3. Bấm **Chữa hết N file**. SenOS dựng lại khối thuộc tính và gỡ dấu gạch chéo thừa, rồi báo lại số file đã chữa.
 
-Từ 0.52.8, brain nào soi ra **sạch** thì SenOS nhớ và **thôi soi lại** ở những lần mở trang sau. Vòng soi này đọc toàn bộ file `.md` của brain, nên với brain vài nghìn note nó làm trang Tệp tin mở chậm hẳn và cả ô tìm kiếm cũng ì theo. Vết hỏng thì do một bản không còn tồn tại gây ra, nên sạch một lần là sạch hẳn. Brain còn file hỏng thì vẫn soi lại mỗi lần vào, tới khi bạn bấm chữa. Chép một vault cũ từ máy khác vào và muốn soi lại thì mở `/files/md-hong?force=1`.
+Từ 0.52.8, brain nào soi ra **sạch** thì SenOS nhớ và **thôi soi lại** ở những lần mở trang sau. Vòng soi này đọc toàn bộ file `.md` của brain, nên với brain vài nghìn note nó làm trang Tài liệu mở chậm hẳn và cả ô tìm kiếm cũng ì theo. Vết hỏng thì do một bản không còn tồn tại gây ra, nên sạch một lần là sạch hẳn. Brain còn file hỏng thì vẫn soi lại mỗi lần vào, tới khi bạn bấm chữa. Chép một vault cũ từ máy khác vào và muốn soi lại thì mở `/files/md-hong?force=1`.
 
 SenOS chỉ sửa thứ mà **chỉ lỗi đó mới tạo ra được**: khối `* * *` ở ngay đầu file kẹp giữa toàn dòng trông như metadata, và chuỗi từ hai dấu gạch chéo trở lên. Đường kẻ ngang giữa bài, file có frontmatter còn lành, hay một dấu gạch chéo lẻ bạn cố ý gõ - đều không bị đụng tới.
 

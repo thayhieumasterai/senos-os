@@ -27,20 +27,20 @@ Có **hai** chỗ chat, dùng chung một cuộc hội thoại nên chuyển qua
 
 ### Màn chính "SenOS"
 
-Rail điều hướng bên trái, nhóm **Trợ lý** → mục **SenOS**. Đây cũng là màn hình mặc định khi mở dashboard (mặc định ở cổng 7777), mở trang lên là đã ở đây.
+Rail điều hướng bên trái, nhóm **Tri thức** → mục **Bản đồ tri thức**. Đây cũng là màn hình mặc định khi mở dashboard (mặc định ở cổng 7777), mở trang lên là đã ở đây.
 
 | Khu vực | Vị trí | Nội dung |
 |---|---|---|
 | VAULT | Cột trái | Cây thư mục của brain đang chọn, ô **Tìm note...**, hai chế độ lọc **Tên** / **Nội dung**, ba nút **＋** (tạo file), **📁** (tạo thư mục), **⟳** (làm mới cây) |
 | Đồ thị tri thức + trạng thái | Chính giữa | Mạng ghi chú, dòng chữ trạng thái (SẴN SÀNG, ĐANG NGHE...), dải số **AGENTS** / **SKILLS** / **WORKFLOWS** ở đáy |
-| HỘI THOẠI | Cột phải | Lịch sử chat, badge engine, nút **⛶** sang trang Trò chuyện |
+| HỘI THOẠI | Cột phải | Lịch sử chat, badge engine, nút **⛶** sang trang Hội thoại |
 | Khung nhập | Dưới cùng | Một thẻ bo tròn: file đính kèm, ô gõ chữ, rồi hàng nút **＋**, chip model, chip Effort, tia sét Fast mode, chip thư mục đang ghim (nếu có), mic và nút gửi (đang chạy thì thành nút dừng) |
 
-Cột trái **không còn** bảng thẻ số liệu kinh doanh; đó là Vault explorer, bấm một note là mở ra sửa ngay trên màn hình (xem [Quản lý tệp tin](05-quan-ly-tep-tin.md)). Bấm vào số AGENTS / SKILLS / WORKFLOWS thì nhảy thẳng sang trang tương ứng trong nhóm **Năng lực**.
+Cột trái **không còn** bảng thẻ số liệu kinh doanh; đó là Vault explorer, bấm một note là mở ra sửa ngay trên màn hình (xem [Quản lý tệp tin](05-quan-ly-tep-tin.md)). Bấm vào số AGENTS / SKILLS / WORKFLOWS thì nhảy thẳng sang trang tương ứng trong nhóm **Đội ngũ AI**.
 
-### Trang "Trò chuyện" riêng
+### Trang "Hội thoại" riêng
 
-Rail, nhóm **Trợ lý** → mục **Trò chuyện**. Đây là một trang chat toàn màn hình, không có quả cầu và không có cây vault:
+Rail, mục **Hội thoại** trên cùng. Đây là một trang chat toàn màn hình, không có quả cầu và không có cây vault:
 
 - Cột trái là **lịch sử hội thoại** (mở lại, tìm, đổi tên, xoá phiên cũ).
 - Thanh trên cùng ghi **Trò chuyện với SenOS**, bên phải là badge engine.
@@ -88,7 +88,7 @@ SenOS cũng tự chờ lâu hơn khi câu bạn nói kết bằng "và", "nhưng
 
 Nói (hoặc gõ) là được, SenOS dùng đúng công cụ và báo lại kết quả thật:
 
-- **"Mở trang Việc"**, **"mở file tên X"**, **"cho xem việc vừa giao"**, **"cuộn xuống"**: dashboard tự mở đúng chỗ và SenOS nói "đã mở". Việc này chỉ chạy khi có một tab SenOS đang mở.
+- **"Mở trang Công việc"**, **"mở file tên X"**, **"cho xem việc vừa giao"**, **"cuộn xuống"**: dashboard tự mở đúng chỗ và SenOS nói "đã mở". Việc này chỉ chạy khi có một tab SenOS đang mở.
 - **"Mở Chrome"**, **"bật Excel lên"**, **"mở trang youtube.com"**, **"tắt Chrome"**, **"đang mở app nào"**: SenOS mở hay đóng app trên **chính máy đang chạy SenOS**. Đóng app là đóng lịch sự (app có tài liệu chưa lưu sẽ tự hỏi lưu); nói "ép tắt" thì SenOS tắt hẳn. Nếu SenOS chạy trong Docker trên máy chủ thì nó nói rõ là không điều khiển được máy bạn.
 - Đang bôi đen một đoạn chữ rồi nói "tóm tắt đoạn này": SenOS biết bạn đang chỉ đoạn nào, không hỏi lại.
 
@@ -100,7 +100,7 @@ Trong cuộc gọi, SenOS **nói thành tiếng** mọi câu trả lời. Đồ 
 - Gõ chữ ngoài cuộc gọi thì SenOS chỉ trả lời bằng chữ.
 - Không còn nút loa hay công tắc bật tắt giọng riêng: cuộc gọi quyết định SenOS có nói hay không.
 
-Đổi giọng ở **Cài đặt → Giọng nói**, xem mục **Cài đặt Giọng nói** bên dưới.
+Đổi giọng ở **Thiết lập → Giọng nói**, xem mục **Thiết lập Giọng nói** bên dưới.
 
 ### Bước 4 - Dừng khi SenOS đang trả lời
 
@@ -136,7 +136,7 @@ Ba lệnh phiên đứng đầu danh sách:
 
 Trên bản web, `/new` và `/reset` cùng mở một hội thoại mới.
 
-Ngay bên dưới là **mười hai lệnh hệ thống** (xem mục tiếp theo), rồi tới **toàn bộ skill của brain đang chọn**. Từ 0.290.0 mỗi dòng gọn trên một hàng: cột `/lệnh` rộng bằng nhau nên tên và mô tả thẳng một cột, các nhóm (Lệnh, Cộng sự, Quy trình, Skill) có tiêu đề nhỏ. Khi đang gõ chữ để lọc, tiêu đề nhóm ẩn đi và nhãn nhóm nằm cuối dòng.
+Ngay bên dưới là **mười hai lệnh hệ thống** (xem mục tiếp theo), rồi tới **toàn bộ skill của brain đang chọn**. Từ 0.290.0 mỗi dòng gọn trên một hàng: cột `/lệnh` rộng bằng nhau nên tên và mô tả thẳng một cột, các nhóm (Lệnh, Trợ lý, Quy trình, Skill) có tiêu đề nhỏ. Khi đang gõ chữ để lọc, tiêu đề nhóm ẩn đi và nhãn nhóm nằm cuối dòng.
 
 Lệnh đã gõ vào ô nhập (ở đầu tin, hoặc tên skill có thật ở giữa câu) được **tô màu cam**, để bạn thấy ngay phần nào SenOS sẽ hiểu là lệnh. Đang gõ dở một chữ chưa khớp lệnh nào thì chưa tô.
 
@@ -263,8 +263,8 @@ Thẻ ghim còn là **lối quay lại**: bấm vào thẻ là file mở lại t
 
 Chiều ngược lại cũng có: SenOS đưa được ảnh và file trong brain vào thẳng câu trả lời.
 
-- **Ảnh**: SenOS viết `![mô tả](attachments/ten-anh.png)` và dashboard vẽ ra ảnh thật trong bong bóng chat. Bấm vào ảnh là mở đúng vị trí file đó trong trang **Tệp tin**.
-- **File khác** (pdf, docx, xlsx...): SenOS viết link markdown, bấm vào mở file trong trang Tệp tin.
+- **Ảnh**: SenOS viết `![mô tả](attachments/ten-anh.png)` và dashboard vẽ ra ảnh thật trong bong bóng chat. Bấm vào ảnh là mở đúng vị trí file đó trong trang **Tài liệu**.
+- **File khác** (pdf, docx, xlsx...): SenOS viết link markdown, bấm vào mở file trong trang Tài liệu.
 - **Đường dẫn trong dấu nháy ngược** kiểu `SenOS/loops/bao-cao-sang.md` cũng tự thành link mở file.
 - **Wikilink** `[[Tên note]]` thành link điều hướng kiểu Wikipedia, bấm vào là SenOS đi tìm đúng note trong vault rồi mở ra.
 - Ảnh **không tải được nữa** (đã hết hạn trong vùng cache, bị xoá tay hoặc đổi tên) hiện thành một ô xám ghi **"Ảnh đã hết hạn"** thay cho icon vỡ. Thư mục `attachments/` và `inbox/` của brain là vùng cache: hết hạn 30 ngày hoặc chạm trần 300MB thì bị dọn.
@@ -305,9 +305,9 @@ Bên dưới, SenOS gọi tool `senos_generate_image` (thuộc plugin đi kèm a
 
 Vài điều cần biết:
 
-- **Phải kết nối ChatGPT trước.** Chưa kết nối thì tool trả lời thẳng "Chưa kết nối ChatGPT (OAuth)." kèm hướng dẫn vào trang **Models** đăng nhập ChatGPT. Xem [Models & engine](10-models-va-engine.md).
+- **Phải kết nối ChatGPT trước.** Chưa kết nối thì tool trả lời thẳng "Chưa kết nối ChatGPT (OAuth)." kèm hướng dẫn vào trang **Mô hình AI** đăng nhập ChatGPT. Xem [Models & engine](10-models-va-engine.md).
 - Tạo ảnh là thao tác mức `safe` (ghi file + tiêu quota), nên việc nền đang chạy ở chế độ chỉ-đọc sẽ không tự tạo ảnh.
-- Ảnh do AI sinh ra mang sẵn dấu nguồn gốc (Content Credentials). Trong **Cài đặt → Giao diện & Brain → Dấu nguồn gốc ảnh AI** có hai nút **Giữ dấu** / **Gỡ dấu**; mặc định là giữ.
+- Ảnh do AI sinh ra mang sẵn dấu nguồn gốc (Content Credentials). Trong **Thiết lập → Giao diện & Brain → Dấu nguồn gốc ảnh AI** có hai nút **Giữ dấu** / **Gỡ dấu**; mặc định là giữ.
 - Ngoài chat, còn gọi trực tiếp được qua `POST /image/generate` với các trường `prompt`, `aspect_ratio`, `quality`, `brain`.
 
 ## Tóm tắt video YouTube
@@ -356,14 +356,14 @@ Vài điểm hay gặp:
 - Tin **dài** của bạn (trên 10 dòng hoặc trên 900 ký tự) được thu gọn, có nút **Xem thêm** / **Thu gọn** để mở ra đóng lại.
 - Mỗi khối code có nút **⧉ Copy** riêng ở góc.
 - Câu trả lời đang chạy chưa có nút ghim: nút hiện ra ngay khi câu trả lời được lưu. Ghim lưu trên máy chủ, mở cuộc trò chuyện ở máy khác vẫn còn; tua lại xoá câu trả lời thì ghim của nó đi theo.
-- Dòng nhỏ dưới câu trả lời chỉ còn engine, model và chế độ ngữ cảnh. Số token đã bỏ khỏi khung chat; xem ở trang **Mức dùng**.
+- Dòng nhỏ dưới câu trả lời chỉ còn engine, model và chế độ ngữ cảnh. Số token đã bỏ khỏi khung chat; xem ở trang **Hạn mức**.
 - Khi bạn đang cuộn lên đọc lại mà SenOS trả lời tiếp, khung chat KHÔNG giật xuống; một nút **↓ Tin mới** hiện ở đáy để bấm nhảy xuống khi sẵn sàng.
 
 ## Chọn model, Effort và badge engine
 
 Hàng nút dưới ô gõ có ba thứ đứng cạnh nhau:
 
-- **Chip model**: hiện tên rút gọn của nhà cung cấp và model đang dùng. Bấm chip mở bảng chọn: ô **Tìm model...**, danh sách nhà cung cấp, mỗi cái bung ra danh sách model. Nhà cung cấp chưa cấu hình hiện ổ khoá 🔒 kèm dòng "+ Thêm API key ở trang Models để mở khoá".
+- **Chip model**: hiện tên rút gọn của nhà cung cấp và model đang dùng. Bấm chip mở bảng chọn: ô **Tìm model...**, danh sách nhà cung cấp, mỗi cái bung ra danh sách model. Nhà cung cấp chưa cấu hình hiện ổ khoá 🔒 kèm dòng "+ Thêm API key ở trang Mô hình AI để mở khoá".
 - **Chip Effort** (độ sâu suy nghĩ): tách riêng khỏi chip model vì đổi thường xuyên hơn. Bấm mở một thanh trượt sáu nấc **Off / Light / Medium / High / Extra / Ultra** (để tiếng Anh cho gọn), đầu trái ghi "Faster", đầu phải "Smarter", "Recommended" nằm dưới Medium. Kéo chuột hoặc dùng phím mũi tên, Home, End. Model Antigravity đã ghi sẵn mức trong tên (vd. `-high`) thì thanh trượt bị khoá.
 - **Tia sét Fast mode**: bấm để bật, tia sét chuyển sóng cam; bấm lần nữa để tắt. Không có chữ bật/tắt, rê chuột vào sẽ thấy "Fast mode" kèm ghi chú chi phí của bộ não đang chọn. Bộ não hoặc model không hỗ trợ thì tia sét mờ đi.
 
@@ -378,7 +378,7 @@ Hàng nút dưới ô gõ có ba thứ đứng cạnh nhau:
 
   Nhà cung cấp từ chối Fast mode (tài khoản không đủ điều kiện, vượt giới hạn) thì SenOS tự gửi lại ở tốc độ thường, lượt chat không hỏng; rê chuột vào tia sét sẽ thấy dòng báo lý do. Việc chạy nền (loop, nhắc hẹn, Kanban, nhóm) luôn chạy tốc độ thường.
 
-Badge cạnh chữ **HỘI THOẠI** (và ở góc phải trang Trò chuyện) hiện engine + model **thật** của lượt vừa chạy, lấy từ server chứ không phải model tự khai. Nếu badge khác cái bạn tưởng, tin badge.
+Badge cạnh chữ **HỘI THOẠI** (và ở góc phải trang Hội thoại) hiện engine + model **thật** của lượt vừa chạy, lấy từ server chứ không phải model tự khai. Nếu badge khác cái bạn tưởng, tin badge.
 
 Trên điện thoại, chip model nằm trong khung nhập cạnh chip Effort giống hệt máy tính, bảng chọn mở ngay phía trên khung nhập.
 
@@ -389,7 +389,7 @@ Mục **Ghim thư mục làm việc** trong menu **＋** cho một hội thoại
 - Ghim xong, cạnh tia sét hiện chip 📁 kèm tên thư mục. Rê chuột thấy đường dẫn đầy đủ; bấm vào để đổi hoặc **Bỏ ghim**.
 - Ghim theo **từng hội thoại**: hội thoại mới bắt đầu trong brain như thường. Ghim khi khung chat còn trống thì thư mục đi theo hội thoại ngay từ tin đầu.
 - Bộ não CLI (Claude Code, ChatGPT qua Codex, Grok Build, Antigravity) chạy lệnh ngay trong thư mục đó. Bộ não API đọc sửa file qua công cụ của brain, nên làm được với thư mục **trong** brain; thư mục ngoài brain thì chỉ bộ não CLI làm được.
-- Trang Coding dùng chung chip này thay cho nút chọn thư mục riêng. Các chip nhánh, worktree, điểm hồi và mức quyền vẫn ở trang Coding.
+- Trang Lập trình dùng chung chip này thay cho nút chọn thư mục riêng. Các chip nhánh, worktree, điểm hồi và mức quyền vẫn ở trang Lập trình.
 
 ## SenOS trình bày câu trả lời thế nào
 
@@ -407,18 +407,18 @@ Câu hỏi ngắn vẫn được trả lời bằng một câu. Định dạng l
 
 Các kênh chữ thuần thì siết hơn vì bản thân chúng không vẽ được: **Telegram** và **Zalo** không có bảng markdown, **terminal** thì không có bảng, ảnh nhúng lẫn link markdown. Cả ba vẫn dùng gạch đầu dòng bình thường. Xem [Telegram](11-telegram.md) và [CLI trong terminal](24-cli-terminal.md).
 
-> Nếu SenOS vẫn trả lời bằng văn xuôi dài: nhiều khả năng bộ nhớ dài hạn của brain còn một ký ức cũ kiểu "không thích bảng markdown, thích văn nói ngắn" từ thời bạn dùng bằng giọng nói, và ký ức đó được nạp vào **mọi** lượt chat. Mở `memory/MEMORY.md` trong trang **Tệp tin**, tìm dòng nói về cách trả lời rồi xoá dòng đó cùng file tương ứng trong `memory/facts/`. Xem [Second Brain, bộ nhớ & wiki](13-second-brain-bo-nho-wiki.md).
+> Nếu SenOS vẫn trả lời bằng văn xuôi dài: nhiều khả năng bộ nhớ dài hạn của brain còn một ký ức cũ kiểu "không thích bảng markdown, thích văn nói ngắn" từ thời bạn dùng bằng giọng nói, và ký ức đó được nạp vào **mọi** lượt chat. Mở `memory/MEMORY.md` trong trang **Tài liệu**, tìm dòng nói về cách trả lời rồi xoá dòng đó cùng file tương ứng trong `memory/facts/`. Xem [Second Brain, bộ nhớ & wiki](13-second-brain-bo-nho-wiki.md).
 
-## Cài đặt Giọng nói
+## Thiết lập Giọng nói
 
-Mọi thứ về giọng nằm trong **Cài đặt → Giọng nói**. Trang chỉ còn một thẻ, ô nào cũng tự lưu ngay khi bạn đổi, không có nút Lưu.
+Mọi thứ về giọng nằm trong **Thiết lập → Giọng nói**. Trang chỉ còn một thẻ, ô nào cũng tự lưu ngay khi bạn đổi, không có nút Lưu.
 
 Thẻ có hai thứ:
 
 - **Dòng "Đang dùng: ..."**: đường gọi đang chạy là **ChatGPT Live**, **Live (tên hãng)** qua API key hay **Cơ bản**. Ở đường Cơ bản, dòng này nói thêm bộ não nào trả lời nhanh, ví dụ "Trả lời nhanh bằng Antigravity CLI (gói Google)".
 - **Giọng SenOS**: danh sách giọng đổi theo đường gọi, xem bên dưới.
 
-Khi SenOS phải lùi xuống đường thấp hơn, dòng "Đang dùng" nói vì sao và cần làm gì, ví dụ nối ChatGPT ở trang **Models**, cài Codex CLI, hoặc cập nhật Codex CLI lên bản 0.153 trở lên.
+Khi SenOS phải lùi xuống đường thấp hơn, dòng "Đang dùng" nói vì sao và cần làm gì, ví dụ nối ChatGPT ở trang **Mô hình AI**, cài Codex CLI, hoặc cập nhật Codex CLI lên bản 0.153 trở lên.
 
 ### Giọng SenOS
 
@@ -426,7 +426,7 @@ Danh sách giọng tuỳ đường gọi:
 
 - **ChatGPT Live**: 9 giọng juniper (mặc định), maple, spruce, ember, vale, breeze, arbor, sol, cove. **▶ Nghe thử** phát một đoạn mẫu thu sẵn.
 - **Live qua API key**: các giọng của hãng đang dùng, không có nút nghe thử.
-- **Cơ bản**: 7 giọng Edge miễn phí là Emma (mặc định), Hoài My, Nam Minh, Ava, Andrew, Brian, William. Có OpenAI API key ở trang **Models** thì có thêm 11 giọng OpenAI (alloy, ash, ballad, coral, echo, fable, nova, onyx, sage, shimmer, verse). Cuối danh sách là **Giọng ElevenLabs của bạn**. **▶ Nghe thử** đọc một câu mẫu.
+- **Cơ bản**: 7 giọng Edge miễn phí là Emma (mặc định), Hoài My, Nam Minh, Ava, Andrew, Brian, William. Có OpenAI API key ở trang **Mô hình AI** thì có thêm 11 giọng OpenAI (alloy, ash, ballad, coral, echo, fable, nova, onyx, sage, shimmer, verse). Cuối danh sách là **Giọng ElevenLabs của bạn**. **▶ Nghe thử** đọc một câu mẫu.
 
 Chọn giọng là chọn luôn nhà cung cấp (Edge, OpenAI hay ElevenLabs). Từ 0.298.0 giọng Edge được lưu cả trên máy chủ, nên chọn trên máy tính thì điện thoại và ghi chú giọng nói gửi qua Telegram, Zalo cũng dùng đúng giọng đó. Tốc độ đọc vẫn lưu trên từng thiết bị.
 
@@ -446,11 +446,11 @@ Nếu giọng trả phí gặp lỗi (hết hạn mức, sai key, mất mạng),
 - **Tốc độ đọc**: từ 0,85× tới 1,45×, mặc định 1,10×. Chỉ hiện ở đường Cơ bản.
 - **API key ElevenLabs** và **Voice ID** (lấy ở ElevenLabs → Voices): chỉ hiện khi bạn chọn giọng ElevenLabs. Để trống ô key là giữ key đã lưu.
 
-Giọng OpenAI cần OpenAI API key ở trang **Models**; trang giọng nói không còn ô nhập key OpenAI.
+Giọng OpenAI cần OpenAI API key ở trang **Mô hình AI**; trang giọng nói không còn ô nhập key OpenAI.
 
 ### ChatGPT Live: gọi SenOS qua gói ChatGPT
 
-**ChatGPT Live** dùng gói ChatGPT bạn đã nối ở trang **Models**, không cần API key. SenOS tự chọn đường này khi gói ChatGPT đã nối và máy có Codex CLI bản 0.153 trở lên, bạn không phải chọn gì.
+**ChatGPT Live** dùng gói ChatGPT bạn đã nối ở trang **Mô hình AI**, không cần API key. SenOS tự chọn đường này khi gói ChatGPT đã nối và máy có Codex CLI bản 0.153 trở lên, bạn không phải chọn gì.
 
 - Bấm mic là bắt đầu nói chuyện: SenOS nghe liên tục, đáp sau chưa tới một giây, bạn chen ngang lúc nào cũng được.
 - Chuyện trò thì SenOS đáp ngay. Câu cần dữ liệu thật hay hành động (doanh thu, lịch, email, file, mở trang) thì SenOS nói một câu đệm kiểu "để xem nhé", giao bộ não chính bạn đã chọn (Claude hay bộ khác) làm với đủ MCP và tool, rồi đọc tóm tắt; bản đầy đủ (có bảng) hiện thành bong bóng trong khung chat. Lời SenOS đọc tóm tắt không hiện thành bong bóng thứ hai.
@@ -462,7 +462,7 @@ Giọng OpenAI cần OpenAI API key ở trang **Models**; trang giọng nói kh�
 
 ### Live qua API key
 
-Chưa có ChatGPT Live thì SenOS dùng **Gemini Live**, **OpenAI Realtime** hoặc **OpenAI GPT-Live**, bằng API key Gemini hay OpenAI bạn đã dán ở trang **Models**. Giọng có cảm xúc, ngắt lời tự nhiên, bản ghi chữ hai chiều hiện trong khung chat. Khi cần dữ liệu thật, model giao cho bộ não chính chạy nền rồi vẫn trò chuyện tiếp, có kết quả thì thuật lại (Gemini dòng 3.1 còn im chờ vì Google chưa hỗ trợ việc nền).
+Chưa có ChatGPT Live thì SenOS dùng **Gemini Live**, **OpenAI Realtime** hoặc **OpenAI GPT-Live**, bằng API key Gemini hay OpenAI bạn đã dán ở trang **Mô hình AI**. Giọng có cảm xúc, ngắt lời tự nhiên, bản ghi chữ hai chiều hiện trong khung chat. Khi cần dữ liệu thật, model giao cho bộ não chính chạy nền rồi vẫn trò chuyện tiếp, có kết quả thì thuật lại (Gemini dòng 3.1 còn im chờ vì Google chưa hỗ trợ việc nền).
 
 ### Đường Cơ bản và trả lời nhanh
 
@@ -479,7 +479,7 @@ Không có cái nào thì lượt nói đi thẳng bộ não chính. Câu cần 
 
 Ở đường Cơ bản, trình duyệt chỉ nghe được một ngôn ngữ, nên câu như "Mở dashboard Facebook ads" hay bị chép thành "Mở double Facebook add". **Tai nghe lại** là một model đa ngôn ngữ nghe lại chính âm thanh câu bạn vừa nói rồi mới chốt chữ vào bong bóng. Chữ tạm của trình duyệt vẫn hiện tức thì trong lúc bạn nói.
 
-- SenOS luôn tự chọn tai, bạn không phải cài gì. Tai của **đúng hãng bộ não chính** đi trước: bộ não là ChatGPT thì **gói ChatGPT** nghe (chỉ cần đã nối ChatGPT ở trang **Models**, không cần key), là Groq thì **Groq Whisper**, là OpenAI API thì **gpt-4o-transcribe**.
+- SenOS luôn tự chọn tai, bạn không phải cài gì. Tai của **đúng hãng bộ não chính** đi trước: bộ não là ChatGPT thì **gói ChatGPT** nghe (chỉ cần đã nối ChatGPT ở trang **Mô hình AI**, không cần key), là Groq thì **Groq Whisper**, là OpenAI API thì **gpt-4o-transcribe**.
 - Claude, Antigravity và Grok không mở cổng nghe giọng cho gói của họ, nên khi bộ não là một trong ba hãng này SenOS dùng tai tốt nhất đang có, theo thứ tự: Groq, gói ChatGPT, rồi key OpenAI. Không có tai nào thì dùng chữ của trình duyệt như trước.
 - **Agent nghe bằng tai của chính nó**: agent chọn model hãng nào thì lời đọc trong khung chat của agent đó và tin thoại gửi bot chuyên trách của nó được hãng ấy nghe. Agent để Mặc định thì theo bộ não chính. Trang Nhóm (nhiều agent cùng lúc) và trang Hội thoại dùng tai của bộ não chính.
 - Một tai hỏng (mạng, hết hạn mức, gói từ chối) thì tai kế tiếp nghe thay câu đó. Tin thoại Telegram, Zalo đi cùng thứ tự này.
@@ -507,11 +507,11 @@ Các ô dưới đây đã bỏ khỏi trang vì máy tự quyết được:
 
 ## Phóng to khung chat
 
-Khi làm việc lâu trong chat ở màn **SenOS**, bấm nút **⛶** ở góc mục HỘI THOẠI để sang thẳng trang **Trò chuyện** - khung chat toàn màn hình, cột trái là **lịch sử hội thoại** (mở lại/tìm/đổi tên/xoá phiên cũ - xem [Phiên hội thoại](04-phien-hoi-thoai.md)), cột phải là nội dung chat căn giữa cho dễ đọc, ô nhập cao hơn để gõ dài.
+Khi làm việc lâu trong chat ở màn **SenOS**, bấm nút **⛶** ở góc mục HỘI THOẠI để sang thẳng trang **Hội thoại** - khung chat toàn màn hình, cột trái là **lịch sử hội thoại** (mở lại/tìm/đổi tên/xoá phiên cũ - xem [Phiên hội thoại](04-phien-hoi-thoai.md)), cột phải là nội dung chat căn giữa cho dễ đọc, ô nhập cao hơn để gõ dài.
 
-Về lại màn SenOS: bấm nút **‹ Thu nhỏ** trên thanh tiêu đề của trang Trò chuyện.
+Về lại màn SenOS: bấm nút **‹ Thu nhỏ** trên thanh tiêu đề của trang Hội thoại.
 
-Đây vẫn là **một cuộc trò chuyện duy nhất**: chat ở màn SenOS hay ở trang Trò chuyện đều là cùng một mạch, cùng một thanh model, cùng chỗ đính file. Từ bản 0.12.4, nút phóng to không còn mở một lớp nổi riêng nữa - trước đây có hai khung chat trông gần giống nhau mà hành xử khác nhau, dễ nhầm.
+Đây vẫn là **một cuộc trò chuyện duy nhất**: chat ở màn SenOS hay ở trang Hội thoại đều là cùng một mạch, cùng một thanh model, cùng chỗ đính file. Từ bản 0.12.4, nút phóng to không còn mở một lớp nổi riêng nữa - trước đây có hai khung chat trông gần giống nhau mà hành xử khác nhau, dễ nhầm.
 
 ## Hỏi số liệu kinh doanh
 
@@ -543,7 +543,7 @@ Muốn SenOS **gọi điện đúng giờ** thì tick ô **Gọi điện cho tô
 
 ## Giữ ấm bộ nhớ đệm (Claude Code, gói Pro/Max)
 
-Gói Pro/Max giữ bộ nhớ đệm của Claude Code 1 giờ. Nghỉ quá 1 giờ thì tin tiếp theo phải nạp lại cả cuộc trò chuyện, tốn nhiều hạn mức với chat dài. Ở trang **Mức dùng token**, mục ngân sách có ô **Giữ ấm bộ nhớ đệm**: bật lên thì khoảng 50 phút sau tin cuối, SenOS gửi một yêu cầu rất nhỏ (không công cụ, không ghi vào cuộc trò chuyện) để giữ bộ nhớ đệm thêm 1 giờ. Chỉ chạy trong 2 giờ sau tin cuối, không bao giờ khi chat đang trả lời, và dừng ngay khi gói báo hết lượt hay bộ nhớ đệm đã nguội. Đây vẫn là việc chạy nền trên gói, nên mặc định tắt.
+Gói Pro/Max giữ bộ nhớ đệm của Claude Code 1 giờ. Nghỉ quá 1 giờ thì tin tiếp theo phải nạp lại cả cuộc trò chuyện, tốn nhiều hạn mức với chat dài. Ở trang **Hạn mức**, mục ngân sách có ô **Giữ ấm bộ nhớ đệm**: bật lên thì khoảng 50 phút sau tin cuối, SenOS gửi một yêu cầu rất nhỏ (không công cụ, không ghi vào cuộc trò chuyện) để giữ bộ nhớ đệm thêm 1 giờ. Chỉ chạy trong 2 giờ sau tin cuối, không bao giờ khi chat đang trả lời, và dừng ngay khi gói báo hết lượt hay bộ nhớ đệm đã nguội. Đây vẫn là việc chạy nền trên gói, nên mặc định tắt.
 
 ## Dùng trên điện thoại
 
@@ -551,12 +551,12 @@ Dưới 860px chiều ngang, giao diện đổi hẳn cho vừa màn hình:
 
 - Điều hướng thu thành ngăn kéo: bấm nút **☰** để mở, bấm nền mờ, chọn một mục hoặc nhấn Esc để đóng.
 - Nút **+** (hội thoại mới) dời lên header. Chip model vẫn ở trong khung nhập, cạnh chip Effort, như trên máy tính.
-- Nhóm **Hệ thống** (chọn brain, nút đổi tông sáng/tối, dải HỆ THỐNG và MCP) dời xuống đáy ngăn kéo điều hướng.
+- Nhóm **Quản trị** (chọn brain, nút đổi tông sáng/tối, dải HỆ THỐNG và MCP) dời xuống đáy ngăn kéo điều hướng.
 - Ô nhập rút gọn lời nhắc thành "Nói hoặc gõ cho SenOS…".
-- Nút **🕘 Lịch sử** ở header bị ẩn (trang **Trò chuyện** có sẵn lịch sử).
+- Nút **🕘 Lịch sử** ở header bị ẩn (trang **Hội thoại** có sẵn lịch sử).
 - Không có nút loa ở đâu cả: cuộc gọi bằng nút mic quyết định SenOS có nói thành tiếng hay không.
 - Không có chuột để rê, nên **chạm vào một tin nhắn** để hiện hàng nút của đúng tin đó; chạm ra chỗ khác thì ẩn đi.
-- Trong trang **Trò chuyện**, nút **🕘** ở thanh tiêu đề mở/đóng ngăn lịch sử trượt từ trái.
+- Trong trang **Hội thoại**, nút **🕘** ở thanh tiêu đề mở/đóng ngăn lịch sử trượt từ trái.
 
 ## Ý nghĩa dòng chữ trạng thái giữa màn hình
 
@@ -574,7 +574,7 @@ Dòng chữ ngay dưới quả cầu cho biết SenOS đang làm gì:
 | TẠM DỪNG, ĐANG NGHE BẠN | Nghi bạn chen ngang, SenOS dừng đọc 2 giây xem bạn có nói thật không |
 | ĐANG KẾT NỐI LẠI | Mất kết nối với máy chủ, đang nối lại |
 | · MẠNG CHẬM | Hậu tố: một khúc giọng đọc mất hơn 2,5 giây mới phát được |
-| · N VIỆC NỀN | Hậu tố: đang có N việc chạy nền ở trang Việc |
+| · N VIỆC NỀN | Hậu tố: đang có N việc chạy nền ở trang Công việc |
 
 ## Bảng tra nhanh nút và phím tắt
 
@@ -582,7 +582,7 @@ Nút quanh khung chat:
 
 | Nút | Ở đâu | Làm gì |
 |---|---|---|
-| ＋ | Đầu hàng nút | Mở menu: đính kèm file hoặc ảnh, **ghim thư mục làm việc**, chọn file trong brain, lệnh và skill "/", **Kết nối** (kèm tình trạng), **Trợ lý và quy trình** |
+| ＋ | Đầu hàng nút | Mở menu: đính kèm file hoặc ảnh, **ghim thư mục làm việc**, chọn file trong brain, lệnh và skill "/", **Ứng dụng** (kèm tình trạng), **Trợ lý và quy trình** |
 | Mic | Cạnh nút gửi | Gọi SenOS; trong cuộc gọi nút thành **Cúp máy** |
 | Mũi tên | Cuối hàng nút | Gửi tin nhắn |
 | Ô vuông | Thay nút gửi khi đang chạy | Dừng lượt đang trả lời + dừng đọc |
@@ -610,10 +610,10 @@ Phím tắt:
 - Muốn nói dài nhiều câu mà không sợ SenOS gửi sớm, gọi SenOS (nút mic) và nói liền mạch; chỉ ngừng hẳn khi thật sự nói xong.
 - Muốn im lặng đọc chữ: cúp máy rồi gõ, SenOS chỉ trả lời bằng chữ.
 - Đưa nhiều ảnh chụp màn hình cùng lúc bằng cách kéo - thả tất cả vào cửa sổ, SenOS xử lý từng cái.
-- Nếu bạn quen nói tiếng Anh, đổi ngôn ngữ giao diện sang tiếng Anh (**Cài đặt → Chung**): SenOS nghe theo ngôn ngữ giao diện.
+- Nếu bạn quen nói tiếng Anh, đổi ngôn ngữ giao diện sang tiếng Anh (**Thiết lập → Chung**): SenOS nghe theo ngôn ngữ giao diện.
 - Dán nguyên một bài dài vào ô chat cứ dán thoải mái: SenOS tự biến thành file `.txt` đính kèm, khung chat vẫn gọn.
 - Hỏi lại một câu đã hỏi mà muốn đổi vài chữ: bấm **✎** trên tin cũ, sửa trong ô nhập rồi gửi, khỏi gõ lại từ đầu.
-- Nút **⛶** trên mục HỘI THOẠI và mục **Trò chuyện** trong nhóm Trợ lý dẫn tới cùng một chỗ, dùng đường nào tiện hơn thì dùng.
+- Nút **⛶** trên mục HỘI THOẠI và mục **Hội thoại** trên cùng rail dẫn tới cùng một chỗ, dùng đường nào tiện hơn thì dùng.
 
 ## Sự cố thường gặp
 
@@ -621,12 +621,12 @@ Phím tắt:
 - **Trình duyệt không nghe được.** SenOS báo "Trình duyệt không hỗ trợ giọng nói. Dùng Chrome/Edge." Hãy mở dashboard bằng Chrome hoặc Edge.
 - **Micro không hoạt động.** Trình duyệt chặn quyền micro. Vào phần quyền của trang trong trình duyệt và cho phép micro, rồi tải lại trang.
 - **Nhấn Esc rồi mà câu trả lời vẫn hiện tiếp.** Đúng như thiết kế: Esc là cúp máy, tắt mic và tắt giọng, còn câu trả lời vẫn viết tiếp thành chữ. Muốn dừng hẳn lượt thì bấm nút dừng (ô vuông) trên thanh nhập hoặc gõ `/stop`.
-- **Không nghe thấy SenOS nói.** SenOS chỉ nói thành tiếng trong cuộc gọi, nên bấm mic để gọi. Đang gọi mà vẫn im: kiểm tra âm lượng máy, rồi bấm "▶ Nghe thử" trong **Cài đặt → Giọng nói** để thử riêng phần đọc. Nếu dùng giọng OpenAI hoặc ElevenLabs, xem SenOS có báo lỗi giọng không (hết hạn mức, sai key, mất mạng); SenOS không tự chuyển sang giọng khác.
+- **Không nghe thấy SenOS nói.** SenOS chỉ nói thành tiếng trong cuộc gọi, nên bấm mic để gọi. Đang gọi mà vẫn im: kiểm tra âm lượng máy, rồi bấm "▶ Nghe thử" trong **Thiết lập → Giọng nói** để thử riêng phần đọc. Nếu dùng giọng OpenAI hoặc ElevenLabs, xem SenOS có báo lỗi giọng không (hết hạn mức, sai key, mất mạng); SenOS không tự chuyển sang giọng khác.
 - **Gõ "/" mà không thấy menu.** Menu chỉ mở khi dấu "/" đứng đầu ô nhập và chưa có dấu cách theo sau. Nếu vẫn không có dòng skill nào, brain đang chọn chưa có skill nào bật.
 - **Bấm nút lựa chọn của SenOS mà không ăn gì.** Đó là hàng nút của lượt cũ, đã bị đông cứng khi bạn gửi tin mới. Cứ gõ câu trả lời bằng tay.
 - **Ảnh trong hội thoại thành ô xám "Ảnh đã hết hạn".** File nằm trong vùng cache `attachments/` đã quá 30 ngày hoặc bị dọn do chạm trần 300MB. Nhờ SenOS tạo lại, hoặc lần sau chép ảnh quan trọng sang thư mục khác trong brain.
 - **Sơ đồ không vẽ ra, chỉ thấy mã.** Thư viện vẽ sơ đồ tải từ mạng; máy đang offline hoặc bị chặn. Nội dung vẫn còn nguyên ở tab mã nguồn.
-- **Nhờ tạo ảnh thì báo chưa kết nối ChatGPT.** Vào trang **Models** đăng nhập ChatGPT (OAuth), không cần API key, rồi thử lại.
+- **Nhờ tạo ảnh thì báo chưa kết nối ChatGPT.** Vào trang **Mô hình AI** đăng nhập ChatGPT (OAuth), không cần API key, rồi thử lại.
 - **Câu trả lời trống.** Nếu ô trả lời hiện dòng gợi ý thử lại hoặc đổi model, có thể do model đang chọn gặp trục trặc. Xem [Models & engine](10-models-va-engine.md) để đổi model/engine.
 - **File tải mãi không xong.** File lớn hoặc mạng chậm; thẻ file sẽ báo lỗi cụ thể (quá thời gian tải, lỗi máy chủ). Thử lại với file nhỏ hơn hoặc kiểm tra kết nối.
 
@@ -636,7 +636,7 @@ Phím tắt:
 - [Skills](06-skills.md) - viết và gọi skill bằng lệnh `/slug`.
 - [Models & engine](10-models-va-engine.md) - bảy nhà cung cấp model và cách đổi engine.
 - [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md) - đấu nguồn dữ liệu để hỏi số thật.
-- [Quản lý tệp tin](05-quan-ly-tep-tin.md) - cột VAULT bên trái và trang Tệp tin.
+- [Quản lý tệp tin](05-quan-ly-tep-tin.md) - cột VAULT bên trái và trang Tài liệu.
 - [Task & Dataview trong note](19-task-va-dataview.md) - khối `dataview` và `tasks` trong câu trả lời.
 - [Kênh Telegram](11-telegram.md) và [Kênh Zalo](12-zalo.md) - chat với SenOS ngoài dashboard.
 

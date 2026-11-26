@@ -312,8 +312,8 @@ async def get_app_server(codex_home: Optional[str] = None) -> AppServer:
                 "Codex CLI trên máy đã cũ (cần bản 0.153 trở lên) nên chưa dùng được ChatGPT Live. Cập nhật Codex rồi thử lại.",
                 "The Codex CLI on this machine is too old (0.153 or newer is needed) for ChatGPT Live. Update Codex and try again."))
         raise AppServerError(_chu(
-            "Chưa cài Codex CLI nên chưa dùng được ChatGPT Live. Cài Codex rồi nối ChatGPT ở trang Models.",
-            "Codex CLI is not installed, so ChatGPT Live is unavailable. Install Codex, then connect ChatGPT on the Models page."))
+            "Chưa cài Codex CLI nên chưa dùng được ChatGPT Live. Cài Codex rồi nối ChatGPT ở trang Mô hình AI.",
+            "Codex CLI is not installed, so ChatGPT Live is unavailable. Install Codex, then connect ChatGPT on the AI models page."))
     if cur is not None:
         cur.close()
     srv = AppServer(cli, popen_factory=_popen_factory, codex_home=home or None)

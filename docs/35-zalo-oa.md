@@ -15,7 +15,7 @@ Kênh này khác hai kênh Zalo có sẵn:
 | SenOS kết nối thế nào | Webhook: Zalo gọi vào SenOS, **cần tên miền HTTPS** |
 | Nhóm | Không, chỉ chat riêng với OA |
 | File | Nhận ảnh, file, tin thoại. Gửi ảnh JPG/PNG/GIF (tối đa 1MB) và PDF, DOC, DOCX (tối đa 5MB) |
-| Tin thoại | Chép thành chữ (cần key Groq ở trang Models) |
+| Tin thoại | Chép thành chữ (cần key Groq ở trang Mô hình AI) |
 | Trả lời | Bằng "tin tư vấn", chỉ trong khung thời gian Zalo cho phép sau tin cuối của khách |
 | Định dạng | Chữ thường: Zalo không hiện Markdown, SenOS tự bỏ ký hiệu |
 
@@ -29,7 +29,7 @@ Kênh này khác hai kênh Zalo có sẵn:
 
 Zalo chỉ gửi tin vào một địa chỉ HTTPS trên tên miền đã xác thực.
 
-1. Mở SenOS **bằng tên miền HTTPS**, vào **Chatbot**, tab **Bot**, bấm **Thêm kênh**, chọn **Zalo OA**. Form hiện **Địa chỉ webhook** và ô **Mã xác thực tên miền Zalo**.
+1. Mở SenOS **bằng tên miền HTTPS**, vào **Hộp thư bot**, tab **Bot**, bấm **Thêm kênh**, chọn **Zalo OA**. Form hiện **Địa chỉ webhook** và ô **Mã xác thực tên miền Zalo**.
 2. Trên Zalo, mục **Xác thực tên miền**, nhập tên miền của SenOS, chọn cách xác thực bằng **file HTML**. Zalo cho tên file dạng `zalo_verifier<mã>.html`.
 3. Dán tên file đó (hoặc thẻ meta Zalo đưa) vào ô của SenOS, bấm **Lưu mã**. SenOS bắt đầu phục vụ đúng file đó. Quay lại Zalo bấm **Xác thực**.
 4. Vào mục **Webhook** của app, dán **Địa chỉ webhook** SenOS hiện (dạng `https://<tên miền>/zalo-oa/webhook`), bật các sự kiện **user_send_text**, **user_send_image**, **user_send_file**, **user_send_audio**, **user_send_sticker**, **user_send_location**. Bật thêm **oa_send_text**, **oa_send_image**, **oa_send_file** để bot thấy tin và file nhân viên gửi cho khách từ app OA (xem mục dưới).
@@ -55,7 +55,7 @@ Zalo đã chuyển việc cấp quyền OA sang **OAuth v4** (mã cấp quyền 
    Muốn chắc thứ tự hai khoá ngắn thì ghi tên: `app_secret=...` và `oa_secret=...`.
 2. Bấm **Cấp quyền bằng Zalo**. Một tab Zalo mở ra: chọn đúng OA, bấm **Cho phép**. Tab tự đóng.
 3. SenOS đổi mã cấp quyền lấy cặp access token và refresh token, đọc tên OA rồi tự lưu kênh. Không cần bấm Kiểm tra hay Lưu.
-4. Vào **Chatbot**, **Bot** để tạo bot hoặc gắn bot có sẵn cho kênh này. Bot bật lên là bắt đầu trả lời khách nhắn OA.
+4. Vào **Hộp thư bot**, **Bot** để tạo bot hoặc gắn bot có sẵn cho kênh này. Bot bật lên là bắt đầu trả lời khách nhắn OA.
 
 Access token chỉ sống khoảng 25 giờ, refresh token khoảng 3 tháng và mỗi cái chỉ dùng **một lần**. SenOS tự làm mới và lưu ngay cặp mới vào kho tài khoản đã mã hoá, nên bot chạy đều thì không bao giờ phải cấp quyền lại.
 

@@ -39,7 +39,7 @@ CANH_BAO_SUBSCRIPTION = (
     "Chạy nền liên tục (loop, nhắc hẹn, việc Kanban, chatbot), chạy trên VPS, hoặc nhiều người "
     "dùng chung một tài khoản nằm ngoài phạm vi đó nên có nguy cơ bị khoá tài khoản, dù tới nay "
     "SenOS chưa ghi nhận trường hợp nào. Nếu bạn gặp, hãy báo cho nhà phát triển qua mục Issues "
-    "trên GitHub của SenOS. Muốn chạy nền yên tâm hơn thì đổi sang API key ở trang Models, hoặc "
+    "trên GitHub của SenOS. Muốn chạy nền yên tâm hơn thì đổi sang API key ở trang Mô hình AI, hoặc "
     "trỏ 'model việc nền' sang một provider khác."
 )
 
@@ -49,7 +49,7 @@ CANH_BAO_SUBSCRIPTION_EN = (
     "or several people sharing one account fall outside that, so there is a risk of the account "
     "being locked, although SenOS has no reported case so far. If it happens to you, please tell "
     "the developer through Issues on SenOS's GitHub. For more peace of mind, switch to an API key "
-    "on the Models page, or point the 'background model' at another provider."
+    "on the AI models page, or point the 'background model' at another provider."
 )
 
 # Câu ngắn cho chỗ chật (badge, tooltip, dòng trạng thái).

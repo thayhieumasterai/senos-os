@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/01-getting-started.md)*
 
-Trang này hướng dẫn bạn từ lúc mở SenOS lần đầu tiên cho tới khi SenOS sẵn sàng trò chuyện: tạo tài khoản admin, chọn nhà cung cấp AI làm "bộ não", chọn model, và kiểm tra trạng thái hệ thống ở trang Cài đặt.
+Trang này hướng dẫn bạn từ lúc mở SenOS lần đầu tiên cho tới khi SenOS sẵn sàng trò chuyện: tạo tài khoản admin, chọn nhà cung cấp AI làm "bộ não", chọn model, và kiểm tra trạng thái hệ thống ở trang Thiết lập.
 
 ## Tính năng này là gì
 
@@ -25,10 +25,10 @@ Sau khi thiết lập xong, các mục liên quan nằm trên rail điều hư�
 
 | Nhóm | Mục | Dùng để |
 |---|---|---|
-| Kết nối | **Models** | Đổi model chính, đăng nhập/ngắt các nhà cung cấp (xem [Models & engine](10-models-va-engine.md)) |
-| Hệ thống | **Cài đặt** | Năm tab: Chung, Giọng nói, Linh vật, Mức dùng, Cập nhật |
-| Hệ thống | **Link chia sẻ** | Xem, sao chép và thu hồi liên kết công khai |
-| Hệ thống | **Tài khoản** | Đổi mật khẩu, đăng xuất, tắt đăng nhập (xem [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md)) |
+| Quản trị | **Mô hình AI** | Đổi model chính, đăng nhập/ngắt các nhà cung cấp (xem [Models & engine](10-models-va-engine.md)) |
+| Quản trị | **Thiết lập** | Năm tab: Chung, Giọng nói, Bé Sen, Hạn mức, Phiên bản |
+| Quản trị | **Liên kết công khai** | Xem, sao chép và thu hồi liên kết công khai |
+| Quản trị | **Hồ sơ** | Đổi mật khẩu, đăng xuất, tắt đăng nhập (xem [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md)) |
 
 ## Cách dùng (từng bước)
 
@@ -48,7 +48,7 @@ Nếu bạn chạy trên máy cá nhân (localhost), mục mật khẩu là tùy
 
 1. Gõ tên tài khoản vào ô **Tài khoản** (mặc định gợi ý là `admin`).
 2. Gõ mật khẩu vào ô **Mật khẩu**. Mật khẩu phải dài tối thiểu 8 ký tự.
-3. Nếu SenOS chạy công khai, làm bước này **ngay sau khi deploy** rồi bật xác thực 2 lớp (2FA) ở trang **Tài khoản** (xem mục "Server công khai: tạo admin sớm và bật 2FA" bên dưới).
+3. Nếu SenOS chạy công khai, làm bước này **ngay sau khi deploy** rồi bật xác thực 2 lớp (2FA) ở trang **Hồ sơ** (xem mục "Server công khai: tạo admin sớm và bật 2FA" bên dưới).
 
 Trên máy cá nhân, nếu bạn để trống mật khẩu thì SenOS không đặt tài khoản và ai mở link máy này cũng dùng được. Chỉ nên bỏ trống khi máy chỉ mình bạn dùng.
 
@@ -59,22 +59,22 @@ Trên máy cá nhân, nếu bạn để trống mật khẩu thì SenOS không �
 | Lựa chọn | Chữ trên thẻ | Cần gì để dùng |
 |---|---|---|
 | **🧠 Claude Code** (chọn sẵn) | "Đăng nhập subscription Claude → đủ MCP, skill, đọc/ghi file, vòng lặp tự cải thiện. Mạnh & đầy đủ nhất." | Đăng nhập subscription Claude 1 lần (không cần API key) |
-| **💬 ChatGPT (gói subscription)** | "Đăng nhập ChatGPT Plus/Pro (qua Codex) → vẫn dùng được MCP của SenOS." | Đăng nhập ChatGPT ở trang Models |
-| **🌐 OpenRouter** | "Nhiều model giá rẻ một chỗ, vẫn đủ MCP SenOS + skill + đọc/ghi file brain. Chỉ cần API key - không cần đăng nhập." | Dán API key OpenRouter (dán ngay hoặc để sau ở Models) |
+| **💬 ChatGPT (gói subscription)** | "Đăng nhập ChatGPT Plus/Pro (qua Codex) → vẫn dùng được MCP của SenOS." | Đăng nhập ChatGPT ở trang Mô hình AI |
+| **🌐 OpenRouter** | "Nhiều model giá rẻ một chỗ, vẫn đủ MCP SenOS + skill + đọc/ghi file brain. Chỉ cần API key - không cần đăng nhập." | Dán API key OpenRouter (dán ngay hoặc để sau ở Mô hình AI) |
 
-Chọn cái nào cũng ra một SenOS đủ chức năng: cả ba đều gọi được kho Kết nối (MCP), đọc/ghi file trong brain, chạy skill, giao việc và tạo loop. Khác biệt duy nhất là **chạy lệnh máy**, thứ chỉ các engine CLI (Claude Code, Codex, Antigravity CLI) làm được. Wizard chỉ hiện 3 thẻ cho gọn; vào trang **Models** còn Antigravity CLI, OpenAI API, Google Gemini, Anthropic API, Groq và Ollama, đổi lúc nào cũng được.
+Chọn cái nào cũng ra một SenOS đủ chức năng: cả ba đều gọi được kho Ứng dụng (MCP), đọc/ghi file trong brain, chạy skill, giao việc và tạo loop. Khác biệt duy nhất là **chạy lệnh máy**, thứ chỉ các engine CLI (Claude Code, Codex, Antigravity CLI) làm được. Wizard chỉ hiện 3 thẻ cho gọn; vào trang **Mô hình AI** còn Antigravity CLI, OpenAI API, Google Gemini, Anthropic API, Groq và Ollama, đổi lúc nào cũng được.
 
-Nếu chọn **OpenRouter**, một ô nhập **OpenRouter API key** sẽ hiện ra, bạn có thể dán key ngay hoặc để trống rồi dán sau ở trang Models. Dưới danh sách còn một dòng gợi ý thay đổi theo thẻ bạn chọn, ví dụ chọn ChatGPT thì gợi ý "Sau khi vào: mục **Models** → đăng nhập ChatGPT".
+Nếu chọn **OpenRouter**, một ô nhập **OpenRouter API key** sẽ hiện ra, bạn có thể dán key ngay hoặc để trống rồi dán sau ở trang Mô hình AI. Dưới danh sách còn một dòng gợi ý thay đổi theo thẻ bạn chọn, ví dụ chọn ChatGPT thì gợi ý "Sau khi vào: mục **Mô hình AI** → đăng nhập ChatGPT".
 
 Mục cuối là **4. Múi giờ**, chọn sẵn theo múi giờ của máy bạn đang mở (từ 0.443.0). SenOS dùng nó để hiểu hôm nay, hôm qua, ngày mai, đặt giờ nhắc hẹn và chốt khoảng ngày khi kéo số liệu báo cáo. Chạy trên VPS thì đồng hồ máy chủ thường là UTC, nên kiểm tra lại ô này cho đúng nơi bạn sống. Dòng bên dưới cho biết giờ ở đó lúc này để bạn đối chiếu.
 
-Bấm **Bắt đầu dùng SenOS →** để lưu và vào app. Wizard đồng thời đặt luôn một model mặc định cho nhà cung cấp bạn chọn: `sonnet` cho Claude Code, `gpt-5.5` cho ChatGPT, `openai/gpt-4o-mini` cho OpenRouter. Đổi lại ở trang Models bất cứ lúc nào.
+Bấm **Bắt đầu dùng SenOS →** để lưu và vào app. Wizard đồng thời đặt luôn một model mặc định cho nhà cung cấp bạn chọn: `sonnet` cho Claude Code, `gpt-5.5` cho ChatGPT, `openai/gpt-4o-mini` cho OpenRouter. Đổi lại ở trang Mô hình AI bất cứ lúc nào.
 
 ### Bước 5: Đăng nhập Claude làm bộ não
 
-Đây là bước quan trọng nhất nếu bạn chọn Claude Code. Wizard chỉ lưu lựa chọn nhà cung cấp, việc đăng nhập Claude thực hiện ở trang **Models** (nhóm **Kết nối**):
+Đây là bước quan trọng nhất nếu bạn chọn Claude Code. Wizard chỉ lưu lựa chọn nhà cung cấp, việc đăng nhập Claude thực hiện ở trang **Mô hình AI** (nhóm **Quản trị**):
 
-1. Vào mục **Models** trên rail bên trái.
+1. Vào mục **Mô hình AI** trên rail bên trái.
 2. Tìm thẻ **Claude Code**. Trạng thái ban đầu là "○ Chưa đăng nhập".
 3. Bấm nút **Đăng nhập Claude**.
 4. SenOS hiện một đường link. Bấm mở link đó (mở trong tab mới) để đăng nhập tại claude.ai.
@@ -89,7 +89,7 @@ Engine Claude của SenOS chạy qua **Claude Agent SDK**, nhưng SDK vẫn gọ
 
 ### Bước 6: Chọn model chính và model việc nền
 
-Sau khi đã đăng nhập, kiểm tra và chọn model ở trang **Models**:
+Sau khi đã đăng nhập, kiểm tra và chọn model ở trang **Mô hình AI**:
 
 - Phần **◆ Main Model** hiển thị model đang dùng cho hội thoại. Bấm **Đổi model ▾** để chọn model khác.
 - Phần **◆ Providers** liệt kê **mười** nhà cung cấp: Claude Code, OpenAI OAuth (ChatGPT), xAI Grok Build CLI, Google Antigravity CLI, OpenRouter, Anthropic (API), OpenAI (ChatGPT API), Google Gemini (API), Groq (API), Ollama Cloud. Thẻ nào cần key thì có ô dán key và nút **Kết nối** / **Đổi key** / **Ngắt**.
@@ -100,9 +100,9 @@ Việc nền chạy được bằng cả nhà cung cấp API, không riêng Clau
 
 Chi tiết đầy đủ về từng nhà cung cấp và model xem [Models & engine](10-models-va-engine.md).
 
-## Trang Cài đặt: năm tab
+## Trang Thiết lập: năm tab
 
-Mở **Cài đặt** (nhóm **Hệ thống** trên rail). Trang có năm tab: **Chung**, **Giọng nói**, **Linh vật**, **Mức dùng**, **Cập nhật**. Link chia sẻ và Tài khoản là hai mục riêng trên menu Hệ thống. Trên điện thoại, vuốt ngang hàng tab để xem các tab phía sau.
+Mở **Thiết lập** (nhóm **Quản trị** trên rail). Trang có năm tab: **Chung**, **Giọng nói**, **Bé Sen**, **Hạn mức**, **Phiên bản**. Liên kết công khai và Hồ sơ là hai mục riêng trên menu Quản trị. Trên điện thoại, vuốt ngang hàng tab để xem các tab phía sau.
 
 ### Tab Chung: Hệ thống
 
@@ -115,7 +115,7 @@ Phụ đề: "Trạng thái hiện tại và lối tắt tới các nhóm chuyê
 | **Workspace** | Tên workspace bạn đặt ở wizard |
 | **Telegram** | "Đang bật" hoặc "Đang tắt" (xem [Kênh Telegram](11-telegram.md)) |
 
-Bên dưới có hai lối tắt: **Models** và **Kênh**.
+Bên dưới có hai lối tắt: **Mô hình AI** và **Kênh quản trị**.
 
 ### Tab Chung: Giao diện & Brain
 
@@ -126,7 +126,7 @@ Phụ đề: "Hiệu năng đồ thị và cấu trúc dữ liệu". Gồm ba th
 - Bấm **Tắt đồ thị** để giảm tải tối đa; khi đang tắt, nút đổi thành **Bật đồ thị**.
 - Nếu màn hình hẹp (dưới 860px, tức điện thoại), SenOS tự vào chế độ nhẹ: đồ thị dừng chạy dù công tắc đang bật. App vẫn mở ở màn SenOS như trên máy tính - màn đó đã có sẵn ô chat, chỉ khác là không vẽ khoang não.
 
-Chi tiết về đồ thị xem [Đồ thị tri thức](03-do-thi-tri-thuc.md).
+Chi tiết về đồ thị xem [Bản đồ tri thức](03-do-thi-tri-thuc.md).
 
 **Thẻ Chuẩn hóa brain** gom các thư mục `agents`, `workflows`, `memory`, `skills` của brain đang chọn về cấu trúc phẳng đồng nhất. Bấm **Chuẩn hóa brain đang chọn** để chạy.
 
@@ -147,7 +147,7 @@ Khối **Ngôn ngữ và múi giờ** có hai ô: ngôn ngữ giao diện và **
 Tab **Giọng nói** chỉ còn một thẻ cho cuộc gọi bằng giọng, ô nào cũng tự lưu ngay, không có nút Lưu. Ngôn ngữ giao diện, ảnh đại diện và tên miền nằm trong tab **Chung**:
 
 - Dòng **Đang dùng**: đường gọi đang chạy (ChatGPT Live, Live qua API key hoặc Cơ bản), kèm lý do và việc cần làm nếu SenOS phải lùi xuống đường thấp hơn.
-- **Giọng SenOS**: danh sách giọng theo đường gọi, chọn giọng là chọn luôn nhà cung cấp (Edge, OpenAI hay ElevenLabs), nút **▶ Nghe thử**. Giọng OpenAI cần OpenAI API key ở trang **Models**.
+- **Giọng SenOS**: danh sách giọng theo đường gọi, chọn giọng là chọn luôn nhà cung cấp (Edge, OpenAI hay ElevenLabs), nút **▶ Nghe thử**. Giọng OpenAI cần OpenAI API key ở trang **Mô hình AI**.
 - Mục **Nâng cao** chứa **Đường gọi**, **Bộ não trả lời nhanh** và **Model** của nó (chỉ ở đường Cơ bản), **Tốc độ đọc** (chỉ ở đường Cơ bản), API key và Voice ID ElevenLabs (chỉ khi chọn giọng ElevenLabs). Ngôn ngữ nghe tự theo ngôn ngữ giao diện.
 - **ẢNH ĐẠI DIỆN**: **Tải ảnh lên** hoặc **Khôi phục mặc định**.
 - **TÊN MIỀN & SSL**: nhập tên miền, bấm **Lưu & kiểm tra**, xem hai nhãn `DNS:` và `SSL:`, rồi **Bật SSL** hoặc **Kiểm tra lại**.
@@ -172,7 +172,7 @@ Về Second Brain (bộ nhớ, Wiki, cấu trúc vault), xem [Second Brain: bộ
 
 ## Cập nhật phiên bản
 
-Phần này nằm ở **Hệ thống → Cài đặt → Cập nhật**. Khung SenOS trên cùng hiển thị phiên bản đang chạy và cho biết có bản mới trên GitHub hay không.
+Phần này nằm ở **Quản trị → Thiết lập → Phiên bản**. Khung SenOS trên cùng hiển thị phiên bản đang chạy và cho biết có bản mới trên GitHub hay không.
 
 - Có bản mới: "🆕 Có bản mới **v...** (đang chạy v...)" kèm nhãn môi trường (`Windows`, `Linux`, `macOS` hoặc `Docker / VPS`), và khối "Bản mới có gì" liệt kê tối đa 2 bản gần nhất.
 - Đang mới nhất: "✅ Đang dùng bản mới nhất (v...)".
@@ -204,7 +204,7 @@ Tải lại trang là nút hiện ra. Không muốn có Watchtower thì cập nh
 
 **Muốn SenOS TỰ cập nhật, khỏi bấm nút**: thêm `SENOS_AUTO_UPDATE=true` vào `.env` (Hostinger: ô Environment) rồi dựng lại. Mặc định tắt có chủ ý, vì tự cập nhật là app tự khởi động lại bất cứ lúc nào có bản mới, cắt ngang việc nền đang chạy. Chu kỳ mặc định 24 giờ, đổi bằng `SENOS_AUTO_UPDATE_INTERVAL` (giây).
 
-Khung Cập nhật tự phân biệt các trường hợp này và ghi đúng cách xử lý cho máy bạn.
+Khung Phiên bản tự phân biệt các trường hợp này và ghi đúng cách xử lý cho máy bạn.
 
 ### Thanh tiến trình 6 bước
 
@@ -230,45 +230,45 @@ Khi SenOS chạy công khai (nghe trên `0.0.0.0`, tức VPS/Docker/Hostinger) m
 
 - **Cách khuyến nghị:** khi deploy, đặt sẵn hai biến môi trường `SENOS_ADMIN_USER` và `SENOS_ADMIN_PASSWORD` (`install.sh` đã hỏi sẵn hai giá trị này). SenOS tự tạo tài khoản admin lúc khởi động, mở app ra là màn đăng nhập luôn, không có khoảng trống nào. Chi tiết biến môi trường xem [Cấu hình .env](16-cau-hinh-env.md).
 - **Nếu không đặt env:** mở app và tạo tài khoản ngay sau khi deploy, đừng để server public trống admin.
-- **Sau lần đăng nhập đầu:** bật xác thực 2 lớp (2FA) ở trang **Tài khoản**. Xem [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
+- **Sau lần đăng nhập đầu:** bật xác thực 2 lớp (2FA) ở trang **Hồ sơ**. Xem [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
 
 ## Bảng tra nhanh nút và trạng thái
 
 | Nút / dòng chữ | Ở đâu | Làm gì |
 |---|---|---|
 | **Bắt đầu dùng SenOS →** | Wizard | Lưu workspace, tài khoản, nhà cung cấp rồi vào app |
-| **Đăng nhập Claude** | Models, thẻ Claude Code | Bắt đầu luồng device-code, hiện link claude.ai |
-| **Gửi code** | Models, sau khi bấm Đăng nhập Claude | Gửi mã code lấy từ trang claude.ai |
-| **↻ Kiểm tra lại** | Models, thẻ Claude Code | Nạp lại trạng thái đăng nhập |
-| **Ngắt** | Models | Đăng xuất nhà cung cấp khỏi SenOS |
-| **Đổi model ▾** | Models, mục Main Model và Model việc nền | Mở bảng chọn model |
-| **Về mặc định** | Models, mục Model việc nền | Trả việc nền về model mặc định của Claude Code |
-| "○ Chưa đăng nhập" / "● Đã kết nối" | Models | Trạng thái nhà cung cấp |
-| **Bật đồ thị** / **Tắt đồ thị** | Cài đặt, thẻ Đồ thị não | Bật hoặc tắt đồ thị tri thức |
-| **Chuẩn hóa brain đang chọn** | Cài đặt, thẻ Chuẩn hóa brain | Gom thư mục brain về cấu trúc phẳng |
-| **Giữ dấu** / **Gỡ dấu** | Cài đặt, thẻ Dấu nguồn gốc ảnh AI | Bật/tắt dấu C2PA trên ảnh SenOS tạo |
-| **Bật tự khởi động** / **Tắt tự khởi động** | Cài đặt, nhóm Khởi động cùng Windows | Cho SenOS chạy nền khi đăng nhập Windows |
-| **Kiểm tra lại** | Cập nhật | So phiên bản với GitHub |
-| **⬆ Cập nhật ngay** | Cập nhật (chỉ hiện khi tự cập nhật được) | Chạy cập nhật 6 bước rồi tự tải lại trang |
+| **Đăng nhập Claude** | Mô hình AI, thẻ Claude Code | Bắt đầu luồng device-code, hiện link claude.ai |
+| **Gửi code** | Mô hình AI, sau khi bấm Đăng nhập Claude | Gửi mã code lấy từ trang claude.ai |
+| **↻ Kiểm tra lại** | Mô hình AI, thẻ Claude Code | Nạp lại trạng thái đăng nhập |
+| **Ngắt** | Mô hình AI | Đăng xuất nhà cung cấp khỏi SenOS |
+| **Đổi model ▾** | Mô hình AI, mục Main Model và Model việc nền | Mở bảng chọn model |
+| **Về mặc định** | Mô hình AI, mục Model việc nền | Trả việc nền về model mặc định của Claude Code |
+| "○ Chưa đăng nhập" / "● Đã kết nối" | Mô hình AI | Trạng thái nhà cung cấp |
+| **Bật đồ thị** / **Tắt đồ thị** | Thiết lập, thẻ Đồ thị não | Bật hoặc tắt đồ thị tri thức |
+| **Chuẩn hóa brain đang chọn** | Thiết lập, thẻ Chuẩn hóa brain | Gom thư mục brain về cấu trúc phẳng |
+| **Giữ dấu** / **Gỡ dấu** | Thiết lập, thẻ Dấu nguồn gốc ảnh AI | Bật/tắt dấu C2PA trên ảnh SenOS tạo |
+| **Bật tự khởi động** / **Tắt tự khởi động** | Thiết lập, nhóm Khởi động cùng Windows | Cho SenOS chạy nền khi đăng nhập Windows |
+| **Kiểm tra lại** | Phiên bản | So phiên bản với GitHub |
+| **⬆ Cập nhật ngay** | Phiên bản (chỉ hiện khi tự cập nhật được) | Chạy cập nhật 6 bước rồi tự tải lại trang |
 
 ## Mẹo
 
-- Nếu chỉ chạy máy cá nhân và không sợ người lạ, cứ để trống mật khẩu ở wizard để vào nhanh. Bạn có thể đặt mật khẩu sau ở trang **Tài khoản**.
-- Sau khi vào app, nếu thấy báo chưa đăng nhập Claude, quay lại **Models** bấm **Đăng nhập Claude** một lần là xong.
-- Đổi avatar và tên miền ở **Cài đặt → Chung**; giọng nói và tốc độ ở **Cài đặt → Giọng nói**.
+- Nếu chỉ chạy máy cá nhân và không sợ người lạ, cứ để trống mật khẩu ở wizard để vào nhanh. Bạn có thể đặt mật khẩu sau ở trang **Hồ sơ**.
+- Sau khi vào app, nếu thấy báo chưa đăng nhập Claude, quay lại **Mô hình AI** bấm **Đăng nhập Claude** một lần là xong.
+- Đổi avatar và tên miền ở **Thiết lập → Chung**; giọng nói và tốc độ ở **Thiết lập → Giọng nói**.
 - Sau khi cập nhật phiên bản, nếu giao diện không đổi, nhấn Ctrl+Shift+R để tải lại trang sạch.
-- Chọn một model rẻ ở **Model việc nền** ngay từ đầu: loop, việc Kanban, nhắc hẹn, tự học và tiêu hoá nguồn chạy khá nhiều, để chung model đắt là tốn hạn mức nhanh. Theo dõi con số thật ở trang [Mức dùng](23-muc-dung-token.md).
+- Chọn một model rẻ ở **Model việc nền** ngay từ đầu: loop, việc Kanban, nhắc hẹn, tự học và tiêu hoá nguồn chạy khá nhiều, để chung model đắt là tốn hạn mức nhanh. Theo dõi con số thật ở trang [Hạn mức](23-muc-dung-token.md).
 
 ## Sự cố thường gặp
 
 - **Báo "Mật khẩu tối thiểu 8 ký tự":** đặt mật khẩu dài từ 8 ký tự trở lên.
 - **Báo "Đã có tài khoản - hãy đăng nhập":** admin đã được tạo trước đó (ví dụ qua env). Dùng màn đăng nhập với tài khoản/mật khẩu đã đặt.
-- **Claude báo chưa đăng nhập:** vào **Models**, bấm **Đăng nhập Claude**, mở link, dán code nếu được hỏi. Hoặc chạy `claude auth login --claudeai` trong terminal server.
-- **Quên mật khẩu admin:** ở màn đăng nhập bấm "Quên mật khẩu?" để xem hướng dẫn. Trên Windows bấm đúp `reset-auth.bat` trong thư mục cài SenOS (Mac: `reset-auth.command`): mật khẩu cũ bị xoá, mở lại SenOS rồi vào Tài khoản đặt mật khẩu mới. Trên máy chủ thì đổi `SENOS_ADMIN_PASSWORD` rồi khởi động lại. Xem thêm [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
+- **Claude báo chưa đăng nhập:** vào **Mô hình AI**, bấm **Đăng nhập Claude**, mở link, dán code nếu được hỏi. Hoặc chạy `claude auth login --claudeai` trong terminal server.
+- **Quên mật khẩu admin:** ở màn đăng nhập bấm "Quên mật khẩu?" để xem hướng dẫn. Trên Windows bấm đúp `reset-auth.bat` trong thư mục cài SenOS (Mac: `reset-auth.command`): mật khẩu cũ bị xoá, mở lại SenOS rồi vào Hồ sơ đặt mật khẩu mới. Trên máy chủ thì đổi `SENOS_ADMIN_PASSWORD` rồi khởi động lại. Xem thêm [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
 - **Sai quá nhiều lần khi đăng nhập, bị báo "Quá nhiều lần sai":** SenOS khóa tạm để chống dò mật khẩu. Đợi ít phút rồi thử lại.
 - **Bấm cập nhật nhưng báo "Đang cập nhật rồi, chờ chút.":** một lần cập nhật khác đang chạy. Chờ tiến trình chạy xong rồi thử lại.
 - **Docker/VPS báo "image Docker còn đang đóng gói":** bản mới vừa phát hành, image Docker thường xong sau 2 đến 5 phút. Thử lại sau ít phút. Nếu Watchtower chạy xong mà không thay được bản mới, trang báo lý do và nút bấm lại được ngay.
-- **Không thấy nút "⬆ Cập nhật ngay":** bạn đang chạy Docker mà Watchtower chưa chạy. Khung Cập nhật nói rõ máy bạn thiếu gì. Trên VPS tự quản, chạy `docker compose --profile update up -d` một lần rồi tải lại trang - `docker compose up -d` thường lệ KHÔNG bật Watchtower vì nó nằm trong profile riêng. Trên Hostinger thì không bật được, dùng Redeploy.
+- **Không thấy nút "⬆ Cập nhật ngay":** bạn đang chạy Docker mà Watchtower chưa chạy. Khung Phiên bản nói rõ máy bạn thiếu gì. Trên VPS tự quản, chạy `docker compose --profile update up -d` một lần rồi tải lại trang - `docker compose up -d` thường lệ KHÔNG bật Watchtower vì nó nằm trong profile riêng. Trên Hostinger thì không bật được, dùng Redeploy.
 - **Mở đúng cổng nhưng không thấy app:** kiểm tra địa chỉ có đúng `http://localhost:7777` (hoặc IP VPS kèm cổng 7777) không. Nếu vừa sửa code, khởi động lại server rồi thử lại.
 
 Còn vướng, xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
@@ -277,7 +277,7 @@ Còn vướng, xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
 
 - [Trò chuyện & giọng nói](02-tro-chuyen-va-giong-noi.md) - việc đầu tiên nên làm sau khi thiết lập xong.
 - [Models & engine](10-models-va-engine.md) - chi tiết từng nhà cung cấp và cách đổi model.
-- [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md) - đấu nguồn dữ liệu vào trang **Kết nối**.
+- [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md) - đấu nguồn dữ liệu vào trang **Ứng dụng**.
 - [Plugins](20-plugins.md) - thêm công cụ native cho mọi engine.
 - [Việc / Kanban](21-viec-kanban.md) - giao việc chạy nền một lần.
 - [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md) - việc lặp theo chu kỳ và nhắc theo giờ.

@@ -1,8 +1,8 @@
-# Usage: tokens and cost
+# Quota: tokens and cost
 
 *[Tiếng Việt](../23-muc-dung-token.md) · **English***
 
-The **Usage** page answers two questions that go together: *how many tokens you burned* and *how to burn fewer*. SenOS measures these numbers itself from the real logs on the machine rather than asking the provider, so you also see the part Claude and ChatGPT never reveal: what SenOS's own background runs consumed.
+The **Quota** page answers two questions that go together: *how many tokens you burned* and *how to burn fewer*. SenOS measures these numbers itself from the real logs on the machine rather than asking the provider, so you also see the part Claude and ChatGPT never reveal: what SenOS's own background runs consumed.
 
 At the very top of the page is the **Token saving mode** block with three buttons. It has been here since version 0.24.7; before that it was a separate "Saving" page on the sidebar. They were merged because when they were apart, people read the whole bill and never saw the switch.
 
@@ -21,9 +21,9 @@ The page gives you: a filter of 8 periods and 4 providers, summary cards with a 
 
 ## Where to open it in SenOS
 
-Open the dashboard (default port 7777). On the left navigation rail, open the **System** group (pinned at the bottom of the rail), then choose **Settings → Usage**.
+Open the dashboard (default port 7777). On the left navigation rail, open the **Admin** group (pinned at the bottom of the rail), then choose **Preferences → Quota**.
 
-The **Usage** tab contains the filters, token statistics and costs.
+The **Quota** tab contains the filters, token statistics and costs.
 
 ## Token saving mode (the block at the top)
 
@@ -154,7 +154,7 @@ This is where you learn **what is eating your quota**, and it is exactly what th
 | **Subagent** | Turns from a child agent the engine spawned for a side job |
 | **Manual** | Turns from sessions you typed yourself outside SenOS |
 
-A swelling **Background (loop/schedule)** bar is the clearest sign you have loops running too often. Review them on the **Recurring jobs** page ([Recurring jobs and reminders](08-recurring-jobs.md)) or the **Work** page ([Work / Kanban](21-kanban-work.md)).
+A swelling **Background (loop/schedule)** bar is the clearest sign you have loops running too often. Review them in the **Recurring** list of the **Jobs** page ([Recurring jobs and reminders](08-recurring-jobs.md)) or on its Kanban board ([Work / Kanban](21-kanban-work.md)).
 
 One limitation to know: **this split is only accurate for Claude Code.** For ChatGPT/Codex, SenOS cannot yet separate background from chat, so every turn falls into "SenOS (running itself)" + "Chat". The API branch is the same.
 
@@ -164,7 +164,7 @@ The **Converted cost** card and the **Converted** column in the model table are 
 
 So the converted figure is always an estimate, and always lower than reality if you use a model not in the price table. For more accuracy, edit that file by hand and restart the server.
 
-**OpenRouter's real balance** is the one thing on this page that is real money. The "OpenRouter left" card only appears once you have saved an OpenRouter key on the **Models** page (the System group). SenOS asks OpenRouter directly how much credit was added and used, then shows the remainder with the line "real money spent $...". With no key there is no card, and no other provider exposes an equivalent figure.
+**OpenRouter's real balance** is the one thing on this page that is real money. The "OpenRouter left" card only appears once you have saved an OpenRouter key on the **AI models** page (the Admin group). SenOS asks OpenRouter directly how much credit was added and used, then shows the remainder with the line "real money spent $...". With no key there is no card, and no other provider exposes an equivalent figure.
 
 ## Saving suggestions
 
@@ -204,7 +204,7 @@ From this version the hub shapes a result before the model reads it, the same wa
 
 Three features come with it:
 
-- **Scout (`senos_scout`).** The main model can hand a read across several sources to the **background model** you chose on the Models page. A scout can only read, and only its findings return to the chat. If it cannot run, the main model does the reading itself as before.
+- **Scout (`senos_scout`).** The main model can hand a read across several sources to the **background model** you chose on the AI models page. A scout can only read, and only its findings return to the chat. If it cannot run, the main model does the reading itself as before.
 - **Read-only scripts (`senos_code`).** The model writes a short Python script that chains several read calls (paging, looking up each order, joining two sources), computes, and prints only the result. The raw data never passes through the chat. The script runs in its own process with no keys, no files and no network, and can call only plainly read-only tools.
 - **Recipes for recurring jobs.** After the same run on two different days, SenOS fetches the data itself before the model starts. It does so only when every reading of the dates gives the same result that day; otherwise the job runs as before. Only calls that are plainly reads are repeated, and a job whose period is not written as `YYYY-MM-DD` (a month `2026-11`, a week number, `01/11/2026`) is never turned into a recipe. If the model still has to call a source again after the data was fetched for it, the recipe is dropped after two such runs. Each recipe is a file in `<brain>/SenOS/recipes/`; delete the file to forget it.
 
@@ -266,7 +266,7 @@ If the install cannot read raw logs (typically the Docker build on a VPS, where 
 - **The page shows all zeros.** Usually the install cannot read the raw logs, most commonly on Docker/VPS because your `~/.claude` and `~/.codex` folders are not inside the container. In recent builds SenOS uses the internal journal as a fallback so figures still appear, but only from your upgrade onwards. If it is still zero after upgrading, no chat turn has been recorded since, so chat a few messages then click **↻ Refresh**.
 - **The numbers are far lower than they feel.** Check whether a provider filter is on, and check the selected period. Also, the "You typing" share can only be counted when you run Claude Code on the **same machine** as SenOS.
 - **A Google Gemini key is attached but the API column does not move.** Gemini turns are written into the internal journal, but the index builder currently only accepts OpenRouter, OpenAI and Anthropic into the API column, so the Gemini share does not reach this chart yet.
-- **There is no "OpenRouter left" card.** The card only appears when an OpenRouter key is in the model settings and OpenRouter responds. Go to the **Models** page (the System group) and check the key, see [Models and engines](10-models-and-engines.md).
+- **There is no "OpenRouter left" card.** The card only appears when an OpenRouter key is in the model settings and OpenRouter responds. Go to the **AI models** page (the Admin group) and check the key, see [Models and engines](10-models-and-engines.md).
 - **The page shows a simple "Today / Cumulative total" table instead of the period filter.** That is the fallback interface, appearing when the new interface file could not load. Reload the page, clearing the browser cache if needed.
 - **The converted cost shows "-" for the model you use.** That model is not in the `server/usage_pricing.json` price table. It is maintained by hand, so add a row for your model then restart the server.
 - **You just upgraded SenOS but the page has not changed.** This page has a backend component, so after an update you need to **restart the server** before reloading the page.

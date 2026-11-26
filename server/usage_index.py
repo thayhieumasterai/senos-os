@@ -1072,8 +1072,8 @@ def insights(period: str = "this_month", today: date = None) -> list:
     if total > 0 and opus / total >= EXPENSIVE_SHARE:
         out.append({"code": "expensive_model", "level": "info",
                     "title": localefmt.chu("Opus chiếm %.0f%% token", "Opus uses %.0f%% of tokens") % (opus / total * 100),
-                    "detail": localefmt.chu("Opus đắt gấp nhiều lần sonnet/haiku. Việc nhẹ cân nhắc hạ model ở trang Model.",
-                                            "Opus costs many times more than sonnet/haiku. For light work, consider a smaller model on the Models page.")})
+                    "detail": localefmt.chu("Opus đắt gấp nhiều lần sonnet/haiku. Việc nhẹ cân nhắc hạ model ở trang Mô hình AI.",
+                                            "Opus costs many times more than sonnet/haiku. For light work, consider a smaller model on the AI models page.")})
 
     cs, ce = s["range"]
     conn = _connect()

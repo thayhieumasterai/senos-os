@@ -6,7 +6,7 @@ Tính năng này đồng bộ **TẤT CẢ brain trong thư mục brains** (mọ
 
 > Nên để **mọi brain nằm trong thư mục brains** (tạo brain mới qua nút ➕ là tự vào đó). Đồng bộ lấy nguyên thư mục brains làm một khối, nên brain nào nằm ngoài (chọn folder ngoài bằng nút 📁) sẽ KHÔNG được đồng bộ chung - hãy chuyển nó vào brains.
 
-Mở tại: trang **Tự học** (nhóm **Bộ não** trên thanh nav trái), kéo xuống mục **⇅ Đồng bộ brain với GitHub (2 chiều)**.
+Mở tại: trang **Rèn luyện** (nhóm **Tri thức** trên thanh nav trái), kéo xuống mục **⇅ Đồng bộ brain với GitHub (2 chiều)**.
 
 ## Vì sao nên bật
 
@@ -42,7 +42,7 @@ Brain là toàn bộ tri thức SenOS tích luỹ được về bạn và công 
 
 ### Bước 3 - Dán vào SenOS
 
-1. Mở trang **Tự học** → mục **⇅ Đồng bộ brain với GitHub (2 chiều)**.
+1. Mở trang **Rèn luyện** → mục **⇅ Đồng bộ brain với GitHub (2 chiều)**.
 2. Dán **URL repo (https)** và **GitHub token (fine-grained, quyền Contents)** vào ô tương ứng.
 3. Kiểm tra ô **Nhánh**: mặc định là `main`. Repo của bạn dùng nhánh mặc định khác (ví dụ `master`) thì sửa ở đây, không thì đẩy lên sẽ trật nhánh.
 4. Bấm **🔌 Kiểm tra kết nối** - phải hiện "Kết nối OK".
@@ -127,7 +127,7 @@ Khi KHÔNG bật "Đồng bộ cả ảnh", SenOS coi `attachments/` và `inbox/
 
 ## Khôi phục brain trên máy mới
 
-Không cần thao tác git tay: cài SenOS, vào **Tự học → ⇅ Đồng bộ brain với GitHub (2 chiều)**, dán repo + token + đúng nhánh, bấm **⇅ Đồng bộ ngay** - toàn bộ brain về lại đủ. (Cách cũ `git clone` thẳng vào thư mục brains vẫn dùng được.)
+Không cần thao tác git tay: cài SenOS, vào **Rèn luyện → ⇅ Đồng bộ brain với GitHub (2 chiều)**, dán repo + token + đúng nhánh, bấm **⇅ Đồng bộ ngay** - toàn bộ brain về lại đủ. (Cách cũ `git clone` thẳng vào thư mục brains vẫn dùng được.)
 
 ## Xử lý file .conflict-*
 
@@ -147,7 +147,7 @@ Khi hai máy sửa cùng một file giữa hai lần đồng bộ, bạn sẽ th
 
 | Triệu chứng | Nguyên nhân / cách xử lý |
 |---|---|
-| "máy chưa cài git" | Vào **Kết nối**, bấm **Kết nối** (hoặc **Cài git**) ở thẻ GitHub: SenOS tự cài git. Hoặc cài tay trên máy/VPS. Docker image chính thức đã có sẵn. |
+| "máy chưa cài git" | Vào **Ứng dụng**, bấm **Kết nối** (hoặc **Cài git**) ở thẻ GitHub: SenOS tự cài git. Hoặc cài tay trên máy/VPS. Docker image chính thức đã có sẵn. |
 | Kiểm tra kết nối báo lỗi 403 | Token thiếu quyền Contents: Read and write, hoặc chưa chọn đúng repo. |
 | Đẩy được nhưng trên GitHub không thấy file ở nhánh quen thuộc | Ô **Nhánh** đang khác nhánh mặc định của repo (mặc định SenOS dùng `main`). Sửa ô Nhánh cho khớp rồi Lưu cấu hình và đồng bộ lại. |
 | "push liên tục bị vượt" | Nhiều máy đồng bộ cùng lúc liên tục. Bấm lại sau ít phút - cơ chế tự hoà sẽ khớp. |

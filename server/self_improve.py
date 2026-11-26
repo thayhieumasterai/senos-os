@@ -1035,9 +1035,9 @@ class LoopFeature:
                 try:
                     asyncio.create_task(self.deps.notify(
                         localefmt.chu(f"⚠ Loop '{loop['name']}' ({slug}) đã tự tạm dừng sau 3 lần lỗi liên tiếp. "
-                                      "Mở trang Việc định kỳ để xem log.",
+                                      "Mở trang Công việc để xem log.",
                                       f"⚠ Loop '{loop['name']}' ({slug}) paused itself after 3 failures in a row. "
-                                      "Open the Recurring work page to see the log.")))
+                                      "Open the Jobs page to see the log.")))
                 except Exception:
                     pass
             return {"ok": not failed, "summary": summary, "verify": verify_line,

@@ -125,7 +125,7 @@ def render_agentic_paths(root, agents, workflows, loops, skills) -> str:
         f"- SKILL: create/edit at `{sk}/<slug>/SKILL.md` (mirrored to .claude/skills by itself for native Claude)\n"
         f"- OTHER FILES (articles, reports, drafts, data): write them INSIDE the vault root above with an "
         f"ABSOLUTE path `{root}/<folder>/<file name>`. NEVER write relative to the working directory "
-        "and never outside the vault: a file outside the vault does not show on the Files page and is "
+        "and never outside the vault: a file outside the vault does not show on the Tài liệu (Documents) page and is "
         "lost on update. In your answer, link with a path RELATIVE to the vault root "
         "(e.g. `posts/post-1.txt`), do NOT use the `file://` scheme and do not encode %20 even if the "
         "harness says otherwise (the chat and Telegram cannot open those), and link ONLY to files "

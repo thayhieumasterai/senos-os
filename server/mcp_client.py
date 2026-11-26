@@ -1032,7 +1032,7 @@ class SessionPool:
         if down and down[1] == h and time.time() - down[0] < _DOWN_TTL:
             return (f"ERROR: nguồn {spec.get('label') or key} vừa không khởi động được "
                     f"({down[2]}). SenOS tạm ngừng gọi nguồn này {_DOWN_TTL} giây, đừng gọi lại "
-                    "liên tục: báo người dùng bấm Kiểm tra ở trang Kết nối.")
+                    "liên tục: báo người dùng bấm Kiểm tra ở trang Ứng dụng.")
         started = [False]
 
         async def _op(s):

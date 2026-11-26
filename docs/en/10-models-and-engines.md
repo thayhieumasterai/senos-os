@@ -2,7 +2,7 @@
 
 *[Tiếng Việt](../10-models-va-engine.md) · **English***
 
-The **Models** page is where you pick SenOS's "brain": signing into AI providers, ordering them by use (the top card is the main model, the cards below are fallbacks), choosing a model and a thinking level for each provider, and choosing a cheap model for background work. This page decides how smart SenOS is and whose quota it spends.
+The **AI models** page is where you pick SenOS's "brain": signing into AI providers, ordering them by use (the top card is the main model, the cards below are fallbacks), choosing a model and a thinking level for each provider, and choosing a cheap model for background work. This page decides how smart SenOS is and whose quota it spends.
 
 If you are just starting, read [Getting started & first-run setup](01-getting-started.md) first. To attach external tools to SenOS, see [Connections & business data](09-connections-and-business-data.md).
 
@@ -23,7 +23,7 @@ The most important thing to understand: **changing model does NOT cost SenOS any
 | **Direct API** | OpenRouter | Yes, MCP through the hub + vault file tools + skills through the router | No |
 | **Direct API** | OpenAI (API) | Yes, as above | No |
 | **Direct API** | Anthropic (API) | Yes, as above | No |
-| **Direct API** | Google Gemini (API) | Yes, as above (since 0.9.270 the Connections page no longer misreports it) | No |
+| **Direct API** | Google Gemini (API) | Yes, as above (since 0.9.270 the Apps page no longer misreports it) | No |
 | **Direct API** | Groq (API) | Yes, as above | No |
 | **Direct API** | DeepSeek (API) | Yes, as above | No |
 | **Direct API** | Ollama Cloud | Yes, as above | No |
@@ -50,10 +50,10 @@ In short: **capability lives in SenOS, not in the model.** The three CLI engines
 ## Where to find it in SenOS
 
 1. Open the SenOS dashboard (port `7777` by default).
-2. In the left sidebar, open the **Connections** group and click **Models**.
-3. The **Cloud Model** tab shows 2 blocks in order: **◆ Usage order** ("signed-in providers, the top card is MAIN") and **◆ Background model** ("loops · Kanban tasks · reminders · self-learning"). At the bottom is a **＋ Connect another provider (N)** button, which reveals the providers not yet connected. Since 0.406.0, when no provider is signed in yet (a first visit), this button moves to the **top** with the provider list already open. Each block has an (i) button next to its name for a short explanation.
+2. In the sidebar (right edge of the screen), open the **Admin** group and click **AI models**.
+3. The **Cloud models** tab shows 2 blocks in order: **◆ Usage order** ("signed-in providers, the top card is MAIN") and **◆ Background model** ("loops · Kanban tasks · reminders · self-learning"). At the bottom is a **＋ Connect another provider (N)** button, which reveals the providers not yet connected. Since 0.406.0, when no provider is signed in yet (a first visit), this button moves to the **top** with the provider list already open. Each block has an (i) button next to its name for a short explanation.
 
-> **The Models page was slimmed down in 0.351.0.** Before that it had 4 blocks (**◆ Main Model**, **◆ Providers**, **◆ Background model**, **◆ Reasoning**) plus a Telegram model box. Main Model and Providers are now merged into **Usage order**, the global Reasoning level is replaced by an **Effort** chip on each card, and Telegram follows MAIN (see [Telegram](11-telegram.md) to pin a model for a single conversation with `/model`).
+> **The AI models page was slimmed down in 0.351.0.** Before that it had 4 blocks (**◆ Main Model**, **◆ Providers**, **◆ Background model**, **◆ Reasoning**) plus a Telegram model box. Main Model and Providers are now merged into **Usage order**, the global Reasoning level is replaced by an **Effort** chip on each card, and Telegram follows MAIN (see [Telegram](11-telegram.md) to pin a model for a single conversation with `/model`).
 
 ## The ten available providers
 
@@ -63,7 +63,7 @@ The table below lists the available providers. **Connected** providers sit in th
 |---|---|---|
 | **Claude Code** | Claude Code sign-in, no key needed | Full MCP/skills/shell. Usually the default MAIN card |
 | **OpenAI OAuth (ChatGPT)** | Device code (ChatGPT plan sign-in) | Runs through Codex, wires the Connections store through the hub and uses skills through the router |
-| **xAI Grok Build CLI** | Sign in **on the Models page itself** (device code), no key needed | Uses your existing **SuperGrok / X Premium+** plan. Runs through the `grok` binary. Full MCP/skills/shell, and can resume a conversation thread. It is the **only CLI card that can sign in while SenOS runs on a VPS**, see [B1a](#b1a-connecting-grok-build-cli-using-a-supergrok--x-premium-plan) |
+| **xAI Grok Build CLI** | Sign in **on the AI models page itself** (device code), no key needed | Uses your existing **SuperGrok / X Premium+** plan. Runs through the `grok` binary. Full MCP/skills/shell, and can resume a conversation thread. It is the **only CLI card that can sign in while SenOS runs on a VPS**, see [B1a](#b1a-connecting-grok-build-cli-using-a-supergrok--x-premium-plan) |
 | **Google Antigravity CLI** | Type `agy` **once in a terminal**, no key needed | Google's designated replacement for Gemini CLI. Runs through the `agy` binary. Full MCP/skills/shell, and can pick **exactly the Antigravity IDE model lineup** (non-Google models included) |
 | **OpenRouter** | Paste an API key | Many models in one place, MCP + file tools + skills through the hub |
 | **Anthropic (API)** | Paste an API key | MCP + file tools + skills through the hub (since 0.9) |
@@ -83,7 +83,7 @@ Each provider card shows **● Connected** or **○ Not connected**, the number 
 
 This is the default engine. It can use every tool, skill and memory, plus run shell commands. It is not mandatory: if you have no Claude plan, skip this and go straight to section B (ChatGPT) or C (API keys), where SenOS has the same functionality minus shell commands.
 
-1. Open **Models** and find the **Claude Code** card (while it is not signed in, it sits behind the **＋ Connect another provider** button at the bottom of the page).
+1. Open **AI models** and find the **Claude Code** card (while it is not signed in, it sits behind the **＋ Connect another provider** button at the bottom of the page).
 2. If you are not signed in, the card reads **○ Not signed in** with two buttons: **Sign into Claude** and **↻ Re-check**. If the machine running SenOS has no `claude` command, the card reads **○ Claude Code not installed**, shows one install box (Docker build: update SenOS; manual install: one command to copy) and offers only **↻ Re-check**.
 3. Click **Sign into Claude**. SenOS shows "**1)** Open this link to sign into claude.ai" with the link.
 4. Open that link and sign into your claude.ai account.
@@ -126,13 +126,13 @@ Note: this is an experimental channel (running Codex underneath). For maximum st
 
 ### B1a. Connecting Grok Build CLI (using a SuperGrok / X Premium+ plan)
 
-This is the **xAI** route on the plan you already pay for, rather than buying a separate API key. The big difference from the two Google CLI cards: **you finish the sign-in on the Models page**, even when SenOS runs on a browserless VPS.
+This is the **xAI** route on the plan you already pay for, rather than buying a separate API key. The big difference from the two Google CLI cards: **you finish the sign-in on the AI models page**, even when SenOS runs on a browserless VPS.
 
 1. Install the CLI once on the machine running SenOS:
    - Linux/macOS: `curl -fsSL https://x.ai/cli/install.sh | bash`
    - Windows PowerShell: `irm https://x.ai/cli/install.ps1 | iex`
    - Docker edition (from 0.85.1): **skip this step**, SenOS installs it by itself at startup. While it does, the card says "SenOS is installing"; click **Check again** about a minute later.
-2. Open **Models**, press **＋ Connect another provider** at the bottom of the page, find the **xAI Grok Build CLI** card and click **Sign in**. It shows a link and a code. Open that link on your machine (a phone works too), enter the code and confirm. The card switches to **● Signed in** with nothing else to click.
+2. Open **AI models**, press **＋ Connect another provider** at the bottom of the page, find the **xAI Grok Build CLI** card and click **Sign in**. It shows a link and a code. Open that link on your machine (a phone works too), enter the code and confirm. The card switches to **● Signed in** with nothing else to click.
 3. The newly signed-in card joins the end of the **Usage order**. Drag it to the top (or press **⇅ Swap**) so it becomes MAIN, then pick a model with the model chip on the card.
 
 **Which plan you need:** Grok Build comes with **SuperGrok** or **X Premium+**. With only an `XAI_API_KEY` the CLI technically runs, but Grok Build access is tied to the PLAN rather than the key, so a card reporting *"the signed-in account has no Grok Build access"* is a plan issue, not a configuration error. Click **Re-check** to be sure: that button runs a real chat turn rather than just inspecting files.
@@ -161,7 +161,7 @@ This is the route **Google designated** after cutting Gemini CLI off from person
 2. Type `agy` once **in a terminal on the machine running SenOS** (the **Code** page inside SenOS is the safest spot - it runs as the exact user SenOS runs as). A desktop with a screen opens a browser. A server with no screen (VPS, Docker - including Docker on your own Mac) prints a link instead: open it in a browser on your machine, sign into Google, and the browser then jumps to an `http://localhost:...` address that **fails to load, which is the right step** - copy that whole address from the URL bar and paste it back into the terminal, then Enter. The session lives in the operating system keyring, so this is a one-time step.
 
    > Why the manual paste: `agy` collects the code through a loopback port on the machine running it, and your browser sits on another machine. Since 0.55.46 the SenOS terminal declares itself a remote session (`SSH_CONNECTION`) so `agy` asks where to paste instead of waiting in silence. If your `agy` is older and never asks, open a second terminal session and run `curl "<the localhost address you copied>"`. Unusual setups (X11 forwarding, a desktop with a screen) can turn this off with `SENOS_TERMINAL_REMOTE=0`.
-3. Return to **Models**, press **＋ Connect another provider** at the bottom of the page, find the **Google Antigravity CLI** card and click **Re-check** (it runs a real chat turn). The card switches to **● Signed in**.
+3. Return to **AI models**, press **＋ Connect another provider** at the bottom of the page, find the **Google Antigravity CLI** card and click **Re-check** (it runs a real chat turn). The card switches to **● Signed in**.
 4. The newly signed-in card joins the end of the **Usage order**. Drag it to the top (or press **⇅ Swap**) so it becomes MAIN, then pick a model with the model chip on the card.
 
 The model list **asks `agy models` directly** rather than using a hand-written table, so you see exactly the models your account is granted, and Google renaming models does not make the picker stale. A new model only appears once `agy` itself is on a build that knows it, so since 0.137.0 SenOS runs `agy update` once a day, Docker included (turn it off with the environment variable `SENOS_AGY_AUTO_UPDATE=0`). If `agy` is up to date and a model is still missing, your Google account has not been granted that model.
@@ -182,7 +182,7 @@ A few things worth knowing up front, to avoid confusion:
 
   The consequence to know: the HOME file is **yours** and shared with the Antigravity IDE, so the IDE will see SenOS's tools too; and two brains running `agy` at once means the later one overwrites the earlier. To keep SenOS out of HOME, set `SENOS_AGY_MCP_HOME=0` (leaving only the workspace path, which means only builds that fixed issue #60). To point at another file, set `SENOS_AGY_MCP_CONFIG=/path/to/mcp_config.json`. If your `agy` build rejects the configuration over an unknown key, set `SENOS_AGY_MCP_KEY=serverUrl` (or `=url` for older 1.0.x builds) so SenOS writes exactly one key.
 
-  **A 10-second self-check:** open **Models**, the **Google Antigravity CLI** card, and click **Re-check**. It rewrites the configuration, rereads that file, and reports one of three things: *SenOS tools wired*, *SenOS tools not wired*, or *the connection hub is off*. To see the file itself: `cat ~/.gemini/config/mcp_config.json`, which must contain an entry named `senos` with a `serverUrl` pointing at `/hub/mcp`.
+  **A 10-second self-check:** open **AI models**, the **Google Antigravity CLI** card, and click **Re-check**. It rewrites the configuration, rereads that file, and reports one of three things: *SenOS tools wired*, *SenOS tools not wired*, or *the connection hub is off*. To see the file itself: `cat ~/.gemini/config/mcp_config.json`, which must contain an entry named `senos` with a `serverUrl` pointing at `/hub/mcp`.
 
 - **Vietnamese accents no longer break in transit** (since 0.33.6). The old symptom: the word "gồm" arriving as `g<?><?>m`, each 3-byte Vietnamese character becoming exactly 3 `<?>` marks. That is the signature of a reader chopping the pipe mid-character and decoding each fragment separately. SenOS's own side was measured and ruled out (its reader uses incremental decoding, so a byte split mid-character still reassembles correctly), so the break is in `agy`'s reader. SenOS cannot patch the CLI, but it can adjust where it places its own boundaries: it now feeds the prompt in chunks ending exactly on character boundaries, so however the other side reads, nothing breaks. If text still comes back with broken characters, SenOS switches to the file route and retries once; if that still breaks, it says plainly that the fault is inside the CLI.
 
@@ -192,7 +192,7 @@ A few things worth knowing up front, to avoid confusion:
 
 ### C. Connecting a provider with an API key (OpenRouter / Anthropic API / OpenAI API / Gemini / Groq / DeepSeek)
 
-1. Open **Models**, press **＋ Connect another provider** at the bottom of the page and find the provider card.
+1. Open **AI models**, press **＋ Connect another provider** at the bottom of the page and find the provider card.
 2. Paste the API key into the field (labelled "Paste an API key to connect").
 3. Click **Connect**.
 4. The card switches to **● Connected** with a model count and joins the end of the **Usage order**. To chat with it, drag the card to the top (or press **⇅ Swap**) so it becomes MAIN, then pick a model with the model chip on the card.
@@ -230,7 +230,7 @@ Use this when you bought a Claude key (or another model) from a reseller that of
 
 **Connect:**
 
-1. Open **Models**, choose the **Cloud Model** tab, press **＋ Connect another provider** at the bottom of the page and find the **Anthropic Compatible** card.
+1. Open **AI models**, choose the **Cloud models** tab, press **＋ Connect another provider** at the bottom of the page and find the **Anthropic Compatible** card.
 2. Fill the 3 boxes from top to bottom: Base URL, model names (separate several with commas), API key.
 3. Click **Connect**. SenOS sends one very short test message to the seller first; on success the card shows **● Connected** with a model count.
 4. Make it the main model as in section D: the **Anthropic Compatible** card has just joined the end of the Usage order, so drag it to the top (or press **⇅ Swap**) and pick the model name with the model chip on the card. Send a test message; a small line under the reply reading "Anthropic Compatible · model-name" means it went the right way.
@@ -260,7 +260,7 @@ If chat later reports **429** or **529**, the seller is overloaded or you have u
 
 ### D. Usage order: choosing MAIN and fallbacks
 
-The **◆ Usage order** block at the top of the Cloud Model tab holds only the providers that are **signed in / connected**, as cards in the order they are used:
+The **◆ Usage order** block at the top of the Cloud models tab holds only the providers that are **signed in / connected**, as cards in the order they are used:
 
 - **The top card is MAIN** (labelled **MAIN**): this is your chat model.
 - The cards after it read **Fallback 1**, **Fallback 2**... When MAIN is out of quota, or fails before doing anything, chat moves to the next card. A fallback card carrying chat right now shows a green **IN USE** badge.
@@ -370,14 +370,14 @@ SenOS has three places to set a model, and the most common question is "which on
 | Where you are | The model that actually runs |
 |---|---|
 | Ordinary chat on the dashboard / Telegram | The MAIN card of the Usage order, falling back to Fallback 1, 2... when it is out of quota (or the web session's own pin, or the pin of exactly the Telegram conversation where you typed `/model`) |
-| Chatting with an assistant on the Partners page | That assistant's model; left on **Default**, the main model |
-| A **Chatbot** answering outside customers | The model of the assistant the bot points to; left on **Default**, the main model |
+| Chatting with an assistant on the Assistants page | That assistant's model; left on **Default**, the main model |
+| A **Reply bot** answering outside customers | The model of the assistant the bot points to; left on **Default**, the main model |
 | A step in a workflow | The model of the assistant at that step; left on **Default**, the **background model** |
 | Loops, Kanban work, reminders, self-learning, source ingestion | The background model |
 
 If the provider an assistant picked has its key removed, SenOS falls back to the main model rather than leaving the assistant or bot dead silent.
 
-The **Model** field in the assistant's settings uses the same picker as the model bar under the chat: type to search, and providers without an API key still appear with a lock, clicking which takes you to the Models page to unlock them. (The picker in the chat composer itself now lists connected providers only.)
+The **Model** field in the assistant's settings uses the same picker as the model bar under the chat: type to search, and providers without an API key still appear with a lock, clicking which takes you to the AI models page to unlock them. (The picker in the chat composer itself now lists connected providers only.)
 
 ### F. Setting the thinking level (Effort)
 
@@ -404,7 +404,7 @@ It applies differently per engine:
 
 ### G. Local Model: Ollama on your machine or your VPS
 
-The **Local Model** tab (next to Cloud Model on the Models page) connects SenOS to an Ollama you run yourself: open-source models, offline, no usage caps. The matching provider in the model picker is **Ollama (Local)**, distinct from **Ollama Cloud** on the Cloud tab (the paid service through ollama.com).
+The **Local Model** tab (next to Cloud models on the AI models page) connects SenOS to an Ollama you run yourself: open-source models, offline, no usage caps. The matching provider in the model picker is **Ollama (Local)**, distinct from **Ollama Cloud** on the Cloud tab (the paid service through ollama.com).
 
 **SenOS running directly on your machine (Windows/Mac/Linux):** install Ollama with the command the tab shows, then click Connect with the prefilled `http://127.0.0.1:11434`. Done.
 
@@ -430,14 +430,14 @@ Since 0.9.37, SenOS's Claude engine runs **exclusively through the Claude Agent 
 This is the easiest thing to get wrong, so be clear about it:
 
 - **MAIN = Claude Code**: the strongest option. Native file reads and writes, shell commands, MCP calls, native skills, automatic loops, session resume. The mode that gets the most out of SenOS.
-- **MAIN = ChatGPT OAuth (Codex)**: it can call the entire Connections store (the hub pushes them into Codex, local connections such as Zalo included), has Codex's own file tools, and uses skills through the router (SenOS injects the skill list into the system prompt plus the `senos_use_skill` tool; Codex runs with cwd=brain so it reads `skills/<slug>/SKILL.md` directly). Codex additionally loads its OWN MCP registry (servers you registered with `codex mcp add`, visible in the collapsed "◆ Claude Code and Codex built-in connections" block on the Connections page), the same way the Claude engine uses Claude Code's native MCPs.
+- **MAIN = ChatGPT OAuth (Codex)**: it can call the entire Connections store (the hub pushes them into Codex, local connections such as Zalo included), has Codex's own file tools, and uses skills through the router (SenOS injects the skill list into the system prompt plus the `senos_use_skill` tool; Codex runs with cwd=brain so it reads `skills/<slug>/SKILL.md` directly). Codex additionally loads its OWN MCP registry (servers you registered with `codex mcp add`, visible in the collapsed "◆ Claude Code and Codex built-in connections" block on the Apps page), the same way the Claude engine uses Claude Code's native MCPs.
 - **MAIN = OpenRouter / OpenAI (API) / Anthropic (API) / Gemini**: since version 0.9 all four call the Connections store through tool-call rounds, with vault file read/write tools and skill activation (`senos_use_skill`). **Background work also runs on these providers** (see section E). The remaining differences from Claude Code: no shell tool (Bash), no WebFetch, and no CLI session resume.
 
 The practical conclusion: for the fullest "working" SenOS, keep the **Claude Code** card on top (MAIN). Move to an API provider when you want to try a specific model from another vendor, or to push background work onto a cheaper plan and spare your Claude quota.
 
 ## Token saving applies to subscriptions too
 
-The **Token saving mode** block at the top of the **Usage** page (System group) makes SenOS send less text per turn: loading only the memory relevant to the question, and loading skills on demand rather than listing them all.
+The **Token saving mode** block at the top of **Preferences → Quota** (Admin group) makes SenOS send less text per turn: loading only the memory relevant to the question, and loading skills on demand rather than listing them all.
 
 Since version 0.12.4 this works for **all three brain kinds**, not only API-key brains:
 
@@ -455,9 +455,9 @@ Since 0.55.44, when the provider states the **reset time**, a card **"Auto-resum
 
 ## Switching model quickly
 
-On the Models page: drag the provider you want to the top of the **Usage order** (or press **⇅ Swap**) and pick a model with the model chip on that card. The top card becomes MAIN immediately. The **◆ Background model** block has its own **Change model ▾** (opening **BACKGROUND MODEL**), and the **Effort** chip on each card applies as soon as you pick a level.
+On the AI models page: drag the provider you want to the top of the **Usage order** (or press **⇅ Swap**) and pick a model with the model chip on that card. The top card becomes MAIN immediately. The **◆ Background model** block has its own **Change model ▾** (opening **BACKGROUND MODEL**), and the **Effort** chip on each card applies as soon as you pick a level.
 
-You do not even need the Models page: pick a model on the model chip under the chat. Picking a model from another provider moves that provider's card to the top of the Usage order.
+You do not even need the AI models page: pick a model on the model chip under the chat. Picking a model from another provider moves that provider's card to the top of the Usage order.
 
 ## Switching model mid-conversation
 
@@ -510,7 +510,7 @@ Up to and including 0.42.1 there was a bug in exactly this place: only ChatGPT/C
 - Set the **Background model** to something cheap so loops, Kanban work, reminders, self-learning and ingestion do not eat your main plan's quota. To see what is burning most, look at [Usage: tokens & cost](23-usage-and-cost.md).
 - Push the **Effort** chip to Medium or High for hard questions (analysis, strategy); leave it on Off or Light for quick questions to avoid waiting.
 - OpenRouter is convenient if you want to try many models from many vendors with one key.
-- To let ChatGPT call your sales tools: wire the connection on the [Connections & business data](09-connections-and-business-data.md) page first, and SenOS pushes it into Codex.
+- To let ChatGPT call your sales tools: wire the connection on the [Apps](09-connections-and-business-data.md) page first, and SenOS pushes it into Codex.
 
 ## Common problems
 
@@ -520,7 +520,7 @@ Up to and including 0.42.1 there was a bug in exactly this place: only ChatGPT/C
 - **The model chip opens an empty list**: that provider could not return its model list yet, or has no models. Click **Re-check** or reconnect that provider, or add models in `settings.json` (under `model.catalog`). See [.env configuration](16-env-configuration.md).
 - **A provider is missing from the Usage order**: it is not connected (or Claude Code is not signed in). Press **＋ Connect another provider** at the bottom of the page.
 - **The model returns nothing**: retry, or pick another model with the model chip on the MAIN card. With the Anthropic API, the message also carries the reason (for example hitting max_tokens: say "continue" and the model writes on).
-- **The Connections page shows a yellow line saying the Main Model does not support tool calling**: since 0.9.270 **no bundled provider** triggers that line any more. Before that, Google Gemini was missing from the list and was misreported even though MCP through the hub worked normally. The yellow line now only guards unknown providers. Claude Code, OpenRouter, OpenAI, Anthropic API, Gemini and Groq all show GREEN cards; ChatGPT OAuth has its own green card noting that it runs through the Codex CLI.
+- **The Apps page shows a yellow line saying the Main Model does not support tool calling**: since 0.9.270 **no bundled provider** triggers that line any more. Before that, Google Gemini was missing from the list and was misreported even though MCP through the hub worked normally. The yellow line now only guards unknown providers. Claude Code, OpenRouter, OpenAI, Anthropic API, Gemini and Groq all show GREEN cards; ChatGPT OAuth has its own green card noting that it runs through the Codex CLI.
 
 - **A red banner reading "⚠ the claude brain lost its sign-in" on a machine that never had Claude**: fixed in 0.9.270. The brain status lights kept state in RAM with nobody clearing it, so a red light lit while Claude was the Main Model hung around forever after you switched to OpenRouter. The lights now only count brains you ACTUALLY selected (the Main Model, plus the background model when its provider is explicit), and clear as soon as you switch provider rather than waiting for the 10-minute sweep.
 - **Disconnecting (or removing the last key of) the provider that is MAIN**: that provider leaves the Usage order and the next card becomes MAIN so chat does not break. That is deliberate, not a fault.

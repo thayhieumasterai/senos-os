@@ -476,7 +476,7 @@ def call_language(said: str, recognition_lang: str = "") -> str:
 # name no reason: there is no person behind it to quote.
 _PIN_REASON = {
     "turn": "asked for in this message",
-    "setting": "set in Settings",
+    "setting": "set in Thiết lập (Preferences)",
     "chatbot": "the language of this bot",
     "brain": "the language of this brain",
     "channel": "the language of this channel or call",

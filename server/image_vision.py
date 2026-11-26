@@ -202,9 +202,9 @@ def connected() -> bool:
 
 def not_connected_reason() -> str:
     return localefmt.chu(
-        "Chưa kết nối ChatGPT (OAuth) nên không có ai xem ảnh hộ. Vào trang Model đăng nhập ChatGPT rồi thử lại - "
+        "Chưa kết nối ChatGPT (OAuth) nên không có ai xem ảnh hộ. Vào trang Mô hình AI đăng nhập ChatGPT rồi thử lại - "
         "dùng chính gói ChatGPT, không cần API key.",
-        "ChatGPT (OAuth) is not connected, so nothing can look at the image. Sign in to ChatGPT on the Models page and "
+        "ChatGPT (OAuth) is not connected, so nothing can look at the image. Sign in to ChatGPT on the AI models page and "
         "try again - it uses your ChatGPT plan, no API key needed.")
 
 

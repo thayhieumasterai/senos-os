@@ -183,8 +183,8 @@ def _tu_choi():
     # say a sign-in password must be set first and send the user to Account instead of "Sign in".
     no_password = not cfgmod.auth_enabled()
     return JSONResponse({"ok": False, "need_password": no_password,
-                         "error": localefmt.chu("Sen Market cần mật khẩu đăng nhập. Đặt mật khẩu ở trang Tài khoản rồi đăng nhập.",
-                                                "Sen Market needs a sign-in password. Set one on the Account page, then sign in.")
+                         "error": localefmt.chu("Sen Market cần mật khẩu đăng nhập. Đặt mật khẩu ở trang Hồ sơ rồi đăng nhập.",
+                                                "Sen Market needs a sign-in password. Set one on the Profile page, then sign in.")
                          if no_password else
                          localefmt.chu("Cần đăng nhập vào SenOS để quản lý gói.",
                                        "Sign in to SenOS to manage packs.")},

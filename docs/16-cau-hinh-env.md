@@ -19,10 +19,10 @@ mục làm việc nằm sẵn trong Docker image.
 Cần phân biệt rõ 3 nơi cấu hình để khỏi nhầm:
 
 - **File `.env`**: các thiết lập cấp hệ thống, đọc 1 lần lúc khởi động. Đổi xong phải khởi động lại SenOS mới có hiệu lực.
-- **Bảng ⚙ Cài đặt trong app** (trang Tài khoản, Models, Kênh...): các thiết lập đổi nóng qua giao diện, lưu vào `settings.json`, không cần sửa file. Ví dụ: đổi model, khoá API OpenRouter, token Telegram, tên miền riêng, logo. Xem thêm ở [Models & engine](10-models-va-engine.md), [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md), [Thương hiệu & tên miền](15-thuong-hieu-ten-mien.md).
+- **Bảng ⚙ Thiết lập trong app** (trang Hồ sơ, Mô hình AI, Kênh quản trị...): các thiết lập đổi nóng qua giao diện, lưu vào `settings.json`, không cần sửa file. Ví dụ: đổi model, khoá API OpenRouter, token Telegram, tên miền riêng, logo. Xem thêm ở [Models & engine](10-models-va-engine.md), [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md), [Thương hiệu & tên miền](15-thuong-hieu-ten-mien.md).
 - **Vài khoá trong `settings.json` chưa có giao diện**: hiện có khối `media` (luật dọn ảnh/tệp tạm). Muốn đổi thì phải mở file sửa tay. Xem mục riêng bên dưới.
 
-Nói gọn: `.env` lo phần "chạy ở đâu, ai được vào, dữ liệu nằm đâu". Bảng Cài đặt trong app lo phần "dùng model nào, khoá gì, giọng gì". Còn `settings.json` là nơi cả hai gặp nhau, và một vài khoá hiếm dùng chỉ sửa được ở đó.
+Nói gọn: `.env` lo phần "chạy ở đâu, ai được vào, dữ liệu nằm đâu". Trang Thiết lập trong app lo phần "dùng model nào, khoá gì, giọng gì". Còn `settings.json` là nơi cả hai gặp nhau, và một vài khoá hiếm dùng chỉ sửa được ở đó.
 
 ## Mở ở đâu trong SenOS
 
@@ -71,20 +71,20 @@ Chi tiết quan trọng về `SENOS_HOST`: SenOS dùng cơ chế "an toàn mặc
 | `SENOS_ADMIN_USER` | Tên đăng nhập admin tạo sẵn lúc deploy | `admin` | Đặt cùng `SENOS_ADMIN_PASSWORD` để tạo sẵn tài khoản, server public không có lúc nào trống admin. |
 | `SENOS_ADMIN_PASSWORD` | Mật khẩu admin tạo sẵn lúc deploy | (trống) | Deploy public: đặt mật khẩu mạnh ở đây. Có biến này và chưa có admin, SenOS tạo tài khoản admin ngay lúc khởi động và đóng luôn màn hình tạo tài khoản (an toàn nhất cho public). |
 | `SENOS_RESET_2FA` | Gỡ xác thực 2 lớp MỘT lần lúc khởi động, khi bị khoá vì mất điện thoại hoặc 2FA do người lạ cài. Đăng xuất mọi phiên và ghi vào nhật ký bảo mật | (trống) | Đặt `1`, Redeploy, đăng nhập, bật 2FA mới rồi xoá biến. Mỗi giá trị chỉ áp dụng một lần nên để quên biến cũng không xoá 2FA mới; cần lại thì đặt giá trị khác (ví dụ ngày hôm đó). Xem [Khi nghi bị chiếm quyền](14-bao-mat-tai-khoan.md#khi-nghi-bị-chiếm-quyền). |
-| `SENOS_SETUP_2FA` | Mở sẵn màn quét QR bật xác thực 2 lớp ở trang Tài khoản. `1` = mở sẵn | Tắt | Muốn bật 2FA ngay lần đầu đăng nhập. Cờ này chỉ là **lời nhắc**: nó KHÔNG tự bật 2FA. Phải quét QR và nhập đúng một mã thì mới bật thật, vì bật trước lúc bạn chứng minh app sinh đúng mã là tự khoá mình ra ngoài. Bật hay tắt 2FA lúc nào cũng được ngay trong Dashboard → Tài khoản, không cần biến này. |
+| `SENOS_SETUP_2FA` | Mở sẵn màn quét QR bật xác thực 2 lớp ở trang Hồ sơ. `1` = mở sẵn | Tắt | Muốn bật 2FA ngay lần đầu đăng nhập. Cờ này chỉ là **lời nhắc**: nó KHÔNG tự bật 2FA. Phải quét QR và nhập đúng một mã thì mới bật thật, vì bật trước lúc bạn chứng minh app sinh đúng mã là tự khoá mình ra ngoài. Bật hay tắt 2FA lúc nào cũng được ngay trong Dashboard → Tài khoản, không cần biến này. |
 | `SENOS_SECURE_COOKIE` | Bật cookie chỉ gửi qua HTTPS. `1`/`true`/`yes`/`on` = bật | Tắt | Chỉ bật khi CHẮC CHẮN chạy HTTPS đầu-cuối (domain riêng có SSL). Bật nhầm khi proxy đang chạy HTTP sẽ kẹt vòng đăng nhập (nhập đúng mật khẩu vẫn bị đá về trang login). |
 | `SENOS_ALLOWED_HOSTS` | Thêm hostname được phép gọi SenOS (chống CSRF và DNS-rebinding). Nhiều tên cách nhau dấu phẩy | (trống) | Chạy sau reverse proxy với tên miền chưa khai trong app mà chưa đặt mật khẩu, bị 403 "host không được phép". Mặc định đã cho `localhost`, `127.0.0.1`, `::1` và tên miền bạn đặt ở Cài đặt. |
 | `SENOS_ENABLE_USER_PLUGINS` | Công tắc tắt hẳn plugin do bạn cài. Đặt `false` là không nạp | Bật | Từ 0.162.0 plugin do bạn cài được tải mặc định; từng plugin vẫn chỉ chạy khi bạn bật nó trong app. Đặt `false` khi muốn chặn hẳn trên máy này (plugin user chạy CODE PYTHON THẬT trong tiến trình server). Alias cũ: `SENOS_ENABLE_VAULT_PLUGINS`. Plugin đi kèm app (bundled) không chịu công tắc này. Xem [Plugins](20-plugins.md). |
 | `SENOS_BLOCK_BOTS` | Trả 403 cho bot AI, máy tìm kiếm, công cụ SEO và máy quét tự khai tên, để link quản trị lỡ lộ ra ngoài không bị đọc hay đưa lên Google. `0`/`false`/`no`/`off` = tắt | Bật | Một dịch vụ bạn dùng bị chặn nhầm vì tên trùng danh sách. Tắt chỉ bỏ lớp 403; header `noindex` và `/robots.txt` vẫn giữ. Xem [Chặn công cụ tìm kiếm và bot AI](14-bao-mat-tai-khoan.md#chặn-công-cụ-tìm-kiếm-và-bot-ai). |
-| `SENOS_TERMINAL` | Công tắc tắt hẳn Terminal (nhóm Năng lực). `0`/`off`/`false`/`no` = tắt | Bật | Không muốn có dòng lệnh nào mở được từ trình duyệt. Terminal vốn đã chỉ mở cho trình duyệt ĐÃ ĐĂNG NHẬP (token API không vào được), nhưng nhiều người vẫn muốn khoá cứng ở tầng máy chủ. Xem [Terminal](27-tab-code-terminal.md). |
-| `SENOS_TERMINAL_SHELL` | Shell mà Terminal chạy | `$SHELL`, không có thì `bash`/`sh`. Windows: `powershell.exe` rồi `cmd.exe` | Muốn ép dùng một shell khác (`zsh`, `fish`, `cmd.exe`). |
+| `SENOS_TERMINAL` | Công tắc tắt hẳn Dòng lệnh (nhóm Đội ngũ AI). `0`/`off`/`false`/`no` = tắt | Bật | Không muốn có dòng lệnh nào mở được từ trình duyệt. Dòng lệnh vốn đã chỉ mở cho trình duyệt ĐÃ ĐĂNG NHẬP (token API không vào được), nhưng nhiều người vẫn muốn khoá cứng ở tầng máy chủ. Xem [Terminal](27-tab-code-terminal.md). |
+| `SENOS_TERMINAL_SHELL` | Shell mà trang Dòng lệnh chạy | `$SHELL`, không có thì `bash`/`sh`. Windows: `powershell.exe` rồi `cmd.exe` | Muốn ép dùng một shell khác (`zsh`, `fish`, `cmd.exe`). |
 | `SENOS_TERMINAL_CWD` | Thư mục terminal mở ra | HOME của user chạy SenOS | Muốn shell mở sẵn ở gốc brain hoặc một thư mục dự án khác. |
 | `SENOS_AUTO_INSTALL_CLIS` | Bản Docker tự cài Antigravity CLI (`agy`) và Grok Build (`grok`) lúc khởi động nếu chưa có | `1` (bật) | Đặt `0` khi máy chủ không ra được Internet hoặc bạn không muốn có hai CLI này. Cài một lần, giữ qua mọi lần cập nhật; nhật ký cài ở `/data/home/.cli-auto-install/install.log`. |
-| `SENOS_TERMINAL_REMOTE` | Khai với các CLI trong Terminal rằng người dùng ngồi ở MÁY KHÁC (đặt `SSH_CONNECTION`) | Tự đoán: bật khi máy chủ không có màn hình (VPS, Docker), tắt trên Windows/macOS chạy thẳng và Linux có màn hình | Đăng nhập `agy`, `claude`, `codex`... in link rồi đứng im vì chúng tưởng trình duyệt nằm cùng máy. Bật (`1`) để chúng hỏi chỗ dán mã. Tắt (`0`) nếu máy chủ thật sự mở được trình duyệt cho bạn (X11 forwarding chẳng hạn). Xem [Terminal](27-tab-code-terminal.md). |
+| `SENOS_TERMINAL_REMOTE` | Khai với các CLI trong trang Dòng lệnh rằng người dùng ngồi ở MÁY KHÁC (đặt `SSH_CONNECTION`) | Tự đoán: bật khi máy chủ không có màn hình (VPS, Docker), tắt trên Windows/macOS chạy thẳng và Linux có màn hình | Đăng nhập `agy`, `claude`, `codex`... in link rồi đứng im vì chúng tưởng trình duyệt nằm cùng máy. Bật (`1`) để chúng hỏi chỗ dán mã. Tắt (`0`) nếu máy chủ thật sự mở được trình duyệt cho bạn (X11 forwarding chẳng hạn). Xem [Terminal](27-tab-code-terminal.md). |
 
 Về tài khoản admin lần đầu: khi chạy public mà chưa có admin, lần đầu mở app chỉ hỏi tên đăng nhập và mật khẩu, nên **ai mở link trước sẽ tạo được admin**. Vì vậy nên đặt sẵn `SENOS_ADMIN_USER` + `SENOS_ADMIN_PASSWORD` (`install.sh` đã hỏi sẵn) để server boot lên là có admin, hoặc tạo tài khoản ngay sau khi deploy. Đăng nhập xong thì bật xác thực 2 lớp (2FA). Xem thêm ở [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
 
-Về tên miền riêng và HTTPS: VPS dùng Caddy nhập tên miền ngay trong **Cài đặt → Chung → Tên miền & SSL** rồi bấm **Bật SSL**. Riêng Hostinger, wizard tạo sẵn biến `DOMAIN_NAME` để sao chép sang Docker Manager rồi Redeploy. Khi truy cập đúng tên miền qua HTTPS, server tự bật cookie Secure nên không cần đặt `SENOS_SECURE_COOKIE` thủ công. Chi tiết ở [Thương hiệu & tên miền](15-thuong-hieu-ten-mien.md).
+Về tên miền riêng và HTTPS: VPS dùng Caddy nhập tên miền ngay trong **Thiết lập → Chung → Tên miền & SSL** rồi bấm **Bật SSL**. Riêng Hostinger, wizard tạo sẵn biến `DOMAIN_NAME` để sao chép sang Docker Manager rồi Redeploy. Khi truy cập đúng tên miền qua HTTPS, server tự bật cookie Secure nên không cần đặt `SENOS_SECURE_COOKIE` thủ công. Chi tiết ở [Thương hiệu & tên miền](15-thuong-hieu-ten-mien.md).
 
 ### Nhóm 4: Đường dẫn dữ liệu (Second Brain và state)
 
@@ -97,9 +97,9 @@ Về tên miền riêng và HTTPS: VPS dùng Caddy nhập tên miền ngay trong
 | `SOURCES_PATH` | Nơi lưu file đính kèm từ chat (làm source cho Second Brain) | `brain/01 - Sources/` trong dự án | Muốn tách thư mục nguồn ra chỗ khác. |
 | `SENOS_STATE_DIR` | Nơi SenOS ghi state riêng: `settings.json`, phiên đăng nhập, cấu hình việc định kỳ, khoá mã hoá `.secret_key`, cơ sở dữ liệu hội thoại | `server/` (Docker: `/data/state`) | Docker/VPS phải trỏ vào volume ghi được (vì cây mã nguồn trong container là chỉ đọc). Máy cá nhân để trống là được. |
 | `SENOS_SESSIONS_DB` | Đường dẫn file cơ sở dữ liệu lưu phiên hội thoại (`conversations.db`) | Nằm trong `SENOS_STATE_DIR` | Muốn để file lịch sử phiên ở nơi khác. Xem [Phiên hội thoại](04-phien-hoi-thoai.md). |
-| `SENOS_FILES_ROOT` | Trần duyệt của trang Tệp tin (không cho bấm "Lên" quá đây). `brain`/`vault` = khoá trong brain; `drive`/`root` = cả ổ đĩa chứa brain; `<đường dẫn>` = một thư mục cụ thể (phải chứa brain) | localhost: cả ổ đĩa; bind public: khoá brain | Chạy public (VPS) mà vẫn muốn duyệt rộng thì đặt `drive` hoặc một thư mục cha. Muốn khoá chặt trong brain khi chạy local thì đặt `brain`. |
+| `SENOS_FILES_ROOT` | Trần duyệt của trang Tài liệu (không cho bấm "Lên" quá đây). `brain`/`vault` = khoá trong brain; `drive`/`root` = cả ổ đĩa chứa brain; `<đường dẫn>` = một thư mục cụ thể (phải chứa brain) | localhost: cả ổ đĩa; bind public: khoá brain | Chạy public (VPS) mà vẫn muốn duyệt rộng thì đặt `drive` hoặc một thư mục cha. Muốn khoá chặt trong brain khi chạy local thì đặt `brain`. |
 
-Ghi chú về Second Brain: `BRAINS_DIR` là thư mục thật sự chứa các brain của bạn (không phải `brain/` ở gốc repo, đó là đường dẫn kiểu cũ). Để trống là chạy được ngay với dữ liệu mẫu trong repo. Đọc thêm cách vận hành bộ nhớ ở [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md) và [Đồ thị tri thức](03-do-thi-tri-thuc.md).
+Ghi chú về Second Brain: `BRAINS_DIR` là thư mục thật sự chứa các brain của bạn (không phải `brain/` ở gốc repo, đó là đường dẫn kiểu cũ). Để trống là chạy được ngay với dữ liệu mẫu trong repo. Đọc thêm cách vận hành bộ nhớ ở [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md) và [Bản đồ tri thức](03-do-thi-tri-thuc.md).
 
 **Cảnh báo về `.secret_key`:** trong thư mục `SENOS_STATE_DIR` có một tệp nhỏ tên `.secret_key`. Nó là khoá dùng để mã hoá các trường bí mật trong `settings.json` (API key OpenRouter/Anthropic/OpenAI/Gemini, token đăng nhập ChatGPT, token Telegram, token GitHub sao lưu, key ElevenLabs). Chép `settings.json` sang máy khác mà quên `.secret_key` thì **mọi khoá mất trắng**: SenOS không giải mã được nên trả về chuỗi rỗng và bạn phải nhập lại từng cái. Sao lưu thì sao lưu cả cặp. Nếu máy thiếu thư viện `cryptography`, SenOS không mã hoá được: secret rơi về tiền tố `plain:` kèm một dòng cảnh báo trong log; cài `pip install cryptography` rồi khởi động lại là xong. Chi tiết ở [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
 
@@ -118,7 +118,7 @@ Lưu ý: hai biến TTS này áp cho giọng Edge TTS miễn phí mặc định.
 |---|---|---|---|
 | `DOMAIN_NAME` | Tên miền mà reverse proxy (Traefik của Hostinger) định tuyến về SenOS. SenOS đọc để đối chiếu với tên miền bạn nhập trong app và biết có cần Redeploy không | (trống; compose Hostinger đặt `localhost`) | Deploy Hostinger: đặt bằng tên miền của bạn trong Docker Manager rồi Redeploy. Wizard trong app có nút **Sao chép biến** để copy sẵn dòng này. |
 | `SENOS_DEPLOY_TARGET` | Khai rõ đang chạy ở môi trường nào: `hostinger`, `vps`, `native`, `windows` | Tự đoán (hostname `.hstgr.cloud` = hostinger; chạy Docker = vps) | Hầu như không cần đặt tay. Compose Hostinger đã đặt sẵn `hostinger`. Đặt khi SenOS đoán sai môi trường và wizard tên miền hiện sai hướng dẫn. |
-| `WATCHTOWER_TOKEN` | Token cho nút "Cập nhật ngay" (trang **Cập nhật**) gọi Watchtower khi chạy Docker | Trong `docker-compose.yml`: `senos-update`. Ngoài Docker: trống (không có biến thì SenOS coi như Watchtower không chạy) | Muốn chặt hơn: đổi thành chuỗi ngẫu nhiên, đặt cùng giá trị cho cả app lẫn service watchtower. |
+| `WATCHTOWER_TOKEN` | Token cho nút "Cập nhật ngay" (trang **Phiên bản**) gọi Watchtower khi chạy Docker | Trong `docker-compose.yml`: `senos-update`. Ngoài Docker: trống (không có biến thì SenOS coi như Watchtower không chạy) | Muốn chặt hơn: đổi thành chuỗi ngẫu nhiên, đặt cùng giá trị cho cả app lẫn service watchtower. |
 | `SENOS_AUTO_UPDATE` | Cho Watchtower TỰ đi tìm bản mới rồi dựng lại container, khỏi cần bấm nút | `false` | Mặc định tắt có chủ ý: bật là app tự khởi động lại bất cứ lúc nào có bản mới, cắt ngang việc nền và phiên chat đang chạy. Đặt trong `.env` (Hostinger: ô Environment) rồi dựng lại stack. |
 | `SENOS_AUTO_UPDATE_INTERVAL` | Chu kỳ Watchtower đi tìm bản mới, tính bằng GIÂY | `86400` (24 giờ) | Chỉ có tác dụng khi `SENOS_AUTO_UPDATE=true`. Đừng đặt quá ngắn: mỗi lần có bản mới là một lần app khởi động lại. |
 | `SENOS_RESUME_AFTER_RESTART` | Việc đang dở lúc máy chủ khởi động lại (việc team, lượt chat, việc nền) tự chạy tiếp | `1` | Đặt `0` để quay về cách cũ: việc bị cắt chờ bạn bấm Làm tiếp hoặc Thử lại. Bước đã kịp làm một việc ra ngoài (gửi, đăng) thì luôn dừng hỏi, không tự làm lại. |
@@ -172,8 +172,8 @@ Lưu ý: hai biến TTS này áp cho giọng Edge TTS miễn phí mặc định.
 | `SENOS_CODEX_BIN` | Đường dẫn tuyệt đối tới file thực thi `codex` | Tự dò trong PATH và các chỗ cài quen thuộc | Cài Codex CLI ở nơi lạ mà SenOS không tìm ra. |
 | `CLAUDE_CONFIG_DIR` | Thư mục cấu hình của Claude Code (nơi có `.credentials.json`). Đặt biến này là ĐÈ hẳn, giống hành vi của Claude Code | `~/.claude` | Bạn đã tự đổi thư mục cấu hình Claude Code. |
 | `CLAUDE_CODE_OAUTH_TOKEN` | Token OAuth của Claude Code, dùng để hỏi danh sách model thật từ Anthropic | (trống, đọc từ file credentials) | Môi trường không có file credentials (CI, container tối giản) mà vẫn muốn danh sách model động. |
-| `SENOS_CLAUDE_PROJECTS_DIR` | Nơi SenOS đọc log phiên Claude Code để tính **Mức dùng** | `~/.claude/projects` | Log Claude Code nằm chỗ khác. Xem [Mức dùng: token & chi phí](23-muc-dung-token.md). |
-| `SENOS_CODEX_SESSIONS_DIR` | Nơi SenOS đọc log phiên Codex để tính **Mức dùng** | `~/.codex/sessions` | Log Codex nằm chỗ khác. |
+| `SENOS_CLAUDE_PROJECTS_DIR` | Nơi SenOS đọc log phiên Claude Code để tính **Hạn mức** | `~/.claude/projects` | Log Claude Code nằm chỗ khác. Xem [Mức dùng: token & chi phí](23-muc-dung-token.md). |
+| `SENOS_CODEX_SESSIONS_DIR` | Nơi SenOS đọc log phiên Codex để tính **Hạn mức** | `~/.codex/sessions` | Log Codex nằm chỗ khác. |
 | `SENOS_YOUTUBE_PROXY` | Proxy RIÊNG cho phần đọc phụ đề YouTube, dạng `http://user:mat-khau@may-chu:cong`. Chỉ lưu lượng đi YouTube mới qua đây | (trống, đi thẳng) | SenOS báo "YouTube nghi máy chủ này là robot" lặp đi lặp lại. Gốc rễ của lỗi đó là **danh tiếng địa chỉ IP**: YouTube đánh dấu dải IP của các nhà cung cấp máy chủ (AWS, Google Cloud, Azure, VPS giá rẻ), nên cùng một đoạn mã chạy ở nhà thì trôi chảy còn chạy trên VPS thì bị hỏi giấy. Trỏ qua một proxy dân cư là đứng ở chỗ khác trên Internet. Đừng dùng `HTTPS_PROXY` của hệ thống cho việc này: nó đẩy **toàn bộ** lưu lượng của SenOS qua đó, gồm cả gọi model và MCP, vừa chậm vừa lộ dữ liệu cho bên thứ ba. Xem [Trò chuyện](02-tro-chuyen-va-giong-noi.md). |
 | `SENOS_IMAGE_HOST_MODEL` | Ghim cứng model chat "chủ" dùng để gọi tool tạo ảnh qua gói ChatGPT | trống (tự chọn: `gpt-5.5` nếu gói có, không thì model khác trong danh sách model ChatGPT của tài khoản) | Muốn ép đúng một model. Không đặt thì SenOS tự đổi model khi gói báo "model is not supported". |
 | `SENOS_IMAGE_MODEL` | Model sinh ảnh thật sự | `gpt-image-2` | Như trên. |
@@ -184,7 +184,7 @@ Ghi chú: `SENOS_ENABLE_USER_PLUGINS` cũng là biến nâng cao nhưng vì nó 
 
 Thư mục `attachments/` và `inbox/` của mỗi brain là **vùng cache**, không phải kho tri thức: ảnh là nguyên liệu đi qua, đọc xong rút thành `.md` là đủ. Vì thế SenOS tự dọn chúng theo tuổi và theo dung lượng, sáu tiếng quét một lần. Thư mục stage tạm (nơi tệp bạn dán vào khung chat rơi xuống) có hạn riêng, ngắn hơn hẳn.
 
-Luật dọn này **chưa có ô nào trong Cài đặt**. Muốn đổi, mở `settings.json` trong thư mục state (máy cá nhân: `server/settings.json`; Docker: `/data/state/settings.json`) và sửa khối `media`:
+Luật dọn này **chưa có ô nào trong Thiết lập**. Muốn đổi, mở `settings.json` trong thư mục state (máy cá nhân: `server/settings.json`; Docker: `/data/state/settings.json`) và sửa khối `media`:
 
 ```json
 "media": {
@@ -234,7 +234,7 @@ SENOS_ALLOWED_HOSTS=senos.tencuaban.com
 ## Mẹo
 
 1. Luôn giữ lại `env.example` làm bản gốc tham chiếu. Chỉ sửa `.env`.
-2. Đổi biến trong `.env` xong phải khởi động lại SenOS mới ăn. Khác với bảng Cài đặt trong app (đổi là ăn ngay).
+2. Đổi biến trong `.env` xong phải khởi động lại SenOS mới ăn. Khác với trang Thiết lập trong app (đổi là ăn ngay).
 3. Không chắc một biến làm gì thì cứ để nguyên dấu `#` (chú thích) cho an toàn. Mặc định đã chạy tốt.
 4. Với các biến bật/tắt (`SENOS_REQUIRE_LOGIN`, `SENOS_SECURE_COOKIE`, `SENOS_ENABLE_USER_PLUGINS`), giá trị bật chấp nhận `1`, `true`, `yes`, `on`. Giá trị tắt chấp nhận `0`, `false`, `no`, `off`.
 5. File `.env` chứa mật khẩu và cấu hình nhạy cảm. Không đưa lên nơi công khai. Trên máy chung, đặt quyền đọc hạn chế. Tệp `.secret_key` trong thư mục state cũng vậy, và nó còn quan trọng hơn: mất là mất luôn mọi API key đã lưu.
@@ -248,15 +248,15 @@ SENOS_ALLOWED_HOSTS=senos.tencuaban.com
 
 **Đăng nhập đúng mật khẩu nhưng cứ bị đá về trang login.** Nhiều khả năng bạn đã bật `SENOS_SECURE_COOKIE=1` nhưng thực tế đang truy cập qua HTTP (không phải HTTPS). Cookie Secure chỉ gửi qua HTTPS nên trình duyệt không giữ được phiên. Xoá dòng đó hoặc đặt về tắt, khởi động lại.
 
-**Mọi thao tác trả 403 "host không được phép".** Bạn vào SenOS bằng một tên miền chưa nằm trong allowlist, trong lúc chưa đặt mật khẩu. Thêm tên miền vào `SENOS_ALLOWED_HOSTS` (hoặc nhập nó ở Cài đặt → Tên miền & SSL), hoặc đơn giản là đặt mật khẩu.
+**Mọi thao tác trả 403 "host không được phép".** Bạn vào SenOS bằng một tên miền chưa nằm trong allowlist, trong lúc chưa đặt mật khẩu. Thêm tên miền vào `SENOS_ALLOWED_HOSTS` (hoặc nhập nó ở Thiết lập → Tên miền & SSL), hoặc đơn giản là đặt mật khẩu.
 
 **Đã bật plugin trong app rồi mà nó vẫn không chạy.** Xem `.env` có dòng `SENOS_ENABLE_USER_PLUGINS=false` không: có thì bỏ dòng đó (hoặc đặt `true`) rồi khởi động lại. Trong app, SenOS cũng ghi rõ câu này khi bạn bật một plugin đang bị tắt.
 
-**Đặt tên workspace trong .env mà app hiển thị tên khác.** App ưu tiên tên đã lưu trong Cài đặt hơn biến `WORKSPACE_NAME`. Sửa tên trong bảng Cài đặt của app, hoặc xoá tên đã lưu để app dùng lại giá trị từ `.env`.
+**Đặt tên workspace trong .env mà app hiển thị tên khác.** App ưu tiên tên đã lưu trong Thiết lập hơn biến `WORKSPACE_NAME`. Sửa tên trong trang Thiết lập của app, hoặc xoá tên đã lưu để app dùng lại giá trị từ `.env`.
 
-**Trỏ OBSIDIAN_VAULT_PATH vào vault thật mà SenOS không thấy dữ liệu.** Kiểm tra đường dẫn có đúng và SenOS có quyền đọc thư mục đó không. Trên Docker phải mount đúng volume vào đường dẫn bạn khai. Sau khi sửa, khởi động lại và dựng lại đồ thị (xem [Đồ thị tri thức](03-do-thi-tri-thuc.md)).
+**Trỏ OBSIDIAN_VAULT_PATH vào vault thật mà SenOS không thấy dữ liệu.** Kiểm tra đường dẫn có đúng và SenOS có quyền đọc thư mục đó không. Trên Docker phải mount đúng volume vào đường dẫn bạn khai. Sau khi sửa, khởi động lại và dựng lại đồ thị (xem [Bản đồ tri thức](03-do-thi-tri-thuc.md)).
 
-**Khôi phục backup xong thì mọi API key trống trơn.** Bạn chép `settings.json` mà không chép `.secret_key` cùng thư mục. Không khôi phục được, phải nhập lại key ở trang Models và Kênh.
+**Khôi phục backup xong thì mọi API key trống trơn.** Bạn chép `settings.json` mà không chép `.secret_key` cùng thư mục. Không khôi phục được, phải nhập lại key ở trang Mô hình AI và Kênh quản trị.
 
 Nếu còn vướng, xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
 

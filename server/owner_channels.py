@@ -95,9 +95,9 @@ class OwnerChannel:
     def _refusal(self, code: str) -> str:
         return localefmt.chu(
             f"Bạn chưa được cấp quyền dùng SenOS này.\nMã ghép nối của bạn: {code}\n"
-            "Đưa mã này cho chủ máy để họ cho phép ở trang Kênh Admin.",
+            "Đưa mã này cho chủ máy để họ cho phép ở trang Kênh quản trị.",
             f"You are not allowed to use this SenOS yet.\nYour pairing code: {code}\n"
-            "Give this code to the owner so they can allow you on the Admin channels page.")
+            "Give this code to the owner so they can allow you on the Control channels page.")
 
     def _queue(self, meta) -> str:
         """Put a stranger in the pairing queue. Returns what to reply ("" = stay quiet)."""

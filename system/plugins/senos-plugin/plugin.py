@@ -18,7 +18,7 @@ import plugin_authoring
 
 _DESC = (
     "Create, read and edit the owner's own plugins (native Python tools/hooks every engine can call) "
-    "in place, so they install straight onto the Plugins page. Never hand the owner a zip or write "
+    "in place, so they install straight onto the Tiện ích (Add-ons) page. Never hand the owner a zip or write "
     "plugin files by hand. "
     "op=list: user plugins (slug, scope, enabled, load error) plus read-only system/pack plugins. "
     "op=read {slug}: the plugin's files. "
@@ -28,10 +28,10 @@ _DESC = (
     "what the tool does (readonly | safe = writes files | full = outside actions). Syntax errors are "
     "refused and nothing is written. "
     "The plugin installs OFF: a new plugin, or an update that changes code or declared tools/hooks/"
-    "min_mode, is switched off and only the owner turns it on in the Plugins page; you can never "
+    "min_mode, is switched off and only the owner turns it on in the Tiện ích (Add-ons) page; you can never "
     "enable it. Say so in your reply. "
     "op=delete {slug}: remove a plugin this tool created that is off; otherwise the owner uses the "
-    "Plugins page. Load the senos-builder skill for the plugin template."
+    "Tiện ích (Add-ons) page. Load the senos-builder skill for the plugin template."
 )
 
 

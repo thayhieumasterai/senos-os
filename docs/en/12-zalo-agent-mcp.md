@@ -38,7 +38,7 @@ follows its official npm releases. Since 0.83.0 SenOS runs this build instead of
 
 ## Connecting by QR
 
-1. Open **Connections** → find **Zalo Agent MCP** → click **Connect**.
+1. Open **Apps** → find **Zalo Agent MCP** → click **Connect**.
 2. Read the risk warning, type a memorable name if you want, then click **Show QR code**.
 3. In the Zalo app on your phone, open the QR scanner and scan the code on the dashboard.
 4. When the account card appears under **Connected**, the connection is ready.
@@ -51,7 +51,7 @@ The **Guide on GitHub** button in the Zalo card always opens this documentation 
 
 ## Importing old messages into the Inbox (since 0.174.0)
 
-Right after you sign Zalo in to SenOS, the Inbox only holds messages from the moment **Record conversations** was switched on. To bring in older ones, press **Import old messages** on the Zalo account card on the Chatbot page, Bots tab, under Channels without a bot. If Zalo already has a bot, press the Zalo chip on that bot's card.
+Right after you sign Zalo in to SenOS, the Inbox only holds messages from the moment **Record conversations** was switched on. To bring in older ones, press **Import old messages** on the Zalo account card on the Bot inbox page, Bots tab, under Channels without a bot. If Zalo already has a bot, press the Zalo chip on that bot's card.
 
 - SenOS takes the messages senos-zalo pulls in on every connect: about the last **2 weeks**, since Zalo does not allow going further back. At most 5,000 messages per run.
 - A chat with **no message yet** gets everything. A chat that **already has messages** gets only those **older than its first message**, placed above it in time order (before this release such chats were skipped).
@@ -127,17 +127,17 @@ including people your own account added:
   People who joined before this feature, or while the machine running SenOS was off, are not in
   the log.
 
-## The Zalo extras pack (SenOS Store)
+## The Zalo extras pack (Sen Market)
 
 The three groups of tools below (reading images, sending images and files, tagging people plus
 notes, reminders and polls) fill exactly what the standard MCP lacks. Since 0.73.0 they live in
-the **`javis.zalo`** pack on SenOS Store instead of shipping inside the app, so people who do not
+the **`senos.zalo`** pack on Sen Market instead of shipping inside the app, so people who do not
 use Zalo do not carry them:
 
 - **Right after you scan the Zalo QR, SenOS offers the pack** through the store's own consent
   screen: it lists every code file, with the "run now" switch on because you just connected
   Zalo yourself. Press Install and every tool is there.
-- **On a machine that connected Zalo earlier**, the Connections page shows a reminder with an
+- **On a machine that connected Zalo earlier**, the Apps page shows a reminder with an
   **Install companion pack** button. SenOS never installs a code pack without asking.
 - The Zalo connection, the Inbox and the Zalo chatbot stay in the app and keep working without
   the pack. Without it you only miss the extra tools.
@@ -146,7 +146,7 @@ use Zalo do not carry them:
 
 The Zalo MCP only returns a **link** to an image, keeps messages for 2 hours, and
 `zalo_view_media` opens the image in the server's own image viewer instead of handing it to the
-brain. So the `javis.zalo` pack has the `zalo_read_images` tool:
+brain. So the `senos.zalo` pack has the `zalo_read_images` tool:
 
 | Tool | What it does | Action level |
 |---|---|---|
@@ -161,7 +161,7 @@ Just ask in chat, for example "look at the receipt Lan just posted in the Sales 
 - **Every brain can "see" them.** Claude Code and Codex open the image file themselves. The API
   engines (OpenRouter, Gemini...) cannot view images, so ChatGPT on the plan you are signed in to
   looks at them and describes them, copying any text and numbers verbatim. Without ChatGPT signed
-  in on the Models page the images are still fetched, just without the description.
+  in on the AI models page the images are still fetched, just without the description.
 
 The part where ChatGPT looks at images lives in the app (the bundled `image-chatgpt` plugin, tool
 `senos_describe_image`), so it can view any other image in the brain too, with or without the
@@ -170,7 +170,7 @@ Zalo pack.
 ## Sending images and files
 
 `zalo_send_message` above **only sends text**. To send an image (say one SenOS just generated)
-or a file (a PDF report, a spreadsheet), use the `zalo_send_image` tool from the `javis.zalo`
+or a file (a PDF report, a spreadsheet), use the `zalo_send_image` tool from the `senos.zalo`
 pack. It uses exactly the Zalo account you scanned the QR with.
 
 | Tool | What it does | Action level |
@@ -221,7 +221,7 @@ MCP, since the new connection evicts it.
 ## Tagging people, notes, reminders and polls
 
 `zalo_send_message` only sends text, so it cannot tag anyone, and the Zalo MCP has no notes, reminders or polls either. The
-`javis.zalo` pack fills exactly those gaps with five tools that every brain can call:
+`senos.zalo` pack fills exactly those gaps with five tools that every brain can call:
 
 | Tool | What it does | Action level |
 |---|---|---|
@@ -231,11 +231,11 @@ MCP, since the new connection evicts it.
 | `zalo_create_reminder` | A reminder shown inside Zalo, with a time and repeat (daily, weekly, monthly) | Dangerous (Full power level) |
 | `zalo_create_poll` | A poll for the group: multiple answers, anonymous, closing time | Dangerous (Full power level) |
 
-Just say it in chat, for example "message the Sales group and tag @minhquy: meeting at 9am" or "create a poll in the SenOS class group: what for lunch".
+Just say it in chat, for example "message the Sales group and tag @lan: meeting at 9am" or "create a poll in the SenOS class group: what for lunch".
 
 Four things worth knowing:
 
-- **You only need to say a name to tag.** "@minhquy" or "Cát Tường Group" both work, ignoring case and accents. SenOS looks up the real Zalo
+- **You only need to say a name to tag.** "@lan" or "Cát Tường Group" both work, ignoring case and accents. SenOS looks up the real Zalo
   id among the people who already spoke in that group first, then in Zalo's member list. **If a name is ambiguous or not found, SenOS
   asks back with the candidates** instead of guessing, because a wrong tag cannot be undone. `@All` only when you ask for it explicitly.
 - **This reminder is not SenOS's own reminder** (`senos_schedule`): it shows up inside Zalo, so the whole group sees it. Times use SenOS's timezone.
@@ -275,7 +275,7 @@ A new connection defaults to **Full power** so that `zalo_send_message` can be u
 - **Draft writes**: adds `zalo_mark_read`, still blocks sending.
 - **Full power**: allows sending (`zalo_send_message`, `zalo_send_image`) and the tools that tag people or create notes, reminders and polls.
 
-You change the level in the menu of the account chip on the **Connections** page. Background
+You change the level in the menu of the account chip on the **Apps** page. Background
 work running at a restricted level is still blocked from sending by the MCP Hub, even when the
 account is set to Full power.
 

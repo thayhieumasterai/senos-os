@@ -353,8 +353,8 @@ async def gui(tk: dict, chat_id: str, text: str, chat_type: str = "private", men
     import zalo_personal_channel
     conn = zalo_personal_channel.ket_noi_theo_id(str(tk.get("id") or tk.get("external_id") or ""))
     if not conn:
-        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Kết nối (hoặc đang tắt)",
-                                     "this Zalo account is no longer on the Connections page (or is turned off)")
+        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Ứng dụng (hoặc đang tắt)",
+                                     "this Zalo account is no longer on the Apps page (or is turned off)")
     # Zalo shows its own tag markup as plain code (2026-10-19): keep only the "@Name", which `_send_tagged` turns into a real tag.
     sach = zalo_personal_channel.strip_mention_markup(text)
     if sach != str(text or ""):
@@ -569,8 +569,8 @@ async def send_reaction(tk: dict, chat_id: str, msg_id: str, name: str, chat_typ
     import zalo_personal_channel
     conn = zalo_personal_channel.ket_noi_theo_id(str(tk.get("id") or tk.get("external_id") or ""))
     if not conn:
-        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Kết nối (hoặc đang tắt)",
-                                     "this Zalo account is no longer on the Connections page (or is turned off)")
+        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Ứng dụng (hoặc đang tắt)",
+                                     "this Zalo account is no longer on the Apps page (or is turned off)")
     args = {"threadId": str(chat_id), "threadType": 1 if str(chat_type or "") == "group" else 0, "msgId": str(msg_id),
             "reaction": str(name)}
     if cli_msg_id:
@@ -593,8 +593,8 @@ async def gui_anh(tk: dict, chat_id: str, paths, chat_type: str = "private"):
     import zalo_personal_channel
     conn = zalo_personal_channel.ket_noi_theo_id(str(tk.get("id") or tk.get("external_id") or ""))
     if not conn:
-        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Kết nối (hoặc đang tắt)",
-                                     "this Zalo account is no longer on the Connections page (or is turned off)")
+        return False, localefmt.chu("tài khoản Zalo này không còn ở trang Ứng dụng (hoặc đang tắt)",
+                                     "this Zalo account is no longer on the Apps page (or is turned off)")
     home = zalo_cli.home_of(conn)
     ds = [str(x) for x in (paths or []) if str(x or "").strip()]
     if not home or not ds:
@@ -681,9 +681,9 @@ class Transport:
                 if not zc.ket_noi_theo_id(self.conn_id):
                     self.status = "error"
                     self.last_error = localefmt.chu(
-                        "Kết nối Zalo này không còn (hoặc đang tắt) ở trang Kết nối, "
+                        "Kết nối Zalo này không còn (hoặc đang tắt) ở trang Ứng dụng, "
                         "bot không nhận được tin.",
-                        "This Zalo connection is gone (or turned off) on the Connections page, "
+                        "This Zalo connection is gone (or turned off) on the Apps page, "
                         "so the bot receives no messages.")
                 elif tt.get("loi"):
                     self.status = "error"

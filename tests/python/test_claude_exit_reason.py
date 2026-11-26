@@ -65,7 +65,7 @@ check("root: names both ways out", "IS_SANDBOX=1" in vi and "tài khoản thư�
 check("root: still quotes what claude printed", ROOT_LINE in vi and ROOT_LINE in en)
 
 vi, en = both(MCP_LINES)
-check("bad MCP config: points at the Connections page", "trang Kết nối" in vi and "Connections page" in en)
+check("bad MCP config: points at the Apps page", "trang Ứng dụng" in vi and "Apps page" in en)
 check("bad MCP config: quotes both lines, joined", "Error: Invalid MCP configuration: | MCP config file not found" in vi)
 
 vi, en = both([FLAG_LINE])

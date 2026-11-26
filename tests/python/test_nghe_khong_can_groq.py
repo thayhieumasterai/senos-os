@@ -107,8 +107,8 @@ r = run(stt.listen_any(b"x", "a.ogg", {}))
 check("no ear at all -> the 'missing ear' line", r.get("ly_do") == "thieu_key" and not r.get("ok"), r)
 
 cau = stt.loi_thanh_dong("thieu_key")
-check("the missing-ear line names every road: Groq, OpenAI, Gemini, the offline ear on the Tools page",
-      all(w in cau for w in ("Groq", "OpenAI", "Gemini", "Models", "Công cụ", "Bộ nghe offline")), cau)
+check("the missing-ear line names every road: Groq, OpenAI, Gemini, the offline ear on the Add-ons page",
+      all(w in cau for w in ("Groq", "OpenAI", "Gemini", "Mô hình AI", "Tiện ích", "Bộ nghe offline")), cau)
 check("and still guards the customer role", "người thật" in cau and "đừng nhắc" in cau)
 stt.groq_nghe, stt.openai_nghe, stt.gemini_nghe = _real
 

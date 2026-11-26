@@ -1,10 +1,10 @@
-# Đồ thị tri thức
+# Bản đồ tri thức
 
 ***Tiếng Việt** · [English](en/03-knowledge-graph.md)*
 
-Đồ thị tri thức biến các ghi chú trong brain thành một mạng lưới trực quan. Mỗi đốm sáng là một file Markdown; mỗi sợi nối là một wikilink `[[...]]` giữa hai ghi chú.
+Trang **Bản đồ tri thức** (nhóm **Tri thức** trên rail) biến các ghi chú trong brain thành một mạng lưới trực quan. Mỗi đốm sáng là một file Markdown; mỗi sợi nối là một wikilink `[[...]]` giữa hai ghi chú.
 
-Đồ thị dùng canvas 2D, không dùng WebGL và không cần tải thư viện từ Internet. Nó hiện cả các ghi chú chưa có liên kết, hỗ trợ timelapse và có thể tắt hoàn toàn trong Cài đặt.
+Bản đồ dùng canvas 2D, không dùng WebGL và không cần tải thư viện từ Internet. Nó hiện cả các ghi chú chưa có liên kết, hỗ trợ timelapse và có thể tắt hoàn toàn trong Thiết lập.
 
 Xem thêm nơi dữ liệu này được tạo ra: [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md).
 
@@ -19,21 +19,21 @@ Xem thêm nơi dữ liệu này được tạo ra: [Second Brain: bộ nhớ, Wi
 ## Mở đồ thị
 
 1. Mở dashboard, mặc định tại `http://<địa-chỉ-máy>:7777`.
-2. Trên thanh điều hướng bên trái, mở nhóm **Trợ lý** rồi chọn **SenOS**.
+2. Trên thanh điều hướng bên trái, mở nhóm **Tri thức** rồi chọn **Bản đồ tri thức**.
 3. Đồ thị nằm ở vùng giữa màn hình.
 
-Khi bạn chuyển sang trang khác hoặc mở trình soạn ghi chú, đồ thị tự tạm dừng. Quay lại trang **SenOS** hoặc đóng trình soạn thì nó chạy tiếp.
+Khi bạn chuyển sang trang khác hoặc mở trình soạn ghi chú, đồ thị tự tạm dừng. Quay lại trang **Bản đồ tri thức** hoặc đóng trình soạn thì nó chạy tiếp.
 
-Trên màn hình hẹp dưới 860px, SenOS ưu tiên giao diện nhẹ và mở thẳng trang **Trò chuyện**.
+Trên màn hình hẹp dưới 860px, SenOS ưu tiên giao diện nhẹ và mở thẳng trang **Hội thoại**.
 
 ## Bật hoặc tắt đồ thị
 
-1. Mở **Hệ thống → Cài đặt**.
+1. Mở **Quản trị → Thiết lập**.
 2. Mở nhóm **Giao diện & Brain**.
 3. Tìm thẻ **Đồ thị não**.
 4. Bấm **Tắt đồ thị** hoặc **Bật đồ thị**.
 
-Khi tắt, SenOS không dựng đồ thị và mở thẳng trang **Trò chuyện**. Lựa chọn được lưu trong cài đặt server.
+Khi tắt, SenOS không dựng đồ thị và mở thẳng trang **Hội thoại**. Lựa chọn được lưu trong cài đặt server.
 
 ## Chọn brain
 
@@ -146,8 +146,8 @@ Nếu kết nối theo dõi bị ngắt, SenOS tự nối lại. Một lần qu�
 - **Đồ thị trống hoặc ít node**: kiểm tra brain đang chọn và xem nguồn có file `.md` hay không.
 - **Không nạp được thư viện đồ thị**: tải lại trang. Thư viện nằm trên chính máy chủ SenOS, nên lỗi thường do trang tải dở hoặc static file không được phục vụ.
 - **Dòng thống kê báo “Lỗi”**: nguồn ngoài có thể đã đổi đường dẫn hoặc không còn quyền đọc.
-- **Đồ thị đứng im**: kiểm tra xem bạn có đang ở trang khác, mở trình soạn, dùng màn hình hẹp hoặc đã tắt đồ thị trong Cài đặt không.
-- **Vào SenOS nhưng chuyển thẳng sang Trò chuyện**: màn hình đang hẹp hoặc đồ thị đã bị tắt.
+- **Đồ thị đứng im**: kiểm tra xem bạn có đang ở trang khác, mở trình soạn, dùng màn hình hẹp hoặc đã tắt đồ thị trong Thiết lập không.
+- **Vào SenOS nhưng chuyển thẳng sang Hội thoại**: màn hình đang hẹp hoặc đồ thị đã bị tắt.
 - **Node mới chưa xuất hiện**: chờ kết nối theo dõi tự nối lại, hoặc đổi brain rồi chọn lại để tải mới.
 
 ## Liên quan

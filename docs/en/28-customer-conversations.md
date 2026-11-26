@@ -1,20 +1,20 @@
-# Customer conversations (Inbox)
+# Customer conversations (Bot inbox)
 
 *[Tiếng Việt](../28-hoi-thoai-khach.md) · **English***
 
 Every message a customer sends to a **dedicated bot** (Telegram or Zalo Bot) and to a connected **personal Zalo account** is gathered into one inbox inside SenOS. You read the exchange between the customer and the bot, see which chats the bot is stuck on, and **take over** a chat when a human is needed.
 
-Since 0.61.0 this page also holds the Chatbots: **one item on the rail, three tabs** (Inbox, Channels, Chatbots), and you **reply to customers right inside the Inbox**.
+Since 0.61.0 this page also holds the bots: **one item on the rail, four tabs** (Conversations, Bots, Channels, Stats), and you **reply to customers right inside the inbox**.
 
 ## Where to open it
 
-Left navigation, group **Capabilities**, item **Conversations**. Inside, three tabs:
+Left navigation, group **AI crew**, item **Bot inbox**. The main tabs:
 
 - **Conversations**: every customer message, who is handling which chat, reply, let the AI draft.
 - **Channels**: every account customers write to (Telegram bots, Zalo bots, personal Zalo...), add accounts, turn recording on.
-- **Chatbots**: the AI staff on duty for those accounts. See [Chatbots](25-chatbots.md).
+- **Bots**: the AI staff on duty for those accounts. See [Chatbots](25-chatbots.md).
 
-Voice works too: "open the customer inbox", "show customer messages", and "open chatbots" lands on the Chatbots tab. Saying just "conversation" still opens the Chat page as before.
+Voice works too: "open the customer inbox", "show customer messages", and "open chatbots" lands on the Bots tab. Saying just "conversation" still opens the Conversations page (your own chat with SenOS) as before.
 
 ## The model
 
@@ -127,9 +127,9 @@ Every account customers write to appears as **the same kind of card**, whatever 
 
 Two kinds of account, differing in how you get them, not in how they look:
 
-**Bot accounts** (Telegram, Zalo Bot) are a token. Press **Add account**, pick the channel type, paste the token, press **Check** so SenOS asks the right platform which bot it is, give it a display name and Save. A bot account records into the inbox while the bot serving it is enabled; with no bot on duty the card says so and offers **Create a bot**, which opens the form on the Bot tab with that account ticked. It can be deleted once no bot serves it; recorded conversations stay.
+**Bot accounts** (Telegram, Zalo Bot) are a token. Press **Add account**, pick the channel type, paste the token, press **Check** so SenOS asks the right platform which bot it is, give it a display name and Save. A bot account records into the inbox while the bot serving it is enabled; with no bot on duty the card says so and offers **Create a bot**, which opens the form on the Bots tab with that account ticked. It can be deleted once no bot serves it; recorded conversations stay.
 
-**Your own accounts** (personal Zalo) come from the **Connections** page (QR scan in Zalo Agent MCP) and appear here with a **Record conversations** switch. Turn it on and SenOS reads new messages every 20 seconds through the MCP and writes them into the inbox. Three plain facts about this channel:
+**Your own accounts** (personal Zalo) come from the **Apps** page (QR scan in Zalo Agent MCP) and appear here with a **Record conversations** switch. Turn it on and SenOS reads new messages every 20 seconds through the MCP and writes them into the inbox. Three plain facts about this channel:
 
 - **Off by default.** Turning it on keeps your Zalo session alive continuously through an unofficial API, meaning the account is signed in 24/7 on the machine running SenOS. That is your choice, not SenOS's. Use a secondary account.
 - **Stored from the moment you turn it on.** No old history is pulled. Messages you send from your phone show as "You".
@@ -156,15 +156,15 @@ Adding a channel = one file in the registry, one registration line, one logo in 
 
 ## Troubleshooting
 
-- **Bot enabled but no conversations**: the store only records from the moment the channel was connected; send the bot a test message. Still empty, check the bot's Log tab on the Chatbots tab.
+- **Bot enabled but no conversations**: the store only records from the moment the channel was connected; send the bot a test message. Still empty, check the bot's Log tab on the Bots tab.
 - **Bot card says "no channel account yet"**: the bot serves no token. Press Edit, tick an existing account or paste a new token.
 - **Sending from the Inbox fails**: the error text comes from the platform itself (token revoked, customer blocked the bot, Zalo session expired). A message that did not go out is not written to the store.
-- **Personal Zalo shows a red error on the Channels tab**: usually an expired QR session or a machine without Node.js 20. Check the Zalo connection on the Connections page and rescan the QR if needed. The reader retries after 90 seconds.
+- **Personal Zalo shows a red error on the Channels tab**: usually an expired QR session or a machine without Node.js 20. Check the Zalo connection on the Apps page and rescan the QR if needed. The reader retries after 90 seconds.
 - **Pressed Take over but the bot still answered once**: that turn was already running before the click. From the next message on, the bot stays quiet.
 
 ## Want more: the Customer management (CRM) pack
 
-The Store has a **Customer management (CRM)** pack (`javis.crm`, needs 0.440.0 or newer) that sits on this very inbox. Once installed, just ask SenOS: "who has waited over 2 hours without a reply", "what did Lan ask", "tag Lan as VIP", "how many new customers this week", "export customers who asked for a price to Excel". It ships a customer-care agent and a daily review workflow. The pack only reads the inbox and writes tags and notes on customers; it never messages anyone.
+Sen Market has a **Customer management (CRM)** pack (`senos.crm`, needs 0.440.0 or newer) that sits on this very inbox. Once installed, just ask SenOS: "who has waited over 2 hours without a reply", "what did Lan ask", "tag Lan as VIP", "how many new customers this week", "export customers who asked for a price to Excel". It ships a customer-care agent and a daily review workflow. The pack only reads the inbox and writes tags and notes on customers; it never messages anyone.
 
 ## See also
 

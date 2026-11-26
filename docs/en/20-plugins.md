@@ -28,13 +28,13 @@ These three get mixed up often. Tell them apart by asking "what is actually miss
 |---|---|---|
 | SenOS does not know **how to do** a kind of work your way | **Skill** | A `SKILL.md` file with instructions. No code runs, it only teaches the AI the right procedure. See [Skills](06-skills.md). |
 | You need a **real action** in Python (computation, data transformation, calling a simple API, reading or writing files under custom rules) that nothing else covers | **Plugin** | Real Python code, adding tools and hooks for every engine. |
-| You need an **external data source** that already has a server (POS, ads, calendar, email, notes...) | **Connection (MCP)** | Attach the existing server on the Connections page, no code needed. See [Connections and business data](09-connections-and-business-data.md). |
+| You need an **external data source** that already has a server (POS, ads, calendar, email, notes...) | **Connection (MCP)** | Attach the existing server on the Apps page, no code needed. See [Connections and business data](09-connections-and-business-data.md). |
 
 In short: a skill is **know-how**, a plugin is **code that really runs**, an MCP is **an existing data source**. If what you need already has an MCP, do not write a plugin.
 
 ## Where to open it in SenOS
 
-Open the dashboard (default port 7777), look at the left navigation rail, click the **Capabilities** group to open it, then click **Plugins**. The page header reads **Plugins** with the subtitle "Native tools/hooks for every engine".
+Open the dashboard (default port 7777), look at the left navigation rail, click the **AI crew** group to open it, then click **Add-ons**. The page header reads **Plugins** with the subtitle "Native tools/hooks for every engine".
 
 Right under the heading are three introductory blocks:
 
@@ -76,7 +76,7 @@ The card of a plugin that is not running is dimmed. If the plugin errored, the r
 
 ### Step 1: See which plugins are running
 
-Go to **Capabilities > Plugins**. Look at the status column on the right of each card. Only cards reading **● running** actually expose tools to the engine. A dimmed card is unusable right now.
+Go to **AI crew > Add-ons**. Look at the status column on the right of each card. Only cards reading **● running** actually expose tools to the engine. A dimmed card is unusable right now.
 
 ### Step 2: Enable or disable a plugin
 
@@ -104,7 +104,7 @@ These ship with the app (the **Bundled** label). All are on by default except `t
 
 | Name on the card | slug | Tools provided | Minimum level | Default |
 |---|---|---|---|---|
-| Time and date (timezone picked in Settings) | `datetime-vn` | `senos_now`, `senos_date_add` | read only | On |
+| Time and date (timezone picked in Preferences) | `datetime-vn` | `senos_now`, `senos_date_add` | read only | On |
 | Recurring jobs and reminders | `senos-schedule` | `senos_schedule` | write (safe) | On |
 | Queue Kanban work | `senos-task` | `senos_task` | write (safe) | On |
 | Attach another MCP | `senos-connect` | `senos_add_mcp` | write (safe) | On |
@@ -116,25 +116,25 @@ These ship with the app (the **Bundled** label). All are on by default except `t
 
 What each one does:
 
-- **Queue Kanban work**: queue a background job straight from chat (`op=add`) and see how running work is going (`op=list`). Added in 0.17.1. Before that the only route was `POST /kanban/task`, and calling it required running machine commands, so only Claude Code and Codex could do it even though the documentation promised every brain could. This tool calls the in-process queue directly and opens no extra HTTP door. Two hard rails: it **cannot create `full`-level jobs** (the level that spends money, creates orders, sends messages, which you must set yourself on the Work page), and it defaults to `suggest`. Moving columns and approving pending work still happen on the Work page; cancelling a job works from chat too (`op=cancel`).
-- **Attach another MCP**: have SenOS attach a new MCP source right from chat, and it **appears on the Connections page** under "Connected" like an account you added by hand, shared by every brain. Before this plugin, SenOS had no way to write into the connection store, so all it could do was run `claude mcp add`; that server landed in Claude Code's own configuration where the other six brains could not see it, and on the Connections page it did not sit under "Connected" but fell into the collapsed "Connections already in Claude Code and Codex" section (closed by default), so it looked as if nothing had been added. Three safety rails: the permission level defaults to **read only** (raise it yourself on the Connections page if you want writes); a source that runs a **local command** (stdio) is added **disabled** so you read the command before enabling it; and a service already in the Connections catalogue (Gmail, Calendar, POS...) makes SenOS point at the right card rather than spawning a parallel hand-declared copy. If the connection test fails, the entry **stays** on the Connections page with the reason rather than vanishing silently.
-- **Zalo extras (the `javis.zalo` pack on SenOS Store)**: since 0.73.0 the Zalo tools that fill what the standard MCP lacks no longer ship inside the app, so people who do not use Zalo do not carry them. The pack has image and file sending (`zalo_send_image`), tagging the right people, notes, reminders and polls in a group (`zalo_group_members`, `zalo_send_mention`, `zalo_create_note`, `zalo_create_reminder`, `zalo_create_poll`) and reading group images (`zalo_read_images`). SenOS offers it right after you scan the Zalo QR; on a machine that already used Zalo, the Connections page shows an install button. Details in [Zalo](12-zalo-agent-mcp.md).
+- **Queue Kanban work**: queue a background job straight from chat (`op=add`) and see how running work is going (`op=list`). Added in 0.17.1. Before that the only route was `POST /kanban/task`, and calling it required running machine commands, so only Claude Code and Codex could do it even though the documentation promised every brain could. This tool calls the in-process queue directly and opens no extra HTTP door. Two hard rails: it **cannot create `full`-level jobs** (the level that spends money, creates orders, sends messages, which you must set yourself on the Jobs page), and it defaults to `suggest`. Moving columns and approving pending work still happen on the Jobs page; cancelling a job works from chat too (`op=cancel`).
+- **Attach another MCP**: have SenOS attach a new MCP source right from chat, and it **appears on the Apps page** under "Connected" like an account you added by hand, shared by every brain. Before this plugin, SenOS had no way to write into the connection store, so all it could do was run `claude mcp add`; that server landed in Claude Code's own configuration where the other six brains could not see it, and on the Apps page it did not sit under "Connected" but fell into the collapsed "Connections already in Claude Code and Codex" section (closed by default), so it looked as if nothing had been added. Three safety rails: the permission level defaults to **read only** (raise it yourself on the Apps page if you want writes); a source that runs a **local command** (stdio) is added **disabled** so you read the command before enabling it; and a service already in the Apps catalogue (Gmail, Calendar, POS...) makes SenOS point at the right card rather than spawning a parallel hand-declared copy. If the connection test fails, the entry **stays** on the Apps page with the reason rather than vanishing silently.
+- **Zalo extras (the `senos.zalo` pack on Sen Market)**: since 0.73.0 the Zalo tools that fill what the standard MCP lacks no longer ship inside the app, so people who do not use Zalo do not carry them. The pack has image and file sending (`zalo_send_image`), tagging the right people, notes, reminders and polls in a group (`zalo_group_members`, `zalo_send_mention`, `zalo_create_note`, `zalo_create_reminder`, `zalo_create_poll`) and reading group images (`zalo_read_images`). SenOS offers it right after you scan the Zalo QR; on a machine that already used Zalo, the Apps page shows an install button. Details in [Zalo](12-zalo-agent-mcp.md).
 - **Time and date (VN)**: tells SenOS today's date, the time and the weekday in Vietnam time (UTC+7), and computes relative dates ("in 3 days", "last week"). Pure standard library, no network needed. It is also the simplest example plugin to read when you want to write your own.
 - **Recurring jobs and reminders**: lets you create, list and cancel recurring jobs and reminders **right in a chat sentence**, with no YAML typing. Repeating, durable work is written to `SenOS/loops/<slug>.md` (editable in Obsidian); one-off reminders or cron schedules go into the reminder store. Details in [Recurring jobs and reminders](08-recurring-jobs.md).
-- **Create images (ChatGPT)**: generates images from a description using the **ChatGPT plan** you are signed in to (OAuth), with no OpenAI API key. Images are saved into the brain's `attachments/` then embedded straight into the answer. It requires ChatGPT connected on the **Models** page; without it the tool returns a sentence saying ChatGPT (OAuth) is not connected and telling you to sign in on the Models page and try again.
+- **Create images (ChatGPT)**: generates images from a description using the **ChatGPT plan** you are signed in to (OAuth), with no OpenAI API key. Images are saved into the brain's `attachments/` then embedded straight into the answer. It requires ChatGPT connected on the **AI models** page; without it the tool returns a sentence saying ChatGPT (OAuth) is not connected and telling you to sign in on the AI models page and try again.
 - **Read YouTube videos**: paste a video link into chat and ask for a summary. The plugin fetches the video's **real subtitles** (the route the YouTube player uses) so SenOS reads the dialogue rather than guessing from the title. No API key, no YouTube sign-in, and it works on **every engine**, including API engines that cannot open a URL. When YouTube blocks the server it cycles through six player variants before falling back to yt-dlp, which gets past most robot-suspicion cases. A video with no subtitles, a private video or one YouTube blocks makes the tool state the reason plainly so SenOS does not invent anything. A long video that got truncated continues when you ask it to "keep reading". Details in [Chat](02-chat-and-voice.md).
 - **Per-chat Zalo rules**: set the behaviour for each Zalo group or customer in words (stay silent, report every message, report on keywords, nudge when a reply is over N minutes late). The rules are written to `SenOS/zalo/<slug>.md` so they can be read and edited.
 - **Safe Zalo sending**: sends Zalo messages in place of the raw tool. It locks onto the listening account and can only send to chats on the watch list; when a name matches several people it refuses and forces a question back. The two Zalo plugins are shared with [the Zalo channel](12-zalo-agent-mcp.md).
-- **Meta Ads (Graph API)**: reads Facebook/Instagram advertising figures (ad accounts, campaigns, performance). **Read only, spends no money.** Requires the "Meta Ads (Facebook & Instagram)" connection on the Connections page.
-- **Facebook Pages (Graph API)**: manages Pages. Reading the Page list, posts and comments is read-only; posting, uploading photos, albums and videos, editing text, deleting posts and replying to comments are **real, public** actions and need the full-power level. Uses the Pages connected on the Facebook Messenger card on the Connections page (or the store's Facebook Pages connection if installed earlier).
-- **Facebook monitoring (Apify)** no longer ships inside SenOS (since 2026-11-12): the `fb_monitor` tool comes with the **Facebook monitor (Apify)** pack in the Store. If you installed that pack before, update it and the tool is back; otherwise install the pack and paste your apify.com Personal API token on the Connections page.
-- **Tool usage log**: counts how many times **each** tool is called by the engine (through the `post_tool_call` hook) and lets you see the most-used ones. It is a demonstration of the hook mechanism, so it is off by default; enable it on the Plugins page, chat a few turns that call tools, then ask SenOS which tool is used most.
+- **Meta Ads (Graph API)**: reads Facebook/Instagram advertising figures (ad accounts, campaigns, performance). **Read only, spends no money.** Requires the "Meta Ads (Facebook & Instagram)" connection on the Apps page.
+- **Facebook Pages (Graph API)**: manages Pages. Reading the Page list, posts and comments is read-only; posting, uploading photos, albums and videos, editing text, deleting posts and replying to comments are **real, public** actions and need the full-power level. Uses the Pages connected on the Facebook Messenger card on the Apps page (or the store's Facebook Pages connection if installed earlier).
+- **Facebook monitoring (Apify)** no longer ships inside SenOS (since 2026-11-12): the `fb_monitor` tool comes with the **Facebook monitor (Apify)** pack in Sen Market. If you installed that pack before, update it and the tool is back; otherwise install the pack and paste your apify.com Personal API token on the Apps page.
+- **Tool usage log**: counts how many times **each** tool is called by the engine (through the `post_tool_call` hook) and lets you see the most-used ones. It is a demonstration of the hook mechanism, so it is off by default; enable it on the Add-ons page, chat a few turns that call tools, then ask SenOS which tool is used most.
 
 A note about the "Minimum level" column: that is the level declared for the **whole plugin** and what the card shows. Each tool inside still has its own level. For example `meta-pages-graph` says "full power" on the card, but its three post/comment reading tools only need read-only, and only the posting and deleting tools need full power.
 
 ## Plugins that come from a Package
 
-Since 0.55.23, a **Package** installed on the **Capabilities > Install store** page can bring plugins along, meaning new tools rather than only connection services. Their cards appear on this page with the source label **From a package**.
+Since 0.55.23, a **Package** installed on the **Gateways > Sen Market** page can bring plugins along, meaning new tools rather than only connection services. Their cards appear on this page with the source label **From a package**.
 
 They differ from the other three sources in three ways:
 
@@ -172,7 +172,7 @@ The chat box you type into runs at the full level, so all three kinds are callab
 
 There are two places, depending on whether the plugin should be shared or private:
 
-- **Global** (recommended): `<SENOS_STATE_DIR>/plugins/<slug>/`. Every brain sees it and every engine can call it. The real path is already shown on the signpost line of the Plugins page, so copy it from there. `SENOS_STATE_DIR` defaults to the project's `server/` folder; on Docker/VPS it is usually `/data/state`.
+- **Global** (recommended): `<SENOS_STATE_DIR>/plugins/<slug>/`. Every brain sees it and every engine can call it. The real path is already shown on the signpost line of the Add-ons page, so copy it from there. `SENOS_STATE_DIR` defaults to the project's `server/` folder; on Docker/VPS it is usually `/data/state`.
 - **One brain only**: `<brain>/plugins/<slug>/`. Only that brain can use it. Suitable when the plugin is tightly bound to one brain's data.
 
 `<slug>` is the folder name and must be lowercase ASCII without diacritics, starting with a letter or digit, containing only letters, digits, dots, underscores and hyphens. Get the character set wrong and SenOS skips the plugin, reporting "invalid slug".
@@ -250,7 +250,7 @@ You do not have to type the two files yourself. Open the chat box and say it pla
 
 SenOS first picks the right kind of capability (if only instructions are needed it writes a skill; if it is an existing data source it advises attaching an MCP), checks for duplicates against what the brain already has, and only then writes the plugin folder. When it finishes it reports the file names and reminds you the plugin is disabled and how to unlock it with the environment variable.
 
-Then you do 3 things yourself: open `plugin.py` and read the code (using the **Files** page if the plugin is inside a brain), set the environment variable if it is not set, then go to **Plugins** and click **Enable**.
+Then you do 3 things yourself: open `plugin.py` and read the code (using the **Documents** page if the plugin is inside a brain), set the environment variable if it is not set, then go to **Add-ons** and click **Enable**.
 
 ## Hooks: running around each tool call
 
@@ -307,7 +307,7 @@ A plugin using this hook sits behind the usual rails: a user-installed plugin on
 
 ## Own page and HTTP routes (since 0.64.26)
 
-A plugin can open web routes of its own, under `/ext/<slug>/`. Use it for a settings page, or for an outside service to call in (webhook, OAuth door). The **SenOS Gate** package (`javis.gate`) in the store is a working example.
+A plugin can open web routes of its own, under `/ext/<slug>/`. Use it for a settings page, or for an outside service to call in (webhook, OAuth door). The **SenOS Gate** package (`senos.gate`) in the store is a working example.
 
 ```python
 def register(ctx):
@@ -326,7 +326,7 @@ def register(ctx):
 
 ## SenOS Gate: an outside AI posts into a chat (since 0.440.0)
 
-The **SenOS Gate** package (`javis.gate`) opens an MCP door with OAuth for ChatGPT, Claude and other AIs. Besides the
+The **SenOS Gate** package (`senos.gate`) opens an MCP door with OAuth for ChatGPT, Claude and other AIs. Besides the
 tools SenOS already has, that door carries five tools only the outside AI sees (`server/chat_bridge.py`):
 
 | Tool | What it does | Access level |
@@ -371,14 +371,14 @@ once: "Turn on SenOS Sync?". Say yes and it calls the `senos_sync_setup` tool, r
 and reports back. No command to type, no token to copy. To turn it on later, tell it "turn on SenOS Sync".
 
 - That tool creates a **save-only** token: it reaches `/chat/external` and nothing else, cannot run a chat turn and
-  cannot read anything. It shows on the **Integrations** page, **API tokens** tab, named "SenOS Sync (Claude Code)";
+  cannot read anything. It shows on the **Webhooks** page, **API token (for the CLI)** tab, named "SenOS Sync (Claude Code)";
   revoke it there.
-- Needs the Draft or Full level of the Gate door. SenOS's address comes from the domain in **Settings** (or
+- Needs the Draft or Full level of the Gate door. SenOS's address comes from the domain in **Preferences** (or
   `DOMAIN_NAME`); when none is set, the AI takes it from the Gate address it connected to.
 - Needs Python 3.8 or newer on that machine. Sessions already open pick the hook up after Claude Code or Codex
   restarts.
 
-Manual setup (a machine not connected to Gate): create a token on the **Integrations** page, **API tokens** tab, then:
+Manual setup (a machine not connected to Gate): create a token on the **Webhooks** page, **API token (for the CLI)** tab, then:
 
 ```bash
 curl -fsSLO https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/tools/senos-sync/senos_sync.py
@@ -419,7 +419,7 @@ python3 senos_sync.py install --url https://<your-senos-domain> --token jvs_...
 - Put plugins in **Global** unless there is a clear reason to bind one to a brain. Global does not depend on the brain, so switching brains keeps it usable.
 - If you do not use a plugin, **disable** it rather than deleting the folder, so re-enabling later is one click.
 - Disabling unused plugins also shortens the tool list handed to the model, helping it pick the right tool.
-- To see what capabilities SenOS currently sees (agents, skills, workflows, loops, plugins), open the brain's `SenOS/index.md` file through the **Files** page; it is rebuilt every time you enable or disable a plugin.
+- To see what capabilities SenOS currently sees (agents, skills, workflows, loops, plugins), open the brain's `SenOS/index.md` file through the **Documents** page; it is rebuilt every time you enable or disable a plugin.
 
 ## Common problems
 
@@ -432,7 +432,7 @@ python3 senos_sync.py install --url https://<your-senos-domain> --token jvs_...
 - **The card reads "⚠ error" with a Python error name (`ModuleNotFoundError`, say):** the plugin code uses a library not installed in SenOS's Python environment. Install it into the virtual environment SenOS actually runs in, then restart.
 - **The plugin is running but the engine does not see the tool:** most likely the tool name **collides** with an existing MCP or core tool. SenOS does not let a plugin take a core tool's place, so it skips the colliding tool and writes a line to the server log. Rename the tool in `plugin.py` (a private prefix is the safest approach). Core names that cannot be reused: `senos_connections`, `senos_read_file`, `senos_list_dir`, `senos_write_file`, `senos_use_skill`.
 - **The tool returns `ERROR: tool '<name>' needs a higher permission level`:** the run is permission-restricted. If it is a recurring job, raise that job's mode (see [Recurring jobs and reminders](08-recurring-jobs.md)); if it is your own plugin, review the `min_mode` declared in `register_tool`.
-- **The tool returns "not connected ...":** the plugin needs a connection you have not attached. Follow the instruction in the error exactly, usually going to the **Connections** page (or **Models** for the image plugin).
+- **The tool returns "not connected ...":** the plugin needs a connection you have not attached. Follow the instruction in the error exactly, usually going to the **Apps** page (or **AI models** for the image plugin).
 - **Clicking Enable reports "plugin not found":** the list on screen is stale compared to disk (you just deleted or renamed the folder). Reload the page.
 - **Clicking Enable reports "failed to write the manifest":** SenOS cannot write to `plugin.yaml`, usually a folder permission issue or the file being locked by another program. See also [Troubleshooting and FAQ](17-troubleshooting.md).
 

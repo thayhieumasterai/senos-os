@@ -273,7 +273,7 @@ _h2 = limit_learner.parse_subscription_limit("You've hit your usage limit.",
                                              engine_hint="codex")
 _noi2 = model_limits.subscription_blocked_hint(_h2, ())
 check("không biết mốc reset thì NÓI là chưa biết", "chưa biết" in _noi2)
-check("chưa có bộ não dự phòng thì gợi ý cắm thêm", "Models" in _noi2)
+check("chưa có bộ não dự phòng thì gợi ý cắm thêm", "Mô hình AI" in _noi2)
 
 # Và main.py phải thật sự DÙNG câu đó ở cả bốn nhánh, thay cho chuỗi lỗi thô. Từ 0.55.44 bốn
 # nhánh đi chung một cửa `_limit_frame` (dựng khung error kèm mốc reset để hẹn tự chạy lại);

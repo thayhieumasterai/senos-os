@@ -1714,7 +1714,7 @@ Return ONLY one line of JSON, no markdown:
     @staticmethod
     def _tin_tam_dung(items: list, kieu: str) -> list:
         """Câu chữ của tin việc tạm dừng. `kieu`: "permission" (chờ chủ cho phép) hoặc "technical"."""
-        xem = localefmt.chu("Xem ở trang Nhiệm vụ.", "See the Tasks page.")
+        xem = localefmt.chu("Xem ở trang Công việc.", "See the Jobs page.")
         if kieu == "permission":
             if len(items) == 1:
                 parts = [localefmt.chu(
@@ -1731,8 +1731,8 @@ Return ONLY one line of JSON, no markdown:
                     con = len(items) - BAO_GOM_LIET_KE
                     parts.append(localefmt.chu(f"…và {con} việc nữa.", f"…and {con} more."))
             parts.append(localefmt.chu(
-                "Đồng ý thì bấm Cấp quyền ở trang Nhiệm vụ. Không đồng ý thì không cần làm gì, việc chỉ nằm chờ.",
-                "If you agree, press Grant on the Tasks page. If not, do nothing: the job just waits."))
+                "Đồng ý thì bấm Cấp quyền ở trang Công việc. Không đồng ý thì không cần làm gì, việc chỉ nằm chờ.",
+                "If you agree, press Grant on the Jobs page. If not, do nothing: the job just waits."))
             return parts
         if len(items) == 1:
             parts = [localefmt.chu(
@@ -1842,9 +1842,9 @@ Return ONLY one line of JSON, no markdown:
                             f"❓ Job '{ten}' needs your answer to carry on.")
         cach = localefmt.chu(
             f"Trả lời ngay trong khung chat này (nói rõ là trả lời việc '{ten}', mã {tid}), "
-            "hoặc gõ vào ô trả lời của việc ở trang Nhiệm vụ.",
+            "hoặc gõ vào ô trả lời của việc ở trang Công việc.",
             f"Reply right here in this chat (say it is for job '{ten}', id {tid}), "
-            "or type into the job's answer box on the Tasks page.")
+            "or type into the job's answer box on the Jobs page.")
         try:
             await self.deps.report(
                 task.get("chat_id", ""),
@@ -1877,9 +1877,9 @@ Return ONLY one line of JSON, no markdown:
         reason = localefmt.chu("Chỗ chưa đạt: ", "What is missing: ") + (why or localefmt.chu("không rõ", "unknown"))
         how = localefmt.chu(
             f"Nhắn ngay đây \"chấp nhận\" nếu kết quả đã dùng được, hoặc \"sửa lại\" để trả về cho người làm "
-            f"(mã việc {tid}). Hoặc bấm nút ở trang Nhiệm vụ.",
+            f"(mã việc {tid}). Hoặc bấm nút ở trang Công việc.",
             f"Reply here \"accept\" if the result is good enough, or \"fix it\" to send it back (job id {tid}). "
-            "Or press the buttons on the Tasks page.")
+            "Or press the buttons on the Jobs page.")
         try:
             await self.deps.report(
                 task.get("chat_id", ""),
@@ -1983,7 +1983,7 @@ Return ONLY one line of JSON, no markdown:
         # Bản cho KHUNG CHAT web: thẻ việc (dashboard/chat-viec.js) đã có dòng đầu nói trạng thái,
         # tên việc và nút mở trang Việc, nên bỏ câu đầu có emoji và câu "xem ở trang Việc".
         web = "\n\n".join(parts[1:]) or dau
-        xem = localefmt.chu("Xem chi tiết ở trang Nhiệm vụ.", "See details on the Tasks page.")
+        xem = localefmt.chu("Xem chi tiết ở trang Công việc.", "See details on the Jobs page.")
         parts.append(xem)
         parts_ngan.append(xem)
         # Việc chạy xong TRÓT LỌT thì báo LẶNG: kết quả vẫn rơi vào khung chat đã giao việc và

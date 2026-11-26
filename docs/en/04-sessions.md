@@ -42,7 +42,7 @@ Pick "All conversations" to see everything again, or "Ungrouped" to find the lef
 
 You can also just say it in chat: "remember for this project that...", "attach this file to the project", "what does this project remember". Switching off new memories for the brain also stops SenOS from adding notes to projects. SenOS does not store keys, passwords or commands lifted from a document in this layer.
 
-**Partners and teams work the same way.** The documents of a partner (the File & link button on the Partners page) and of a team (the team's Info tab) carry the same "what this document holds" line. In a private chat with a partner, it attaches the documents you bring for long-term use and describes them itself. A partner's descriptions live in that partner's own file, so they travel with it when you export it or copy the brain to another machine.
+**Assistants and teams work the same way.** The documents of a partner (the File & link button on the Assistants page) and of a team (the team's Info tab) carry the same "what this document holds" line. In a private chat with a partner, it attaches the documents you bring for long-term use and describes them itself. A partner's descriptions live in that partner's own file, so they travel with it when you export it or copy the brain to another machine.
 
 **Project icons.** Open the group picker, hover a project and click the palette icon. The picker shows every icon SenOS uses, with a name filter (type `star`, `folder`, `brain`...). A project with no icon borrows the folder icon, so every row has one and your eye can scan down the icon column.
 
@@ -77,9 +77,9 @@ Because almost nobody starts a new conversation explicitly on Telegram, SenOS cu
 
 ## Where to find it in SenOS
 
-The history sidebar lives on the **Chat** page. Three entrances lead to the same place:
+The history sidebar lives on the **Conversations** page. Three entrances lead to the same place:
 
-- **Navigation rail.** Open the **Assistant** group on the left and click **Chat**.
+- **Navigation rail.** Click **Conversations** at the top of the rail.
 - **The ⛶ button** on the **CONVERSATION** panel of the main SenOS screen.
 - **The 🕘 History button** in the top right button row.
 
@@ -179,8 +179,8 @@ Switching brains in the top bar picker changes more than the history list; it ch
 
 | Action | Button / key | Where |
 |---|---|---|
-| Open the Chat page (with the history sidebar) | `Chat` item | Navigation rail, Assistant group |
-| Open the Chat page from the SenOS screen | `⛶` or `🕘 History` | CONVERSATION panel / top right button row |
+| Open the Conversations page (with the history sidebar) | `Conversations` item | Navigation rail, top |
+| Open the Conversations page from the SenOS screen | `⛶` or `🕘 History` | CONVERSATION panel / top right button row |
 | Show or hide the sidebar | `🕘` | The "Chat with SenOS" title bar |
 | Back to the SenOS screen | `‹ Shrink` | Title bar |
 | Full-text search | The "Search all conversations…" box | Top of the sidebar |

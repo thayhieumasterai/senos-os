@@ -282,7 +282,7 @@ D, L = owner_channels.DISCORD, owner_channels.LARK
 r = D.precheck("hi", {"user_id": "42", "chat_id": "dm1", "user_name": "Quy"})
 check("Discord control: empty allow-list blocks everyone, gives a pairing code",
       r is not None and D.queue.get("42", {}).get("ma", "x") in r["reply"], r)
-check("the refusal names the renamed page", "Kênh Admin" in r["reply"] or "Admin channels" in r["reply"], r)
+check("the refusal names the renamed page", "Kênh quản trị" in r["reply"] or "Control channels" in r["reply"], r)
 D.allow("42", True)
 check("Discord: after Allow the user passes in any channel", D.precheck("hi", {"user_id": "42", "chat_id": "c9"}) is None)
 check("Lark: allowed by open_id, not by chat id",

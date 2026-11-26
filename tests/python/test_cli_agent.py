@@ -353,8 +353,8 @@ check("parity: the CLI agent prompt has the agent's learned lessons", "PARITY LE
       _cli_sp[-600:])
 check("parity: the CLI agent prompt names the CLI, not the Partners page",
       "trang Cộng sự). Trả lời" not in _cli_sp and "qua SenOS CLI" in _cli_sp)
-check("parity: the dashboard agent prompt still names the Partners page",
-      "trên dashboard SenOS (trang Cộng sự). Trả lời" in _dash)
+check("parity: the dashboard agent prompt still names the Assistants page",
+      "trên dashboard SenOS (trang Trợ lý). Trả lời" in _dash)
 
 
 # ================================================================

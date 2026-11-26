@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/23-usage-and-cost.md)*
 
-Trang **Mức dùng** trả lời hai câu hỏi đi liền nhau: *bạn đã đốt bao nhiêu token* và *làm sao đốt ít đi*. SenOS tự đo lấy con số này từ log thật trên máy, không phải xin từ nhà cung cấp, nên bạn thấy được cả phần mà Claude hay ChatGPT không bao giờ lộ ra: phần do chính SenOS chạy nền tiêu tốn.
+Trang **Hạn mức** trả lời hai câu hỏi đi liền nhau: *bạn đã đốt bao nhiêu token* và *làm sao đốt ít đi*. SenOS tự đo lấy con số này từ log thật trên máy, không phải xin từ nhà cung cấp, nên bạn thấy được cả phần mà Claude hay ChatGPT không bao giờ lộ ra: phần do chính SenOS chạy nền tiêu tốn.
 
 Ngay đầu trang là khối **Chế độ tiết kiệm token** với ba nút. Từ bản 0.24.7 nó nằm ở đây; trước đó là một trang riêng tên "Tiết kiệm" trong thanh bên. Gộp lại vì tách hai chỗ thì người dùng đọc hết hoá đơn mà không bao giờ thấy cái công tắc.
 
@@ -21,9 +21,9 @@ Trang cho bạn: bộ lọc 8 kỳ và 4 nhà cung cấp, các thẻ tổng kèm
 
 ## Mở ở đâu trong SenOS
 
-Mở dashboard (mặc định tại cổng 7777). Trên thanh điều hướng bên trái, bấm mở nhóm **Hệ thống** (nhóm này được ghim ở đáy thanh), chọn **Cài đặt → Mức dùng**.
+Mở dashboard (mặc định tại cổng 7777). Trên thanh điều hướng bên trái, bấm mở nhóm **Quản trị** (nhóm này được ghim ở đáy thanh), chọn **Thiết lập → Hạn mức**.
 
-Tab **Mức dùng** chứa các bộ lọc, thống kê token và chi phí.
+Tab **Hạn mức** chứa các bộ lọc, thống kê token và chi phí.
 
 ## Chế độ tiết kiệm token (khối đầu trang)
 
@@ -156,7 +156,7 @@ Cách so của "Tuần này" và "Tháng này" là cố ý: kỳ đang chạy d�
 
 Trước 0.107.0 mỗi lần hội thoại dài được nén sang mạch mới thì mạch cũ bị tính thành Nền, nên Nền phình to giả (đo 07-13/10/2026: 514,6 triệu trong 722,9 triệu token "nền" thật ra là chat). Bản 0.107.0 nhớ mọi mạch của một hội thoại và quét lại chỉ số một lần để chia lại cho đúng.
 
-Cột **Nền (loop/lịch)** phình to là dấu hiệu rõ nhất rằng bạn đang có loop chạy quá dày. Xem lại chúng ở trang **Việc định kỳ** ([Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md)) hoặc trang **Việc** ([Việc / Kanban](21-viec-kanban.md)).
+Cột **Nền (loop/lịch)** phình to là dấu hiệu rõ nhất rằng bạn đang có loop chạy quá dày. Xem lại chúng ở trang **Lịch tự động** ([Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md)) hoặc trang **Việc** ([Việc / Kanban](21-viec-kanban.md)).
 
 Một hạn chế cần biết: **cách chia này chỉ chính xác với Claude Code.** Với ChatGPT/Codex, SenOS chưa tách được nền khỏi chat nên mọi lượt đều rơi vào "SenOS (tự chạy)" + "Chat". Nhánh API cũng vậy.
 
@@ -166,7 +166,7 @@ Cột **Chi phí quy đổi** và cột **Quy đổi** trong bảng model đư�
 
 Nghĩa là con số quy đổi luôn là ước lượng, và luôn thấp hơn thực tế nếu bạn dùng model chưa có trong bảng giá. Muốn chính xác hơn thì sửa file đó bằng tay rồi khởi động lại server.
 
-**Số dư thật của OpenRouter** là thứ duy nhất trên trang này là tiền thật. Thẻ "OpenRouter còn" chỉ xuất hiện khi bạn đã lưu key OpenRouter ở trang **Models** (nhóm Hệ thống). SenOS hỏi thẳng OpenRouter số tín dụng đã nạp và đã dùng, rồi hiện phần còn lại kèm dòng "tiền thật đã dùng $...". Không cắm key thì không có thẻ này, và không có nhà cung cấp nào khác cho lấy số tương đương.
+**Số dư thật của OpenRouter** là thứ duy nhất trên trang này là tiền thật. Thẻ "OpenRouter còn" chỉ xuất hiện khi bạn đã lưu key OpenRouter ở trang **Mô hình AI** (nhóm Quản trị). SenOS hỏi thẳng OpenRouter số tín dụng đã nạp và đã dùng, rồi hiện phần còn lại kèm dòng "tiền thật đã dùng $...". Không cắm key thì không có thẻ này, và không có nhà cung cấp nào khác cho lấy số tương đương.
 
 ## Các đề xuất tiết kiệm
 
@@ -206,7 +206,7 @@ Từ bản này, hub xử lý kết quả trước khi model đọc, giống nha
 
 Ba tính năng đi kèm:
 
-- **Trinh sát (`senos_scout`).** Việc đọc nhiều nguồn có thể được model chính giao cho **model việc nền** bạn đã chọn ở trang Models. Trinh sát chỉ được đọc, và chỉ kết luận quay về khung chat. Không chạy được thì model chính tự làm như trước.
+- **Trinh sát (`senos_scout`).** Việc đọc nhiều nguồn có thể được model chính giao cho **model việc nền** bạn đã chọn ở trang Mô hình AI. Trinh sát chỉ được đọc, và chỉ kết luận quay về khung chat. Không chạy được thì model chính tự làm như trước.
 - **Chạy code đọc dữ liệu (`senos_code`).** Model viết một đoạn Python ngắn, gọi nhiều tool đọc nối tiếp nhau (lật trang, tra chi tiết từng đơn, ghép hai nguồn), tự tính rồi chỉ in ra kết quả. Dữ liệu thô không đi qua khung chat. Đoạn code chạy trong tiến trình riêng, không có khoá, không đọc file, không ra mạng, và chỉ gọi được tool đọc rõ ràng.
 - **Công thức cho việc định kỳ.** Sau hai lần chạy giống nhau ở hai ngày khác nhau, SenOS tự lấy sẵn dữ liệu trước khi model bắt đầu. SenOS chỉ làm vậy khi mọi cách hiểu về ngày tháng đều cho cùng một kết quả trong hôm đó, còn không thì chạy như cũ. Chỉ các lệnh đọc rõ ràng mới được lặp lại, và việc nào dùng kỳ không ở dạng `YYYY-MM-DD` (tháng `2026-11`, số tuần, `01/11/2026`) thì không bao giờ được ghi thành công thức. Nếu model vẫn phải tự gọi lại nguồn sau khi đã có dữ liệu lấy sẵn, công thức bị loại sau hai lần. Mỗi công thức là một file trong `<brain>/SenOS/recipes/`, xoá file là quên.
 
@@ -268,7 +268,7 @@ Nếu bản cài không đọc được log thô (điển hình là bản Docker
 - **Trang báo toàn số 0.** Thường là bản cài không đọc được log thô, hay gặp nhất trên Docker/VPS vì thư mục `~/.claude` và `~/.codex` của bạn không nằm trong container. Từ bản mới, SenOS lấy nhật ký nội bộ làm nguồn dự phòng nên vẫn ra số, nhưng chỉ tính từ thời điểm bạn nâng cấp trở đi. Đã nâng cấp mà vẫn 0 thì nghĩa là chưa có lượt chat nào được ghi lại kể từ đó, hãy chat vài câu rồi bấm **↻ Làm mới**.
 - **Số thấp hơn nhiều so với cảm nhận.** Kiểm tra bạn có đang lọc một nhà cung cấp không, và kiểm tra kỳ đang chọn. Ngoài ra phần "Bạn gõ tay" chỉ đếm được khi bạn chạy Claude Code trên **cùng máy** với SenOS.
 - **Cắm key Google Gemini nhưng cột API không nhúc nhích.** Lượt Gemini có được ghi vào nhật ký nội bộ, nhưng bộ dựng chỉ mục hiện chỉ nhận các nhà cung cấp OpenRouter, OpenAI và Anthropic vào cột API, nên phần Gemini chưa lên đồ thị này.
-- **Không thấy thẻ "OpenRouter còn".** Thẻ chỉ hiện khi có key OpenRouter trong Cài đặt model và OpenRouter trả lời được. Vào trang **Models** (nhóm Hệ thống) kiểm tra key, xem [Models & engine](10-models-va-engine.md).
+- **Không thấy thẻ "OpenRouter còn".** Thẻ chỉ hiện khi có key OpenRouter trong Cài đặt model và OpenRouter trả lời được. Vào trang **Mô hình AI** (nhóm Quản trị) kiểm tra key, xem [Models & engine](10-models-va-engine.md).
 - **Trang hiện bảng đơn giản kiểu "Hôm nay / Tổng tích luỹ" thay vì bộ lọc kỳ.** Đó là giao diện dự phòng, xuất hiện khi tệp giao diện mới chưa nạp được. Tải lại trang, xoá cache trình duyệt nếu cần.
 - **Chi phí quy đổi hiện "-" cho model mình đang dùng.** Model đó chưa có trong bảng giá `server/usage_pricing.json`. Đây là bảng cập nhật tay, thêm dòng cho model của bạn rồi khởi động lại server.
 - **Vừa nâng cấp SenOS nhưng trang chưa có gì đổi.** Trang này có phần chạy ở backend, nên sau khi cập nhật cần **khởi động lại server** rồi mới tải lại trang.

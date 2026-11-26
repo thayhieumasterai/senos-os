@@ -44,7 +44,7 @@ def check_caller(turn: Optional[dict]) -> dict:
     """Người giao việc phải là chủ (hay việc nền chủ đã lên lịch). Trả lượt đó, sai thì `DispatchError`."""
     if not turn:
         raise DispatchError("không rõ ai đang giao việc (lượt không có danh tính), nên không giao việc cho nhóm. "
-                            "Chủ giao ở trang Nhóm trên dashboard.")
+                            "Chủ giao ở trang Nhóm AI trên dashboard.")
     if turn.get("kenh") == "team" or turn.get("team_gate"):
         raise DispatchError("một bước việc của nhóm không được mở việc ở nhóm. Chỉ chủ hay SenOS Core giao việc cho nhóm.")
     if not turn.get("la_chu") and turn.get("kenh") not in SCHEDULED:
@@ -173,8 +173,8 @@ def phase(task: dict, acc: Optional[dict], team: Optional[dict] = None) -> tuple
                 "Nghiệm thu KHÔNG đạt, việc dừng: {r}", "Acceptance FAILED, the job stopped: {r}", r=reason or "-"), True, False
         if kind in _OWNER_BLOCKS or "approval" in kind:
             return "needs_owner", localefmt.chu(
-                "Đang chờ chủ quyết trên thẻ việc ở trang Nhóm (SenOS không tự duyệt thay): {r}",
-                "Waiting for the owner on the job card in Teams (SenOS never approves for you): {r}", r=reason or kind), True, False
+                "Đang chờ chủ quyết trên thẻ việc ở trang Nhóm AI (SenOS không tự duyệt thay): {r}",
+                "Waiting for the owner on the job card on the Squads page (SenOS never approves for you): {r}", r=reason or kind), True, False
         return "blocked", localefmt.chu("Việc bị chặn ({k}): {r}", "The job is blocked ({k}): {r}", k=kind or "-",
                                         r=reason or "-"), True, False
     if st == "team_running":
@@ -207,8 +207,8 @@ def report_text(team: dict, task: dict, line: str) -> tuple:
     head = localefmt.chu('Nhóm {n} báo về việc "{t}" (mã {i}):', 'Team {n} on the job "{t}" ({i}):',
                          n=team["name"], t=task.get("title") or "", i=task["id"])
     result = _s(task.get("result"))
-    tail = localefmt.chu("Xem đủ ở trang Nhóm, nhóm {n}, tab Việc. Mã đối chiếu: {c}.",
-                         "Full detail on the Teams page, team {n}, Jobs tab. Correlation id: {c}.", n=team["name"], c=cid)
+    tail = localefmt.chu("Xem đủ ở trang Nhóm AI, nhóm {n}, tab Việc. Mã đối chiếu: {c}.",
+                         "Full detail on the Squads page, team {n}, Jobs tab. Correlation id: {c}.", n=team["name"], c=cid)
     full = "\n".join([head, line] + ([""] + [result[:RESULT_SHOWN] + ("…" if len(result) > RESULT_SHOWN else "")]
                                      if result and task.get("status") == "done" else []) + ["", tail])
     short = "\n".join([head, line] + ([result[:400] + ("…" if len(result) > 400 else "")]

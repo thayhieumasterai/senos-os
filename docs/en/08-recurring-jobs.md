@@ -2,7 +2,7 @@
 
 *[Tiếng Việt](../08-viec-dinh-ky.md) · **English***
 
-The **Recurring jobs** page is where you hand SenOS work that runs while you are not at the computer: jobs that repeat on a cycle (called **loops**) and reminders at a set time. Each loop wakes on its cycle, does exactly the one task you described, verifies itself, writes a log entry and messages the result to you on Telegram.
+The **Recurring** list of the **Jobs** page is where you hand SenOS work that runs while you are not at the computer: jobs that repeat on a cycle (called **loops**) and reminders at a set time. Each loop wakes on its cycle, does exactly the one task you described, verifies itself, writes a log entry and messages the result to you on Telegram.
 
 This page aggregates jobs from **every brain**, not just the one selected in the sidebar.
 
@@ -26,8 +26,8 @@ Loops can be edited directly by opening the `.md` file in Obsidian or the [File 
 ## Where to find it in SenOS
 
 1. Open the SenOS dashboard (`http://localhost:7777` by default).
-2. In the left navigation rail, open the **Work** group.
-3. Click **Recurring jobs**.
+2. In the left navigation rail, open the **Operations** group.
+3. Click **Jobs**, then the **Recurring** list.
 
 The page opens with the subtitle "Recurring jobs + pending reminders". Top to bottom you see: a short introduction, the **+ Add job** and **■ Stop the running iteration** buttons, a search box, the job cards grouped by brain, and finally the **Recent log** block.
 
@@ -193,7 +193,7 @@ This used to be the biggest source of confusion: SenOS would build a "report ema
 
 If you still want to create it (planning to connect Telegram later), click **Create anyway** next to the warning. The job runs on time and its result is stored in SenOS, it simply goes nowhere.
 
-When the Recurring jobs page detects that no reporting channel exists, it shows a warning strip at the top, because jobs created earlier are still running and still not reaching you.
+When the Recurring list detects that no reporting channel exists, it shows a warning strip at the top, because jobs created earlier are still running and still not reaching you.
 
 Scheduling in words through chat follows the same rule: SenOS must check first whether the data sources are connected and whether there is a place to report to, and if something is missing it says so and asks, rather than creating something for the sake of it.
 
@@ -258,7 +258,7 @@ The log also exists in the brain as real files: `SenOS/loop-log/YYYY-MM-DD.md`, 
 
 ## Scheduling in words through chat
 
-You do not have to use this page. Tell SenOS directly in [Chat](02-chat-and-voice.md) or over Telegram, for example:
+You do not have to use this page. Tell SenOS directly in [Conversations](02-chat-and-voice.md) or over Telegram, for example:
 
 - "Create a job that scans new orders every 2 hours and summarises them."
 - "Remind me every day at 7am to check yesterday's revenue."
@@ -270,14 +270,14 @@ SenOS uses the `senos_schedule` tool (a bundled plugin) to pick the right store:
 
 Two hard safety rails on this path, which no parameter can change:
 
-- A loop created through chat is **always** `enabled: false`, and defaults to `mode: full` (say "read only" or "drafts only" for a lighter one). You must open the Recurring jobs page and click **Enable** for it to run for real.
+- A loop created through chat is **always** `enabled: false`, and defaults to `mode: full` (say "read only" or "drafts only" for a lighter one). You must open the Recurring list of the Jobs page and click **Enable** for it to run for real.
 - If the cycle is unclear (you said "every morning" without a time), the tool reports an error and asks back, never guessing.
 
 ## Webhooks: outside systems start work in SenOS
 
 Reminders run on the clock. A webhook runs on an **event**: a customer just filled the form on a landing page, just paid, or another app just has new data, and SenOS starts at once instead of waiting for the next scheduled run.
 
-**Create a webhook:** from 0.204.0 webhooks have their own page: open the **Work** group in the sidebar, choose **Webhooks**, click **+ Add webhook**. Name it, pick a brain, then choose what runs:
+**Create a webhook:** from 0.204.0 webhooks have their own page: open the **Operations** group in the sidebar, choose **Webhooks**, click **+ Add webhook**. Name it, pick a brain, then choose what runs:
 
 - **A workflow**: pick an existing workflow in the brain. The event data becomes the workflow's input.
 - **A written job**: write what to do, for example "Call the customer back within 5 minutes and log them in the CRM".
@@ -307,7 +307,7 @@ When a background run breaks (a Kanban job, a loop that paused itself, a Do it a
 
 The background model decides in text-only mode (no tools), but SenOS keeps the hard rules: a sign-in or key error is never re-run, each incident is re-run at most once, and a retry that fails again sends exactly one message. With no model ready, SenOS classifies by the error text.
 
-The **Incidents** tab of the Recurring jobs page lists open incidents (press **Done** to close one) and the last 24 hours of failures grouped by cause. To stop reporting to SenOS Core, set `incidents.enabled` to `false` in the settings.
+The **Incidents** tab of the Jobs page lists open incidents (press **Done** to close one) and the last 24 hours of failures grouped by cause. To stop reporting to SenOS Core, set `incidents.enabled` to `false` in the settings.
 
 **When SenOS will not open:** run `python tools/sentinel.py` on the server. It only reads data, calls no model, and prints the failures grouped by cause; add `--json` for a machine-readable copy and `--out <folder>` to save a report (the folder must be outside SenOS's data folder).
 
@@ -367,7 +367,7 @@ The **file body** (below the second `---`) is exactly the "Task description" you
 
 - **Not sure about a new loop yet? Drop it to Suggest (read-only).** Let it run a few iterations, read the log to judge the quality of its suggestions, then move it back to **Full power**.
 - **Do not set the cycle too tight.** One iteration every 5 to 10 minutes burns tokens and real machine resources. Most needs are fine with a few hours. Watch the spend in [Usage: tokens & cost](23-usage-and-cost.md).
-- **Use a cheap model for background work.** The [Models & engines](10-models-and-engines.md) page has a "Background model" block that applies to loops, Kanban work, reminders and self-learning. Picking a cheap model there saves a lot.
+- **Use a cheap model for background work.** The [AI models](10-models-and-engines.md) page has a "Background model" block that applies to loops, Kanban work, reminders and self-learning. Picking a cheap model there saves a lot.
 - **Set `quiet_hours` for jobs that run at night.** With Telegram reporting on, a job running at 3am wakes you. Add `quiet_hours: 23-07` to the file, or set `notify: false`.
 - **One job, one task.** A description that crams several jobs together makes each iteration do a fragment of each. Splitting them into separate loops, each with its own cycle, also makes the log far easier to read.
 - **Do not call a model for work that needs no thinking.** An "⏰ Remind only" reminder costs no tokens at all.

@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/14-security-and-accounts.md)*
 
-Trang này giải thích cách SenOS tự bảo vệ khi bạn đưa nó lên mạng, và cách dùng trang **Tài khoản** trong dashboard để đặt mật khẩu, đăng xuất, tắt đăng nhập và đổi tên workspace.
+Trang này giải thích cách SenOS tự bảo vệ khi bạn đưa nó lên mạng, và cách dùng trang **Hồ sơ** trong dashboard để đặt mật khẩu, đăng xuất, tắt đăng nhập và đổi tên workspace.
 
 ## Tính năng này là gì
 
@@ -20,9 +20,9 @@ SenOS xử lý việc này theo 7 lớp:
 
 ## Mở ở đâu trong SenOS
 
-Mọi thao tác tài khoản nằm ở mục **Tài khoản** trong nhóm **Hệ thống** trên thanh nav bên trái. Trang **Cài đặt** có một khối rút gọn làm được ba việc hay dùng nhất (đổi mật khẩu, đăng xuất, tắt đăng nhập) cùng một dòng trạng thái xác thực 2 lớp; bật 2 lớp và xem lịch sử đăng nhập ở tab **Bảo mật** của trang **Tài khoản**. Token API cho CLI và script nằm ở trang **Tích hợp** (nhóm **Việc**), tab **Token API**.
+Mọi thao tác tài khoản nằm ở mục **Hồ sơ** trong nhóm **Quản trị** trên thanh nav bên trái. Trang **Thiết lập** có một khối rút gọn làm được ba việc hay dùng nhất (đổi mật khẩu, đăng xuất, tắt đăng nhập) cùng một dòng trạng thái xác thực 2 lớp; bật 2 lớp và xem lịch sử đăng nhập ở tab **Bảo mật** của trang **Hồ sơ**. Token API cho CLI và script nằm ở trang **Webhook** (nhóm **Điều phối**), tab **Token API (cho CLI)**.
 
-Trang **Tài khoản** có 2 tab.
+Trang **Hồ sơ** có 2 tab.
 
 Tab **Tài khoản**:
 
@@ -44,7 +44,7 @@ SenOS quyết định có ép đăng nhập hay không dựa vào cách server �
 |---|---|
 | Chạy trên máy cá nhân, nghe `127.0.0.1` / `localhost` (hoặc `::1`) | Không (trừ khi bạn đã tự đặt mật khẩu) |
 | Chạy public (Docker/VPS/Hostinger), nghe `0.0.0.0`, `::` hoặc IP LAN | Có, tự bật |
-| Đã đặt mật khẩu trong trang Tài khoản | Có, ở mọi chế độ |
+| Đã đặt mật khẩu trong trang Hồ sơ | Có, ở mọi chế độ |
 
 Có thể ép cứng bằng biến môi trường `SENOS_REQUIRE_LOGIN`:
 
@@ -73,13 +73,13 @@ Khi mở dashboard lần đầu trên server công khai mà chưa có admin, Sen
 2. Ở màn tạo tài khoản nhập: tên tài khoản và mật khẩu (**tối thiểu 8 ký tự**).
 3. Bấm nút tạo tài khoản. SenOS tạo admin và đăng nhập bạn luôn.
 
-Dù dùng cách nào, sau lần đăng nhập đầu hãy **bật xác thực 2 lớp (2FA)** ở trang **Tài khoản**.
+Dù dùng cách nào, sau lần đăng nhập đầu hãy **bật xác thực 2 lớp (2FA)** ở trang **Hồ sơ**.
 
 ### B. Đặt mật khẩu (khi đang chạy máy cá nhân, chưa có mật khẩu)
 
 Nếu bạn chạy SenOS ở nhà mà muốn khoá lại trước khi đưa lên VPS:
 
-1. Vào **Tài khoản** trên thanh nav trái.
+1. Vào **Hồ sơ** trên thanh nav trái.
 2. Ở khối **Tài khoản đăng nhập**, nhập **Tài khoản** (để trống sẽ dùng `admin`).
 3. Nhập **Mật khẩu**.
 4. Bấm **Đặt mật khẩu**.
@@ -91,7 +91,7 @@ Mật khẩu tối thiểu **8 ký tự**, và giao diện chặn đúng ở con
 
 Khi đã có mật khẩu, khối **Tài khoản đăng nhập** hiện dòng "🔒 Đã đặt mật khẩu · tài khoản: <tên của bạn>", thêm ô **Mật khẩu hiện tại**, và nút chuyển nhãn thành **Đổi mật khẩu**.
 
-1. Vào **Tài khoản** trên thanh nav trái (hoặc khối **Tài khoản đăng nhập** trong trang **Cài đặt**, hai chỗ làm được như nhau).
+1. Vào **Hồ sơ** trên thanh nav trái (hoặc khối **Tài khoản đăng nhập** trong trang **Thiết lập**, hai chỗ làm được như nhau).
 2. Nhập **Mật khẩu hiện tại**. Bắt buộc, kể cả khi bạn đang đăng nhập sẵn: một máy mở dashboard bỏ đó không được phép đổi mật khẩu rồi khoá chính chủ ra ngoài.
 3. Nhập **Mật khẩu mới** (từ 8 ký tự). Muốn đổi mỗi tên đăng nhập thì để trống ô này và chỉ sửa ô **Tài khoản**.
 4. Bấm **Đổi mật khẩu**.
@@ -120,7 +120,7 @@ Cách thủ công (máy không dùng env):
 
 ### D. Đăng xuất
 
-1. Vào **Tài khoản**.
+1. Vào **Hồ sơ**.
 2. Bấm **Đăng xuất**.
 3. SenOS xoá phiên hiện tại và tải lại trang. Lần sau vào phải đăng nhập lại.
 
@@ -130,7 +130,7 @@ Cách thủ công (máy không dùng env):
 
 Chỉ nên làm khi chạy máy cá nhân, tuyệt đối không làm trên VPS.
 
-1. Vào **Tài khoản**.
+1. Vào **Hồ sơ**.
 2. Bấm **Tắt đăng nhập**.
 3. Xác nhận ở hộp thoại "Tắt đăng nhập? Ai mở dashboard cũng dùng được."
 4. SenOS xoá mật khẩu và **đăng xuất mọi phiên** đang mở.
@@ -139,7 +139,7 @@ Lưu ý: nếu server vẫn đang chạy public (hoặc bạn đặt `SENOS_REQU
 
 ### F. Đổi tên workspace
 
-1. Vào **Tài khoản**.
+1. Vào **Hồ sơ**.
 2. Ở khối **Workspace**, sửa **Tên workspace**.
 3. Bấm **Lưu**. Tên mới hiển thị ngay trên đầu dashboard.
 
@@ -165,7 +165,7 @@ Mỗi lần SenOS tự ghi tài khoản (đổi mật khẩu, bật 2FA...), nó
 
 Trợ lý chạy lệnh được bên trong máy chủ và đọc tin nhắn từ bên ngoài (Zalo, Telegram, webhook). Một tin nhắn cài bẫy có thể xúi nó sửa file cài đặt. Vì vậy ở **mọi mức quyền**, SenOS từ chối lệnh shell hay lời gọi công cụ chạm vào: `settings.json` trong thư mục state, `.secret_key`, các file phiên đăng nhập và token, nhật ký bảo mật, `~/.claude/.credentials.json`, `~/.codex/auth.json`, `authorized_keys`. Áp dụng cho Claude Code (chặn trước khi công cụ chạy) và terminal của các engine API. Mỗi lần chặn được ghi vào nhật ký. Codex, Grok Build và Antigravity chạy trong sandbox riêng của chúng nên chưa có lớp này.
 
-Lớp này chặn yêu cầu thẳng, không phải bức tường: mã chạy cùng quyền hệ điều hành vẫn có thể ghép đường dẫn từng mảnh. Cần đọc hay sửa các file đó thì dùng trang Tài khoản hoặc terminal thật của máy chủ (SSH, hPanel).
+Lớp này chặn yêu cầu thẳng, không phải bức tường: mã chạy cùng quyền hệ điều hành vẫn có thể ghép đường dẫn từng mảnh. Cần đọc hay sửa các file đó thì dùng trang Hồ sơ hoặc terminal thật của máy chủ (SSH, hPanel).
 
 ## Khi nghi bị chiếm quyền
 
@@ -173,7 +173,7 @@ Dấu hiệu: tên đăng nhập lạ, mật khẩu đúng mà báo sai, mã 2FA
 
 1. **Lấy lại tài khoản.** Trên Hostinger: thêm `SENOS_ADMIN_USER` và `SENOS_ADMIN_PASSWORD` (mật khẩu MỚI) vào ô Environment rồi Redeploy. SenOS đặt lại tài khoản, giữ 2FA và đăng xuất mọi phiên cũ.
 2. **2FA không phải của bạn?** Thêm `SENOS_RESET_2FA=1` cùng lúc ở bước 1. SenOS gỡ 2FA đúng một lần khi khởi động. Biến chỉ có tác dụng một lần cho mỗi giá trị; lần sau cần lại thì đặt giá trị khác, ví dụ ngày hôm đó (`SENOS_RESET_2FA=2026-11-09`).
-3. **Đăng nhập, mở Tài khoản > Bảo mật.** Xem lịch sử đăng nhập (IP, thiết bị, giờ) và bấm **Đăng xuất mọi thiết bị khác**.
+3. **Đăng nhập, mở Hồ sơ > Bảo mật.** Xem lịch sử đăng nhập (IP, thiết bị, giờ) và bấm **Đăng xuất mọi thiết bị khác**.
 4. **Bật lại 2FA** bằng điện thoại của bạn, cất 8 mã khôi phục vào nơi an toàn.
 5. **Xoá `SENOS_ADMIN_PASSWORD` và `SENOS_RESET_2FA` khỏi ô Environment** rồi Redeploy. Tài khoản không bị ảnh hưởng. Mật khẩu nằm ở ô đó dạng chữ thường nên đừng để lâu.
 6. **Tìm đường vào của kẻ lạ.** Người sửa được file cài đặt đã vào được máy chủ: kiểm tra SSH key lạ (`cat /root/.ssh/authorized_keys`), đổi mật khẩu root (`passwd`), đổi mật khẩu và bật 2FA cho tài khoản Hostinger, chặn cổng 7777 ở tường lửa nếu đã có tên miền HTTPS.
@@ -198,7 +198,7 @@ SenOS chặn hai đường đó bằng một cổng gác đứng trước cả c
 | Client không phải trình duyệt (không gửi `Origin`, ví dụ CLI, curl, MCP) | Cho qua |
 | Host là một địa chỉ IP | Bỏ qua bước kiểm Host |
 
-Allowlist gồm: `localhost`, `127.0.0.1`, `::1`, `0.0.0.0`, cộng tên miền riêng bạn đã đặt trong **Cài đặt → Tên miền & SSL**, cộng mọi tên trong biến môi trường `SENOS_ALLOWED_HOSTS` (nhiều tên cách nhau dấu phẩy).
+Allowlist gồm: `localhost`, `127.0.0.1`, `::1`, `0.0.0.0`, cộng tên miền riêng bạn đã đặt trong **Thiết lập → Tên miền & SSL**, cộng mọi tên trong biến môi trường `SENOS_ALLOWED_HOSTS` (nhiều tên cách nhau dấu phẩy).
 
 Khi nào bạn cần đụng tới: chạy SenOS sau một reverse proxy với tên miền chưa khai trong app, mà lại **chưa** đặt mật khẩu. Lúc đó SenOS coi tên miền đó là lạ và trả 403. Cách sửa: đặt mật khẩu (bật cổng đăng nhập là bước kiểm Host tự bỏ qua), hoặc thêm tên miền vào `SENOS_ALLOWED_HOSTS`.
 
@@ -228,7 +228,7 @@ Lớp này chỉ bắt bot TỰ KHAI tên. Bot giả làm Chrome thì vẫn ch�
 
 ## Token API - cửa cho CLI và script
 
-Cookie đăng nhập chỉ hợp với trình duyệt. Khi bạn muốn [SenOS CLI](24-cli-terminal.md) hay một script gọi được SenOS, cần một credential khác: **token API**, tạo ở **Tích hợp > Token API (cho CLI)** (nhóm Việc, cùng trang với webhook: cả hai đều là cửa để chương trình khác gọi vào SenOS).
+Cookie đăng nhập chỉ hợp với trình duyệt. Khi bạn muốn [SenOS CLI](24-cli-terminal.md) hay một script gọi được SenOS, cần một credential khác: **token API**, tạo ở **Webhook > Token API (cho CLI)** (nhóm Việc, cùng trang với webhook: cả hai đều là cửa để chương trình khác gọi vào SenOS).
 
 Điểm quan trọng nhất: **không có token nào sẵn**. Chưa tự tay bấm tạo thì không token nào tồn tại, và không cửa nào vào ngoài trình duyệt. Mở thêm một cổng ra Internet phải là một hành động có ý thức.
 
@@ -293,18 +293,18 @@ Về cookie `secure`: mặc định SenOS **không** ép cookie `secure` để c
 
 | Nút / dòng chữ | Ở đâu | Xảy ra chuyện gì |
 |---|---|---|
-| **Đặt mật khẩu** | Tài khoản → Tài khoản đăng nhập (khi chưa có mật khẩu) | Tạo tài khoản admin và cấp phiên ngay cho bạn |
+| **Đặt mật khẩu** | Hồ sơ → Tài khoản đăng nhập (khi chưa có mật khẩu) | Tạo tài khoản admin và cấp phiên ngay cho bạn |
 | **Đổi mật khẩu** | Cùng chỗ, khi đã có mật khẩu | Đổi mật khẩu và/hoặc tên đăng nhập. Phải nhập mật khẩu hiện tại; đổi xong mọi phiên khác bị đăng xuất |
-| **Đăng xuất** | Tài khoản → Tài khoản đăng nhập | Xoá phiên trình duyệt này, tải lại trang |
-| **Tắt đăng nhập** | Tài khoản → Tài khoản đăng nhập | Xoá mật khẩu + đăng xuất mọi phiên (hỏi xác nhận trước) |
-| **Lưu** | Tài khoản → Workspace | Đổi tên workspace hiển thị |
+| **Đăng xuất** | Hồ sơ → Tài khoản đăng nhập | Xoá phiên trình duyệt này, tải lại trang |
+| **Tắt đăng nhập** | Hồ sơ → Tài khoản đăng nhập | Xoá mật khẩu + đăng xuất mọi phiên (hỏi xác nhận trước) |
+| **Lưu** | Hồ sơ → Workspace | Đổi tên workspace hiển thị |
 | 🔒 Đã đặt mật khẩu · tài khoản: ... | Tài khoản đăng nhập | Đang có admin, tên đăng nhập hiện ngay sau dấu hai chấm |
 | Chưa đặt mật khẩu - ai mở dashboard cũng dùng được. Đặt mật khẩu nếu đưa lên VPS. | Tài khoản đăng nhập | Chưa có admin |
 | ✅ Đã lưu tài khoản. | Tài khoản đăng nhập | Đặt mật khẩu thành công |
 | ⚠ Mật khẩu tối thiểu 8 ký tự. | Tài khoản đăng nhập | Giao diện chặn trước khi gửi lên server, cùng ngưỡng với server |
 | ⚠ Sai mật khẩu hiện tại. | Tài khoản đăng nhập | Ô **Mật khẩu hiện tại** gõ sai, không có gì bị đổi |
 | **Quên mật khẩu?** | Màn đăng nhập | Bấm vào hiện hướng dẫn chạy `reset-auth.bat` (Mac: `reset-auth.command`), hoặc đổi `SENOS_ADMIN_PASSWORD` trên máy chủ |
-| **Quên mật khẩu hiện tại?** | Tài khoản, dưới nút Đổi mật khẩu | Windows/Mac: mở thư mục và chọn sẵn file reset. Máy chủ: hiện các bước trong nút (i) |
+| **Quên mật khẩu hiện tại?** | Hồ sơ, dưới nút Đổi mật khẩu | Windows/Mac: mở thư mục và chọn sẵn file reset. Máy chủ: hiện các bước trong nút (i) |
 
 ## Mẹo
 
@@ -330,16 +330,16 @@ Thường do cookie `secure` bị bật trong khi bạn đang truy cập qua HTT
 Bạn (hoặc ai đó cùng IP) đã sai mật khẩu quá số lần cho phép. Đợi khoảng 5 phút rồi thử lại. Khởi động lại server cũng xoá bộ đếm này.
 
 **Mọi thao tác đều trả 403 "host không được phép".**
-Bạn đang vào SenOS bằng một tên miền mà SenOS chưa biết, trong lúc chưa đặt mật khẩu. Thêm tên miền đó vào `SENOS_ALLOWED_HOSTS`, hoặc nhập nó ở **Cài đặt → Tên miền & SSL**, hoặc đơn giản là đặt mật khẩu.
+Bạn đang vào SenOS bằng một tên miền mà SenOS chưa biết, trong lúc chưa đặt mật khẩu. Thêm tên miền đó vào `SENOS_ALLOWED_HOSTS`, hoặc nhập nó ở **Thiết lập → Tên miền & SSL**, hoặc đơn giản là đặt mật khẩu.
 
 **Thao tác nào cũng báo 403 "cross-origin request bị chặn".**
 Bạn đang gọi API SenOS từ một trang khác (script, tiện ích, iframe của bên thứ ba). Đây là lớp chống CSRF chặn đúng việc của nó. Nếu đó là công cụ của chính bạn, thêm hostname của nó vào `SENOS_ALLOWED_HOSTS`.
 
 **Quên mật khẩu.**
-Trên Windows và Mac, thư mục cài SenOS có sẵn **`reset-auth.bat`** (Windows) và **`reset-auth.command`** (Mac). Bấm đúp là mật khẩu cũ bị xoá; mở lại SenOS rồi vào Tài khoản đặt mật khẩu mới. Đang đăng nhập sẵn thì vào **Tài khoản**, bấm **Quên mật khẩu hiện tại?** để SenOS mở đúng thư mục. Nếu không dùng được script: sửa/xoá phần `auth` trong `settings.json` ở thư mục state (Docker: `/data/state`) rồi khởi động lại; hoặc đặt lại admin bằng `SENOS_ADMIN_PASSWORD` sau khi đã xoá phần `auth` cũ.
+Trên Windows và Mac, thư mục cài SenOS có sẵn **`reset-auth.bat`** (Windows) và **`reset-auth.command`** (Mac). Bấm đúp là mật khẩu cũ bị xoá; mở lại SenOS rồi vào Hồ sơ đặt mật khẩu mới. Đang đăng nhập sẵn thì vào **Tài khoản**, bấm **Quên mật khẩu hiện tại?** để SenOS mở đúng thư mục. Nếu không dùng được script: sửa/xoá phần `auth` trong `settings.json` ở thư mục state (Docker: `/data/state`) rồi khởi động lại; hoặc đặt lại admin bằng `SENOS_ADMIN_PASSWORD` sau khi đã xoá phần `auth` cũ.
 
 **Đổi máy/khôi phục backup xong thì mọi API key trống trơn.**
-Bạn chép `settings.json` mà không chép `.secret_key` đi cùng. Không có cách khôi phục: nhập lại key ở trang Models, Kênh và Cài đặt. Lần sau nhớ mang cả hai tệp.
+Bạn chép `settings.json` mà không chép `.secret_key` đi cùng. Không có cách khôi phục: nhập lại key ở trang Mô hình AI, Kênh quản trị và Thiết lập. Lần sau nhớ mang cả hai tệp.
 
 **Tắt đăng nhập rồi mà vẫn bị hỏi tài khoản.**
 Vì server vẫn đang public (hoặc `SENOS_REQUIRE_LOGIN=1`). Ở chế độ này SenOS không cho tắt đăng nhập hoàn toàn, mà bắt tạo lại tài khoản. Muốn dùng không mật khẩu thì phải chạy server nghe thuần localhost.

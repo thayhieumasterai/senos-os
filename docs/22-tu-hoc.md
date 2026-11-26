@@ -21,7 +21,7 @@ Cuối cùng, SenOS chỉ cho phép ghi vào đúng các thư mục `memory/`, `
 
 ## Mở ở đâu trong SenOS
 
-Ở thanh điều hướng bên trái, mở nhóm **Bộ não**, rồi bấm **Tự học** (biểu tượng 🧠). Đầu trang hiện tiêu đề **Tự học** kèm dòng phụ "Rewire Memory · Wiki · Skill (an toàn, undo được)".
+Ở thanh điều hướng bên trái, mở nhóm **Tri thức**, rồi bấm **Rèn luyện** (biểu tượng 🧠). Đầu trang hiện tiêu đề **Rèn luyện** kèm dòng phụ "Rewire Memory · Wiki · Skill (an toàn, undo được)".
 
 Trang làm việc trên **brain đang chọn**. Đổi brain ở đầu màn hình rồi quay lại đây thì mọi chỉ số, commit và nhật ký đều đổi theo brain mới.
 
@@ -62,10 +62,10 @@ Bấm nút một lần nữa để tắt. Lúc tắt, SenOS lưu ngay trạng th
 | --- | --- | --- |
 | **Ký ức (Memory)** | Bật | Sự thật bền vững về chính bạn và doanh nghiệp bạn, ghi thành file trong `memory/facts/` và thêm một dòng vào `MEMORY.md` |
 | **Tri thức (Wiki)** | Bật | Khái niệm, framework, quy trình tái dùng được, ghi thành note trong thư mục Wiki của brain |
-| **Kỹ năng (Skill)** | **Tắt** | Quy trình nhiều bước SenOS vừa tự làm và thấy lặp lại được, ghi thành `skills/<slug>/SKILL.md`. Skill đã có mà vừa lộ ra chỗ sai thì **sửa tại chỗ** (từ 0.55.65), không đẻ bản sao. Mặc định tắt từ 11/2026 vì học skill mở thêm một lượt phản biện mỗi mẻ và kéo theo cả phần chấm điểm skill chạy ngầm, là chỗ tốn hạn mức nhất; máy đã cài cũng được tắt một lần, bật lại ở đây nếu bạn cần |
+| **Nghiệp vụ (Skill)** | **Tắt** | Quy trình nhiều bước SenOS vừa tự làm và thấy lặp lại được, ghi thành `skills/<slug>/SKILL.md`. Skill đã có mà vừa lộ ra chỗ sai thì **sửa tại chỗ** (từ 0.55.65), không đẻ bản sao. Mặc định tắt từ 11/2026 vì học skill mở thêm một lượt phản biện mỗi mẻ và kéo theo cả phần chấm điểm skill chạy ngầm, là chỗ tốn hạn mức nhất; máy đã cài cũng được tắt một lần, bật lại ở đây nếu bạn cần |
 | **Vai (Agent)** | **Tắt** | Vai chuyên môn bạn nhờ đi nhờ lại trong hội thoại, ghi thành `agents/<slug>.md`. Vai đã có mà cần cải tiến thì **sửa tại chỗ**, không đẻ bản sao |
 | **Chuỗi bước (Workflow)** | **Tắt** | Chuỗi từ 2 bước nhiều vai bạn đã làm lặp lại, ghi thành `workflows/<slug>.md` ở trạng thái tắt để bạn xem trước rồi tự bật. Chuỗi đã có mà thiếu bước, thừa bước hay sai thứ tự thì **sửa tại chỗ** |
-| **Việc (Kanban)** | **Tắt** | Đề xuất việc nền, đẩy vào bảng ở trang **Việc** |
+| **Công việc (Kanban)** | **Tắt** | Đề xuất việc nền, đẩy vào bảng ở **Bảng việc** |
 
 Dòng gợi ý dưới các nút ghi: "Wiki/Skill nên bật sau khi đã quen với Ký ức (lộ trình Phase 2/3). Việc = học xong đề xuất task nền vào bảng Việc (Kanban) - chỉ tạo thật ở chế độ Tự ghi, và task luôn chờ bạn duyệt."
 
@@ -127,7 +127,7 @@ Mỗi mẻ đọc đúng **các lượt mới kể từ mẻ trước** của t�
 
 ### SenOS học cả từ việc nó tự làm (từ 0.55.64)
 
-Hàng chờ trên không chỉ nghe luồng chat. Mỗi **việc nền ở trang Việc** chạy đến nơi cũng được xếp vào cùng hàng chờ đó, kèm tên việc, yêu cầu và kết quả:
+Hàng chờ trên không chỉ nghe luồng chat. Mỗi **việc nền ở Bảng việc** chạy đến nơi cũng được xếp vào cùng hàng chờ đó, kèm tên việc, yêu cầu và kết quả:
 
 - Việc **bị chặn** được xếp vào nhóm ưu tiên, học sau khoảng 3 phút im, vì lý do bị chặn thường chỉ đúng chỗ hệ thống còn thiếu (chưa nối MCP nào, thiếu quyền, quy trình sai bước).
 - Việc chạy xong bình thường nằm chờ như một lượt chat, học chung mẻ.
@@ -159,7 +159,7 @@ Chỉ một mẻ học chạy tại một thời điểm. Tự học, Curator v�
 - `description` dài quá **150 ký tự** là bị chặn (bộ định tuyến cắt đúng ở đó nên phần dư mất im lặng), mở đầu bằng cụm sáo rỗng kiểu "Kích hoạt khi..." cũng bị chặn.
 - **Không bao giờ ghi đè skill đã có**, và **không hồi sinh skill bạn đã tắt**.
 
-**Việc (Kanban), khi bạn bật công tắc đó:**
+**Công việc (Kanban), khi bạn bật công tắc đó:**
 - Tối đa 3 việc mỗi mẻ, độ tự tin từ 2 trở lên.
 - Một cửa gác chặn thẳng các việc worker nền chắc chắn làm không nổi: việc dính đăng nhập / cookie / OTP / mã QR / đổi mật khẩu / 2FA, việc gửi hay đăng ra ngoài (Zalo, Telegram, email, fanpage, bình luận), việc chỉ ngồi chờ người khác duyệt, và việc đụng mã nguồn nằm ngoài brain. Lý do bị chặn được ghi vào nhật ký.
 
@@ -167,7 +167,7 @@ Mọi thứ bị chặn đều xuất hiện trong Nhật ký học ở phần *
 
 ## Trần chống tốn hạn mức
 
-Tự học chạy bằng **model việc nền** chứ không phải model chính. Bạn chọn model đó ở trang **Models** (nhóm **Kết nối**), khối "◆ Model việc nền" có ghi rõ nó phục vụ "loop · việc Kanban · nhắc hẹn · tự học · tiêu hoá nguồn". Chọn model rẻ ở đó là tự học rẻ theo.
+Tự học chạy bằng **model việc nền** chứ không phải model chính. Bạn chọn model đó ở trang **Mô hình AI** (nhóm **Quản trị**), khối "◆ Model việc nền" có ghi rõ nó phục vụ "loop · việc Kanban · nhắc hẹn · tự học · tiêu hoá nguồn". Chọn model rẻ ở đó là tự học rẻ theo.
 
 SenOS **không đặt trần theo ngày** (từ 11/2026): người dùng nhiều, người dùng ít, một con số chung không hợp với ai. Thứ giữ cho tự học không tốn là nhịp ở trên (một mẻ cho mỗi cuộc trò chuyện, sau 15 phút yên) cùng hai điều sau:
 
@@ -215,7 +215,7 @@ Muốn chạy ngay một vòng, bấm **🧹 Curator ngay**. Nút hiện "Đang 
 | --- | --- | --- |
 | `● Đang bật` / `○ Đang tắt` | Ô Bật tự học | Bật lần đầu thì git-init brain rồi lưu ngay. Tắt cũng lưu ngay |
 | `Chạy thử` / `Đề xuất` / `Tự ghi` | Ô Chế độ ghi | Chọn mức ghi. Chỉ Tự ghi mới tạo file |
-| `● Ký ức (Memory)` … `○ Việc (Kanban)` | Ô Học cái gì | Sáu công tắc loại tri thức được học |
+| `● Ký ức (Memory)` … `○ Công việc (Kanban)` | Ô Học cái gì | Sáu công tắc loại tri thức được học |
 | `● Bật` / `○ Tắt` | Ô Curator | Bật vòng bảo trì 24 giờ |
 | **💾 Lưu cấu hình** | Hàng nút | Lưu chế độ + công tắc + Curator. Hiện "Đang lưu..." rồi "✓ Đã lưu" |
 | **▶ Học ngay** | Hàng nút | Lưu cấu hình rồi chạy một mẻ học trên brain đang chọn |
@@ -264,7 +264,7 @@ Mỗi mục có mốc giờ, loại (`learn` hoặc `curator`), lý do chạy (`
 
 Chưa có gì thì khối hiện "Chưa có nhật ký học.".
 
-Nhật ký này là file markdown thường, mở được ở trang **Tệp tin** (nhóm **Bộ não**) nếu bạn muốn đọc đầy đủ thay vì 10 mục cuối.
+Nhật ký này là file markdown thường, mở được ở trang **Tài liệu** (nhóm **Tri thức**) nếu bạn muốn đọc đầy đủ thay vì 10 mục cuối.
 
 ## Đồng bộ brain với GitHub
 
@@ -287,11 +287,11 @@ Cài git rồi thì tắt tự học và bật lại một lần để SenOS git
 ## Mẹo
 
 - **Muốn SenOS nhớ chắc chắn một điều, nói thẳng "ghi nhớ ..." trong chat.** Câu có "ghi nhớ", "nhớ giúp", "lưu lại", "nhớ là" được đánh dấu gấp và học sau 30 giây thay vì chờ cuộc trò chuyện yên 15 phút.
-- **Kiểm tra SenOS học đúng chưa bằng chính `MEMORY.md`.** Mở trang **Tệp tin**, vào `memory/MEMORY.md`. Mỗi dòng là một ký ức. Dòng nào sai thì sửa hoặc xoá thẳng ở đó, nhanh hơn hoàn tác cả một commit.
+- **Kiểm tra SenOS học đúng chưa bằng chính `MEMORY.md`.** Mở trang **Tài liệu**, vào `memory/MEMORY.md`. Mỗi dòng là một ký ức. Dòng nào sai thì sửa hoặc xoá thẳng ở đó, nhanh hơn hoàn tác cả một commit.
 - **Giữ `MEMORY.md` gọn.** File này nạp vào mọi lượt chat. Chỉ số vượt khoảng 150 dòng là lúc nên gộp các ký ức vụn thành một ký ức lớn hơn.
 - **Muốn tri thức Wiki chất lượng, hãy nói ra nguồn.** Điều gì chỉ do SenOS tự suy ra sẽ không được vào Wiki. Bạn khẳng định hoặc dẫn nguồn có tên thì nó mới được ghi.
 - **Chạy thử vài ngày trước khi mở Tự ghi** nếu brain của bạn đã có nhiều ghi chú viết tay và bạn muốn chắc chắn SenOS không làm loạn cách đặt tên.
-- **Đổi model việc nền sang model rẻ** ở trang **Models** nếu thấy tự học ăn nhiều hạn mức. Tự học không cần model mạnh nhất.
+- **Đổi model việc nền sang model rẻ** ở trang **Mô hình AI** nếu thấy tự học ăn nhiều hạn mức. Tự học không cần model mạnh nhất.
 
 ## Sự cố thường gặp
 
@@ -320,7 +320,7 @@ Tiến trình học không có quyền ghi. Code ghi thì không đè file ký �
 
 - [Second Brain: bộ nhớ và Wiki](13-second-brain-bo-nho-wiki.md) - cấu trúc `memory/facts/`, `MEMORY.md` và thư mục Wiki mà tự học ghi vào
 - [Skills](06-skills.md) - skill do tự học tạo ra nằm chung danh sách với skill bạn tự viết, bật tắt như nhau
-- [Việc (Kanban)](21-viec-kanban.md) - nơi việc do công tắc "Việc (Kanban)" đề xuất rơi xuống
+- [Việc (Kanban)](21-viec-kanban.md) - nơi việc do công tắc "Công việc (Kanban)" đề xuất rơi xuống
 - [Sao lưu brain lên GitHub](18-sao-luu-github.md) - khối đồng bộ nằm ngay trong trang này
 - [Models & engine](10-models-va-engine.md) - chọn model việc nền cho tự học
 - [Quản lý tệp tin](05-quan-ly-tep-tin.md) - mở `MEMORY.md`, note Wiki và file nhật ký học để đọc hoặc sửa tay

@@ -12,13 +12,13 @@ import localefmt
 
 SPEC = KenhSpec(
     id="threads", nhan="Threads", kind="bot", logo="threads", mau="#000000",
-    lay_token=("Nối ở thẻ Kết nối Meta, trang Kết nối: dán Threads App ID và Threads App secret rồi bấm Đăng nhập "
+    lay_token=("Nối ở thẻ Kết nối Meta, trang Ứng dụng: dán Threads App ID và Threads App secret rồi bấm Đăng nhập "
                "Threads. SenOS tự lấy và tự gia hạn token."),
     tom_tat=("Bình luận dưới bài Threads của bạn. Threads không có tin nhắn riêng: bot chỉ trả lời công khai, tối đa "
              "500 ký tự mỗi câu."),
     nang_luc={"nhom": False, "gui_chu": True, "gui_file": False},
     en={
-        "lay_token": ("Connect it on the Meta connection card, Connections page: paste the Threads App ID and Threads "
+        "lay_token": ("Connect it on the Meta connection card, Apps page: paste the Threads App ID and Threads "
                       "App secret and click Log in to Threads. SenOS gets and renews the token by itself."),
         "tom_tat": ("Replies under your Threads posts. Threads has no private messages: the bot only answers publicly, "
                     "up to 500 characters each."),

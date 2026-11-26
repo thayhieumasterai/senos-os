@@ -16,7 +16,7 @@ Một skill trong SenOS là một thư mục chứa file `SKILL.md`, đặt tạ
 
 Phần còn lại của file là nội dung hướng dẫn chi tiết cho AI khi skill chạy.
 
-Bản chuẩn (canonical) của skill nằm ở `skills/<slug>/SKILL.md` - đúng cái dashboard hiển thị và đúng cái SenOS nạp qua router. Ngoài ra SenOS còn giữ một bản **mirror** ở `.claude/skills/<slug>` để Claude Code nạp native. Bản mirror giống hệt bản gốc, chỉ khác một chỗ: nếu `description` dài quá 150 ký tự thì bản mirror bị rút xuống 150 ký tự kèm dấu "…" (bản trong `skills/` giữ nguyên chữ bạn viết). Chuyện này chỉ xảy ra với skill nhập từ gói ngoài hoặc viết tay qua trang Tệp tin, vì skill lưu qua biểu mẫu đã bị chặn từ trước.
+Bản chuẩn (canonical) của skill nằm ở `skills/<slug>/SKILL.md` - đúng cái dashboard hiển thị và đúng cái SenOS nạp qua router. Ngoài ra SenOS còn giữ một bản **mirror** ở `.claude/skills/<slug>` để Claude Code nạp native. Bản mirror giống hệt bản gốc, chỉ khác một chỗ: nếu `description` dài quá 150 ký tự thì bản mirror bị rút xuống 150 ký tự kèm dấu "…" (bản trong `skills/` giữ nguyên chữ bạn viết). Chuyện này chỉ xảy ra với skill nhập từ gói ngoài hoặc viết tay qua trang Tài liệu, vì skill lưu qua biểu mẫu đã bị chặn từ trước.
 
 ## Luật viết `description` (đọc trước khi tạo skill)
 
@@ -28,7 +28,7 @@ Bản chuẩn (canonical) của skill nằm ở `skills/<slug>/SKILL.md` - đún
 
 Cách viết đúng: một câu nêu thẳng skill **làm được gì**, dưới 150 ký tự. Ví dụ trigger dài, danh sách từ khoá, các tình huống chi tiết thì đưa xuống mục `## Khi nào dùng` trong **thân** file `SKILL.md` - chỗ đó không bị cắt và chỉ được đọc khi skill đã nạp. Nói gọn: phần mô tả để TÌM, thân file để LÀM.
 
-Luật này áp cho cả biểu mẫu trên dashboard lẫn skill do trang **Tự học** đề xuất (skill vi phạm bị chặn, ghi vào danh sách bỏ qua).
+Luật này áp cho cả biểu mẫu trên dashboard lẫn skill do trang **Rèn luyện** đề xuất (skill vi phạm bị chặn, ghi vào danh sách bỏ qua).
 
 ## Trigger hoạt động thế nào
 
@@ -76,13 +76,13 @@ SenOS chia skill làm 2 loại:
   | `security-audit` | Rà soát bảo mật mã nguồn theo quy trình của Cloudflare: tìm lỗ hổng có bằng chứng, kiểm chứng độc lập, báo cáo kèm cách sửa |
 
   Bản gốc nằm trong thư mục cài đặt của app (không nằm trong brain), nên chúng **có mặt ở mọi brain** và **tự cập nhật khi bạn cập nhật SenOS** lên phiên bản mới. Loại này không xoá được từ dashboard (lỡ xoá file thủ công thì lần khởi động sau tự cài lại); muốn ngừng dùng thì **tắt** như skill thường - trạng thái tắt được giữ nguyên qua mọi lần cập nhật.
-- **Skill của bạn**: tạo qua nút + Skill, qua chat, nhập từ gói `.zip`, hoặc do trang Tự học đề xuất. Đây là dữ liệu của brain - đổi brain thì bộ skill đổi theo, cập nhật app không đụng tới.
+- **Skill của bạn**: tạo qua nút + Skill, qua chat, nhập từ gói `.zip`, hoặc do trang Rèn luyện đề xuất. Đây là dữ liệu của brain - đổi brain thì bộ skill đổi theo, cập nhật app không đụng tới.
 
-Bạn vẫn **Sửa** được skill hệ thống. Khi đó bản trong brain trở thành bản riêng của bạn: SenOS giữ đúng chỉnh sửa đó và ngừng tự cập nhật đè lên. Muốn quay về bản chuẩn (kèm tự cập nhật), xoá thư mục skill đó trong `skills/` của brain (bằng trang Tệp tin) rồi khởi động lại - bản hệ thống mới nhất sẽ được cài lại sạch.
+Bạn vẫn **Sửa** được skill hệ thống. Khi đó bản trong brain trở thành bản riêng của bạn: SenOS giữ đúng chỉnh sửa đó và ngừng tự cập nhật đè lên. Muốn quay về bản chuẩn (kèm tự cập nhật), xoá thư mục skill đó trong `skills/` của brain (bằng trang Tài liệu) rồi khởi động lại - bản hệ thống mới nhất sẽ được cài lại sạch.
 
 ## Skill khác Plugin chỗ nào
 
-Hai thứ này dễ lẫn vì cùng nằm trong nhóm **Năng lực** trên thanh điều hướng.
+Hai thứ này dễ lẫn vì cùng nằm trong nhóm **Đội ngũ AI** trên thanh điều hướng.
 
 | | Skill | Plugin |
 |---|---|---|
@@ -91,13 +91,13 @@ Hai thứ này dễ lẫn vì cùng nằm trong nhóm **Năng lực** trên than
 | Nằm ở đâu | `skills/<slug>/SKILL.md` trong brain | Thư mục `plugins/<slug>/` (gồm `plugin.yaml` + `plugin.py`) |
 | Bật thế nào | Tích ô đánh dấu trên thẻ là xong | Cũng tích ô trên thẻ. Máy nào đặt `SENOS_ENABLE_USER_PLUGINS=false` thì plugin do bạn cài không chạy |
 
-Chọn thế nào: cần **hướng dẫn** làm việc bằng công cụ sẵn có thì viết Skill. Cần một **hành động Python cụ thể** chưa có nguồn nào phủ (tính toán, biến đổi dữ liệu, gọi một API đơn giản) thì viết Plugin. Còn nếu là một nguồn dữ liệu ngoài đã có sẵn server thì đấu MCP ở trang Kết nối, đừng viết plugin. Chi tiết ở [Plugins](20-plugins.md) và [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md).
+Chọn thế nào: cần **hướng dẫn** làm việc bằng công cụ sẵn có thì viết Skill. Cần một **hành động Python cụ thể** chưa có nguồn nào phủ (tính toán, biến đổi dữ liệu, gọi một API đơn giản) thì viết Plugin. Còn nếu là một nguồn dữ liệu ngoài đã có sẵn server thì đấu MCP ở trang Ứng dụng, đừng viết plugin. Chi tiết ở [Plugins](20-plugins.md) và [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md).
 
 ## Mở ở đâu trong SenOS
 
-Mở dashboard (mặc định tại cổng 7777), nhìn thanh điều hướng bên trái, mở nhóm **Năng lực** rồi bấm mục **Skills**. Nhóm này có 4 mục: Agents, Skills, Workflows, Plugins.
+Mở dashboard (mặc định tại cổng 7777), nhìn thanh điều hướng bên trái, mở nhóm **Đội ngũ AI** rồi bấm mục **Nghiệp vụ**. Nhóm này có 6 mục: Trợ lý, Nhóm AI, Hộp thư bot, Nghiệp vụ, Tiện ích, Dòng lệnh.
 
-Đầu trang có tiêu đề **Skills** kèm dòng trạng thái, ví dụ "3/5 bật · nguồn `skills/`". Con số này cho biết bao nhiêu skill đang bật trên tổng số, và nhắc rằng nguồn skill là thư mục `skills/` của brain hiện tại.
+Đầu trang có tiêu đề **Nghiệp vụ** kèm dòng trạng thái, ví dụ "3/5 bật · nguồn `skills/`". Con số này cho biết bao nhiêu skill đang bật trên tổng số, và nhắc rằng nguồn skill là thư mục `skills/` của brain hiện tại.
 
 Bên phải tiêu đề là hai nút: **⤒ Nhập** (đưa gói skill từ ngoài vào) và **+ Skill** (tạo skill mới).
 
@@ -136,7 +136,7 @@ Gõ vào ô **Tìm skill…** ở đầu danh sách. SenOS lọc ngay khi bạn 
 
 ## Bật và tắt skill (từng cái)
 
-1. Vào trang **Skills**.
+1. Vào trang **Nghiệp vụ**.
 2. Tìm skill cần đổi trạng thái.
 3. Bấm vào ô đánh dấu (checkbox) ở đầu thẻ skill. Có dấu tích là bật, bỏ tích là tắt.
 
@@ -148,7 +148,7 @@ Nếu có lỗi khi đổi trạng thái, SenOS báo "Không đổi được tr�
 
 ## Thêm skill mới (từng bước)
 
-1. Ở trang **Skills**, bấm **+ Skill**.
+1. Ở trang **Nghiệp vụ**, bấm **+ Skill**.
 2. Điền các ô trong biểu mẫu:
    - **Tên skill**: tên dễ nhớ, ví dụ "Viết email bán hàng".
    - **Nhóm**: gõ tên nhóm, ví dụ "Marketing". Ô này có gợi ý sẵn các nhóm bạn đã dùng để bấm chọn cho nhất quán. Không nên để trống (sẽ vào "Chung").
@@ -188,9 +188,9 @@ Xoá là thao tác dứt điểm: cả thư mục skill bị xoá khỏi ổ đ�
 
 Lưu ý: nội dung skill là hướng dẫn cho AI làm theo, nên chỉ nhập gói từ nguồn bạn tin tưởng. Chi tiết cơ chế đóng gói kèm phụ thuộc ở [Agents & Workflows](07-agents-va-workflows.md).
 
-## Khuyên dùng trong SenOS Store
+## Khuyên dùng trong Chợ Sen
 
-Tab đầu tiên của **SenOS Store** là **Khuyên dùng**: skill chép **nguyên văn** từ repo GitHub của chính tác giả (ví dụ bộ skill chính chủ của Remotion, hay Lemo-Opuscar để dựng phim ngắn bằng code). Không dịch, không sửa, đọc đúng như tác giả viết.
+Tab đầu tiên của **Chợ Sen** là **Khuyên dùng**: skill chép **nguyên văn** từ repo GitHub của chính tác giả (ví dụ bộ skill chính chủ của Remotion, hay Lemo-Opuscar để dựng phim ngắn bằng code). Không dịch, không sửa, đọc đúng như tác giả viết.
 
 - Mỗi thẻ có dòng **Cập nhật từ tác giả** dẫn tới repo GitHub kèm ngày lấy bản mới nhất.
 - Mỗi ngày kho so lại với repo gốc. Tác giả sửa skill thì gói lên bản mới, SenOS báo trong chuông, bạn bấm **Cập nhật** (vẫn qua màn hình xác nhận như mọi lần).
@@ -205,7 +205,7 @@ Khi tạo skill mới, SenOS được hướng dẫn tự xếp vào đúng nhó
 
 ## Skill và Agent
 
-Trong trang **Agents**, khi tạo hoặc sửa một agent, bạn thấy phần **Skills** liệt kê các skill có sẵn để tích chọn gán cho agent đó. Agent chỉ liệt kê được skill khi brain đã có skill trong `skills/`; nếu chưa có, phần này hiện ghi chú "Vault chưa có skill trong skills/ - vẫn tạo agent được, gán skill sau". Chi tiết ở [Agents & Workflows](07-agents-va-workflows.md).
+Trong trang **Trợ lý**, khi tạo hoặc sửa một agent, bạn thấy phần **Skills** liệt kê các skill có sẵn để tích chọn gán cho agent đó. Agent chỉ liệt kê được skill khi brain đã có skill trong `skills/`; nếu chưa có, phần này hiện ghi chú "Vault chưa có skill trong skills/ - vẫn tạo agent được, gán skill sau". Chi tiết ở [Agents & Workflows](07-agents-va-workflows.md).
 
 ## Bảng tra nhanh nút và trạng thái
 

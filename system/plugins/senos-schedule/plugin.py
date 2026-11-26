@@ -273,7 +273,7 @@ def _create_loop_file(vault_root: str, name: str, prompt: str, schedule: str,
     ten_mode = {"full": "toàn quyền, tự thao tác ra ngoài", "auto": "chỉ ghi file nháp",
                 "suggest": "chỉ đọc rồi đề xuất"}[mode]
     return (f"Đã tạo việc lặp '{name}'{where} (SenOS/loops/{slug}.md), chạy mỗi {interval} phút, "
-             f"mức quyền {mode} ({ten_mode}). Đang TẮT (enabled: false): người dùng vào tab Việc "
+             f"mức quyền {mode} ({ten_mode}). Đang TẮT (enabled: false): người dùng vào trang Công việc "
              f"trong dashboard bấm Bật thì nó mới chạy." + (FULL_LEVEL_NOTE if mode == "full" else ""))
 
 
@@ -659,7 +659,7 @@ async def _do_update(vault_root: str, args: dict) -> str:
         not_for_loop = reminder_only + (["remember_last"] if "remember_last" in fields else [])
         if not_for_loop:
             return ("ERROR: a loop takes only name / prompt / schedule here; " + ", ".join(not_for_loop)
-                    + " of a loop is changed on the Tasks page. Nothing was changed.")
+                    + " of a loop is changed on the Công việc (Jobs) page. Nothing was changed.")
         return _update_loop_file(vault_root, rid, fields)
     # Kho nhắc hẹn: đổi lịch thì dịch chuỗi lịch sang tham số thời gian như lúc tạo.
     payload = {}
@@ -761,7 +761,7 @@ def register(ctx) -> None:
             "Trong các trường hợp đó phải trả lời hội thoại bình thường, không op=list/create/cancel. "
             "Tool TỰ CHỌN kho: lịch "
             "LẶP+BỀN ('120m'/'2h'/'mỗi X tiếng'/'90 phút') ghi file SenOS/loops/<slug>.md (sửa "
-            "được trong Obsidian, mặc định TẮT + chỉ-gợi-ý, phải vào tab Việc bật tay); lịch giờ "
+            "được trong Obsidian, mặc định TẮT + chỉ-gợi-ý, phải vào trang Công việc bật tay); lịch giờ "
             "cố định lặp lại (cron 5 trường '0 7 * * *', macro '@daily') hoặc một lần ('30 phút "
             "nữa', '8h30', '2026-07-20 09:00') vào kho nhắc hẹn có sẵn."
         ),

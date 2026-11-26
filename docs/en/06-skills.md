@@ -16,7 +16,7 @@ A skill in SenOS is a folder containing a `SKILL.md` file at `skills/<slug>/SKIL
 
 The rest of the file is the detailed instruction the AI follows when the skill runs.
 
-The canonical copy lives at `skills/<slug>/SKILL.md`, which is exactly what the dashboard shows and what SenOS loads through the router. SenOS also keeps a **mirror** at `.claude/skills/<slug>` for Claude Code's native loading. The mirror is identical except for one thing: if `description` is longer than 150 characters, the mirror is trimmed to 150 with an ellipsis (the copy in `skills/` keeps your full text). That only happens with skills imported from an external package or written by hand through the Files page, because skills saved through the form are blocked earlier.
+The canonical copy lives at `skills/<slug>/SKILL.md`, which is exactly what the dashboard shows and what SenOS loads through the router. SenOS also keeps a **mirror** at `.claude/skills/<slug>` for Claude Code's native loading. The mirror is identical except for one thing: if `description` is longer than 150 characters, the mirror is trimmed to 150 with an ellipsis (the copy in `skills/` keeps your full text). That only happens with skills imported from an external package or written by hand through the Documents page, because skills saved through the form are blocked earlier.
 
 ## The `description` rules (read before creating a skill)
 
@@ -28,7 +28,7 @@ This is where people get stuck without knowing why. When you click **💾 Save**
 
 The right way: one sentence stating what the skill **can do**, under 150 characters. Long trigger examples, keyword lists and detailed situations belong in a `## When to use` section in the **body** of `SKILL.md`, where nothing is truncated and which is only read once the skill is loaded. Put briefly: the description is for FINDING, the body is for DOING.
 
-These rules apply both to the dashboard form and to skills proposed by the **Self-learning** page (a violating skill is blocked and listed as skipped).
+These rules apply both to the dashboard form and to skills proposed by the **Training** page (a violating skill is blocked and listed as skipped).
 
 ## How triggering works
 
@@ -76,13 +76,13 @@ SenOS has 2 kinds of skill:
   | `security-audit` | Security review of source code using Cloudflare's workflow: evidence-backed findings, independent verification, a report with fixes |
 
   The originals live in the app installation folder, not in the brain, so they are **present in every brain** and **update themselves when you update SenOS**. They cannot be deleted from the dashboard (deleting the files by hand only makes them reinstall on the next start); to stop using one, **disable** it like any skill, and that disabled state survives every update.
-- **Your skills**: created with + Skill, through chat, imported from a `.zip`, or proposed by the Self-learning page. These are brain data: switching brains switches the skill set, and app updates never touch them.
+- **Your skills**: created with + Skill, through chat, imported from a `.zip`, or proposed by the Training page. These are brain data: switching brains switches the skill set, and app updates never touch them.
 
-You can still **Edit** a system skill. When you do, the copy in the brain becomes yours: SenOS keeps your edit and stops updating over it. To go back to the standard version (with automatic updates), delete that skill folder from the brain's `skills/` (through the Files page) and restart; the newest system version is reinstalled clean.
+You can still **Edit** a system skill. When you do, the copy in the brain becomes yours: SenOS keeps your edit and stops updating over it. To go back to the standard version (with automatic updates), delete that skill folder from the brain's `skills/` (through the Documents page) and restart; the newest system version is reinstalled clean.
 
 ## How a Skill differs from a Plugin
 
-These two are easy to confuse because both sit in the **Capabilities** group in the navigation.
+These two are easy to confuse because both sit in the **AI crew** group in the navigation.
 
 | | Skill | Plugin |
 |---|---|---|
@@ -91,11 +91,11 @@ These two are easy to confuse because both sit in the **Capabilities** group in 
 | Where it lives | `skills/<slug>/SKILL.md` in the brain | The `plugins/<slug>/` folder (`plugin.yaml` + `plugin.py`) |
 | How to enable | Tick the checkbox on the card | Also tick the checkbox on the card. A machine with `SENOS_ENABLE_USER_PLUGINS=false` does not run plugins you install |
 
-How to choose: if you need **instructions** for working with existing tools, write a Skill. If you need a **specific Python action** no source covers (a computation, a data transformation, a simple API call), write a Plugin. And if it is an external data source that already has a server, connect an MCP on the Connections page rather than writing a plugin. Details in [Plugins](20-plugins.md) and [Connections & business data](09-connections-and-business-data.md).
+How to choose: if you need **instructions** for working with existing tools, write a Skill. If you need a **specific Python action** no source covers (a computation, a data transformation, a simple API call), write a Plugin. And if it is an external data source that already has a server, connect an MCP on the Apps page rather than writing a plugin. Details in [Plugins](20-plugins.md) and [Connections & business data](09-connections-and-business-data.md).
 
 ## Where to find it in SenOS
 
-Open the dashboard (port 7777 by default), look at the left navigation, open the **Capabilities** group and click **Skills**. That group has 4 items: Agents, Skills, Workflows, Plugins.
+Open the dashboard (port 7777 by default), look at the left navigation, open the **AI crew** group and click **Playbooks**. That group has 6 items: Assistants, Squads, Bot inbox, Playbooks, Add-ons, Command line.
 
 The page header reads **Skills** with a status line such as "3/5 enabled · source `skills/`". That tells you how many skills are on out of the total, and reminds you that the source is the current brain's `skills/` folder.
 
@@ -103,7 +103,7 @@ To the right of the title are two buttons: **⤒ Import** (bring an external ski
 
 If the brain has no skills yet, the page reads "This brain has no skills. Click + Skill to create one (saved into `skills/` and grouped)".
 
-## The Skills screen layout
+## The Playbooks screen layout
 
 Once skills exist, the screen splits in two:
 
@@ -136,7 +136,7 @@ Type into the **Find a skill…** box at the top of the list. SenOS filters as y
 
 ## Enabling and disabling one skill
 
-1. Open the **Skills** page.
+1. Open the **Playbooks** page.
 2. Find the skill you want to change.
 3. Click the checkbox at the start of its card. Ticked is on, unticked is off.
 
@@ -148,7 +148,7 @@ If something goes wrong, SenOS reports that the state could not be changed, alon
 
 ## Adding a skill (step by step)
 
-1. On the **Skills** page, click **+ Skill**.
+1. On the **Playbooks** page, click **+ Skill**.
 2. Fill in the form:
    - **Skill name**: something memorable, for example "Write sales emails".
    - **Group**: type a group name, for example "Marketing". This field suggests groups you already use, so you can click one and stay consistent. Do not leave it empty (it would land in "Chung").
@@ -188,9 +188,9 @@ Deletion is final: the whole skill folder is removed from disk, with no recycle 
 
 Note: skill content is instructions the AI follows, so only import packages from sources you trust. Details on packaging with dependencies are in [Agents & Workflows](07-agents-and-workflows.md).
 
-## Recommended in the SenOS Store
+## Recommended in Sen Market
 
-The first tab of the **SenOS Store** is **Recommended**: skills copied **word for word** from the author's own GitHub repo (Remotion's official skills, for example, or Lemo-Opuscar for short films made in code). Nothing is translated or changed: you read exactly what the author wrote.
+The first tab of **Sen Market** is **Recommended**: skills copied **word for word** from the author's own GitHub repo (Remotion's official skills, for example, or Lemo-Opuscar for short films made in code). Nothing is translated or changed: you read exactly what the author wrote.
 
 - Each card has an **Updated from the author** line linking to the GitHub repo, with the day the latest version was taken.
 - Every day the store compares them with the source repo. When the author changes a skill, the pack gets a new version, SenOS tells you in the bell and you press **Update** (through the usual confirm screen).
@@ -205,7 +205,7 @@ When creating a new skill, SenOS is instructed to file it in the right group: it
 
 ## Skills and Agents
 
-On the **Agents** page, creating or editing an agent shows a **Skills** section listing available skills to tick and assign to that agent. Agents can only list skills once the brain has skills in `skills/`; if it has none, the section reads that the vault has no skills yet and that you can create the agent now and assign skills later. Details in [Agents & Workflows](07-agents-and-workflows.md).
+On the **Assistants** page, creating or editing an agent shows a **Skills** section listing available skills to tick and assign to that agent. Agents can only list skills once the brain has skills in `skills/`; if it has none, the section reads that the vault has no skills yet and that you can create the agent now and assign skills later. Details in [Agents & Workflows](07-agents-and-workflows.md).
 
 ## Quick reference: buttons and states
 

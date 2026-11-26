@@ -323,7 +323,7 @@ Z.connections = lambda: []
 Z.shutil = types.SimpleNamespace(which=lambda n: None)
 check("chưa có Node thì nói rõ", "nodejs.org" in (Z.check() or ""))
 Z.shutil = types.SimpleNamespace(which=lambda n: "/usr/bin/npx")
-check("có Node mà chưa đấu Zalo thì chỉ chỗ cần bấm", "trang Kết nối" in (Z.check() or ""))
+check("có Node mà chưa đấu Zalo thì chỉ chỗ cần bấm", "trang Ứng dụng" in (Z.check() or ""))
 Z.connections = lambda: ONE
 check("đủ điều kiện thì None", Z.check() is None)
 

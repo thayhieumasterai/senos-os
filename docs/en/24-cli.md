@@ -35,7 +35,7 @@ That gives you the `senos` command. Check it with `senos --help`.
 
 The SenOS server accepts no outside commands without a token. **No token exists by default**, so until you create one by hand this door is closed.
 
-1. Open the SenOS dashboard, go to **Integrations** (the **Work** group in the left rail) and pick the **API token (for the CLI)** tab. It shares the page with webhooks, because both are doors for another program to call SenOS.
+1. Open the SenOS dashboard, go to **Webhooks** (the **Operations** group in the rail) and pick the **API token (for the CLI)** tab. It shares the page with webhooks, because both are doors for another program to call SenOS.
 2. Give it a memorable name, "my laptop" for example, so a later revocation is unambiguous.
 3. Choose the scope:
    - **Chat only** - reaches `/chat`, `/version`, `/health`, `/sessions`. Enough for asking questions and viewing history. Choose it if all you plan to do is ask.
@@ -140,7 +140,7 @@ senos brain cat "Memory/MEMORY.md"
 senos loops                                              # which loops are on, at what level
 ```
 
-Queued work runs in the background on the server. The result returns to wherever you queued it from, and progress is on the **Work** page of the dashboard or from `senos tasks` again.
+Queued work runs in the background on the server. The result returns to wherever you queued it from, and progress is on the **Jobs** page of the dashboard or from `senos tasks` again.
 
 ### Starting SenOS on this very machine
 
@@ -156,7 +156,7 @@ When it cannot find an install it says so plainly: **`senos up` does not contain
 
 ## Managing tokens
 
-Go to **Integrations > API tokens** in the dashboard (Work group). The list shows the name, the first 12 characters, the scope, and the **last used** time; a token you do not recognise being used regularly is the sign to revoke it right away.
+Go to **Webhooks > API tokens** in the dashboard (Operations group). The list shows the name, the first 12 characters, the scope, and the **last used** time; a token you do not recognise being used regularly is the sign to revoke it right away.
 
 Clicking **Revoke** kills the token instantly, any machine using it loses its connection at once, and it cannot be undone.
 
@@ -171,7 +171,7 @@ A few things worth knowing about how SenOS keeps tokens:
 
 **"Not connected to any SenOS"** - run `senos login <address>` first.
 
-**A 401 or "invalid token"** - the token is wrong or was revoked. Create a new one at Integrations > API tokens then `senos login` again.
+**A 401 or "invalid token"** - the token is wrong or was revoked. Create a new one at Webhooks > API tokens then `senos login` again.
 
 **A 403 on `senos task add` or `senos brain ls`** - your token is the **chat only** kind. Create a **full power** token for these commands.
 

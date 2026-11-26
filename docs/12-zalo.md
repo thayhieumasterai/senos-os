@@ -38,7 +38,7 @@ kết nối đã đăng nhập từ trước tự chuyển sang mà không phả
 
 ## Kết nối bằng QR
 
-1. Mở **Kết nối** → tìm **Zalo Agent MCP** → bấm **Kết nối**.
+1. Mở **Ứng dụng** → tìm **Zalo Agent MCP** → bấm **Kết nối**.
 2. Đọc cảnh báo rủi ro, nhập tên gợi nhớ nếu cần rồi bấm **Hiện mã QR**.
 3. Trong app Zalo trên điện thoại, mở trình quét QR và quét mã trên dashboard.
 4. Khi thẻ tài khoản xuất hiện trong phần **Đã kết nối**, kết nối đã sẵn sàng.
@@ -51,7 +51,7 @@ Nút **Hướng dẫn trên GitHub** trong thẻ Zalo luôn mở trang tài li�
 
 ## Nhập tin cũ vào Hộp thư (từ 0.174.0)
 
-Mới đăng nhập Zalo vào SenOS thì Hộp thư chỉ có tin từ lúc bật **Ghi hội thoại** trở đi. Muốn có cả tin cũ, bấm **Nhập tin cũ** trên thẻ tài khoản Zalo ở trang Chatbot, thẻ Bot, mục Kênh chưa có bot. Zalo đã gắn bot thì bấm vào ô Zalo trên thẻ bot đó.
+Mới đăng nhập Zalo vào SenOS thì Hộp thư chỉ có tin từ lúc bật **Ghi hội thoại** trở đi. Muốn có cả tin cũ, bấm **Nhập tin cũ** trên thẻ tài khoản Zalo ở trang Hộp thư bot, tab Bot, mục Kênh chưa có bot. Zalo đã gắn bot thì bấm vào ô Zalo trên thẻ bot đó.
 
 - SenOS lấy các tin senos-zalo tự kéo về mỗi lần kết nối: khoảng **2 tuần** gần nhất, vì Zalo không cho lấy xa hơn. Tối đa 5.000 tin mỗi lần.
 - Cuộc chat **chưa có tin** thì nhập hết. Cuộc chat **đã có tin** thì chỉ thêm các tin **cũ hơn tin đầu tiên** của nó, xếp lên trên cùng đúng thứ tự thời gian (trước bản này cuộc chat đã có tin bị bỏ qua hẳn).
@@ -110,7 +110,7 @@ khi có tin (hoặc khi kết nối Zalo rớt, nối lại), và SenOS chỉ đ
 - Khi mọi tài khoản đều tự báo và không có tin nào đang giữ, vòng đọc ngủ hẳn, không chạy theo nhịp
   nào. Nó chỉ thức khi có việc: `senos-zalo` báo có tin, tiến trình `senos-zalo` thoát (SenOS đọc ngay
   một lượt, lượt đó dựng lại tiến trình), một bot nhận hay rời vị trí, một tài khoản được bật, hoặc một
-  kết nối được lưu ở trang Kết nối.
+  kết nối được lưu ở trang Ứng dụng.
 - Trong lúc có tin đang giữ (chờ khách nhắn xong, chờ chủ trả lời tay), vòng đọc chạy nhịp ngắn để
   nhả đúng giờ rồi ngủ lại. Việc đó không gọi `senos-zalo`.
 - Tắt cho cả máy: đặt biến môi trường `SENOS_ZALO_PUSH=0` rồi khởi động lại SenOS.
@@ -145,15 +145,15 @@ Từ SenOS 0.84.2 (senos-zalo 1.1.0), SenOS biết ai vừa vào nhóm và vào 
   vào nhóm. Người vào trước khi có tính năng này, hoặc trong lúc máy chạy SenOS tắt, thì không có
   trong nhật ký.
 
-## Gói Zalo mở rộng (SenOS Store)
+## Gói Zalo mở rộng (Chợ Sen)
 
 Ba nhóm tool dưới đây (đọc ảnh, gửi ảnh và file, tag người cùng ghi chú, nhắc hẹn, poll) bù đúng
-chỗ MCP chuẩn còn thiếu. Từ 0.73.0 chúng nằm trong gói **`javis.zalo`** trên SenOS Store thay vì
+chỗ MCP chuẩn còn thiếu. Từ 0.73.0 chúng nằm trong gói **`senos.zalo`** trên Chợ Sen thay vì
 đi sẵn trong app, để ai không dùng Zalo thì không phải mang theo:
 
 - **Quét QR Zalo xong là SenOS mời cài gói**, qua đúng màn hình đồng ý của kho: liệt kê từng tệp
   mã, công tắc "chạy ngay" bật sẵn vì bạn vừa tự đấu Zalo. Bấm Cài là có đủ tool.
-- **Máy đã đấu Zalo từ trước** thì trang Kết nối hiện dải nhắc kèm nút **Cài gói đi kèm**.
+- **Máy đã đấu Zalo từ trước** thì trang Ứng dụng hiện dải nhắc kèm nút **Cài gói đi kèm**.
   SenOS không bao giờ tự cài gói có mã mà không hỏi.
 - Kết nối Zalo, Hộp thư và chatbot Zalo vẫn ở trong app, chạy bình thường dù chưa cài gói. Thiếu
   gói thì chỉ thiếu các tool mở rộng.
@@ -161,7 +161,7 @@ chỗ MCP chuẩn còn thiếu. Từ 0.73.0 chúng nằm trong gói **`javis.zal
 ## Đọc ảnh trong nhóm
 
 MCP của Zalo chỉ trả **đường link** của ảnh, giữ tin trong 2 giờ, và `zalo_view_media` mở ảnh
-bằng trình xem ảnh của máy chủ chứ không đưa cho bộ não. Nên gói `javis.zalo` có tool
+bằng trình xem ảnh của máy chủ chứ không đưa cho bộ não. Nên gói `senos.zalo` có tool
 `zalo_read_images`:
 
 | Tool | Công dụng | Mức thao tác |
@@ -185,7 +185,7 @@ nên xem được cả mọi ảnh khác trong brain, có cài gói Zalo hay kh�
 ## Gửi ảnh và file
 
 `zalo_send_message` ở trên **chỉ gửi được chữ**. Muốn gửi ảnh (ví dụ ảnh SenOS vừa tạo) hay
-file (báo cáo PDF, bảng tính) thì dùng tool `zalo_send_image` trong gói `javis.zalo`. Nó dùng
+file (báo cáo PDF, bảng tính) thì dùng tool `zalo_send_image` trong gói `senos.zalo`. Nó dùng
 đúng tài khoản Zalo bạn đã quét QR.
 
 | Tool | Công dụng | Mức thao tác |
@@ -234,7 +234,7 @@ Zalo, vì kết nối mới sẽ đá MCP ra.
 ## Tag người, ghi chú, nhắc hẹn và poll
 
 `zalo_send_message` chỉ gửi chữ nên không tag được ai, và MCP của Zalo cũng không có ghi chú, nhắc hẹn hay poll. Gói
-`javis.zalo` bù đúng các chỗ đó bằng năm tool, mọi bộ não đều gọi được:
+`senos.zalo` bù đúng các chỗ đó bằng năm tool, mọi bộ não đều gọi được:
 
 | Tool | Công dụng | Mức thao tác |
 |---|---|---|
@@ -244,11 +244,11 @@ Zalo, vì kết nối mới sẽ đá MCP ra.
 | `zalo_create_reminder` | Nhắc hẹn hiện trong Zalo, chọn giờ và lặp (hằng ngày, tuần, tháng) | Nguy hiểm (mức Toàn quyền) |
 | `zalo_create_poll` | Poll cho nhóm: chọn nhiều đáp án, ẩn danh, hạn đóng | Nguy hiểm (mức Toàn quyền) |
 
-Nói trong chat như bình thường, ví dụ “nhắn nhóm Kinh doanh tag @minhquy họp lúc 9h nhé” hoặc “tạo poll trưa nay ăn gì trong nhóm Lớp SenOS”.
+Nói trong chat như bình thường, ví dụ “nhắn nhóm Kinh doanh tag @lan họp lúc 9h nhé” hoặc “tạo poll trưa nay ăn gì trong nhóm Lớp SenOS”.
 
 Bốn điều nên biết:
 
-- **Tag chỉ cần nói tên.** “@minhquy” hay “Cát Tường Group” đều được, không phân biệt hoa thường hay dấu. SenOS tìm ID Zalo thật trong
+- **Tag chỉ cần nói tên.** “@lan” hay “Cát Tường Group” đều được, không phân biệt hoa thường hay dấu. SenOS tìm ID Zalo thật trong
   những người đã nhắn ở nhóm đó trước, rồi tới danh sách thành viên của Zalo. **Trùng tên hoặc không thấy thì SenOS hỏi lại kèm
   danh sách ứng viên**, không đoán, vì tag nhầm người thì không rút lại được. Tag cả nhóm (`@All`) chỉ khi bạn yêu cầu rõ.
 - **Nhắc hẹn này khác nhắc hẹn riêng của SenOS** (`senos_schedule`): nó hiện trong Zalo nên cả nhóm cùng thấy. Giờ tính theo múi giờ của SenOS.
@@ -289,7 +289,7 @@ Kết nối mới mặc định ở mức **Toàn quyền** để có thể dùn
 - **Ghi nháp**: thêm `zalo_mark_read`, vẫn chặn gửi tin.
 - **Toàn quyền**: cho phép gửi tin (`zalo_send_message`, `zalo_send_image`) và các tool tag người, ghi chú, nhắc hẹn, poll.
 
-Bạn đổi quyền trong menu của chip tài khoản ở trang **Kết nối**. Việc nền chạy ở chế độ
+Bạn đổi quyền trong menu của chip tài khoản ở trang **Ứng dụng**. Việc nền chạy ở chế độ
 giới hạn vẫn bị MCP Hub chặn gửi tin, dù tài khoản đang đặt Toàn quyền.
 
 ## Khác với tích hợp Zalo cũ

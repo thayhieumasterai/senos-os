@@ -380,7 +380,7 @@ check("/id trong tin nhắn RIÊNG chỉ trả id, không giảng giải về nh
 _id_nhom = chay("/id", chat="-4242", meta={"chat_type": "group", "chat_id": "-4242"})
 check("/id trong nhóm chưa bật thì nói thẳng là chưa bật",
       "-4242" in _id_nhom and "chưa được bật" in _id_nhom)
-check("/id chỉ đúng chỗ bấm cho phép", "trang Chatbot" in _id_nhom)
+check("/id chỉ đúng chỗ bấm cho phép", "trang Hộp thư bot" in _id_nhom)
 # Đọc nhóm từ KHO chứ không từ bản ghi chụp lúc dựng lệnh: chủ bấm "Cho phép" trên dashboard
 # là ăn ngay từ câu tiếp theo, không phải tắt bật lại bot.
 chatbot_store.update_bot(bid, {"groups": ["-100999"]})

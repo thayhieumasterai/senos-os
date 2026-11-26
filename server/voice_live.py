@@ -1452,8 +1452,8 @@ class ChatGPTLive(LiveProvider):
 _CLASSES = {"chatgpt": ChatGPTLive, "gemini": GeminiLive, "openai": OpenAIRealtime, "gpt-live": GPTLive}
 
 CHATGPT_UNAVAILABLE = {
-    "no_cli": "Chưa cài Codex CLI nên chưa dùng được ChatGPT Live. Cài Codex rồi nối ChatGPT ở trang Models.",
-    "no_login": "Chưa nối ChatGPT ở trang Models nên chưa dùng được ChatGPT Live.",
+    "no_cli": "Chưa cài Codex CLI nên chưa dùng được ChatGPT Live. Cài Codex rồi nối ChatGPT ở trang Mô hình AI.",
+    "no_login": "Chưa nối ChatGPT ở trang Mô hình AI nên chưa dùng được ChatGPT Live.",
     "old_cli": "Codex CLI trên máy đã cũ (cần bản 0.153 trở lên) nên chưa dùng được ChatGPT Live. Cập nhật Codex rồi thử lại.",
 }
 
@@ -1519,8 +1519,8 @@ def _make_provider(cfg: dict, system: str, recognition_lang: str, memory_index: 
         return ChatGPTLive(**kw)
     key = str(m.get(PROVIDERS[prov]["key_field"]) or "").strip()
     if not key:
-        raise RuntimeError(localefmt.chu(f"{PROVIDERS[prov]['label']} chưa có API key ở trang Models.",
-                                         f"{PROVIDERS[prov]['label']} has no API key on the Models page."))
+        raise RuntimeError(localefmt.chu(f"{PROVIDERS[prov]['label']} chưa có API key ở trang Mô hình AI.",
+                                         f"{PROVIDERS[prov]['label']} has no API key on the AI models page."))
     cls = _CLASSES[prov]
     kw = {"model": str(v.get("live_model") or ""), "voice": str(v.get("live_voice") or ""),
           "recognition_lang": recognition_lang,

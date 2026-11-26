@@ -1,8 +1,8 @@
-# 33 - Cookies (Login vault)
+# 33 - Sign-ins (Login vault)
 
 *[Tiếng Việt](../33-kho-dang-nhap.md) · **English***
 
-From 0.251.0 SenOS has a **Cookies** page (called Login vault before 0.261.0): a place to keep your own sign-ins (cookies) so SenOS can reuse them. You sign in once in your own browser, hand the cookies to SenOS, and SenOS can then read pages that only show when you are signed in: your Shopee seller center, affiliate dashboards, your website's admin pages.
+From 0.251.0 SenOS has a **Sign-ins** page (called Login vault before 0.261.0, then Cookies): a place to keep your own sign-ins (cookies) so SenOS can reuse them. You sign in once in your own browser, hand the cookies to SenOS, and SenOS can then read pages that only show when you are signed in: your Shopee seller center, affiliate dashboards, your website's admin pages.
 
 The vault is optional. With no sign-ins in it, SenOS works exactly as before.
 
@@ -10,7 +10,7 @@ The vault is optional. With no sign-ins in it, SenOS works exactly as before.
 
 1. Install the **Cookie-Editor** extension for Chrome or Edge.
 2. Open the site while signed in, click the Cookie-Editor icon, choose **Export** then **JSON**. The cookies are copied to the clipboard.
-3. In SenOS open the sidebar, group **Connections**, item **Cookies** (the cookie icon). Press **Add cookies**.
+3. In SenOS open the sidebar, group **Gateways**, item **Sign-ins** (the cookie icon). Press **Add cookies**.
 4. Give it a name you will recognise (for example "Shopee seller"), paste the cookies and press **Save and check**.
 
 If you already have a cookie file (a JSON file exported by Cookie-Editor, or a `cookies.txt` from the Get cookies.txt LOCALLY extension), press **Upload file** at the top of the page, the **Choose file** button in the form, or drop the file on the box. SenOS reads the file in your browser and names the entry after the file when the Name box is empty. Files are limited to 1 MB.
@@ -43,7 +43,7 @@ Reading (the first two) only downloads the page and takes its text, so a page bu
 
 Three things are needed:
 
-1. The **Playwright connection** on the Connections page (the browser SenOS drives). Without it SenOS says plainly that it is missing.
+1. The **Playwright connection** on the Apps page (the browser SenOS drives). Without it SenOS says plainly that it is missing.
 2. The **Let SenOS click and fill forms** switch on that sign-in's card. A newly added sign-in has it on. A sign-in stored before this feature has it **off**, because SenOS could only read when you stored it: SenOS asks you once when you turn it on.
 3. A run at the **Full access** level. Background work set to a lighter level (read only, drafts only) cannot open the signed-in browser.
 
@@ -61,7 +61,7 @@ What SenOS takes care of:
 - Cookies are **encrypted** on the server. When the machine cannot encrypt (the `cryptography` library is missing) SenOS refuses to save instead of writing them in the clear.
 - **SenOS's tools never hand a cookie value to the AI.** The tool returns the page text and the sign-in's name only, also when the browser reports an error.
 - A cookie only goes to the domain it belongs to, checked again on **every redirect hop**: a page that redirects to another site does not carry the cookies along.
-- The Cookies page needs a **real dashboard sign-in**: an API token can neither read nor add sign-ins.
+- The Sign-ins page needs a **real dashboard sign-in**: an API token can neither read nor add sign-ins.
 - **Customer chatbots never see this tool.** And once the browser has held one of your sign-ins, customer chatbots also **lose that browser connection**, so a stranger cannot browse with your account.
 
 ## Honest caveats

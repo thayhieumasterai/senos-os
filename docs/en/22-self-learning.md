@@ -1,8 +1,8 @@
-# Self-learning: SenOS getting smarter over time
+# Training: SenOS getting smarter over time
 
 *[Tiếng Việt](../22-tu-hoc.md) · **English***
 
-Every conversation with SenOS lets something worth keeping slip past: a fact about your work, a concept just explained, a procedure just completed. The **Self-learning** page turns on the loop that picks those up and writes them into the brain, so next time SenOS does not have to ask again.
+Every conversation with SenOS lets something worth keeping slip past: a fact about your work, a concept just explained, a procedure just completed. The **Training** page turns on the loop that picks those up and writes them into the brain, so next time SenOS does not have to ask again.
 
 This page covers turning self-learning on, choosing how assertive it is, understanding what it learns and what it blocks, and undoing it when it learns something wrong.
 
@@ -21,7 +21,7 @@ Finally, SenOS only allows writes into the brain's `memory/`, `Memory/`, `Wiki/`
 
 ## Where to open it in SenOS
 
-On the left navigation rail, open the **Brain** group then click **Self-learning** (the 🧠 icon). The page header reads **Self-learning** with the subtitle "Rewire Memory · Wiki · Skill (safe, undoable)".
+On the left navigation rail, open the **Knowledge** group then click **Training** (the 🧠 icon). The page header reads **Training** with the subtitle "Rewire Memory · Wiki · Skills (safe, undoable)".
 
 The page works on the **selected brain**. Switch brains at the top of the screen and come back, and every metric, commit and log follows the new brain.
 
@@ -62,14 +62,14 @@ The **What to learn** box has six switches. A filled dot `●` is on, a hollow d
 | --- | --- | --- |
 | **Memories (Memory)** | On | Durable facts about you and your business, written into files under `memory/facts/` plus a line added to `MEMORY.md` |
 | **Knowledge (Wiki)** | On | Reusable concepts, frameworks and procedures, written as notes in the brain's Wiki folder |
-| **Skills (Skill)** | **Off** | Multi-step procedures SenOS just performed and judged repeatable, written as `skills/<slug>/SKILL.md`. An existing skill that just revealed a flaw is **edited in place**, not duplicated. Off by default since 11/2026: skill learning adds a second verify pass to every batch and switches on the background skill judging, the costliest part for a plan; existing installs were switched off once too, turn it back on here if you need it |
+| **Playbooks** | **Off** | Multi-step procedures SenOS just performed and judged repeatable, written as `skills/<slug>/SKILL.md`. An existing skill that just revealed a flaw is **edited in place**, not duplicated. Off by default since 11/2026: skill learning adds a second verify pass to every batch and switches on the background skill judging, the costliest part for a plan; existing installs were switched off once too, turn it back on here if you need it |
 | **Roles (Agent)** | **Off** | Specialist roles you asked for repeatedly in conversation, written as `agents/<slug>.md`. An existing role needing improvement is **edited in place** rather than copied |
 | **Step chains (Workflow)** | **Off** | Chains of 2 or more steps across roles you have repeated, written as `workflows/<slug>.md` in a disabled state so you review before enabling. An existing chain missing a step, carrying a redundant one or in the wrong order is **edited in place** |
-| **Work (Kanban)** | **Off** | Proposals for background work, pushed onto the board on the **Work** page |
+| **Jobs (Kanban)** | **Off** | Proposals for background work, pushed onto the board on the **Jobs** page |
 
 The hint line under the buttons reads: "Wiki/Skill are best turned on after you are comfortable with Memories (the Phase 2/3 path). Work = after learning, propose background tasks onto the Work (Kanban) board, only created for real in Write automatically mode, and a task always awaits your approval."
 
-About the **Work** switch: it is off by default and SenOS **actively turned it back off once** on machines that had it on before. The reason is very practical: inspecting a real work board showed nearly everything on it was machine-invented, and most of it was beyond a background worker (needing a sign-in, needing to send something outside, waiting for someone else's approval, touching source code outside the brain). Since then, work is only created when you **say so directly** in chat. The switch remains here for anyone who wants it back.
+About the **Jobs (Kanban)** switch: it is off by default and SenOS **actively turned it back off once** on machines that had it on before. The reason is very practical: inspecting a real work board showed nearly everything on it was machine-invented, and most of it was beyond a background worker (needing a sign-in, needing to send something outside, waiting for someone else's approval, touching source code outside the brain). Since then, work is only created when you **say so directly** in chat. The switch remains here for anyone who wants it back.
 
 #### How SenOS edits existing roles and chains
 
@@ -82,7 +82,7 @@ When a conversation shows an **existing** agent or workflow getting something wr
 
 On each edit, SenOS appends a dated line with the reason to a `## History (self-learned)` section at the end of the file body, keeping the 10 most recent lines. Whatever you wrote by hand outside that section is never touched. And because every learning batch is still git-committed, a wrong edit is undone by clicking **Undo the latest learning run**.
 
-**The recommended gradual path:** turn on Memories alone first, run it for a few days then open `MEMORY.md` to see whether SenOS remembered correctly. Once that is fine, add Wiki knowledge. Only once comfortable add Skills, because a wrong skill skews how SenOS handles things later. The Roles (Agent) and Step chains (Workflow) switches are also off by default because they create things that appear directly in Studio: only turn them on when you want SenOS to build roles and chains from the work you ask for repeatedly, and like skills they pass an independent second review before being written (for an edit that review is stricter: is the reason genuinely grounded, does the new version keep what was already right), and a workflow is always created disabled. Leave the Work switch for last, and only if you genuinely want SenOS creating background work on its own.
+**The recommended gradual path:** turn on Memories alone first, run it for a few days then open `MEMORY.md` to see whether SenOS remembered correctly. Once that is fine, add Wiki knowledge. Only once comfortable add Skills, because a wrong skill skews how SenOS handles things later. The Roles (Agent) and Step chains (Workflow) switches are also off by default because they create things that appear directly in Studio: only turn them on when you want SenOS to build roles and chains from the work you ask for repeatedly, and like skills they pass an independent second review before being written (for an edit that review is stricter: is the reason genuinely grounded, does the new version keep what was already right), and a workflow is always created disabled. Leave the Tasks (Kanban) switch for last, and only if you genuinely want SenOS creating background work on its own.
 
 ### Step 4: Turn the Curator on for periodic maintenance
 
@@ -120,7 +120,7 @@ Each batch reads exactly **the turns since the previous batch** of each conversa
 
 ### SenOS also learns from the work it does itself (since 0.55.64)
 
-That queue does not listen to chat only. Every **background job on the Work page** that reaches an end also joins the same queue, along with its title, intent and result:
+That queue does not listen to chat only. Every **background job on the Jobs page** that reaches an end also joins the same queue, along with its title, intent and result:
 
 - A **blocked** job goes into the priority group and is learned from after about 3 minutes of quiet, because the reason it got blocked usually points straight at what the system is missing (an MCP that was never connected, a missing permission, a step in the wrong order).
 - A job that finished normally waits like an ordinary chat turn and is learned in the same batch.
@@ -152,7 +152,7 @@ This is the part that puzzles people most: the log says "learned" but the file n
 - A `description` over **150 characters** is blocked (the router truncates at exactly that, so the tail is lost silently), and opening with filler like "Activates when..." is blocked too.
 - It **never overwrites an existing skill**, and **never resurrects a skill you turned off**.
 
-**Work (Kanban), when you turn that switch on:**
+**Jobs (Kanban), when you turn that switch on:**
 - At most 3 jobs per batch, with confidence 2 or higher.
 - A gate blocks outright the work a background worker certainly cannot do: anything involving a sign-in, cookies, OTP, QR codes, password changes or 2FA, work sending or publishing outside (Zalo, Telegram, email, a Page, comments), work that only waits for someone else's approval, and work touching source code outside the brain. The rejection reason is written into the log.
 
@@ -160,7 +160,7 @@ Everything blocked appears in the Learning log under **Blocked**, with a specifi
 
 ## Ceilings against burning quota
 
-Self-learning runs on the **background work model**, not the main model. You choose that on the **Models** page (the **Connections** group), where the "◆ Background work model" block states plainly that it serves "loops · Kanban work · reminders · self-learning · digesting sources". Choosing a cheap model there makes self-learning cheap.
+Self-learning runs on the **background work model**, not the main model. You choose that on the **AI models** page (the **Admin** group), where the "◆ Background work model" block states plainly that it serves "loops · Kanban work · reminders · self-learning · digesting sources". Choosing a cheap model there makes self-learning cheap.
 
 SenOS sets **no daily ceiling** (since 11/2026): some people use a lot, some a little, and one number fits neither. What keeps self-learning cheap is the rhythm above (one batch per conversation, after 15 quiet minutes) plus these two:
 
@@ -206,7 +206,7 @@ To run one round now, click **🧹 Curator now**. The button reads "Cleaning..."
 | --- | --- | --- |
 | `● On` / `○ Off` | The Turn self-learning on box | The first On git-inits the brain then saves immediately. Off saves immediately too |
 | `Dry run` / `Suggest` / `Write automatically` | The Write mode box | Chooses the write level. Only Write automatically creates files |
-| `● Memories (Memory)` … `○ Work (Kanban)` | The What to learn box | The six switches for kinds of knowledge learned |
+| `● Memories (Memory)` … `○ Jobs (Kanban)` | The What to learn box | The six switches for kinds of knowledge learned |
 | `● On` / `○ Off` | The Curator box | Turns on the 24-hour maintenance round |
 | **💾 Save configuration** | The button row | Saves the mode, the switches and the Curator. Shows "Saving..." then "✓ Saved" |
 | **▶ Learn now** | The button row | Saves the configuration then runs one learning batch on the selected brain |
@@ -255,7 +255,7 @@ Each entry has a timestamp, a kind (`learn` or `curator`), the run reason (`auto
 
 With nothing yet, the block reads "No learning log yet."
 
-The log is an ordinary markdown file, openable on the **Files** page (**Brain** group) if you want to read it in full rather than the last 10 entries.
+The log is an ordinary markdown file, openable on the **Documents** page (**Knowledge** group) if you want to read it in full rather than the last 10 entries.
 
 ## Syncing the brain with GitHub
 
@@ -278,11 +278,11 @@ Once git is installed, turn self-learning off and back on once so SenOS git-init
 ## Tips
 
 - **To make SenOS remember something for certain, say "remember ..." plainly in chat.** A sentence with "remember", "keep this in mind", "save this" is flagged urgent and learned after 30 seconds instead of waiting for the conversation to go quiet for 15 minutes.
-- **Check that SenOS learned correctly through `MEMORY.md` itself.** Open the **Files** page and go to `memory/MEMORY.md`. Each line is one memory. Fix or delete a wrong line right there, which is faster than undoing a whole commit.
+- **Check that SenOS learned correctly through `MEMORY.md` itself.** Open the **Documents** page and go to `memory/MEMORY.md`. Each line is one memory. Fix or delete a wrong line right there, which is faster than undoing a whole commit.
 - **Keep `MEMORY.md` compact.** This file is loaded into every chat turn. Once the metric passes about 150 lines, it is time to merge small memories into a larger one.
 - **For quality Wiki knowledge, state the source.** Anything SenOS merely inferred does not enter the Wiki. It is written only when you assert it or cite a named source.
 - **Run Dry run for a few days before opening Write automatically** if your brain already holds many handwritten notes and you want to be sure SenOS does not disturb your naming.
-- **Switch the background work model to a cheap one** on the **Models** page if self-learning eats too much quota. Self-learning does not need the strongest model.
+- **Switch the background work model to a cheap one** on the **AI models** page if self-learning eats too much quota. Self-learning does not need the strongest model.
 
 ## Common problems
 
@@ -311,7 +311,7 @@ The learning process has no write permission. The writing code does not overwrit
 
 - [Second Brain: memory and Wiki](13-second-brain.md) - the structure of `memory/facts/`, `MEMORY.md` and the Wiki folder self-learning writes into
 - [Skills](06-skills.md) - a self-learned skill sits in the same list as one you wrote, toggled the same way
-- [Work (Kanban)](21-kanban-work.md) - where work proposed by the "Work (Kanban)" switch lands
+- [Work (Kanban)](21-kanban-work.md) - where work proposed by the "Jobs (Kanban)" switch lands
 - [Backing the brain up to GitHub](18-github-backup.md) - the sync block lives on this very page
 - [Models and engines](10-models-and-engines.md) - choosing the background work model for self-learning
 - [File manager](05-file-manager.md) - opening `MEMORY.md`, Wiki notes and learning log files to read or edit by hand

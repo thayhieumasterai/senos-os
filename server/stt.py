@@ -192,9 +192,9 @@ STT_TIMEOUT = 120.0      # tin thoại dài vài phút vẫn phải kịp, mạn
 _HD_THIEU_KEY = (
     "[Người dùng vừa gửi TIN THOẠI. SenOS chưa nghe được vì chưa có bộ nghe nào - "
     "thứ chuyển giọng nói thành chữ. Hãy nói với họ: muốn ra lệnh bằng ghi âm thì chọn MỘT trong ba cách: "
-    "vào trang Models nối gói ChatGPT đang dùng (đăng nhập là xong, không cần key); hoặc ở trang Models dán "
+    "vào trang Mô hình AI nối gói ChatGPT đang dùng (đăng nhập là xong, không cần key); hoặc ở trang Mô hình AI dán "
     "API key của Groq (lấy ở console.groq.com, có gói miễn phí), "
-    "hoặc key OpenAI hay Google Gemini nếu đã có; hoặc vào trang Công cụ bấm cài \"Bộ nghe offline\" "
+    "hoặc key OpenAI hay Google Gemini nếu đã có; hoặc vào trang Tiện ích bấm cài \"Bộ nghe offline\" "
     "để nghe ngay trên máy, không cần key. Xong là gửi tin thoại dùng được ngay. "
     "Trong lúc chờ thì nhờ họ gõ chữ. Nếu đang đóng vai người thật nói với khách thì CHỈ nhờ "
     "họ gõ chữ, đừng nhắc gì tới API key hay dashboard.]")

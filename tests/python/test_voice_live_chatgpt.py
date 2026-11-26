@@ -256,7 +256,7 @@ try:
     voice_live.make_provider({"voice": {"live_provider": "chatgpt"}, "model": {}})
     check("chưa nối ChatGPT thì báo lỗi dễ hiểu", False)
 except RuntimeError as e:
-    check("chưa nối ChatGPT thì báo lỗi dễ hiểu", "ChatGPT" in str(e) and "Models" in str(e))
+    check("chưa nối ChatGPT thì báo lỗi dễ hiểu", "ChatGPT" in str(e) and "Mô hình AI" in str(e))
 cat = voice_live.catalog()
 check("catalog có ChatGPT Live, transport webrtc, 9 giọng",
       cat["chatgpt"]["label"].startswith("ChatGPT Live") and cat["chatgpt"]["transport"] == "webrtc"

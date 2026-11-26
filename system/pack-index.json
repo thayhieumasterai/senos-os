@@ -3,7 +3,7 @@
   "format_version": 1,
   "updated": "2026-09-05",
   "store": {
-    "name": "Kho cài đặt SenOS",
+    "name": "Chợ Sen",
     "url": "https://github.com/thayhieumasterai/senos-store"
   },
   "_doc": "ĐÃ ĐÔNG LẠI - kho thật chuyển sang repo riêng https://github.com/thayhieumasterai/senos-store từ 0.55.30. Tệp này ở lại để bản SenOS 0.55.24-0.55.29 (vốn trỏ cứng vào đây) vẫn xem và cài được, nên mục bên dưới dùng địa chỉ TUYỆT ĐỐI trỏ sang kho mới. Không thêm gì vào đây nữa; thêm gói mới ở repo kho.",

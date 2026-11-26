@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/21-kanban-work.md)*
 
-Trang **Việc** là chỗ bạn giao một mục tiêu ("goal") rồi để SenOS tự làm ở nền, không cần bạn ngồi canh khung chat. Bạn viết một câu mô tả việc cần xong, AI tự chuẩn hoá thành đặc tả, tự chọn loại worker, tự nhận việc và chạy; xong thì bắn kết quả về Telegram cho đúng người đã giao.
+Trang **Bảng việc** là chỗ bạn giao một mục tiêu ("goal") rồi để SenOS tự làm ở nền, không cần bạn ngồi canh khung chat. Bạn viết một câu mô tả việc cần xong, AI tự chuẩn hoá thành đặc tả, tự chọn loại worker, tự nhận việc và chạy; xong thì bắn kết quả về Telegram cho đúng người đã giao.
 
 Điểm dễ hiểu nhầm nhất: đây **không phải bảng Trello kéo thả**. Bạn không kéo thẻ, không bấm chạy từng thẻ. Màn hình này để **quan sát hàng đợi và xử lý ngoại lệ**, phần chạy do dispatcher lo.
 
@@ -10,7 +10,7 @@ Trang **Việc** là chỗ bạn giao một mục tiêu ("goal") rồi để Sen
 
 SenOS coi hàng đợi việc như một runtime cho AI. Một việc đi qua vòng đời sau:
 
-1. **Bạn giao goal** (từ trang Việc, hoặc nói trong chat, hoặc do trang Tự học đề xuất).
+1. **Bạn giao goal** (từ Bảng việc, hoặc nói trong chat, hoặc do trang Rèn luyện đề xuất).
 2. **AI đặc tả (triage)**: một lượt chạy ngắn của model nền đọc goal thô rồi trả về JSON gồm intent rõ ràng, một **capability** (`files`, `research`, `mcp-read`, `code`, `external-write`, `image`), một **execution_mode** (`suggest`, `auto`, `full`) và danh sách **điều kiện hoàn thành**. Bước này không thực thi gì cả.
 3. **Vào hàng đợi**: task chuyển sang trạng thái sẵn sàng, chờ tới lượt.
 4. **Dispatcher claim task**: mỗi task được đúng một worker giữ (khoá bằng transaction trong SQLite), có thời hạn giữ 90 giây và nhịp báo sống 20 giây một lần.
@@ -24,13 +24,13 @@ Worker dùng chung **engine nền** với các tính năng chạy ngầm khác, 
 
 | Thứ | Là gì | Đọc ở đâu |
 | --- | --- | --- |
-| **Việc** (trang này) | Hàng đợi việc làm MỘT LẦN, AI tự chạy nền | trang này |
+| **Bảng việc** (trang này) | Hàng đợi việc làm MỘT LẦN, AI tự chạy nền | trang này |
 | **Việc định kỳ** | Loop lặp theo chu kỳ và nhắc hẹn có mốc giờ | [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md) |
 | Checkbox `- [ ]` trong note | Việc tự tay bạn tick trong file markdown | [Task & Dataview trong note](19-task-va-dataview.md) |
 
 ## Mở ở đâu trong SenOS
 
-Ở thanh điều hướng bên trái, mở nhóm **Việc** rồi bấm mục **Việc**. Tiêu đề trang là **Việc (Kanban)** với dòng phụ "AI tự đặc tả, điều phối và chạy task nền".
+Ở thanh điều hướng bên trái, mở nhóm **Điều phối** rồi bấm mục **Công việc**, tab **Việc của SenOS**. Tiêu đề bảng là **Công việc (Kanban)** với dòng phụ "AI tự đặc tả, điều phối và chạy task nền".
 
 Bảng gắn với **brain đang chọn** ở đầu dashboard. Đổi brain là đổi luôn bảng việc, mỗi brain một hàng đợi riêng.
 
@@ -128,7 +128,7 @@ Gặp một chỗ chỉ bạn mới biết (gửi cho khách nào, giá đã g�
 Có ba chỗ để trả lời, chỗ nào cũng như nhau:
 
 - Gõ vào ô ngay dưới câu hỏi trong khung chat web rồi bấm **Gửi**.
-- Gõ vào ô trả lời trên thẻ việc ở trang Việc rồi bấm **Gửi trả lời**.
+- Gõ vào ô trả lời trên thẻ việc ở Bảng việc rồi bấm **Gửi trả lời**.
 - Nhắn bình thường trong chat (Telegram, Zalo cũng được), nói rõ là trả lời việc nào. SenOS tự chuyển câu trả lời vào đúng việc.
 
 Trả lời xong, việc tự quay lại hàng đợi và chạy tiếp. Lần chạy sau đọc được câu hỏi, câu trả lời của bạn và phần lần trước đã làm xong, nên không làm lại từ đầu và không hỏi lại điều đã hỏi. Hỏi rồi trả lời **không** tính thêm lượt thử. Một việc hỏi nhiều lần thì ngăn chi tiết có mục **Hỏi đáp với bạn** ghi lại đủ từng lượt.
@@ -145,7 +145,7 @@ Giờ SenOS ghi sổ từng thao tác ra ngoài của một việc (gửi tin, �
 - **Không chắc đã tới nơi chưa** (máy chủ dừng hoặc mất kết nối đúng lúc đang gửi): SenOS không tự gửi lại. Việc dừng lại hỏi bạn, kể rõ thao tác nào. Trả lời **"đã gửi"** thì SenOS bỏ qua, trả lời **"chưa gửi"** thì SenOS làm lại đúng một lần. Câu trả lời nào không mở đầu bằng "chưa" hay "gửi lại" đều được hiểu là đã gửi, để không bao giờ gửi trùng cho khách.
 - **Dịch vụ báo lỗi rõ ràng** (sai mã người nhận, hết quyền): coi như chưa gửi, lần sau được thử lại.
 
-Chat thường không đổi gì: sổ này chỉ áp cho việc nền trên bảng Việc.
+Chat thường không đổi gì: sổ này chỉ áp cho việc nền trên Bảng việc.
 
 Giới hạn: sổ nằm ở hub của SenOS, nên chỉ thấy thao tác đi qua hub. Kết nối gắn với tài khoản Claude (Gmail, Drive trên claude.ai) và lệnh shell của engine không đi qua hub nên không được ghi sổ. Grok Build và Antigravity CLI chưa mang được mã việc tới hub, nên việc chạy trên hai engine này chưa có lớp bảo vệ này.
 
@@ -218,7 +218,7 @@ Mỗi việc kết thúc ở trạng thái hoàn thành, chờ duyệt hoặc b�
 - `✅ Việc '<tiêu đề>' đã làm xong, chờ bạn duyệt kết quả.`
 - `⚠ Việc '<tiêu đề>' bị chặn, cần anh xem.` kèm dòng `Lý do: ...`
 
-Tin nào cũng kết bằng "Xem chi tiết ở trang Việc." vì chi tiết đầy đủ nằm ở đây chứ không nhồi vào tin nhắn.
+Tin nào cũng kết bằng "Xem chi tiết ở trang Công việc." vì chi tiết đầy đủ nằm ở đây chứ không nhồi vào tin nhắn.
 
 Ai nhận tin, nhận ở đâu:
 
@@ -281,9 +281,9 @@ Hai điều tool đó **không** làm, cố ý:
 - **Không tạo được việc mức `full`.** Mức full cho việc tự thao tác thật ra ngoài (tạo đơn, tiêu tiền, chạy quảng cáo, gửi tin) và không hoàn tác được. SenOS tạo mức `suggest` hoặc `auto` thôi; muốn full thì bạn tự nâng ở trang này, nơi bạn nhìn thấy rõ mình đang cho phép gì.
 - **Không chuyển cột, không duyệt việc đang chờ phê duyệt.** Những thao tác đó cần nhìn thấy bảng, nên chúng ở lại trang này. Huỷ một việc thì nói thẳng trong chat được ("huỷ việc soạn báo cáo"): SenOS huỷ đúng như nút Huỷ việc ở trang này, việc đang chạy thì dừng ngay, và lý do bạn nói được ghi vào nhật ký của việc.
 
-## Việc do trang Tự học đề xuất
+## Việc do trang Rèn luyện đề xuất
 
-Trang **Tự học** có một công tắc năng lực tên **Việc (Kanban)** cho phép engine học tự đề xuất việc nền từ hội thoại. Công tắc này **mặc định tắt** ở bản hiện tại, sau khi soi một bảng thật và thấy phần lớn việc máy tự đẻ ra là thứ worker headless không thể làm (cần cookie, cần gửi tin ra ngoài, chỉ ngồi chờ người khác duyệt, đụng repo ngoài brain). Việc giờ chỉ sinh ra khi bạn bảo thẳng.
+Trang **Rèn luyện** có một công tắc năng lực tên **Việc (Kanban)** cho phép engine học tự đề xuất việc nền từ hội thoại. Công tắc này **mặc định tắt** ở bản hiện tại, sau khi soi một bảng thật và thấy phần lớn việc máy tự đẻ ra là thứ worker headless không thể làm (cần cookie, cần gửi tin ra ngoài, chỉ ngồi chờ người khác duyệt, đụng repo ngoài brain). Việc giờ chỉ sinh ra khi bạn bảo thẳng.
 
 Nếu bạn tự bật lại, các rào sau vẫn giữ:
 
@@ -372,7 +372,7 @@ Việc giao trong chat web phải mang theo mã phiên chat thì kết quả m�
 Ba khả năng, theo thứ tự hay gặp: bạn đang đứng ở **brain khác** (đổi brain ở đầu dashboard), việc đã kết thúc quá 3 ngày nên tự lưu trữ, hoặc ai đó đã gọi endpoint dọn bảng.
 
 **Việc nền chiếm hết hạn mức của bạn.**
-Mỗi việc là một phiên AI thật. Hạ số worker song song bằng `SENOS_KANBAN_MAX_WORKERS=1`, hoặc đặt chế độ về **Tắt** khi không cần. Theo dõi lượng tiêu thụ ở trang [Mức dùng](23-muc-dung-token.md), chỗ tách riêng "SenOS tự chạy" với "Bạn gõ tay".
+Mỗi việc là một phiên AI thật. Hạ số worker song song bằng `SENOS_KANBAN_MAX_WORKERS=1`, hoặc đặt chế độ về **Tắt** khi không cần. Theo dõi lượng tiêu thụ ở trang [Hạn mức](23-muc-dung-token.md), chỗ tách riêng "SenOS tự chạy" với "Bạn gõ tay".
 
 ## Liên quan
 

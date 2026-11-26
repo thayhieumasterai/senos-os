@@ -118,7 +118,7 @@ with tempfile.TemporaryDirectory() as td:
         check("sửa một byte trong mã thì tool biến mất", not route_co("goi_chao"))
         ly_do = plugins_host._load_all(None)["errors"].get("chao", "")
         check("và nói rõ lý do là mã đã đổi", "đã đổi" in ly_do)
-        check("lý do chỉ đúng đường sửa (cài lại ở Kho cài đặt)", "Kho cài đặt" in ly_do)
+        check("lý do chỉ đúng đường sửa (cài lại ở Chợ Sen)", "Chợ Sen" in ly_do)
         pf.write_bytes(goc_ma)
         check("trả mã về đúng từng byte thì chạy lại", route_co("goi_chao"))
 

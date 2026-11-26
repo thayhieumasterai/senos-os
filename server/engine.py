@@ -746,10 +746,10 @@ async def thu_lai_khi_tam_thoi(tao_stream, *, so_lan=3, nhan=""):
                 cuoi["content"] += _c(
                     f" - hạn mức nhà cung cấp đang đầy"
                     + (f", cửa sổ mở lại sau khoảng {cho:.0f}s" if cho > _WINDOW_WAIT_MAX else "")
-                    + ". Chờ cửa sổ trôi qua, hoặc đổi bộ não cho bot ở trang Models.",
+                    + ". Chờ cửa sổ trôi qua, hoặc đổi bộ não cho bot ở trang Mô hình AI.",
                     f" - the provider's rate limit is full"
                     + (f", the window reopens in about {cho:.0f}s" if cho > _WINDOW_WAIT_MAX else "")
-                    + ". Wait for the window to pass, or switch the bot's brain on the Models page."
+                    + ". Wait for the window to pass, or switch the bot's brain on the AI models page."
                 )
             elif _qua_tai(loi_hoan):
                 cuoi["content"] += _c(
@@ -1297,7 +1297,7 @@ async def ollama_local_stream(api_key, model, messages, reasoning="off"):
     then the turn is asked again with thinking off, before any text went out."""
     url = ollama_local_url()
     if not url:
-        yield {"type": "error", "content": _c("Chưa đặt địa chỉ Ollama trong trang Models.", "No Ollama address set on the Models page.")}
+        yield {"type": "error", "content": _c("Chưa đặt địa chỉ Ollama trong trang Mô hình AI.", "No Ollama address set on the AI models page.")}
         return
     extra = _ollama_thinking(ollama_local_reasoning())
     while True:
@@ -1321,7 +1321,7 @@ async def openai_compat_stream(api_key, model, messages, reasoning="off"):
     mà gửi thừa thì có server trả 400 cho cả lượt."""
     url = openai_compat_url()
     if not url:
-        yield {"type": "error", "content": _c("Chưa đặt Base URL cho OpenAI Compatible trong trang Models.", "No Base URL set for OpenAI Compatible on the Models page.")}
+        yield {"type": "error", "content": _c("Chưa đặt Base URL cho OpenAI Compatible trong trang Mô hình AI.", "No Base URL set for OpenAI Compatible on the AI models page.")}
         return
     async for ev in _openai_compat_stream(url, "OpenAI Compatible", api_key or "none", model,
                                           messages, reasoning, False):
@@ -1332,7 +1332,7 @@ async def openai_compat_chat_with_mcp(api_key, model, messages, reasoning, mcp_t
     """Endpoint OpenAI-compatible tự khai + vòng tool-calling MCP (model phải biết gọi tool)."""
     url = openai_compat_url()
     if not url:
-        yield {"type": "error", "content": _c("Chưa đặt Base URL cho OpenAI Compatible trong trang Models.", "No Base URL set for OpenAI Compatible on the Models page.")}
+        yield {"type": "error", "content": _c("Chưa đặt Base URL cho OpenAI Compatible trong trang Mô hình AI.", "No Base URL set for OpenAI Compatible on the AI models page.")}
         return
     headers = {"Authorization": f"Bearer {api_key or 'none'}", "Content-Type": "application/json"}
     yield {"type": "meta", "model": model}
@@ -1346,7 +1346,7 @@ async def ollama_local_chat_with_mcp(api_key, model, messages, reasoning, mcp_to
     thì có đủ đồ nghề của SenOS y như mọi provider API khác."""
     url = ollama_local_url()
     if not url:
-        yield {"type": "error", "content": _c("Chưa đặt địa chỉ Ollama trong trang Models.", "No Ollama address set on the Models page.")}
+        yield {"type": "error", "content": _c("Chưa đặt địa chỉ Ollama trong trang Mô hình AI.", "No Ollama address set on the AI models page.")}
         return
     headers = {"Authorization": f"Bearer {api_key or 'local'}", "Content-Type": "application/json"}
     # Own thinking level, not `reasoning` (the shared Effort button): see `ollama_local_reasoning`. With thinking on, a 400
@@ -1493,8 +1493,8 @@ async def _anthropic_stream_once(api_key, model, messages, reasoning="off", fast
                 if usage_in or usage_out:
                     yield {"type": "usage", "input": usage_in, "output": usage_out}
                 if not got:
-                    yield {"type": "error", "content": _c(f"{label} trả về rỗng (stop_reason={stop_reason}). Thử model khác trong Models.",
-                                                          f"{label} returned nothing (stop_reason={stop_reason}). Try another model in Models.")}
+                    yield {"type": "error", "content": _c(f"{label} trả về rỗng (stop_reason={stop_reason}). Thử model khác ở trang Mô hình AI.",
+                                                          f"{label} returned nothing (stop_reason={stop_reason}). Try another model on the AI models page.")}
                     return
                 # Stream xong nhưng KHÔNG phải end_turn/stop_sequence (max_tokens / refusal / ...) → báo user
                 if stop_reason and stop_reason not in ("end_turn", "stop_sequence"):
@@ -1722,8 +1722,8 @@ async def _openrouter_stream_once(api_key, model, messages, reasoning="off", fas
                             got_content = True   # reasoning đã là nội dung - vẫn cần báo truncation phía dưới
                         else:
                             yield {"type": "error", "content": _c(
-                                f"Model trả về rỗng (finish_reason={finish}). Thử lại hoặc đổi sang model khác trong Cài đặt.",
-                                f"The model returned nothing (finish_reason={finish}). Retry or switch to another model in Settings.")}
+                                f"Model trả về rỗng (finish_reason={finish}). Thử lại hoặc đổi sang model khác ở trang Mô hình AI.",
+                                f"The model returned nothing (finish_reason={finish}). Retry or switch to another model on the AI models page.")}
                             return
                     # Stream kết thúc nhưng KHÔNG phải 'stop' (length / content_filter / ...) → user cần biết phản hồi bị cắt
                     if finish and finish != "stop":
@@ -1794,8 +1794,8 @@ async def openai_responses_stream(access_token, account_id, model, messages, rea
 async def _openai_responses_stream_once(access_token, account_id, model, messages, reasoning="off", fast=False):
     """Chat qua gói ChatGPT (OAuth) - backend Codex Responses API. Model: gpt-5-codex / gpt-5."""
     if not access_token:
-        yield {"type": "error", "content": _c("Chưa đăng nhập ChatGPT (OAuth). Vào Models để kết nối.",
-                                              "Not signed in to ChatGPT (OAuth). Go to Models to connect.")}
+        yield {"type": "error", "content": _c("Chưa đăng nhập ChatGPT (OAuth). Vào Mô hình AI để kết nối.",
+                                              "Not signed in to ChatGPT (OAuth). Go to the AI models page to connect.")}
         return
     import uuid
     instructions, inp = _codex_input(messages)
@@ -2836,10 +2836,10 @@ class _LapGuard:
 def _loi_ket_vong() -> str:
     return _c("\n\n⚠ Model cứ gọi lại cùng tool với cùng tham số mà không tiến triển (kẹt vòng lặp) "
               "nên SenOS dừng lượt này để không đốt token vô ích. Câu trả lời ở trên có thể còn dở - "
-              "nhắn \"làm tiếp\", nói rõ hơn yêu cầu, hoặc đổi model ở trang Models.",
+              "nhắn \"làm tiếp\", nói rõ hơn yêu cầu, hoặc đổi model ở trang Mô hình AI.",
               "\n\n⚠ The model kept calling the same tool with the same arguments without making progress "
               "(stuck in a loop), so SenOS stopped this turn to avoid burning tokens. The answer above may "
-              "be incomplete - reply \"continue\", state the request more clearly, or switch model on the Models page.")
+              "be incomplete - reply \"continue\", state the request more clearly, or switch model on the AI models page.")
 
 
 async def openai_chat_with_mcp(api_key, model, messages, reasoning, mcp_tools, mcp_route):
@@ -3260,7 +3260,7 @@ async def anthropic_chat_with_mcp(api_key, model, messages, reasoning, mcp_tools
             if text:
                 yield {"type": "text", "content": text, "streamed": bool(vong_hien) and vong_hien == text}
             else:
-                yield {"type": "error", "content": _c(f"{label} trả về rỗng. Thử model khác trong Models.",
-                                                      f"{label} returned nothing. Try another model in Models.")}
+                yield {"type": "error", "content": _c(f"{label} trả về rỗng. Thử model khác ở trang Mô hình AI.",
+                                                      f"{label} returned nothing. Try another model on the AI models page.")}
             return
         yield {"type": "text", "content": _het_vong_msg()}

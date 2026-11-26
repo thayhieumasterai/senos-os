@@ -274,12 +274,12 @@ def dinh_dang_viec(view: dict, moi_cot: int = 5) -> str:
     dong = [localefmt.chu("📋 Việc nền của SenOS", "📋 SenOS background work")]
     if che_do.lower() == "off":
         dong.append(localefmt.chu("⚠ Tự vận hành đang TẮT: việc chỉ nằm trong hàng đợi, chưa chạy. "
-                                  "Bật ở trang Nhiệm vụ trên dashboard.",
+                                  "Bật ở trang Công việc trên dashboard.",
                                   "⚠ AI self-driving is OFF: work only sits in the queue and does not run. "
-                                  "Turn it on from the Tasks page on the dashboard."))
+                                  "Turn it on from the Jobs page on the dashboard."))
     elif che_do.lower() == "manual":
-        dong.append(localefmt.chu("Tự vận hành ở chế độ thủ công: việc chỉ chạy khi bấm Chạy ở trang Nhiệm vụ.",
-                                  "AI self-driving is manual: work only runs when you click Run on the Tasks page."))
+        dong.append(localefmt.chu("Tự vận hành ở chế độ thủ công: việc chỉ chạy khi bấm Chạy ở trang Công việc.",
+                                  "AI self-driving is manual: work only runs when you click Run on the Jobs page."))
     co_gi = False
     for khoa, nhan in _NHAN_COT:
         ds = cot.get(khoa) or []

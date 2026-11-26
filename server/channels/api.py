@@ -221,13 +221,13 @@ def ceiling_problem(cfg: Optional[dict], meta: Optional[dict] = None) -> str:
         return ""
     if eff is not cfg and str(cfg.get("muc_quyen") or "") in ALLOWED_LEVELS:
         return localefmt.chu("Ngoại lệ của cuộc chat này nâng bot lên quá mức Đọc tài liệu. Kênh API nội bộ chỉ chạy "
-                             "Chỉ đọc hoặc Đọc tài liệu: hạ ngoại lệ đó trên trang Chatbot.",
+                             "Chỉ đọc hoặc Đọc tài liệu: hạ ngoại lệ đó trên trang Hộp thư bot.",
                              "This chat's exception raises the bot above Read documents. The internal API channel only "
-                             "runs Read only or Read documents: lower that exception on the Chatbot page.")
+                             "runs Read only or Read documents: lower that exception on the Bot inbox page.")
     return localefmt.chu("Bot đang ở mức quyền cao hơn Đọc tài liệu. Kênh API nội bộ chỉ chạy Chỉ đọc hoặc Đọc tài liệu: "
-                         "hạ mức quyền của bot trên trang Chatbot thì kênh mới trả lời.",
+                         "hạ mức quyền của bot trên trang Hộp thư bot thì kênh mới trả lời.",
                          "The bot runs above Read documents. The internal API channel only runs Read only or Read "
-                         "documents: lower the bot's level on the Chatbot page and the channel answers again.")
+                         "documents: lower the bot's level on the Bot inbox page and the channel answers again.")
 
 
 def _bot_of(account_id: str) -> Optional[dict]:

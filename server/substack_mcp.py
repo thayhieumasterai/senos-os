@@ -178,7 +178,7 @@ def _ctx(spec):
     user_id = str(secrets.get("user_id", "")).strip()
     if not pub or not token or not user_id:
         return None, None, None, None, ("ERROR: kết nối Substack thiếu publication_url / session_token "
-                                        "/ user_id - sửa lại ở trang Kết nối")
+                                        "/ user_id - sửa lại ở trang Ứng dụng")
     if not re.match(r"^https?://", pub):
         pub = "https://" + pub
     try:

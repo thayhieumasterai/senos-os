@@ -8,7 +8,7 @@ Thiết kế đầy đủ: [docs/dev/2026-10-github-trong-chat-spec.md](dev/2026
 
 ## 1. Kết nối GitHub (một lần)
 
-Mở **Kết nối**. Thẻ **GitHub** luôn nằm đầu danh sách, có sẵn trong SenOS, không phải cài gói nào.
+Mở **Ứng dụng**. Thẻ **GitHub** luôn nằm đầu danh sách, có sẵn trong SenOS, không phải cài gói nào.
 
 **Git đi trước.** SenOS tải repo về bằng git, nên bấm **Kết nối** là SenOS kiểm tra máy có git chưa. Thiếu thì SenOS tự cài rồi mới mở bước đăng nhập, thường mất 1 đến 3 phút:
 
@@ -50,7 +50,7 @@ SenOS tự làm, không cần bạn nhắc:
    - **Không review được:** gói ChatGPT, Grok Build và Antigravity chạy qua CLI còn công cụ đọc ghi file, nên không được đọc diff. Đang chat bằng một trong ba gói đó thì SenOS dùng thẻ kế tiếp trên trang Models (Claude, hoặc một nhà dùng API key). Model review lỗi thì khung chat báo rõ model và lý do, rồi bỏ qua lần đó.
 6. **Merge**: CI xanh thì SenOS **tự merge** theo kiểu merge repo cho phép. Không tự merge khi: tắt công tắc của repo, có thay đổi "ăn gian" cần người xem, repo không có CI, hay repo còn đòi người duyệt.
 
-Lệnh kiểm tra của từng repo sửa được ở thẻ GitHub trên trang Kết nối, nút **Lệnh kiểm tra**. Công tắc **Tự merge khi CI xanh** cũng ở đó, mặc định bật. **Review chéo** nằm trong dấu ba chấm của repo, mặc định tắt.
+Lệnh kiểm tra của từng repo sửa được ở thẻ GitHub trên trang Ứng dụng, nút **Lệnh kiểm tra**. Công tắc **Tự merge khi CI xanh** cũng ở đó, mặc định bật. **Review chéo** nằm trong dấu ba chấm của repo, mặc định tắt.
 
 ## 4. Bốn biểu tượng cạnh cuộc trò chuyện
 
@@ -75,5 +75,5 @@ Giao nhiều việc một lúc ("xong cái này thì làm cái kia")? SenOS xế
 ## 7. Gỡ repo
 
 - **Bỏ khỏi cuộc trò chuyện** (bỏ tích trong dấu cộng → Repo GitHub): bản tải về vẫn giữ.
-- **Gỡ khỏi brain** (thẻ GitHub trên trang Kết nối): xoá bản trên máy, repo trên GitHub giữ nguyên. SenOS từ chối khi còn sửa đổi chưa lưu, commit chưa đẩy, hay việc đang chạy.
+- **Gỡ khỏi brain** (thẻ GitHub trên trang Ứng dụng): xoá bản trên máy, repo trên GitHub giữ nguyên. SenOS từ chối khi còn sửa đổi chưa lưu, commit chưa đẩy, hay việc đang chạy.
 - Xoá một cuộc trò chuyện: thư mục làm việc sạch của nó bị dọn, thư mục còn việc dở được giữ lại.

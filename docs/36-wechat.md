@@ -20,7 +20,7 @@ Chatbot là để KHÁCH nhắn vào, nên chỉ Official Account hợp việc. 
 | SenOS kết nối thế nào | Webhook: WeChat gọi vào SenOS, **cần địa chỉ công khai** ở cổng 443 (https) hoặc 80 |
 | Nhóm | Không, chỉ chat riêng với tài khoản |
 | File | Nhận chữ, ảnh, tin thoại, vị trí, link. Gửi chữ và ảnh JPG/PNG/GIF (tối đa 10MB). Không gửi được tài liệu |
-| Tin thoại | Chép thành chữ (dùng bản WeChat tự nhận dạng nếu có, không thì cần key Groq ở trang Models) |
+| Tin thoại | Chép thành chữ (dùng bản WeChat tự nhận dạng nếu có, không thì cần key Groq ở trang Mô hình AI) |
 | Trả lời | Bằng "tin chăm sóc khách hàng", chỉ trong 48 giờ sau tin cuối của khách |
 | Định dạng | Chữ thường, mỗi tin tối đa 2048 byte. SenOS tự bỏ ký hiệu Markdown và tự chia tin dài |
 | Tên khách | WeChat không còn cho đọc tên. Khách hiện bằng mã OpenID |
@@ -33,7 +33,7 @@ Chatbot là để KHÁCH nhắn vào, nên chỉ Official Account hợp việc. 
 
 ## 2. Lấy địa chỉ và Token từ SenOS
 
-1. Mở SenOS **bằng tên miền**, vào **Chatbot**, tab **Bot**, bấm **Thêm kênh**, chọn **WeChat**.
+1. Mở SenOS **bằng tên miền**, vào **Hộp thư bot**, tab **Bot**, bấm **Thêm kênh**, chọn **WeChat**.
 2. Form hiện hai dòng: **Địa chỉ webhook** (dạng `https://<tên miền>/wechat/webhook`) và **Mã xác minh**. Mã này chính là ô **Token** bên WeChat. SenOS tự sinh một lần cho cả máy và dùng nó để kiểm chữ ký từng tin.
 
 ## 3. Cấu hình bên WeChat
@@ -61,7 +61,7 @@ Tài khoản thử nghiệm không có ô EncodingAESKey: chỉ điền URL và 
 
    Chạy Chế độ văn bản thường thì bỏ EncodingAESKey.
 2. Bấm **Kiểm tra**. SenOS xin thử một access token: qua được nghĩa là AppID, AppSecret đúng và IP đã nằm trong whitelist.
-3. Bấm **Lưu**, rồi vào **Chatbot**, **Bot** để tạo bot hoặc gắn bot có sẵn cho kênh này. Bot bật lên là bắt đầu trả lời.
+3. Bấm **Lưu**, rồi vào **Hộp thư bot**, **Bot** để tạo bot hoặc gắn bot có sẵn cho kênh này. Bot bật lên là bắt đầu trả lời.
 
 ## 5. Vì sao nên chọn Chế độ an toàn
 

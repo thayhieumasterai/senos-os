@@ -122,7 +122,7 @@ check("khối BÁM bảo model theo người dùng, không nêu tên ngôn ngữ
       "language of the user's latest message" in _khoi_bam
       and "Reply language:" not in _khoi_bam)
 check("khối GHIM nêu đúng tên ngôn ngữ",
-      "Reply language: English (en), set in Settings." in _khoi_ghim
+      "Reply language: English (en), set in Thiết lập (Preferences)." in _khoi_ghim
       and "language of the user's latest message" not in _khoi_ghim)
 check("khối BÁM vẫn dặn giữ nguyên tên riêng, đường dẫn, khối mã",
       "Do not translate" in _khoi_bam)

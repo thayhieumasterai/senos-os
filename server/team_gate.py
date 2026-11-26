@@ -468,17 +468,17 @@ def unsupported_text(reason: str, *, assistant: str = "", choices: tuple = ()) -
         vi_or, en_or = (names[0], names[0]) if len(names) == 1 else (
             ", ".join(names[:-1]) + " hoặc " + names[-1], ", ".join(names[:-1]) + " or " + names[-1])
         return chu(
-            "Bước này chưa chạy. Ở trang Cộng sự, đổi model của {vi_who} sang {vi_or} rồi bấm Thử lại. "
+            "Bước này chưa chạy. Ở trang Trợ lý, đổi model của {vi_who} sang {vi_or} rồi bấm Thử lại. "
             "Lý do: nhóm ở quyền 'cần duyệt' mà {reason}.",
-            "This step did not run. On the Partners page, switch {en_who} to {en_or}, then press Try again. "
+            "This step did not run. On the Assistants page, switch {en_who} to {en_or}, then press Try again. "
             "Why: the team needs approvals and {reason}.",
             vi_who=assistant or "trợ lý làm bước này", en_who=assistant or "the assistant of this step",
             vi_or=vi_or, en_or=en_or, reason=reason)
     return chu(
         "Bước này chưa chạy. Chưa có model nào đã kết nối chạy được quyền này: kết nối Claude Code hoặc một API key ở "
-        "trang Models, rồi đổi model của {vi_who} ở trang Cộng sự và bấm Thử lại. "
+        "trang Mô hình AI, rồi đổi model của {vi_who} ở trang Trợ lý và bấm Thử lại. "
         "Lý do: nhóm ở quyền 'cần duyệt' mà {reason}.",
         "This step did not run. No connected model can run it with approvals: connect Claude Code or an API key on the "
-        "Models page, switch {en_who} on the Partners page, then press Try again. "
+        "AI models page, switch {en_who} on the Assistants page, then press Try again. "
         "Why: the team needs approvals and {reason}.",
         vi_who=assistant or "trợ lý làm bước này", en_who=assistant or "the assistant of this step", reason=reason)

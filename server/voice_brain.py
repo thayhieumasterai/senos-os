@@ -103,14 +103,16 @@ SYSTEM_PROMPT = (
     "NGOẠI LỆ, làm NGAY không nhờ bộ não chính: khi người dùng chỉ bảo ĐIỀU KHIỂN MÀN HÌNH, hãy "
     "trả lời một câu ngắn xác nhận rồi xuống dòng ghi " + UI_MARKER + " kèm lệnh:\n"
     "  " + UI_MARKER + " open_page <id trang>   (mở một tab. Viết ID tiếng Anh; trong ngoặc là nhãn "
-    "người dùng nhìn thấy và hay đọc lên: home (SenOS), chat (trò chuyện), files (tệp tin), "
-    "learn (tự học), terminal, workspace (cộng sự, trợ lý, quy trình), chatbots (chatbot), "
-    "skills (kỹ năng), plugins (công cụ), tasks (nhiệm vụ: việc, việc định kỳ, nhắc hẹn), "
-    "mcp (kết nối), packs (SenOS Store), channels (kênh), models, usage (mức dùng), "
-    "settings (cài đặt), pet (linh vật), logs (cập nhật), account (tài khoản))\n"
+    "người dùng nhìn thấy và hay đọc lên: home (Bản đồ tri thức), chat (Hội thoại), files (Tài liệu), "
+    "learn (Rèn luyện), terminal (Dòng lệnh), workspace (Trợ lý, quy trình), teams (Nhóm AI), "
+    "conversations (Hộp thư bot), chatbots (Bot trả lời), skills (Nghiệp vụ), plugins (Tiện ích), "
+    "tasks (Công việc: việc, việc định kỳ, nhắc hẹn), webhooks (Webhook), mcp (Ứng dụng), packs (Chợ Sen), "
+    "channels (Kênh quản trị), logins (Phiên đăng nhập), models (Mô hình AI), usage (Hạn mức), "
+    "settings (Thiết lập), share (Liên kết công khai), users (Người dùng), pet (Bé Sen), logs (Phiên bản), "
+    "account (Hồ sơ))\n"
     "  " + UI_MARKER + " open_group <id nhóm>   (BUNG một mục đang gập trên thanh bên mà không đổi "
-    "trang: bo_nao (Bộ não), code (Code), nang_luc (Năng lực), viec (Việc), "
-    "ket_noi (Kết nối), he_thong (Hệ thống))\n"
+    "trang: bo_nao (Tri thức), nang_luc (Đội ngũ AI), viec (Điều phối), "
+    "ket_noi (Cổng kết nối), he_thong (Quản trị))\n"
     "  " + UI_MARKER + " sidebar open | close    (bung hay thu gọn cả thanh bên)\n"
     "  " + UI_MARKER + " scroll top | bottom     (cuộn THỨ NGƯỜI DÙNG ĐANG XEM: có trang nội dung mở thì cuộn trang đó, không thì cuộn khung chat. Chỉ khi họ nói RÕ mới đổi thành "
     "page_top | page_bottom (ép cuộn trang) hay chat_top | chat_bottom (ép cuộn khung chat))\n"
@@ -693,8 +695,8 @@ class CodexVoiceBrain(VoiceBrain):
         self.last_used = time.time()
         creds = (self._creds_fn or _codex_creds)() or {}
         if not creds.get("access_token"):
-            raise RuntimeError(localefmt.chu("Chưa kết nối ChatGPT (OAuth) ở trang Models.",
-                                              "ChatGPT (OAuth) is not connected on the Models page."))
+            raise RuntimeError(localefmt.chu("Chưa kết nối ChatGPT (OAuth) ở trang Mô hình AI.",
+                                              "ChatGPT (OAuth) is not connected on the AI models page."))
         if self._stream_fn:
             fn = self._stream_fn
         else:
@@ -879,8 +881,8 @@ class GrokVoiceBrain(VoiceBrain):
         else:
             import grok_cli
             if not grok_cli.find_grok_cli():
-                raise RuntimeError(localefmt.chu("Chưa cài Grok Build (grok). Cài rồi đăng nhập ở trang Models.",
-                                                  "Grok Build (grok) is not installed. Install it, then sign in on the Models page."))
+                raise RuntimeError(localefmt.chu("Chưa cài Grok Build (grok). Cài rồi đăng nhập ở trang Mô hình AI.",
+                                                  "Grok Build (grok) is not installed. Install it, then sign in on the AI models page."))
             import tempfile
             self.cli = grok_cli.GrokCLI(cwd=tempfile.gettempdir(), tag="voice", model=self.model or None,
                                         instructions=self.system)
@@ -1087,10 +1089,10 @@ def cau_roi_ve_bo_nao_chinh(provider: str, err) -> str:
            or localefmt.chu("không rõ lỗi", "unknown error"))
     # Lỗi tên model (0.65.26): sửa ở ô Model của thẻ Giọng nói, không phải trang Models. Chủ dự án
     # đọc "Kiểm tra ở trang Models" mà tưởng Antigravity bị đăng xuất.
-    sua = (localefmt.chu("Chọn lại model ở Cài đặt, Giọng nói, Nâng cao.",
-                         "Pick the model again in Settings, Voice, Advanced.")
+    sua = (localefmt.chu("Chọn lại model ở Thiết lập, Giọng nói, Nâng cao.",
+                         "Pick the model again in Preferences, Voice, Advanced.")
            if re.search(r"\bmodel\b", loi, re.I)
-           else localefmt.chu("Kiểm tra bộ não này ở trang Models.", "Check this brain on the Models page."))
+           else localefmt.chu("Kiểm tra bộ não này ở trang Mô hình AI.", "Check this brain on the AI models page."))
     return localefmt.chu(
         f"Làn nhanh không chạy được: bộ não giọng {ten_bo_nao(provider)} báo \"{loi}\". "
         f"Lượt này đi bộ não chính nên chậm hơn bình thường. ",
@@ -1216,8 +1218,8 @@ def _make_bare(conf: dict) -> VoiceBrain:
         return GrokVoiceBrain(model=conf.get("model") or "")
     if prov in PROVIDERS:
         if not conf.get("api_key"):
-            raise RuntimeError(localefmt.chu(f"Bộ não giọng nói {prov} chưa có API key ở trang Models.",
-                                              f"Voice brain {prov} has no API key on the Models page."))
+            raise RuntimeError(localefmt.chu(f"Bộ não giọng nói {prov} chưa có API key ở trang Mô hình AI.",
+                                              f"Voice brain {prov} has no API key on the AI models page."))
         return ApiVoiceBrain(prov, conf["api_key"], conf.get("model") or BRAIN_PROVIDERS[prov]["default_model"])
     raise RuntimeError(localefmt.chu("Chưa chọn bộ não giọng nói.", "No voice brain selected."))
 

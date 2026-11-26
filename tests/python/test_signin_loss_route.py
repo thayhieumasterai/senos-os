@@ -182,7 +182,7 @@ def _detector():
     check("detector: the ChatGPT backend's 401", yes("⚠ ChatGPT 401: Unauthorized"))
     check("detector: SenOS's own 'not signed in to ChatGPT' sentences",
           yes("⚠ Chưa đăng nhập được ChatGPT nên bot không gọi được model.")
-          and yes("Not signed in to ChatGPT (OAuth). Go to Models to connect."))
+          and yes("Not signed in to ChatGPT (OAuth). Go to the AI models page to connect."))
     check("detector: Claude Code's line, as an error and as a short answer",
           yes("Not logged in · Please run /login") and yes("Not logged in · Please run /login", answer=True))
     check("detector: an MCP server's 401 is not the plan's sign-in",
@@ -230,7 +230,7 @@ def _web_turns(mp, tmp):
     check("web, tool already called: no route line", not _frames(ws, "reroute"))
     errs = _frames(ws, "error")
     check("web, tool already called: the error says to sign in again, in words the owner reads",
-          len(errs) == 1 and "ChatGPT" in errs[0]["content"] and "Models" in errs[0]["content"], str(errs))
+          len(errs) == 1 and "ChatGPT" in errs[0]["content"] and "Mô hình AI" in errs[0]["content"], str(errs))
 
     # ---- one account only and no other card: the refusal is shown, the card is marked ----
     _reset()
@@ -259,7 +259,7 @@ def _mark(mp):
     main._note_signin_lost(CHATGPT)
     check("mark: a signed-out card cannot take a turn", not main._route_ready(m, CHATGPT))
     check("mark: the owner is told once, not at every refusal",
-          len(told) == 1 and "ChatGPT" in told[0][0] and "Models" in told[0][0], str(told))
+          len(told) == 1 and "ChatGPT" in told[0][0] and "Mô hình AI" in told[0][0], str(told))
     check("mark: MAIN signed out -> the chat starts on the next card that can run",
           main._chat_provider(m)[0] == "groq" and main._chat_provider(m)[3] == "llama-4", str(main._chat_provider(m)))
 
@@ -316,7 +316,7 @@ def _channels(mp):
     _reset()
     check("channel: the bot path's own sentence is recognised",
           main._tg_signin_out("⚠ Chưa đăng nhập được ChatGPT nên bot không gọi được model. "
-                              "Vào trang Models kết nối lại tài khoản ChatGPT rồi nhắn lại.", CHATGPT))
+                              "Vào trang Mô hình AI kết nối lại tài khoản ChatGPT rồi nhắn lại.", CHATGPT))
     _reset()
 
     # A customer bot whose agent runs on ChatGPT: the refused turn is answered by the next card, in the same turn.

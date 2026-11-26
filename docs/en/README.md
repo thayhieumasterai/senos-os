@@ -6,42 +6,42 @@ Detailed guides for every feature of SenOS. Each page is a standalone how-to: wh
 
 > Just starting? Read [Installation in the README](../../README.md#-installation) first, then go to [01 - Getting started and first setup](01-getting-started.md).
 
-The dashboard's navigation rail groups **19 pages** into **5 groups**: Brain · Capabilities · Work · Connections · System. The table of contents below follows the same logic.
+The dashboard's navigation rail has **Conversations** at the top, then groups the other pages into **5 groups**: Knowledge · AI crew · Operations · Gateways · Admin. The table of contents below follows the same logic.
 
 ## Table of contents
 
 ### Getting started
-- [01 - Getting started and first setup](01-getting-started.md) - creating the admin, signing the brain in, choosing an engine and model, the Settings page.
+- [01 - Getting started and first setup](01-getting-started.md) - creating the admin, signing the brain in, choosing an engine and model, the Preferences page.
 
-### Everyday use (the Assistant and Brain groups)
+### Everyday use (Conversations and the Knowledge group)
 - [02 - Chat and voice](02-chat-and-voice.md) - chatting, hands-free speech, slash commands, quick-reply buttons, sending files, generating images.
-- [03 - Knowledge graph](03-knowledge-graph.md) - wikilinks, category colours, the timelapse and the graph switches.
+- [03 - Knowledge map](03-knowledge-graph.md) - wikilinks, category colours, the timelapse and the graph switches.
 - [04 - Sessions](04-sessions.md) - saving, reopening, renaming, deleting, full-text search, compacting a long session.
 - [05 - File manager](05-file-manager.md) - browsing the brain, finding files by name or content, editing .md/.txt directly, uploading and downloading.
 
-### Terminal (the Capabilities group)
-- [27 - Terminal](27-code-terminal.md) - a real command line on the machine running SenOS, opened right in the dashboard, with no SSH.
+### Command line (the AI crew group)
+- [27 - Command line](27-code-terminal.md) - a real command line on the machine running SenOS, opened right in the dashboard, with no SSH.
 
-### Extending capabilities (the Capabilities group)
+### Extending capabilities (the AI crew group)
 - [06 - Skills](06-skills.md) - grouping, searching, enabling and disabling, adding, editing and deleting, importing and exporting skills.
 - [07 - Agents and Workflows](07-agents-and-workflows.md) - creating specialist assistants plus automated multi-step chains.
 - [20 - Plugins](20-plugins.md) - adding native tools and hooks for every engine with one Python folder.
 - [25 - Chatbot (a dedicated bot)](25-chatbots.md) - putting an Agent in front of customers through a dedicated Telegram or Zalo bot, with its own brain and a handover to a human.
-- [28 - Customer conversations (Inbox)](28-customer-conversations.md) - every chat customers have with your bots and personal Zalo in one place, with takeover when a human is needed.
+- [28 - Customer conversations (Bot inbox)](28-customer-conversations.md) - every chat customers have with your bots and personal Zalo in one place, with takeover when a human is needed.
 - [29 - Slack and WhatsApp](29-slack-whatsapp.md) - chat with SenOS and run customer bots on Slack (no domain needed) and WhatsApp (Meta's official API).
-- [30 - Discord and Lark/Feishu](30-discord-lark.md) - chat with SenOS from Discord and Lark/Feishu on the Admin channels page, no domain needed.
+- [30 - Discord and Lark/Feishu](30-discord-lark.md) - chat with SenOS from Discord and Lark/Feishu on the Control channels page, no domain needed.
 - [31 - Messenger](31-messenger.md) - a customer bot that answers your Facebook Page inbox (Meta's official API, needs an HTTPS domain).
 - [36 - WeChat](36-wechat.md) - a customer bot that answers the followers of your WeChat Official Account (official API, needs a domain and a verified account).
   - [Messenger step by step](31-messenger-step-by-step.md) - every click on Meta's site, for a first-time setup.
 - [32 - Web page watch](32-page-watch.md) - watch a page for a price, some text or any change on a schedule, without spending tokens.
-- [33 - Cookies](33-login-vault.md) - keep your own sign-ins (cookies) so SenOS can read and watch pages behind them.
+- [33 - Sign-ins](33-login-vault.md) - keep your own sign-ins (cookies) so SenOS can read and watch pages behind them.
 
-### Background work (the Work and Brain groups)
+### Background work (the Operations and Knowledge groups)
 - [08 - Recurring jobs and reminders](08-recurring-jobs.md) - several background loops plus reminders on a clock or a cron schedule.
-- [21 - Work (Kanban)](21-kanban-work.md) - handing over a goal in words, with the AI specifying and running the background task.
-- [22 - Self-learning](22-self-learning.md) - SenOS extracting memories, distilling Wiki pages and skills after each conversation, undoably.
+- [21 - Jobs (Kanban)](21-kanban-work.md) - handing over a goal in words, with the AI specifying and running the background task.
+- [22 - Training](22-self-learning.md) - SenOS extracting memories, distilling Wiki pages and skills after each conversation, undoably.
 
-### Connections and channels (the Connections group)
+### Connections and channels (the Gateways group)
 - [09 - Connections and business data](09-connections-and-business-data.md) - the multi-account store of external services, permissions, reporting real figures.
 - [11 - The Telegram channel](11-telegram.md) - asking SenOS from a phone, sending and receiving files.
 - [26 - The Zalo Bot channel](26-zalo-bot-channel.md) - asking SenOS on Zalo through the official API, paired with one click.
@@ -55,12 +55,12 @@ The dashboard's navigation rail groups **19 pages** into **5 groups**: Brain · 
 - [18 - Backing the brain up to GitHub](18-github-backup.md) - two-way sync to a private repo, recovering after losing a machine or VPS.
 - [19 - Tasks and Dataview in notes](19-tasks-and-dataview.md) - Obsidian-style self-saving checkboxes, ```dataview blocks that really run.
 
-### Accounts, branding, configuration (the System group)
+### Accounts, branding, configuration (the Admin group)
 - [10 - Models and engines](10-models-and-engines.md) - switching the brain between Claude Code, ChatGPT/Codex, Antigravity CLI, OpenRouter, OpenAI, Gemini, Anthropic, Groq and Ollama without losing capability; thinking levels, the background work model.
 - [14 - Security and accounts](14-security-and-accounts.md) - forced login, passwords, rate limiting, secret-key encryption.
 - [15 - Branding and custom domains](15-branding-and-domains.md) - changing the logo and avatar, pointing a domain and enabling HTTPS.
 - [16 - .env configuration](16-env-configuration.md) - a reference for every environment variable.
-- [23 - Usage: tokens and cost](23-usage-and-cost.md) - SenOS measuring input and output tokens by day, by provider and by source.
+- [23 - Quota: tokens and cost](23-usage-and-cost.md) - SenOS measuring input and output tokens by day, by provider and by source.
 
 ### When something goes wrong
 - [17 - Troubleshooting and FAQ](17-troubleshooting.md) - common errors and how to handle them.
@@ -74,7 +74,7 @@ The dashboard's navigation rail groups **19 pages** into **5 groups**: Brain · 
 - [DEPLOY.en.md](../../DEPLOY.en.md) - installing on a server or VPS.
 - [CONTRIBUTING.md](../../CONTRIBUTING.md) - contributing to the project.
 
-Screenshots, button names and menu paths match the interface language you selected on the Settings page, so an English page lines up with an English interface everywhere.
+Screenshots, button names and menu paths match the interface language you selected on the Preferences page, so an English page lines up with an English interface everywhere.
 
 ## Adding a language
 

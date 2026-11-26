@@ -1462,9 +1462,9 @@ class GrokCLI:
             if "xai_api_key" in l or "not authenticated" in l or "unauthorized" in l:
                 return [{"type": "error",
                          "content": localefmt.chu(
-                             "Grok CLI chưa đăng nhập. Mở trang Models bấm \"Đăng nhập\", "
+                             "Grok CLI chưa đăng nhập. Mở trang Mô hình AI bấm \"Đăng nhập\", "
                              "hoặc chạy `grok login --device-auth` trong terminal.",
-                             "Grok CLI is not signed in. Open the Models page and click \"Sign in\", "
+                             "Grok CLI is not signed in. Open the AI models page and click \"Sign in\", "
                              "or run `grok login --device-auth` in a terminal.")}]
             if not loi:
                 loi = localefmt.chu(f"Grok CLI thoát với mã {ev.get('_exit')}.",

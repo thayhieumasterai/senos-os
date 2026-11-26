@@ -818,7 +818,7 @@
     // hệt như "tab hỏng" chứ không giống "ai đó cướp handler".
     row.innerHTML = ds.map((x, i) =>
         `<button class="tab-kho${x.chon ? " on" : ""}" data-tab-cb="${i}">${esc(x.nhan)}</button>`).join("")
-      + `<button class="tab-kho" data-mo-kho="${kind}">${ic("package")} SenOS Store</button>`;
+      + `<button class="tab-kho" data-mo-kho="${kind}">${ic("package")} ${esc(t("page.packs.label"))}</button>`;
     row.querySelectorAll("[data-tab-cb]").forEach(b => b.onclick = () => {
       const f = ds[Number(b.dataset.tabCb)];
       if (f && f.bam) f.bam();
@@ -6608,7 +6608,7 @@
     // Only a problem is worth a banner here. The green "your engine uses the Connections store"
     // notes were noise on every visit (owner, 2026-10-25).
     if (main.provider !== "openai-oauth" && !MCP_PROVIDERS.includes(main.provider)) {
-      warn = `<div class="gcard" style="border:1px solid var(--warn-ink);background:rgba(185,130,31,.10);max-width:740px;margin-bottom:14px"><div class="gcard-meta" style="opacity:1">${WARN_ICON} ${esc(window.t("cs.cn_w_notool_a"))} <b>${esc(mainLabel)}</b> ${esc(window.t("cs.cn_w_notool_b"))} <b>Models</b>.</div></div>`;
+      warn = `<div class="gcard" style="border:1px solid var(--warn-ink);background:rgba(185,130,31,.10);max-width:740px;margin-bottom:14px"><div class="gcard-meta" style="opacity:1">${WARN_ICON} ${esc(window.t("cs.cn_w_notool_a"))} <b>${esc(mainLabel)}</b> ${esc(window.t("cs.cn_w_notool_b"))} <b>${esc(window.t("page.models.label"))}</b>.</div></div>`;
     }
     const groups = {};
     conns.forEach(c => { const k = c.connector_id || "custom"; (groups[k] = groups[k] || []).push(c); });
@@ -6695,7 +6695,7 @@
       + 'padding:14px 16px;margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">'
       + '<span style="flex:1;min-width:240px">' + esc(window.t("cs.cn_more_services")) + '</span>'
       + '<button class="mp-btn" id="mcpDiSanCo">' + esc(window.t("cs.cn_tab_sanco")) + '</button>'
-      + '<button class="mp-btn primary" id="mcpDiKho">SenOS Store</button></div>'
+      + '<button class="mp-btn primary" id="mcpDiKho">' + esc(window.t("page.packs.label")) + '</button></div>'
       + '<details class="cview-section amb-details" id="ambWrap"><summary><h3 style="display:inline">◆ ' + esc(window.t("cs.cn_amb_head")) + ' <span style="opacity:.5">' + esc(window.t("cs.cn_amb_hint")) + '</span></h3></summary>'
       + '<div class="gcard-meta" style="max-width:740px;margin-top:10px">' + esc(window.t("cs.cn_amb_desc_a")) + ' <code>codex mcp</code>' + esc(window.t("cs.cn_amb_desc_b")) + '</div>'
       + '<div class="prov-list" id="mcpAmbient" style="margin-top:12px"><div class="mp-empty">' + esc(window.t("cs.cn_amb_click")) + '</div></div>'

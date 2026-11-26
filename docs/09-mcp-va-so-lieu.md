@@ -2,20 +2,20 @@
 
 ***Tiếng Việt** · [English](en/09-connections-and-business-data.md)*
 
-Trang **Kết nối** là nơi bạn "đấu" SenOS vào các công cụ bạn đang dùng: Pancake POS, Zalo, Webcake Landing, Botcake, quảng cáo Meta/Google/TikTok, lịch, CRM... Sau khi đấu, SenOS đọc được số liệu THẬT và (nếu bạn cho quyền) thao tác thật trên các công cụ đó. Trang này hướng dẫn: kết nối một dịch vụ từ Kho, nối nhiều tài khoản, phân quyền, xem nhật ký, và cách đọc số liệu.
+Trang **Ứng dụng** là nơi bạn "đấu" SenOS vào các công cụ bạn đang dùng: Pancake POS, Zalo, Webcake Landing, Botcake, quảng cáo Meta/Google/TikTok, lịch, CRM... Sau khi đấu, SenOS đọc được số liệu THẬT và (nếu bạn cho quyền) thao tác thật trên các công cụ đó. Trang này hướng dẫn: kết nối một dịch vụ từ Kho, nối nhiều tài khoản, phân quyền, xem nhật ký, và cách đọc số liệu.
 
-> **Từ bản 0.55.36: phần lớn dịch vụ nằm trong SenOS Store, không đi kèm app nữa.**
+> **Từ bản 0.55.36: phần lớn dịch vụ nằm trong Chợ Sen, không đi kèm app nữa.**
 >
 > App chỉ còn cài sẵn **Composio**, **bộ Google** (Lịch, Gmail, Drive/Docs, Sheets, Tasks, Keep,
 > Ads, Search Console, NotebookLM), **Zalo**, **Botcake**, **Substack**, và ô **Tự thêm (nâng cao)**.
 >
 > Mọi dịch vụ khác trong tài liệu này - Pancake POS, Shopify, Meta Ads, Facebook Trang, TikTok
-> Ads, Slack, Lark, n8n, Hostinger, Webcake... - vẫn dùng y hệt, chỉ thêm MỘT bước đầu: mở tab
-> **SenOS Store** trên trang Kết nối, tìm dịch vụ, bấm **Cài đặt**. Sau đó nó hiện ở tab
-> **Kết nối sẵn có** và mọi hướng dẫn bên dưới đúng nguyên văn.
+> Ads, Slack, Lark, n8n, Hostinger, Webcake... - vẫn dùng y hệt, chỉ thêm MỘT bước đầu: mở trang
+> **Chợ Sen** (nhóm **Cổng kết nối**), tìm dịch vụ, bấm **Cài đặt**. Sau đó nó hiện ở mục
+> **Kết nối sẵn có** của trang **Ứng dụng** và mọi hướng dẫn bên dưới đúng nguyên văn.
 >
 > Đổi lại: bản cập nhật của một dịch vụ tới thẳng qua kho, không phải chờ bản SenOS mới. Nếu bạn
-> đã đấu tài khoản từ trước, trang Kết nối hiện sẵn nút cài lại đúng dịch vụ đó, và cài xong là
+> đã đấu tài khoản từ trước, trang Ứng dụng hiện sẵn nút cài lại đúng dịch vụ đó, và cài xong là
 > kết nối cũ chạy tiếp bằng đăng nhập cũ.
 
 ## Tính năng này là gì
@@ -24,13 +24,13 @@ Bên dưới, mỗi kết nối là một "đường ống" MCP (Model Context P
 
 - **Kho kết nối cài sẵn**: chọn dịch vụ, dán API key (hoặc quét QR với Zalo) là xong. SenOS tự kiểm tra key và tự đặt tên tài khoản (ví dụ lấy đúng tên cửa hàng từ Pancake POS). Không còn phải gõ URL hay header.
 - **Một dịch vụ, nhiều tài khoản**: 3 cửa hàng Pancake = 3 tài khoản trong cùng một thẻ Pancake POS. 2 số Zalo = 2 tài khoản Zalo chạy song song. Mỗi tài khoản bật/tắt, phân quyền, đặt mặc định riêng.
-- **Mọi bộ não dùng chung**: Claude Code, ChatGPT (Codex), OpenRouter, OpenAI API, Anthropic API và Google Gemini (API) đều dùng chung kho Kết nối này qua "hub" của SenOS - đấu một lần, đổi model thoải mái. Riêng Gemini có một điểm lệch: phần chạy bên dưới đã gọi được công cụ qua hub, nhưng trang Kết nối vẫn hiện dòng cảnh báo vàng "⚠ Main Model đang là Google Gemini (API) - chưa hỗ trợ gọi công cụ. Đổi ở trang Models." vì danh sách trên giao diện chưa được cập nhật. Cứ dùng bình thường.
+- **Mọi bộ não dùng chung**: Claude Code, ChatGPT (Codex), OpenRouter, OpenAI API, Anthropic API và Google Gemini (API) đều dùng chung kho Ứng dụng này qua "hub" của SenOS - đấu một lần, đổi model thoải mái. Riêng Gemini có một điểm lệch: phần chạy bên dưới đã gọi được công cụ qua hub, nhưng trang Ứng dụng vẫn hiện dòng cảnh báo vàng "⚠ Main Model đang là Google Gemini (API) - chưa hỗ trợ gọi công cụ. Đổi ở trang Mô hình AI." vì danh sách trên giao diện chưa được cập nhật. Cứ dùng bình thường.
 - **Phân quyền cứng**: mỗi tài khoản có mức quyền. SenOS CHẶN thật sự (không phải chỉ nhắc bằng lời) các thao tác vượt quyền, ví dụ tạo đơn khi đang ở mức Chỉ đọc.
 
 ## Mở ở đâu trong SenOS
 
 1. Vào dashboard (cổng mặc định `7777`).
-2. Thanh bên trái, mở nhóm **Kết nối**, rồi bấm mục **Kết nối** (biểu tượng phích cắm, phụ đề "Nguồn dữ liệu & công cụ").
+2. Thanh bên trái, mở nhóm **Cổng kết nối**, rồi bấm mục **Ứng dụng** (biểu tượng phích cắm, phụ đề "Nguồn dữ liệu & công cụ").
 3. Trang có 3 khu:
    - **◆ Đã kết nối** - các tài khoản bạn đang đấu, kèm ô tick "Chỉ dùng kết nối của SenOS (bỏ kết nối sẵn của máy)".
    - **◆ Kết nối sẵn có** - những dịch vụ đã có trên máy, sẵn sàng đấu tài khoản, có ô "Tìm dịch vụ…" và dãy nút lọc: **Tất cả**, Kho ứng dụng, Bán hàng, Nhắn tin, Marketing, Văn phòng, Quảng cáo, Mạng xã hội, Sáng tạo. Sáu dịch vụ Google gom chung vào MỘT thẻ **Google** ghi "6 dịch vụ" - bấm **Chọn dịch vụ** trên thẻ đó mới ra danh sách con.
@@ -49,7 +49,7 @@ Pancake POS mặc định ở mức **Chỉ đọc** - SenOS xem được doanh 
 
 ### 1b. Kết nối TTS Dropship (token lấy từ trình duyệt)
 
-Sàn dropship.thitruongsi.com **không phát hành API key**, nên thẻ này đăng nhập bằng chính token phiên của bạn trên trình duyệt. Cài **TTS Dropship** từ tab SenOS Store trước, rồi:
+Sàn dropship.thitruongsi.com **không phát hành API key**, nên thẻ này đăng nhập bằng chính token phiên của bạn trên trình duyệt. Cài **TTS Dropship** từ Chợ Sen trước, rồi:
 
 1. Mở [dropship.thitruongsi.com](https://dropship.thitruongsi.com) và đăng nhập như bình thường.
 2. Bấm **F12** (máy Mac: Cmd + Option + I) > tab **Application** (Chrome/Edge) hoặc **Storage** (Firefox) > **Local Storage** > dòng của trang TTS.
@@ -158,7 +158,7 @@ Hai bản làm giống nhau ở mọi bước, chỉ khác đúng chỗ mở ph�
 4. Giữ app ở chế độ **Development** (công tắc góc trên cùng để ở "In development"). Đảm bảo bạn là **Admin** của app và của tài khoản quảng cáo muốn đọc - khi đó quyền `ads_read` tự cấp được, không cần App Review.
 5. **Bỏ qua "Xác minh doanh nghiệp" và "Xét duyệt ứng dụng"** dù bảng "Việc cần làm" của app có gợi ý. Hai bước đó chỉ cần khi app của bạn phục vụ doanh nghiệp KHÁC truy cập dữ liệu của họ; bạn tự dùng cho tài khoản của chính mình thì không cần, làm chỉ mất thêm nhiều ngày chờ duyệt.
 6. Vào **App settings > Basic**, copy **App ID** và **App Secret**.
-7. Về SenOS, trang **Kết nối** > thẻ **Meta Ads (Facebook & Instagram)** > dán App ID + App Secret > **Kết nối**. Trình duyệt mở trang Facebook để bạn đồng ý; xong quay lại SenOS bấm làm mới.
+7. Về SenOS, trang **Ứng dụng** > thẻ **Meta Ads (Facebook & Instagram)** > dán App ID + App Secret > **Kết nối**. Trình duyệt mở trang Facebook để bạn đồng ý; xong quay lại SenOS bấm làm mới.
 
 Sau khi kết nối, hỏi SenOS bằng lời: "tài khoản quảng cáo Facebook của tôi tuần này tiêu bao nhiêu, hiệu quả thế nào?". SenOS có sẵn các công cụ đọc: danh sách tài khoản ads, hiệu suất (chi tiêu/hiển thị/click/CTR/CPC/reach/chuyển đổi) theo kỳ, và danh sách chiến dịch. Tất cả CHỈ ĐỌC - SenOS không tạo/sửa chiến dịch, không tiêu tiền của bạn.
 
@@ -168,7 +168,7 @@ Về thời hạn: token Facebook sống khoảng 60 ngày, SenOS tự gia hạn
 
 Hai kết nối này nằm ở nhóm **Mạng xã hội** trong Kho, khác hẳn nhau về mục đích:
 
-- **Facebook Trang (đăng bài, bình luận)**: quản lý Trang/Fanpage của CHÍNH bạn khi bạn nhờ. **Từ 0.438.0 kho đã gỡ thẻ này**: nối Fanpage ở thẻ Facebook Messenger trang Kết nối là dùng được cả tin nhắn, bình luận lẫn đăng bài ([31 - Messenger](31-messenger.md)). Máy đã cài thẻ này vẫn dùng như cũ; phần dưới chỉ còn cho trường hợp đó. Chỉ đọc thì xem danh sách Trang, bài và bình luận; nâng Toàn quyền thì đăng bài chữ, ảnh, album nhiều ảnh, video, sửa bài đã đăng, trả lời và xoá bình luận. Cách đấu giống hệt Meta Ads (Graph API) ở trên và **dùng lại được đúng Facebook App đó** - vẫn phải bật thêm quyền Trang. Khi Facebook hỏi quyền, nhớ TICK chọn các Trang. Mặc định **Chỉ đọc**; xoá bài là không hoàn tác được (Trang không có thùng rác) nên chỉ nâng Toàn quyền khi thật sự cần SenOS đăng bài.
+- **Facebook Trang (đăng bài, bình luận)**: quản lý Trang/Fanpage của CHÍNH bạn khi bạn nhờ. **Từ 0.438.0 kho đã gỡ thẻ này**: nối Fanpage ở thẻ Facebook Messenger trang Ứng dụng là dùng được cả tin nhắn, bình luận lẫn đăng bài ([31 - Messenger](31-messenger.md)). Máy đã cài thẻ này vẫn dùng như cũ; phần dưới chỉ còn cho trường hợp đó. Chỉ đọc thì xem danh sách Trang, bài và bình luận; nâng Toàn quyền thì đăng bài chữ, ảnh, album nhiều ảnh, video, sửa bài đã đăng, trả lời và xoá bình luận. Cách đấu giống hệt Meta Ads (Graph API) ở trên và **dùng lại được đúng Facebook App đó** - vẫn phải bật thêm quyền Trang. Khi Facebook hỏi quyền, nhớ TICK chọn các Trang. Mặc định **Chỉ đọc**; xoá bài là không hoàn tác được (Trang không có thùng rác) nên chỉ nâng Toàn quyền khi thật sự cần SenOS đăng bài.
 - **Theo dõi Facebook (Apify)**: theo dõi Trang và Nhóm **công khai** của người khác để tìm bài viral, trả về số share/react/bình luận để lọc bài hot. Điểm quan trọng: nó quét qua dịch vụ Apify chứ KHÔNG dùng tài khoản Facebook cá nhân của bạn, nên không lo bị khoá và chạy tốt trên VPS 24/7. Cách đấu: đăng ký apify.com, vào Console > Settings > API & Integrations copy "Personal API token", dán vào. Chi phí tính theo lượt quét, khoảng 2.6 USD cho 1000 bài. Kết nối này **chỉ đọc**, không có đường ghi. Nhóm KÍN chưa hỗ trợ (sẽ cần thêm cookie).
 
 ### 5c. Các kết nối còn lại trong kho
@@ -254,7 +254,7 @@ Không đổi so với trước: hỏi trực tiếp trong chat ("hôm nay bán 
 - **Mã QR hết hạn**: bấm thử lại để lấy QR mới (QR Zalo sống ~3 phút).
 - **Tool bị chặn kèm dòng "đang ở mức quyền hạn chế"**: đúng thiết kế - nâng quyền tài khoản trong menu chip nếu bạn thật sự muốn SenOS làm việc đó.
 - **Nguồn chập chờn kiểu "lên được 1 đơn, đơn thứ 2 là rớt kết nối"** (hay gặp với Pancake POS): đã sửa ở **0.52.8**. Mỗi nguồn chỉ có một phiên, và mỗi lượt chat SenOS lại hỏi lại danh sách tool trên chính phiên đó. Việc hỏi lại xếp hàng sau cái đơn đang chạy, chờ quá 20 giây thì bản cũ **giết cả phiên** - tức là giết luôn cái đơn đang lên dở, rồi lượt sau nguồn biến mất khỏi hộp công cụ nên SenOS báo "chưa đấu POS". Nay nguồn đang chạy tool được để yên, và vẫn giữ nguyên danh sách tool của lần hỏi trước. Trang Kết nối cũng thôi báo đỏ oan lúc nguồn đang bận.
-- **Sau khi cập nhật từ bản cũ**: các server MCP cũ tự chuyển thành tài khoản trong trang Kết nối (bản gốc backup ở `mcp_servers.v1.bak.json`), không phải khai lại.
+- **Sau khi cập nhật từ bản cũ**: các server MCP cũ tự chuyển thành tài khoản trong trang Ứng dụng (bản gốc backup ở `mcp_servers.v1.bak.json`), không phải khai lại.
 - **Muốn quay về cơ chế cũ** (mỗi server một entry, không qua hub): đặt `"mcp": {"hub": false}` trong `server/settings.json` rồi khởi động lại.
 
 ## Liên quan

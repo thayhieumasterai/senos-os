@@ -2,7 +2,7 @@
 
 *[Tiếng Việt](../01-bat-dau-thiet-lap.md) · **English***
 
-This page takes you from opening SenOS for the first time to SenOS being ready to talk: creating an admin account, choosing the AI provider that acts as the "brain", picking a model, and checking system status on the Settings page.
+This page takes you from opening SenOS for the first time to SenOS being ready to talk: creating an admin account, choosing the AI provider that acts as the "brain", picking a model, and checking system status on the Preferences page.
 
 ## What this covers
 
@@ -21,14 +21,14 @@ The first time you open the app, a wizard appears and walks you through exactly 
 - On a personal machine, open a browser at `http://localhost:7777` (7777 is the default port).
 - On a VPS or Docker, use the address your provider gave you, e.g. `http://<vps-ip>:7777` or an HTTPS link like `https://<app>.<vps>.hstgr.cloud`.
 
-Once setup is done, the related items sit on the navigation rail on the left. The rail has 7 groups, and **you have to open a group before its items appear**:
+Once setup is done, the related items sit on the navigation rail on the right. **Conversations** sits alone at the top; the other items are in 5 groups, and **you have to open a group before its items appear**:
 
 | Group | Item | Used for |
 |---|---|---|
-| Connections | **Models** | Change the main model, sign providers in and out (see [Models & engines](../10-models-va-engine.md)) |
-| System | **Settings** | Five tabs: General, Voice, Mascot, Usage, Updates |
-| System | **Share links** | View, copy and revoke public links |
-| System | **Account** | Change the password, sign out, disable login (see [Security & accounts](../14-bao-mat-tai-khoan.md)) |
+| Admin | **AI models** | Change the main model, sign providers in and out (see [Models & engines](../10-models-va-engine.md)) |
+| Admin | **Preferences** | Five tabs: General, Voice, Lotus buddy, Quota, Releases |
+| Admin | **Public links** | View, copy and revoke public links |
+| Admin | **Profile** | Change the password, sign out, disable login (see [Security & accounts](../14-bao-mat-tai-khoan.md)) |
 
 ## Step by step
 
@@ -48,7 +48,7 @@ Under **2. Admin account**:
 
 1. Type a username in the **Username** box (it suggests `admin`).
 2. Type a password in the **Password** box. It must be at least 8 characters.
-3. If SenOS is running publicly, do this step **right after deploying**, then turn on two-factor authentication (2FA) on the **Account** page (see "Public server: create the admin early and turn on 2FA" below).
+3. If SenOS is running publicly, do this step **right after deploying**, then turn on two-factor authentication (2FA) on the **Profile** page (see "Public server: create the admin early and turn on 2FA" below).
 
 On a personal machine, leaving the password empty means SenOS creates no account and anyone who can open the link on this machine can use it. Only do that when you are the only person on the machine.
 
@@ -59,22 +59,22 @@ Under **3. AI provider (brain)**, pick one of three cards:
 | Choice | Text on the card | What it needs |
 |---|---|---|
 | **🧠 Claude Code** (preselected) | "Sign in with a Claude subscription → full MCP, skills, file read/write, self-improvement loops. The strongest, most complete option." | One sign-in with a Claude subscription (no API key) |
-| **💬 ChatGPT (subscription)** | "Sign in with ChatGPT Plus/Pro (through Codex) → still reaches every SenOS MCP." | Sign in to ChatGPT on the Models page |
-| **🌐 OpenRouter** | "Many cheap models in one place, still with full SenOS MCP + skills + brain file access. Only needs an API key - no sign-in." | Paste an OpenRouter API key (now or later on Models) |
+| **💬 ChatGPT (subscription)** | "Sign in with ChatGPT Plus/Pro (through Codex) → still reaches every SenOS MCP." | Sign in to ChatGPT on the AI models page |
+| **🌐 OpenRouter** | "Many cheap models in one place, still with full SenOS MCP + skills + brain file access. Only needs an API key - no sign-in." | Paste an OpenRouter API key (now or later on AI models) |
 
-Any of the three gives you a fully capable SenOS: all of them reach the connection store (MCP), read and write files in the brain, run skills, queue work and create loops. The only difference is **running shell commands**, which only the CLI engines (Claude Code, Codex, Antigravity CLI) can do. The wizard shows three cards for brevity; the **Models** page also has OpenAI API, Google Gemini, Anthropic API, Groq and Ollama, and you can change at any time.
+Any of the three gives you a fully capable SenOS: all of them reach the connection store (MCP), read and write files in the brain, run skills, queue work and create loops. The only difference is **running shell commands**, which only the CLI engines (Claude Code, Codex, Antigravity CLI) can do. The wizard shows three cards for brevity; the **AI models** page also has OpenAI API, Google Gemini, Anthropic API, Groq and Ollama, and you can change at any time.
 
-Pick **OpenRouter** and an **OpenRouter API key** box appears - paste the key now or leave it empty and paste it later on the Models page. Below the list is a hint line that changes with your choice; picking ChatGPT, for example, suggests "Once inside: **Models** → sign in to ChatGPT".
+Pick **OpenRouter** and an **OpenRouter API key** box appears - paste the key now or leave it empty and paste it later on the AI models page. Below the list is a hint line that changes with your choice; picking ChatGPT, for example, suggests "Once inside: **AI models** → sign in to ChatGPT".
 
 The last section is **4. Timezone**, preselected from the timezone of the device you opened it on (since 0.443.0). SenOS uses it for today, yesterday and tomorrow, to time reminders, and to set the date range when it pulls report numbers. On a VPS the server clock is usually UTC, so check that this box matches where you actually live. The line underneath shows the time there now so you can compare.
 
-Press **Start using SenOS →** to save and enter the app. The wizard also sets a default model for the provider you chose: `sonnet` for Claude Code, `gpt-5.5` for ChatGPT, `openai/gpt-4o-mini` for OpenRouter. Change it on the Models page whenever you like.
+Press **Start using SenOS →** to save and enter the app. The wizard also sets a default model for the provider you chose: `sonnet` for Claude Code, `gpt-5.5` for ChatGPT, `openai/gpt-4o-mini` for OpenRouter. Change it on the AI models page whenever you like.
 
 ### Step 5: Sign in to Claude as the brain
 
-This is the important step if you chose Claude Code. The wizard only saves the provider choice; signing in to Claude happens on the **Models** page (**Connections** group):
+This is the important step if you chose Claude Code. The wizard only saves the provider choice; signing in to Claude happens on the **AI models** page (**Admin** group):
 
-1. Open **Models** on the left rail.
+1. Open **AI models** on the rail.
 2. Find the **Claude Code** card. It starts at "○ Not signed in".
 3. Press **Sign in to Claude**.
 4. SenOS shows a link. Open it (in a new tab) and sign in at claude.ai.
@@ -89,7 +89,7 @@ The SenOS Claude engine runs through the **Claude Agent SDK**, but the SDK still
 
 ### Step 6: Choose the main model and the background-work model
 
-Once signed in, check and choose models on the **Models** page:
+Once signed in, check and choose models on the **AI models** page:
 
 - **◆ Main Model** shows the model used for conversations. Press **Change model ▾** to pick another.
 - **◆ Providers** lists all providers: Claude Code, OpenAI OAuth (ChatGPT), xAI Grok Build CLI, Google Antigravity CLI, OpenRouter, Anthropic (API), OpenAI (ChatGPT API), Google Gemini (API), Groq (API) and Ollama Cloud. Cards that need a key have a key box and **Connect** / **Change key** / **Disconnect** buttons.
@@ -100,13 +100,13 @@ Background work runs on API providers too, not just Claude. The real difference 
 
 Full detail on each provider and model: [Models & engines](../10-models-va-engine.md).
 
-## The Settings page: five tabs
+## The Preferences page: five tabs
 
-Open **Settings** (**System** group on the rail). The page has five tabs: **General**, **Voice**, **Mascot**, **Usage**, **Updates**. Share links and Account remain separate System menu items. On a phone, swipe the tab row horizontally to reach the remaining tabs.
+Open **Preferences** (**Admin** group on the rail). The page has five tabs: **General**, **Voice**, **Lotus buddy**, **Quota**, **Releases**. Public links and Profile remain separate Admin menu items. On a phone, swipe the tab row horizontally to reach the remaining tabs.
 
 ### General tab: System
 
-Subtitle: "Current status and shortcuts into the deeper groups". Four status boxes:
+Subtitle: "Current status and shortcuts to the deeper sections". Four status boxes:
 
 | Box | Tells you |
 |---|---|
@@ -115,7 +115,7 @@ Subtitle: "Current status and shortcuts into the deeper groups". Four status box
 | **Workspace** | The workspace name you set in the wizard |
 | **Telegram** | "On" or "Off" (see [Telegram](../11-telegram.md)) |
 
-Below are two shortcuts: **Models** and **Channels**.
+Below are two shortcuts: **AI models** and **Control channels**.
 
 ### General tab: Interface & Brain
 
@@ -126,7 +126,7 @@ Subtitle: "Graph performance and data structure". Three cards.
 - Press **Turn graph off** to cut load to a minimum; while off, the button becomes **Turn graph on**.
 - On a narrow screen (under 860px, i.e. a phone), SenOS enters light mode automatically: the graph stops even with the switch on. The app still opens on the SenOS screen as it does on a desktop - that screen already has the chat box, it simply does not draw the brain canvas.
 
-Graph detail: [Knowledge graph](../03-do-thi-tri-thuc.md).
+Graph detail: [Knowledge map](../03-do-thi-tri-thuc.md).
 
 **The Normalise brain card** collects the `agents`, `workflows`, `memory` and `skills` folders of the selected brain into one flat structure. Press **Normalise the selected brain** to run it.
 
@@ -147,7 +147,7 @@ The **Language and timezone** block has two boxes: interface language and **Time
 The **Voice** tab is a single card for voice calls, and every field saves itself at once; there is no Save button. Interface language, avatar and domain settings live in **General**:
 
 - The **Using** line: the call path in use (ChatGPT Live, Live with an API key or Basic), plus the reason and what to do when SenOS had to fall back to a lower path.
-- **SenOS's voice**: the voice list for the call path; picking a voice also picks the provider (Edge, OpenAI or ElevenLabs), with a **▶ Preview** button. OpenAI voices need an OpenAI API key on the **Models** page.
+- **SenOS's voice**: the voice list for the call path; picking a voice also picks the provider (Edge, OpenAI or ElevenLabs), with a **▶ Preview** button. OpenAI voices need an OpenAI API key on the **AI models** page.
 - **Advanced**, with **Call path**, **Quick-reply brain** and its **Model** (Basic path only), **Speaking rate** (Basic path only), and the ElevenLabs API key and Voice ID (only when the ElevenLabs voice is picked). The listening language follows the interface language.
 - **AVATAR**: **Upload an image** or **Restore default**.
 - **DOMAIN & SSL**: enter a domain, press **Save & check**, watch the `DNS:` and `SSL:` labels, then **Enable SSL** or **Re-check**.
@@ -172,7 +172,7 @@ For the Second Brain (memory, Wiki, vault structure), see [Second Brain: memory,
 
 ## Updating the version
 
-This lives under **System → Settings → Updates**. The SenOS panel at the top shows the running version and whether a newer one exists on GitHub.
+This lives under **Admin → Preferences → Releases**. The SenOS panel at the top shows the running version and whether a newer one exists on GitHub.
 
 - A new version: "🆕 New version **v...** available (running v...)" with an environment label (`Windows`, `Linux`, `macOS` or `Docker / VPS`), and a "What's new" block listing up to the two most recent releases.
 - Already current: "✅ Running the latest version (v...)".
@@ -204,7 +204,7 @@ Reload the page and the button appears. If you would rather go without Watchtowe
 
 **Want SenOS to update itself with no button at all:** add `SENOS_AUTO_UPDATE=true` to `.env` (Hostinger: the Environment box) and bring the stack up again. It is off by default on purpose: auto-updating means the app restarts itself whenever a new version lands, cutting across background work. The default cadence is 24 hours, changed with `SENOS_AUTO_UPDATE_INTERVAL` (seconds).
 
-The Updates panel distinguishes these cases and prints the right procedure for your machine.
+The Releases panel distinguishes these cases and prints the right procedure for your machine.
 
 ### The six-step progress bar
 
@@ -230,45 +230,45 @@ When SenOS runs publicly (listening on `0.0.0.0`, i.e. VPS/Docker/Hostinger) wit
 
 - **Recommended:** set the environment variables `SENOS_ADMIN_USER` and `SENOS_ADMIN_PASSWORD` at deploy time (`install.sh` already asks for both). SenOS creates the admin at startup and opening the app gives you a sign-in screen, with no gap at all. Details: [.env configuration](../16-cau-hinh-env.md).
 - **Without the env vars:** open the app and create the account right after deploying; do not leave a public server without an admin.
-- **After the first sign-in:** turn on two-factor authentication (2FA) on the **Account** page. See [Security & accounts](../14-bao-mat-tai-khoan.md).
+- **After the first sign-in:** turn on two-factor authentication (2FA) on the **Profile** page. See [Security & accounts](../14-bao-mat-tai-khoan.md).
 
 ## Quick reference: buttons and states
 
 | Button / label | Where | What it does |
 |---|---|---|
 | **Start using SenOS →** | Wizard | Saves the workspace, account and provider, then enters the app |
-| **Sign in to Claude** | Models, Claude Code card | Starts the device-code flow and shows the claude.ai link |
-| **Send code** | Models, after pressing Sign in to Claude | Submits the code taken from claude.ai |
-| **↻ Re-check** | Models, Claude Code card | Reloads the sign-in status |
-| **Disconnect** | Models | Signs the provider out of SenOS |
-| **Change model ▾** | Models, Main Model and Background-work model | Opens the model picker |
-| **Reset to default** | Models, Background-work model | Returns background work to the Claude Code default |
-| "○ Not signed in" / "● Connected" | Models | Provider status |
-| **Turn graph on** / **Turn graph off** | Settings, Brain graph card | Enables or disables the knowledge graph |
-| **Normalise the selected brain** | Settings, Normalise brain card | Flattens the brain folder structure |
-| **Keep the mark** / **Strip the mark** | Settings, AI image provenance card | Toggles the C2PA mark on generated images |
-| **Enable auto-start** / **Disable auto-start** | Settings, Start with Windows | Runs SenOS in the background at Windows sign-in |
-| **Re-check** | Updates | Compares the version against GitHub |
-| **⬆ Update now** | Updates (only when self-update is possible) | Runs the six-step update, then reloads |
+| **Sign in to Claude** | AI models, Claude Code card | Starts the device-code flow and shows the claude.ai link |
+| **Send code** | AI models, after pressing Sign in to Claude | Submits the code taken from claude.ai |
+| **↻ Re-check** | AI models, Claude Code card | Reloads the sign-in status |
+| **Disconnect** | AI models | Signs the provider out of SenOS |
+| **Change model ▾** | AI models, Main Model and Background-work model | Opens the model picker |
+| **Reset to default** | AI models, Background-work model | Returns background work to the Claude Code default |
+| "○ Not signed in" / "● Connected" | AI models | Provider status |
+| **Turn graph on** / **Turn graph off** | Preferences, Brain graph card | Enables or disables the knowledge graph |
+| **Normalise the selected brain** | Preferences, Normalise brain card | Flattens the brain folder structure |
+| **Keep the mark** / **Strip the mark** | Preferences, AI image provenance card | Toggles the C2PA mark on generated images |
+| **Enable auto-start** / **Disable auto-start** | Preferences, Start with Windows | Runs SenOS in the background at Windows sign-in |
+| **Re-check** | Releases | Compares the version against GitHub |
+| **⬆ Update now** | Releases (only when self-update is possible) | Runs the six-step update, then reloads |
 
 ## Tips
 
-- If you only run this on a personal machine and are not worried about strangers, leave the wizard password empty for a fast entry. You can set one later on the **Account** page.
-- If the app reports Claude is not signed in after you get in, go back to **Models** and press **Sign in to Claude** once.
-- Avatar and domain live under **Settings → General**; voice and speed under **Settings → Voice**.
+- If you only run this on a personal machine and are not worried about strangers, leave the wizard password empty for a fast entry. You can set one later on the **Profile** page.
+- If the app reports Claude is not signed in after you get in, go back to **AI models** and press **Sign in to Claude** once.
+- Avatar and domain live under **Preferences → General**; voice and speed under **Preferences → Voice**.
 - If the interface does not change after a version update, press Ctrl+Shift+R for a clean reload.
-- Pick a cheap **Background-work model** from the start: loops, Kanban work, reminders, self-learning and source ingestion run a lot, and leaving them on an expensive model burns quota fast. Watch the real figures on the [Usage](../23-muc-dung-token.md) page.
+- Pick a cheap **Background-work model** from the start: loops, Kanban work, reminders, self-learning and source ingestion run a lot, and leaving them on an expensive model burns quota fast. Watch the real figures on the [Quota](../23-muc-dung-token.md) page.
 
 ## Common problems
 
 - **"Password must be at least 8 characters":** use a password of 8 characters or more.
 - **"An account already exists - please sign in":** an admin was created earlier (through env vars, for instance). Use the sign-in screen with those credentials.
-- **Claude reports it is not signed in:** go to **Models**, press **Sign in to Claude**, open the link, paste the code if asked. Or run `claude auth login --claudeai` in the server terminal.
-- **Forgot the admin password:** press "Forgot password?" on the sign-in screen for instructions. On Windows double-click `reset-auth.bat` in the SenOS install folder (Mac: `reset-auth.command`): the old password is gone, open SenOS again and set a new one on the Account page. On a server change `SENOS_ADMIN_PASSWORD` and restart. See [Security & accounts](../14-bao-mat-tai-khoan.md).
+- **Claude reports it is not signed in:** go to **AI models**, press **Sign in to Claude**, open the link, paste the code if asked. Or run `claude auth login --claudeai` in the server terminal.
+- **Forgot the admin password:** press "Forgot password?" on the sign-in screen for instructions. On Windows double-click `reset-auth.bat` in the SenOS install folder (Mac: `reset-auth.command`): the old password is gone, open SenOS again and set a new one on the Profile page. On a server change `SENOS_ADMIN_PASSWORD` and restart. See [Security & accounts](../14-bao-mat-tai-khoan.md).
 - **Too many failed sign-ins, "Too many attempts":** SenOS locks temporarily to stop password guessing. Wait a few minutes and try again.
 - **Update says "Already updating, hold on.":** another update is in flight. Wait for it to finish and try again.
 - **Docker/VPS says the Docker image is still being packaged:** the new version was just released and its image is usually ready 2 to 5 minutes later. Try again in a few minutes. If Watchtower finishes without replacing the version, the page shows why and the button works again right away.
-- **No "⬆ Update now" button:** you are on Docker without Watchtower running, which since 0.55.56 means the stack was built from an older compose file. The Updates panel says exactly what your machine is missing. On a self-managed VPS, fetch the current `docker-compose.yml` and run `docker compose up -d --pull always`; on Hostinger, hit Redeploy in Docker Manager. Sticking with the old file? `docker compose --profile update up -d` starts Watchtower on its own.
+- **No "⬆ Update now" button:** you are on Docker without Watchtower running, which since 0.55.56 means the stack was built from an older compose file. The Releases panel says exactly what your machine is missing. On a self-managed VPS, fetch the current `docker-compose.yml` and run `docker compose up -d --pull always`; on Hostinger, hit Redeploy in Docker Manager. Sticking with the old file? `docker compose --profile update up -d` starts Watchtower on its own.
 - **The port is right but nothing loads:** check that the address really is `http://localhost:7777` (or the VPS IP with port 7777). If you just changed code, restart the server and try again.
 
 Still stuck? See [Troubleshooting & FAQ](../17-khac-phuc-su-co.md).
@@ -277,7 +277,7 @@ Still stuck? See [Troubleshooting & FAQ](../17-khac-phuc-su-co.md).
 
 - [Chat & voice](../02-tro-chuyen-va-giong-noi.md) - the first thing to do once setup is done.
 - [Models & engines](../10-models-va-engine.md) - every provider in detail and how to change model.
-- [Connections & business data](../09-mcp-va-so-lieu.md) - wire data sources into the **Connections** page.
+- [Connections & business data](../09-mcp-va-so-lieu.md) - wire data sources into the **Apps** page.
 - [Plugins](../20-plugins.md) - add native tools for every engine.
 - [Work / Kanban](../21-viec-kanban.md) - hand over one-off background work.
 - [Recurring jobs & reminders](../08-viec-dinh-ky.md) - repeating work and clock-time reminders.

@@ -28,13 +28,13 @@ Ba thứ này hay bị lẫn. Phân biệt bằng câu hỏi "cái đang thiếu
 |---|---|---|
 | SenOS chưa biết **cách làm** một loại việc theo chuẩn của bạn | **Skill** | Một file `SKILL.md` chứa hướng dẫn. Không chạy mã, chỉ dạy AI làm đúng quy trình. Xem [Skills](06-skills.md). |
 | Cần một **hành động thật** bằng Python (tính toán, biến đổi dữ liệu, gọi một API đơn giản, đọc/ghi file theo luật riêng) mà chưa có nguồn nào phủ | **Plugin** | Mã Python chạy thật, thêm tool/hook cho mọi engine. |
-| Cần **nguồn dữ liệu ngoài** đã có server sẵn (POS, quảng cáo, lịch, email, ghi chú...) | **Kết nối (MCP)** | Đấu server có sẵn ở trang Kết nối, không phải viết mã. Xem [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md). |
+| Cần **nguồn dữ liệu ngoài** đã có server sẵn (POS, quảng cáo, lịch, email, ghi chú...) | **Kết nối (MCP)** | Đấu server có sẵn ở trang Ứng dụng, không phải viết mã. Xem [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md). |
 
 Nói ngắn: skill là **tri thức cách làm**, plugin là **mã chạy thật**, MCP là **nguồn dữ liệu có sẵn**. Nếu việc bạn cần đã có MCP thì đừng viết plugin.
 
 ## Mở ở đâu trong SenOS
 
-Mở dashboard (mặc định tại cổng 7777), nhìn thanh điều hướng bên trái, bấm nhóm **Năng lực** để mở ra, rồi bấm mục **Plugins**. Đầu trang hiện tiêu đề **Plugins** kèm dòng phụ "Tool/hook native cho mọi engine".
+Mở dashboard (mặc định tại cổng 7777), nhìn thanh điều hướng bên trái, bấm nhóm **Đội ngũ AI** để mở ra, rồi bấm mục **Tiện ích**. Đầu trang hiện tiêu đề **Tiện ích** kèm dòng phụ "Tool/hook native cho mọi engine".
 
 Ngay dưới tiêu đề là ba khối giới thiệu:
 
@@ -76,7 +76,7 @@ Thẻ của plugin không chạy sẽ hiển thị mờ đi. Nếu plugin lỗi,
 
 ### Bước 1: Xem plugin nào đang chạy
 
-Vào **Năng lực > Plugins**. Nhìn cột trạng thái bên phải mỗi thẻ. Chỉ những thẻ ghi **● đang chạy** mới thực sự có tool bơm ra cho engine. Thẻ mờ là không dùng được lúc này.
+Vào **Đội ngũ AI > Tiện ích**. Nhìn cột trạng thái bên phải mỗi thẻ. Chỉ những thẻ ghi **● đang chạy** mới thực sự có tool bơm ra cho engine. Thẻ mờ là không dùng được lúc này.
 
 ### Bước 2: Bật hoặc tắt một plugin
 
@@ -104,7 +104,7 @@ Nếu tool bị chặn vì mức quyền, câu trả lời sẽ chứa nguyên v
 
 | Tên trên thẻ | slug | Tool cung cấp | Quyền tối thiểu | Mặc định |
 |---|---|---|---|---|
-| Thời gian & ngày (múi giờ chọn ở Cài đặt) | `datetime-vn` | `senos_now`, `senos_date_add` | chỉ đọc | Bật |
+| Thời gian & ngày (múi giờ chọn ở Thiết lập) | `datetime-vn` | `senos_now`, `senos_date_add` | chỉ đọc | Bật |
 | Đặt việc định kỳ & nhắc hẹn | `senos-schedule` | `senos_schedule` | ghi (safe) | Bật |
 | Giao việc Kanban | `senos-task` | `senos_task` | ghi (safe) | Bật |
 | Quản lý nhóm chat | `senos-team` | `senos_team` | ghi (safe), chỉ chủ | Bật |
@@ -119,8 +119,8 @@ Từng cái làm được gì:
 
 - **Giao việc Kanban**: giao một việc nền vào hàng đợi ngay từ chat (`op=add`) và xem việc đang chạy tới đâu (`op=list`). Có từ 0.17.1. Trước đó đường duy nhất để giao việc là `POST /kanban/task`, mà gọi được nó thì phải chạy được lệnh máy - nên chỉ Claude Code với Codex làm được, dù tài liệu vẫn hứa mọi bộ não đều làm được. Tool này gọi thẳng vào hàng đợi in-process, không mở thêm cửa HTTP nào. Mặc định giao việc ở mức `full` (tự thao tác ra ngoài như lúc chat); nói rõ nếu muốn việc chỉ ghi nháp (`auto`) hay chỉ đọc (`suggest`). Trước 0.55.62 tool này từ chối mức full và mặc định `suggest`. Chuyển cột, duyệt việc chờ phê duyệt vẫn làm ở trang Việc; huỷ việc thì làm được ngay trong chat (`op=cancel`). Từ 0.107.0 nhận thêm `route`: `auto` (một worker chung làm) hoặc `wf:<slug>` để chạy đúng một quy trình có thật; slug sai bị từ chối, còn route auto mà tên việc nhắc tới một quy trình có thật thì tool cảnh báo.
 - **Quản lý nhóm chat**: nhờ SenOS ngay trong chat tạo nhóm chat, đổi tên, thêm bớt trợ lý, chọn trưởng nhóm, lưu trữ hay xoá nhóm, và tạo trợ lý mới với model riêng rồi ghép vào nhóm trong một lần ("tạo nhóm thử gồm ba trợ lý, mỗi người một model"). Có từ 0.173.0. Tool gọi thẳng cùng bộ thao tác mà trang Nhóm dùng, nên luật y như bấm tay. Xoá chỉ nhận nhóm đã lưu trữ và chỉ khi bạn nói rõ là xoá; file trợ lý không bị xoá theo. Bot chăm khách không thấy tool này. Từ 0.357.0 tool còn **giao một việc cho Team có sẵn** (op `dispatch`) và đọc lại trạng thái, nghiệm thu của việc (op `job`); kết quả tự báo về khung chat đã giao.
-- **Đấu thêm MCP**: nhờ SenOS ngay trong chat đấu một nguồn MCP mới, và nó **hiện ra trang Kết nối** ở khu "Đã kết nối" như tài khoản bạn tự thêm bằng tay, dùng chung cho mọi bộ não. Trước plugin này SenOS không có đường nào ghi vào kho kết nối, nên nó chỉ còn cách chạy `claude mcp add` - server đó rơi vào cấu hình riêng của Claude Code, sáu bộ não còn lại không thấy, và trên trang Kết nối nó không nằm ở khu "Đã kết nối" mà lọt xuống khu gập "Kết nối sẵn của Claude Code và Codex" (mặc định đóng), nên nhìn vào tưởng như chẳng có gì được thêm. Ba rào an toàn: mức quyền mặc định là **chỉ đọc** (muốn cho ghi thì bạn tự nâng ở trang Kết nối); nguồn chạy bằng **lệnh trên máy** (stdio) được thêm ở trạng thái **tắt** để bạn tự đọc lệnh rồi mới bật; dịch vụ đã có sẵn trong Kho kết nối (Gmail, Lịch, POS...) thì SenOS chỉ tay sang đúng card chứ không đẻ một bản tự khai song song. Thử kết nối hỏng thì mục đó **vẫn nằm lại** trang Kết nối kèm lý do, chứ không biến mất im lặng.
-- **Zalo mở rộng (gói `javis.zalo` trên SenOS Store)**: từ 0.73.0 các tool Zalo bù chỗ MCP chuẩn còn thiếu không còn đi sẵn trong app nữa, để ai không dùng Zalo thì không phải mang theo. Gói gồm gửi ảnh và file (`zalo_send_image`), tag đúng người, ghi chú, nhắc hẹn, poll trong nhóm (`zalo_group_members`, `zalo_send_mention`, `zalo_create_note`, `zalo_create_reminder`, `zalo_create_poll`) và đọc ảnh trong nhóm (`zalo_read_images`). Quét QR Zalo xong là SenOS mời cài; máy đã dùng Zalo từ trước thì trang Kết nối hiện nút cài. Chi tiết ở [Zalo](12-zalo.md).
+- **Đấu thêm MCP**: nhờ SenOS ngay trong chat đấu một nguồn MCP mới, và nó **hiện ra trang Ứng dụng** ở khu "Đã kết nối" như tài khoản bạn tự thêm bằng tay, dùng chung cho mọi bộ não. Trước plugin này SenOS không có đường nào ghi vào kho kết nối, nên nó chỉ còn cách chạy `claude mcp add` - server đó rơi vào cấu hình riêng của Claude Code, sáu bộ não còn lại không thấy, và trên trang Kết nối nó không nằm ở khu "Đã kết nối" mà lọt xuống khu gập "Kết nối sẵn của Claude Code và Codex" (mặc định đóng), nên nhìn vào tưởng như chẳng có gì được thêm. Ba rào an toàn: mức quyền mặc định là **chỉ đọc** (muốn cho ghi thì bạn tự nâng ở trang Kết nối); nguồn chạy bằng **lệnh trên máy** (stdio) được thêm ở trạng thái **tắt** để bạn tự đọc lệnh rồi mới bật; dịch vụ đã có sẵn trong Kho kết nối (Gmail, Lịch, POS...) thì SenOS chỉ tay sang đúng card chứ không đẻ một bản tự khai song song. Thử kết nối hỏng thì mục đó **vẫn nằm lại** trang Kết nối kèm lý do, chứ không biến mất im lặng.
+- **Zalo mở rộng (gói `senos.zalo` trên Chợ Sen)**: từ 0.73.0 các tool Zalo bù chỗ MCP chuẩn còn thiếu không còn đi sẵn trong app nữa, để ai không dùng Zalo thì không phải mang theo. Gói gồm gửi ảnh và file (`zalo_send_image`), tag đúng người, ghi chú, nhắc hẹn, poll trong nhóm (`zalo_group_members`, `zalo_send_mention`, `zalo_create_note`, `zalo_create_reminder`, `zalo_create_poll`) và đọc ảnh trong nhóm (`zalo_read_images`). Quét QR Zalo xong là SenOS mời cài; máy đã dùng Zalo từ trước thì trang Kết nối hiện nút cài. Chi tiết ở [Zalo](12-zalo.md).
 - **Thời gian & ngày (VN)**: cho SenOS biết hôm nay là ngày nào, mấy giờ, thứ mấy theo giờ Việt Nam (UTC+7), và tính ngày tương đối ("3 ngày nữa", "tuần trước"). Thuần thư viện chuẩn, không cần mạng. Đây cũng là plugin mẫu đơn giản nhất để đọc khi bạn muốn tự viết plugin.
 - **Đặt việc định kỳ & nhắc hẹn**: cho phép tạo, liệt kê, huỷ việc định kỳ và nhắc hẹn **ngay trong câu chat**, khỏi gõ YAML tay. Việc lặp và bền được ghi ra `SenOS/loops/<slug>.md` (mở sửa được trong Obsidian); nhắc một lần hoặc lịch cron thì vào kho nhắc hẹn. Chi tiết ở [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md).
 - **Tạo ảnh (ChatGPT)**: tạo ảnh từ mô tả bằng chính **gói ChatGPT** bạn đang đăng nhập (OAuth), không cần khoá API OpenAI. Ảnh lưu vào `attachments/` của brain rồi nhúng thẳng vào câu trả lời. Cần đã kết nối ChatGPT ở trang **Models**; chưa kết nối thì tool trả về câu "Chưa kết nối ChatGPT (OAuth). Vào trang Model đăng nhập ChatGPT rồi thử lại...".
@@ -129,18 +129,18 @@ Từng cái làm được gì:
 - **Gửi tin Zalo an toàn**: gửi tin Zalo thay cho tool thô. Nó khoá cứng vào tài khoản đang nghe và chỉ gửi được cho cuộc chat trong danh sách đang theo dõi; tên khớp nhiều người thì từ chối và bắt hỏi lại. Hai plugin Zalo dùng chung với [Kênh Zalo](12-zalo.md).
 - **Meta Ads (Graph API)**: đọc số liệu quảng cáo Facebook/Instagram (danh sách tài khoản ads, chiến dịch, hiệu suất). **Chỉ đọc, không tiêu tiền.** Cần đã đấu kết nối "Meta Ads (Facebook & Instagram)" ở trang Kết nối.
 - **Facebook Trang (Graph API)**: quản lý Trang/Fanpage. Đọc danh sách Trang, bài và bình luận là chỉ-đọc; đăng bài, đăng ảnh, đăng album, đăng video, sửa chữ, xoá bài, trả lời bình luận là hành động **thật, công khai** và cần mức toàn quyền. Dùng Fanpage đã nối ở thẻ Facebook Messenger trang Kết nối (hoặc kết nối "Facebook Trang" trong Kho nếu đã cài từ trước).
-- **Theo dõi Facebook (Apify)** không còn nằm sẵn trong SenOS (từ 12/11/2026): tool `fb_monitor` đi cùng gói **Theo dõi Facebook (Apify)** trong Kho cài đặt. Đã cài gói đó từ trước thì bấm cập nhật gói là có lại; chưa cài thì cài gói rồi dán Personal API token của apify.com ở trang Kết nối.
+- **Theo dõi Facebook (Apify)** không còn nằm sẵn trong SenOS (từ 12/11/2026): tool `fb_monitor` đi cùng gói **Theo dõi Facebook (Apify)** trong Chợ Sen. Đã cài gói đó từ trước thì bấm cập nhật gói là có lại; chưa cài thì cài gói rồi dán Personal API token của apify.com ở trang Kết nối.
 - **Nhật ký dùng tool**: đếm số lần **mỗi** tool được engine gọi (qua hook `post_tool_call`) rồi cho xem thống kê tool hay dùng nhất. Đây là ví dụ minh hoạ cơ chế hook, nên mặc định để tắt; bật ở trang Plugins, chat vài lượt có gọi tool, rồi hỏi SenOS "tool nào hay dùng nhất".
 
 Lưu ý về cột "Quyền tối thiểu": đó là mức khai báo cho **cả plugin** và là cái hiển thị trên thẻ. Từng tool bên trong vẫn có mức riêng. Ví dụ `meta-pages-graph` ghi "toàn quyền" trên thẻ, nhưng ba tool đọc bài/bình luận của nó chỉ cần mức chỉ-đọc, còn các tool đăng và xoá mới cần toàn quyền.
 
 ## Plugin đến từ một Gói
 
-Từ 0.55.23, một **Gói** cài ở trang **Năng lực > Kho cài đặt** mang theo được cả plugin, tức cả công cụ mới, chứ không chỉ dịch vụ kết nối. Thẻ của chúng hiện ở trang này với nhãn nguồn **Từ gói**.
+Từ 0.55.23, một **Gói** cài ở trang **Chợ Sen** (nhóm **Cổng kết nối**) mang theo được cả plugin, tức cả công cụ mới, chứ không chỉ dịch vụ kết nối. Thẻ của chúng hiện ở trang này với nhãn nguồn **Từ gói**.
 
 Khác ba nguồn kia ở ba điểm:
 
-- **Bật, tắt và gỡ đều làm ở Kho cài đặt**, không làm ở đây. Plugin đi theo cả gói, nên tách ra bật lẻ chỉ gây nhầm. Thẻ ở trang này có nút dẫn thẳng sang đó.
+- **Bật, tắt và gỡ đều làm ở Chợ Sen**, không làm ở đây. Plugin đi theo cả gói, nên tách ra bật lẻ chỉ gây nhầm. Thẻ ở trang này có nút dẫn thẳng sang đó.
 - **Biến môi trường `SENOS_ENABLE_USER_PLUGINS` không áp cho gói.** Gói đi qua trình cài, tức bạn đã xem màn hình liệt kê từng tệp mã rồi mới bấm đồng ý, và chữ ký mã được đối chiếu mỗi lần nạp.
 - **Mã trong gói bị khoá theo nội dung.** Lúc cài, SenOS ghi lại một dấu vân tay của toàn bộ mã trong gói. Mỗi lần nạp, nó tính lại và đối chiếu: lệch một byte là plugin **không chạy**, và thẻ nói rõ "mã trong gói đã đổi so với lúc bạn đồng ý cài". Muốn dùng tiếp thì cài lại ở Kho cài đặt để xem và xác nhận lại.
 
@@ -174,7 +174,7 @@ Khung chat bạn gõ tay chạy ở mức đầy đủ nên gọi được cả 
 
 Có hai chỗ, tuỳ bạn muốn plugin dùng chung hay dùng riêng:
 
-- **Toàn cục** (khuyên dùng): `<SENOS_STATE_DIR>/plugins/<slug>/`. Mọi brain đều thấy plugin này, và mọi engine đều gọi được. Đường dẫn thật đang hiện sẵn ở dòng chỉ đường trên trang Plugins, cứ sao chép từ đó. Mặc định `SENOS_STATE_DIR` là thư mục `server/` của dự án; trên Docker/VPS thường là `/data/state`.
+- **Toàn cục** (khuyên dùng): `<SENOS_STATE_DIR>/plugins/<slug>/`. Mọi brain đều thấy plugin này, và mọi engine đều gọi được. Đường dẫn thật đang hiện sẵn ở dòng chỉ đường trên trang Tiện ích, cứ sao chép từ đó. Mặc định `SENOS_STATE_DIR` là thư mục `server/` của dự án; trên Docker/VPS thường là `/data/state`.
 - **Riêng một brain**: `<brain>/plugins/<slug>/`. Chỉ brain đó dùng được. Hợp khi plugin gắn chặt với dữ liệu của một brain cụ thể.
 
 `<slug>` là tên thư mục, phải là chữ thường ASCII không dấu, bắt đầu bằng chữ hoặc số, chỉ chứa chữ số, dấu chấm, gạch dưới, gạch nối. Sai kiểu chữ thì SenOS bỏ qua plugin và báo "slug không hợp lệ".
@@ -252,7 +252,7 @@ Bạn không cần tự gõ hai file. Mở khung trò chuyện và nói thẳng,
 
 SenOS sẽ tự chọn loại năng lực phù hợp trước (nếu chỉ cần hướng dẫn thì nó tạo skill, nếu là nguồn dữ liệu có sẵn thì nó khuyên đấu MCP), kiểm tra trùng với những gì brain đã có, rồi mới ghi thư mục plugin. Khi tạo xong nó báo lại tên file và nhắc bạn rằng plugin đang tắt cùng cách mở khoá biến môi trường.
 
-Sau đó bạn tự làm 3 việc: mở `plugin.py` đọc lại mã (dùng trang **Tệp tin** nếu plugin nằm trong brain), đặt biến môi trường nếu chưa có, rồi vào **Plugins** bấm **Bật**.
+Sau đó bạn tự làm 3 việc: mở `plugin.py` đọc lại mã (dùng trang **Tài liệu** nếu plugin nằm trong brain), đặt biến môi trường nếu chưa có, rồi vào **Tiện ích** bấm **Bật**.
 
 ## Hook: chạy quanh mỗi lần gọi tool
 
@@ -309,7 +309,7 @@ Plugin dùng hook này vẫn chịu đúng rào chung: plugin người dùng t�
 
 ## Trang riêng và đường HTTP (từ 0.64.26)
 
-Plugin mở được đường web của riêng nó, dưới `/ext/<slug>/`. Dùng cho trang cài đặt, hoặc cho dịch vụ bên ngoài gọi vào (webhook, cửa OAuth). Gói **SenOS Gate** (`javis.gate`) trong kho là ví dụ chạy thật.
+Plugin mở được đường web của riêng nó, dưới `/ext/<slug>/`. Dùng cho trang cài đặt, hoặc cho dịch vụ bên ngoài gọi vào (webhook, cửa OAuth). Gói **SenOS Gate** (`senos.gate`) trong kho là ví dụ chạy thật.
 
 ```python
 def register(ctx):
@@ -328,7 +328,7 @@ def register(ctx):
 
 ## SenOS Gate: AI bên ngoài nhắn vào khung chat (từ 0.440.0)
 
-Gói **SenOS Gate** (`javis.gate`) mở cửa MCP có OAuth cho ChatGPT, Claude và AI khác. Ngoài bộ công
+Gói **SenOS Gate** (`senos.gate`) mở cửa MCP có OAuth cho ChatGPT, Claude và AI khác. Ngoài bộ công
 cụ SenOS đã có, cửa này có thêm năm công cụ chỉ AI bên ngoài thấy (`server/chat_bridge.py`):
 
 | Công cụ | Việc | Mức quyền |
@@ -344,7 +344,7 @@ cụ SenOS đã có, cửa này có thêm năm công cụ chỉ AI bên ngoài t
   đang mở, có nút Dừng, lưu vào Lịch sử, ghi `memory/conversations` và vào vòng tự học. Bong bóng
   tin mang nhãn **từ ChatGPT** hay **từ Claude**.
 - **Hội thoại đang trả lời** thì tin thành tin gõ thêm, như khi chủ gõ thêm lúc SenOS đang làm.
-- **Chỉ hội thoại của chủ** (khung Trò chuyện, chat với Cộng sự). Hội thoại của khách và nhóm chat thì
+- **Chỉ hội thoại của chủ** (khung Hội thoại, chat với Cộng sự). Hội thoại của khách và nhóm chat thì
   không đọc, không nhắn được.
 - **Ghi chép không chạy SenOS:** `senos_chat_note` chỉ lưu, không tốn hạn mức bộ não của SenOS, nhưng đi
   qua đúng đường lưu lượt chat nên vẫn vào Lịch sử, nhật ký và vòng tự học. Mỗi cuộc chat bên ngoài có một
@@ -373,12 +373,12 @@ Sync không?". Anh trả lời đồng ý là nó tự gọi tool `senos_sync_se
 gõ lệnh, không phải chép token. Muốn bật lúc khác thì nhắn nó "bật SenOS Sync".
 
 - Tool đó tạo một token loại **chỉ lưu hội thoại**: chỉ vào được đúng `/chat/external`, không chạy được lượt chat nào,
-  không đọc được gì. Token hiện ở trang **Tích hợp**, tab **Token API**, tên "SenOS Sync (Claude Code)", thu hồi ở đó.
-- Cần mức Ghi nháp hoặc Toàn quyền của cửa Gate. Địa chỉ SenOS lấy từ tên miền trong **Cài đặt** (hoặc `DOMAIN_NAME`);
+  không đọc được gì. Token hiện ở trang **Webhook**, tab **Token API (cho CLI)**, tên "SenOS Sync (Claude Code)", thu hồi ở đó.
+- Cần mức Ghi nháp hoặc Toàn quyền của cửa Gate. Địa chỉ SenOS lấy từ tên miền trong **Thiết lập** (hoặc `DOMAIN_NAME`);
   chưa đặt thì AI tự lấy từ địa chỉ Gate nó đang nối.
 - Cần Python 3.8 trở lên trên máy đó. Phiên đang mở nhận hook sau khi khởi động lại Claude Code hay Codex.
 
-Cài tay (máy không nối Gate): tạo token ở trang **Tích hợp**, tab **Token API**, rồi chạy:
+Cài tay (máy không nối Gate): tạo token ở trang **Webhook**, tab **Token API (cho CLI)**, rồi chạy:
 
 ```bash
 curl -fsSLO https://raw.githubusercontent.com/thayhieumasterai/senos-os/main/tools/senos-sync/senos_sync.py
@@ -419,7 +419,7 @@ notify khác thì chương trình đó vẫn chạy tiếp. Chỉ cài một bê
 - Đặt plugin ở **Toàn cục** trừ khi có lý do rõ ràng để buộc vào một brain. Toàn cục không phụ thuộc brain nên bạn đổi brain vẫn dùng được.
 - Không dùng plugin nào thì **tắt** thay vì xoá thư mục, để lần sau bật lại là xong.
 - Tắt bớt plugin không dùng cũng làm gọn danh sách tool đưa cho model, giúp nó chọn tool đúng hơn.
-- Muốn biết SenOS đang thấy những năng lực gì (agent, skill, workflow, loop, plugin) thì mở file `SenOS/index.md` trong brain bằng trang **Tệp tin**; file này tự dựng lại mỗi khi bạn bật/tắt plugin.
+- Muốn biết SenOS đang thấy những năng lực gì (agent, skill, workflow, loop, plugin) thì mở file `SenOS/index.md` trong brain bằng trang **Tài liệu**; file này tự dựng lại mỗi khi bạn bật/tắt plugin.
 
 ## Sự cố thường gặp
 
@@ -432,7 +432,7 @@ notify khác thì chương trình đó vẫn chạy tiếp. Chỉ cài một bê
 - **Thẻ ghi "⚠ lỗi" kèm tên một lỗi Python (ví dụ `ModuleNotFoundError`):** mã plugin dùng thư viện chưa cài trong môi trường Python của SenOS. Cài thư viện đó vào đúng môi trường ảo SenOS đang chạy, rồi khởi động lại.
 - **Plugin đang chạy nhưng engine không thấy tool:** nhiều khả năng tên tool **trùng** với một tool đã có của MCP hoặc tool lõi. SenOS không cho plugin chiếm chỗ tool lõi, nó bỏ qua tool trùng và ghi một dòng vào log server. Đổi tên tool trong `plugin.py` cho khác đi (đặt tiền tố riêng là cách chắc nhất). Các tên lõi không được dùng lại: `senos_connections`, `senos_read_file`, `senos_list_dir`, `senos_write_file`, `senos_use_skill`.
 - **Tool trả về `ERROR: tool '<tên>' cần mức quyền cao hơn`:** lượt chạy đang bị hạn chế mức quyền. Nếu là việc định kỳ, nâng chế độ của việc đó (xem [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md)); nếu là plugin của bạn thì xem lại `min_mode` khai trong `register_tool`.
-- **Tool trả về "Chưa kết nối ...":** plugin cần một kết nối mà bạn chưa đấu. Làm theo đúng câu hướng dẫn trong lỗi, thường là vào trang **Kết nối** (hoặc **Models** với plugin tạo ảnh).
+- **Tool trả về "Chưa kết nối ...":** plugin cần một kết nối mà bạn chưa đấu. Làm theo đúng câu hướng dẫn trong lỗi, thường là vào trang **Ứng dụng** (hoặc **Mô hình AI** với plugin tạo ảnh).
 - **Bấm Bật báo "không tìm thấy plugin":** danh sách trên màn hình đã cũ so với đĩa (bạn vừa xoá hoặc đổi tên thư mục). Tải lại trang.
 - **Bấm Bật báo "ghi manifest lỗi":** SenOS không ghi được vào `plugin.yaml`, thường do quyền thư mục hoặc file đang mở khoá bởi chương trình khác. Xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
 

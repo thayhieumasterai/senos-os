@@ -6,42 +6,42 @@ Hướng dẫn sử dụng chi tiết từng chức năng của SenOS. Mỗi tra
 
 > Mới bắt đầu? Đọc [Cài đặt trong README](i18n/vi/README.md#-cài-đặt) trước, rồi qua [01 - Bắt đầu & thiết lập lần đầu](01-bat-dau-thiet-lap.md).
 
-Thanh điều hướng của dashboard gom **19 trang** thành **5 nhóm**: Bộ não · Năng lực · Việc · Kết nối · Hệ thống. Mục lục dưới đây xếp theo cùng logic đó.
+Thanh điều hướng của dashboard đặt **Hội thoại** riêng trên cùng, còn lại gom thành **5 nhóm**: Tri thức · Đội ngũ AI · Điều phối · Cổng kết nối · Quản trị. Mục lục dưới đây xếp theo cùng logic đó.
 
 ## Mục lục
 
 ### Bắt đầu
-- [01 - Bắt đầu & thiết lập lần đầu](01-bat-dau-thiet-lap.md) - tạo admin, đăng nhập bộ não, chọn engine/model, trang Cài đặt.
+- [01 - Bắt đầu & thiết lập lần đầu](01-bat-dau-thiet-lap.md) - tạo admin, đăng nhập bộ não, chọn engine/model, trang Thiết lập.
 
-### Dùng hằng ngày (nhóm Trợ lý & Bộ não)
+### Dùng hằng ngày (Hội thoại & nhóm Tri thức)
 - [02 - Trò chuyện & giọng nói](02-tro-chuyen-va-giong-noi.md) - chat, nói rảnh tay, lệnh gạch chéo, nút trả lời nhanh, gửi file, tạo ảnh.
-- [03 - Đồ thị tri thức](03-do-thi-tri-thuc.md) - wikilink, màu danh mục, timelapse và công tắc đồ thị.
+- [03 - Bản đồ tri thức](03-do-thi-tri-thuc.md) - wikilink, màu danh mục, timelapse và công tắc đồ thị.
 - [04 - Phiên hội thoại](04-phien-hoi-thoai.md) - lưu, mở lại, đổi tên, xoá, tìm kiếm toàn văn, nén phiên dài.
 - [05 - Quản lý tệp tin](05-quan-ly-tep-tin.md) - duyệt brain, tìm file theo tên/nội dung, sửa .md/.txt trực tiếp, tải lên/về.
 
-### Terminal (nhóm Năng lực)
+### Dòng lệnh (nhóm Đội ngũ AI)
 - [27 - Terminal](27-tab-code-terminal.md) - dòng lệnh thật của máy chạy SenOS, mở ngay trong dashboard, không cần SSH.
 
-### Mở rộng năng lực (nhóm Năng lực)
+### Mở rộng năng lực (nhóm Đội ngũ AI)
 - [06 - Skills](06-skills.md) - gom nhóm, tìm kiếm, bật/tắt, thêm/sửa/xoá, nhập/xuất skill.
 - [07 - Agents & Workflows](07-agents-va-workflows.md) - tạo trợ lý chuyên biệt + chuỗi tự động nhiều bước.
 - [20 - Plugins](20-plugins.md) - thêm tool/hook native cho mọi engine bằng một thư mục Python.
 - [25 - Chatbot (Bot chuyên trách)](25-chatbot.md) - đem Agent ra trả lời khách qua bot Telegram hoặc Zalo riêng, brain riêng, chuyển nhân viên khi bí.
 - [28 - Hội thoại khách (Hộp thư)](28-hoi-thoai-khach.md) - đọc lại mọi cuộc chat khách nhắn cho bot và Zalo cá nhân ở một chỗ, tiếp quản khi cần người thật.
 - [29 - Slack và WhatsApp](29-slack-whatsapp.md) - chat với SenOS và đặt bot khách hàng trên Slack (không cần tên miền) và WhatsApp (API chính thức của Meta).
-- [30 - Discord và Lark/Feishu](30-discord-lark.md) - chat với SenOS từ Discord và Lark/Feishu ở trang Kênh Admin, không cần tên miền.
+- [30 - Discord và Lark/Feishu](30-discord-lark.md) - chat với SenOS từ Discord và Lark/Feishu ở trang Kênh quản trị, không cần tên miền.
 - [31 - Messenger](31-messenger.md) - đặt bot khách hàng trả lời hộp thư Fanpage Facebook (API chính thức của Meta, cần tên miền HTTPS).
 - [36 - WeChat](36-wechat.md) - đặt bot khách hàng trả lời người theo dõi WeChat Official Account (API chính thức, cần tên miền và tài khoản đã xác minh).
   - [Nối Messenger từng bước](31-messenger-tung-buoc.md) - từng cú bấm trên trang Meta, cho người mới làm lần đầu.
 - [32 - Theo dõi trang web](32-theo-doi-trang.md) - canh giá, cụm chữ hoặc thay đổi trên một trang theo lịch, không tốn token.
-- [33 - Cookies](33-kho-dang-nhap.md) - cất phiên đăng nhập riêng (cookie) để SenOS đọc trang cần đăng nhập và canh trang đó.
+- [33 - Phiên đăng nhập](33-kho-dang-nhap.md) - cất phiên đăng nhập riêng (cookie) để SenOS đọc trang cần đăng nhập và canh trang đó.
 
-### Việc chạy nền (nhóm Việc & Bộ não)
+### Việc chạy nền (nhóm Điều phối & Tri thức)
 - [08 - Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md) - nhiều vòng lặp chạy nền + nhắc hẹn theo giờ hoặc cron.
 - [21 - Việc (Kanban)](21-viec-kanban.md) - giao goal bằng lời, AI tự đặc tả và chạy task nền.
 - [22 - Tự học](22-tu-hoc.md) - SenOS tự rút ký ức, đúc Wiki và kỹ năng sau mỗi hội thoại, hoàn tác được.
 
-### Kết nối & kênh (nhóm Kết nối)
+### Kết nối & kênh (nhóm Cổng kết nối)
 - [09 - Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md) - kho dịch vụ ngoài đa tài khoản, phân quyền, báo cáo số thật.
 - [11 - Kênh Telegram](11-telegram.md) - hỏi SenOS qua điện thoại, gửi và nhận file.
 - [26 - Kênh Zalo Bot](26-kenh-zalo-bot.md) - hỏi SenOS trên Zalo bằng API chính thức, ghép nối bằng một cú bấm.
@@ -55,7 +55,7 @@ Thanh điều hướng của dashboard gom **19 trang** thành **5 nhóm**: Bộ
 - [18 - Sao lưu brain lên GitHub](18-sao-luu-github.md) - đồng bộ 2 chiều lên repo riêng, khôi phục khi mất máy/VPS.
 - [19 - Task & Dataview trong note](19-task-va-dataview.md) - tick checkbox tự lưu kiểu Obsidian, khối ```dataview chạy thật.
 
-### Tài khoản, thương hiệu, cấu hình (nhóm Hệ thống)
+### Tài khoản, thương hiệu, cấu hình (nhóm Quản trị)
 - [10 - Models & engine](10-models-va-engine.md) - đổi bộ não giữa Claude Code, ChatGPT/Codex, Antigravity CLI, OpenRouter, OpenAI, Gemini, Anthropic, Groq, Ollama mà không mất chức năng; mức suy nghĩ, model việc nền.
 - [14 - Bảo mật & tài khoản](14-bao-mat-tai-khoan.md) - đăng nhập bắt buộc, mật khẩu, rate-limit, mã hoá khoá bí mật.
 - [15 - Thương hiệu & tên miền riêng](15-thuong-hieu-ten-mien.md) - đổi logo/avatar, trỏ tên miền và bật HTTPS.

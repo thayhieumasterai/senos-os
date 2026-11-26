@@ -20,14 +20,14 @@ _STATUS = {"ok": "signed in at the last check", "signed_out": "signed out / expi
 
 
 _EXPIRED = ("SIGN-IN EXPIRED: '{login}' no longer gets in ({error}). Tell the user to sign in again on their own "
-            "browser, export the cookies and press Update on that card on the Cookies page. Do not retry until "
+            "browser, export the cookies and press Update on that card on the Phiên đăng nhập (Sign-ins) page. Do not retry until "
             "they have.")
 
 
 def _vault():
     v = login_vault.current()
     if v is None:
-        return None, "ERROR: The Cookies page is not ready (is the server still starting?). Try again in a few seconds."
+        return None, "ERROR: The Phiên đăng nhập (Sign-ins) page is not ready (is the server still starting?). Try again in a few seconds."
     return v, ""
 
 
@@ -45,7 +45,7 @@ def _list() -> str:
         return err
     rows = [v.view(r) for r in v.store.list()]
     if not rows:
-        return ("The Cookies page is empty. The user adds a sign-in there (sidebar, Connections group): sign in on "
+        return ("The Phiên đăng nhập (Sign-ins) page is empty. The user adds a sign-in there (sidebar, Cổng kết nối (Gateways) group): sign in on "
                 "their own browser, export the cookies with Cookie-Editor, then paste them or upload the file.")
     return "\n".join(_line(x) for x in rows)
 
@@ -94,7 +94,7 @@ async def _browser(args) -> str:
 def register(ctx):
     ctx.register_tool(
         "senos_login",
-        "Open a web page that NEEDS A SIGN-IN, using a sign-in the user stored on the Cookies page (Shopee seller, "
+        "Open a web page that NEEDS A SIGN-IN, using a sign-in the user stored on the Phiên đăng nhập (Sign-ins) page (Shopee seller, "
         "an affiliate site, a web admin...). Never returns a cookie. op=list: the stored sign-ins (name, domains, "
         "still alive, read-only or allowed to act). op=fetch: READ ONLY, downloads the page and returns its text "
         "(a JavaScript-heavy page may give little); url required, login = a sign-in's name (empty picks by "

@@ -249,7 +249,7 @@ check("het luot: cau tieng Viet chu khong phai nguyen van tieng Anh",
       "Hết lượt" in _cau and "session limit" not in _cau)
 check("het luot: noi lai duoc moc reset nha cung cap da bao", "12pm" in _cau)
 check("het luot: chi duong ra o trang Models, ke ten tro ly cua buoc",
-      "Models" in _cau and "Người viết" in _cau)
+      "Mô hình AI" in _cau and "Người viết" in _cau)
 _tt, _text = _tin_chat(evs)
 check("het luot: lan chay ket thuc la LOI, khong phai xong", _tt == "error")
 check("het luot: tin trong chat noi ro buoc nao, ai chay",

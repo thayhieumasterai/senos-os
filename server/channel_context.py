@@ -118,7 +118,7 @@ def build_channel_block(source: str, meta: dict = None, telegram_running: bool =
         "memory or the index, and do not say \"there is no tool\" while this tool is in your list.",
         "- When the user asks to CREATE/EDIT/DELETE/CANCEL/TURN OFF a cron job, recurring job or reminder: "
         "you MUST use `senos_schedule`. To delete or cancel without an id, call `op=list`, match the exact "
-        "item, then call `op=cancel`; do not send the user to the Tasks page (Nhiệm vụ) to do it "
+        "item, then call `op=cancel`; do not send the user to the Công việc (Jobs) page to do it "
         "themselves, and confirm only after the tool returns success. If the tool fails: do NOT call "
         "DELETE, do NOT guess a JSON body and NEVER edit `SenOS/reminders.json` directly - doing so can "
         "cancel the wrong job.",
@@ -157,15 +157,15 @@ def build_channel_block(source: str, meta: dict = None, telegram_running: bool =
         "- After queuing background work, READ what the tool returns and report exactly that. If the tool "
         "says orchestration is OFF, the job only sits in the queue and is not running yet: say exactly "
         "that and tell the user to turn on \"AI self-driving\" (\"AI tự vận hành\" in Vietnamese) on the "
-        "Tasks page; NEVER shorten it to \"the job is running, the result will come back on its own\".",
+        "Công việc (Jobs) page; NEVER shorten it to \"the job is running, the result will come back on its own\".",
         "- ADDING AN MCP / connecting a new source: you MUST use tool `senos_add_mcp` (op=find to look in "
         "the Connection store first, op=add to connect). Only this path puts the new source in SenOS's "
-        "store, SHOWS it in the 'Connected' section of the Connections page (Kết nối) for the user to "
+        "store, SHOWS it in the 'Connected' section of the Ứng dụng (Apps) page for the user to "
         "see, and lets every brain share it. NEVER add one with `claude mcp add` / `codex mcp add` and "
         "never hand-edit an MCP config file: that way only one CLI sees it, and the user looks at the "
-        "Connections page and thinks nothing was added. If `senos_add_mcp` is not in your tool list, it "
+        "Ứng dụng (Apps) page and thinks nothing was added. If `senos_add_mcp` is not in your tool list, it "
         "sits behind `senos_search_tools`: find it, then call it through `senos_run_tool`; do not "
-        "conclude it cannot be done. Once added, SAY CLEARLY that it is on the Connections page, whether "
+        "conclude it cannot be done. Once added, SAY CLEARLY that it is on the Ứng dụng (Apps) page, whether "
         "it is on or off, and at which permission level.",
     ]
     if source == "telegram":
@@ -220,7 +220,7 @@ def build_channel_block(source: str, meta: dict = None, telegram_running: bool =
             f"\"chat_id\":\"{chat_id}\",\"mode\":\"notify\"}}'`",
             "- TIME (pick 1): \"delay_min\": minutes from now (e.g. 30, 120); OR \"at\":\"HH:MM\" a time of "
             "day (already past means tomorrow); OR \"at\":\"YYYY-MM-DD HH:MM\" for a specific date. The "
-            "server works out the time in the owner's time zone (set in Settings) BY ITSELF - you do NOT "
+            "server works out the time in the owner's time zone (set on the Thiết lập (Preferences) page) BY ITSELF - you do NOT "
             "need to know the current time, map the user's words straight across.",
             "- COMPLEX RECURRING SCHEDULES (every morning, every Monday, every 15 minutes...): use \"cron\" "
             "instead of delay_min/at, a 5-field cron expression \"minute hour day month weekday\" (weekday: "
@@ -395,7 +395,7 @@ def build_channel_block(source: str, meta: dict = None, telegram_running: bool =
             "an excuse to write longer or to break one small point into three bullets.",
             "",
             "## Controlling the dashboard and the computer by voice (Voice V1)",
-            "- The user asks to OPEN a page / file / job in SenOS (\"open the Tasks page\", \"open file X\", "
+            "- The user asks to OPEN a page / file / job in SenOS (\"open the Công việc (Jobs) page\", \"open file X\", "
             "\"show the job I just queued\", \"scroll down\"): call tool `senos_ui` (action open_page | "
             "open_file | open_task | scroll), then report exactly what the tool returned. Do not describe "
             "where to click when the tool can do it.",
@@ -450,7 +450,7 @@ def build_channel_block(source: str, meta: dict = None, telegram_running: bool =
                 "you\" (in any wording): your turn ENDS right after you speak, there is nowhere for you to "
                 "sit and wait, and nobody wakes you up to summarize. Background work reports its RAW result "
                 "to this chat by itself when done. Say exactly that: how many jobs were queued, what each "
-                "does, that the results will appear here by themselves, and that progress is on the Tasks "
+                "does, that the results will appear here by themselves, and that progress is on the Công việc (Jobs) "
                 "page. If a comparative summary is wanted, tell the user to send one more message once the "
                 "results are in, OR queue one final job dedicated to summarizing (with `deps` pointing at "
                 "the earlier jobs) instead of making an empty promise.",

@@ -102,7 +102,7 @@ check("stdio được thêm vào kho", c is not None)
 check("stdio để TẮT, chờ người dùng duyệt", bool(c) and c.get("enabled") is False)
 check("lệnh gõ nguyên cụm được tách đúng",
       bool(c) and c.get("command") == "npx" and list(c.get("args") or []) == ["-y", "@abc/mcp-server"])
-check("câu trả lời chỉ đường tới trang Kết nối", "trang Kết nối" in r)
+check("câu trả lời chỉ đường tới trang Ứng dụng", "trang Ứng dụng" in r)
 
 # ---- http: thử kết nối OK thì bật, và mức quyền mặc định là chỉ đọc ----
 import mcp_hub  # noqa: E402  - nạp sau khi đã trỏ kho sang thư mục tạm

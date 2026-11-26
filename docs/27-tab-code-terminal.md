@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/27-code-terminal.md)*
 
-**Terminal** nằm trong nhóm **Năng lực** trên thanh điều hướng: một dòng lệnh thật, chạy trên đúng máy đang chạy SenOS, mở ngay trong trình duyệt. Không cần mở SSH ở cửa sổ khác nữa. (Từ 0.347.0 nhóm Code riêng đã bỏ, vì mọi khung chat đều gắn được thư mục và viết code được.)
+**Dòng lệnh** nằm trong nhóm **Đội ngũ AI** trên thanh điều hướng: một dòng lệnh thật, chạy trên đúng máy đang chạy SenOS, mở ngay trong trình duyệt. Không cần mở SSH ở cửa sổ khác nữa. (Từ 0.347.0 nhóm Code riêng đã bỏ, vì mọi khung chat đều gắn được thư mục và viết code được.)
 
 ## Tính năng này là gì
 
@@ -18,7 +18,7 @@ Muốn viết code thì không cần trang riêng: gắn một thư mục vào b
 ## Mở ở đâu trong SenOS
 
 1. Mở dashboard SenOS (mặc định cổng 7777).
-2. Rail điều hướng bên trái, mở nhóm **Code**, bấm mục **Terminal**.
+2. Rail điều hướng bên trái, mở nhóm **Đội ngũ AI**, bấm mục **Dòng lệnh**.
 3. Terminal tự mở và tự nối. Bấm vào khung đen rồi gõ như terminal bình thường.
 
 Shell mở sẵn ở **thư mục HOME của user đang chạy SenOS** - đúng như một terminal bình thường của máy, hợp nhất cho việc chính của tab này: cài và đăng nhập CLI (`agy`, `codex login`...). Cần vào brain thì gõ `cd "$SENOS_BRAIN"` - biến này luôn trỏ về gốc brain đang chọn.
@@ -46,7 +46,7 @@ Ngay trên khung terminal có một dải tab, giống tab của trình duyệt:
 
 Đây là điểm quan trọng nhất khi dùng hằng ngày: **đổi trang hay tải lại trang KHÔNG giết shell.**
 
-- Đang `npm install` mà bấm sang trang Trò chuyện: lệnh vẫn chạy - ở MỌI tab, không riêng tab đang xem. Quay lại tab Code là thấy nguyên dàn tab cũ, chạy tới đâu hiện tới đó.
+- Đang `npm install` mà bấm sang trang Hội thoại: lệnh vẫn chạy - ở MỌI tab, không riêng tab đang xem. Quay lại trang Dòng lệnh là thấy nguyên dàn tab cũ, chạy tới đâu hiện tới đó.
 - Mất mạng, đóng máy, F5: SenOS tự nối lại vào đúng các phiên đó.
 - Không ai quay lại trong **30 phút** thì SenOS mới đóng phiên để khỏi bỏ quên tiến trình chạy hoài.
 - Muốn đóng ngay thì bấm dấu **x** trên tab, bấm **Khởi động lại**, hoặc gõ `exit`.
@@ -84,7 +84,7 @@ Chi tiết cách đặt biến xem [Cấu hình .env](16-cau-hinh-env.md).
 
 ## Sự cố thường gặp
 
-**Vào mục Terminal thấy "Terminal đang tắt trên máy này".** Máy chủ có `SENOS_TERMINAL=0`. Bỏ biến đó trong `.env` rồi khởi động lại SenOS.
+**Vào mục Dòng lệnh thấy "Terminal đang tắt trên máy này".** Máy chủ có `SENOS_TERMINAL=0`. Bỏ biến đó trong `.env` rồi khởi động lại SenOS.
 
 **Báo "Đang mở 4 phiên terminal rồi".** Trần 4 phiên tính chung mọi cửa sổ trình duyệt. Đóng bớt một tab (dấu **x**) ở cửa sổ đang mở nó, hoặc chờ 30 phút để SenOS tự dọn phiên không ai xem.
 

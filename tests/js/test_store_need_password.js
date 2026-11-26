@@ -32,7 +32,7 @@ const win = { ic: () => "<svg></svg>", Alpine: { store: () => ({ go(id) { wentTo
 globalThis.Alpine = win.Alpine;
 
 const REFUSED = { ok: false, need_password: true,
-                  error: "Sen Market needs a sign-in password. Set one on the Account page, then sign in." };
+                  error: "Sen Market needs a sign-in password. Set one on the Profile page, then sign in." };
 new Function("window", "document", "fetch",
   fs.readFileSync(path.join(ROOT, "dashboard", "packs.js"), "utf8"))(
   win, doc, () => Promise.resolve({ json: () => Promise.resolve(REFUSED) }));

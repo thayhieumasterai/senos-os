@@ -15,7 +15,7 @@ This channel is different from the two Zalo channels SenOS already had:
 | How SenOS connects | Webhook: Zalo calls SenOS, **needs an HTTPS domain** |
 | Groups | No, private chats with the OA only |
 | Files | Receives images, files, voice. Sends JPG/PNG/GIF images (up to 1MB) and PDF, DOC, DOCX (up to 5MB) |
-| Voice messages | Transcribed (needs a Groq key on the Models page) |
+| Voice messages | Transcribed (needs a Groq key on the AI models page) |
 | Replies | As "consultation messages", only within the window Zalo allows after the customer's last message |
 | Formatting | Plain text: Zalo shows no Markdown, SenOS strips the symbols |
 
@@ -29,7 +29,7 @@ This channel is different from the two Zalo channels SenOS already had:
 
 Zalo only delivers to an HTTPS address on a verified domain.
 
-1. Open SenOS **through its HTTPS domain**, go to **Chatbot**, **Bots**, choose **Add channel**, pick **Zalo OA**. The form shows the **Webhook address** and a **Zalo domain verification code** box.
+1. Open SenOS **through its HTTPS domain**, go to **Bot inbox**, **Bots**, choose **Add channel**, pick **Zalo OA**. The form shows the **Webhook address** and a **Zalo domain verification code** box.
 2. On Zalo, under **Domain verification**, enter SenOS's domain and choose verification by **HTML file**. Zalo gives a file name like `zalo_verifier<code>.html`.
 3. Paste that file name (or the meta tag Zalo shows) into SenOS's box and press **Save code**. SenOS now serves that exact file. Go back to Zalo and press **Verify**.
 4. Open the app's **Webhook** section, paste the **Webhook address** SenOS shows (like `https://<domain>/zalo-oa/webhook`) and enable the events **user_send_text**, **user_send_image**, **user_send_file**, **user_send_audio**, **user_send_sticker**, **user_send_location**. Also enable **oa_send_text**, **oa_send_image**, **oa_send_file** so the bot sees what staff send customers from the OA app (see below).
@@ -55,7 +55,7 @@ Zalo moved OA authorization to **OAuth v4** (an authorization code with PKCE). S
    To be sure about the order of the two short keys, name them: `app_secret=...` and `oa_secret=...`.
 2. Click **Grant access with Zalo**. A Zalo tab opens: pick the right OA and click **Allow**. The tab closes by itself.
 3. SenOS exchanges the grant code for an access token and a refresh token, reads the OA name and saves the channel by itself. No Check or Save needed.
-4. Go to **Chatbot**, **Bots** to create a bot or put an existing one on duty for this channel. Once the bot is on, it answers customers who message the OA.
+4. Go to **Bot inbox**, **Bots** to create a bot or put an existing one on duty for this channel. Once the bot is on, it answers customers who message the OA.
 
 An access token lives about 25 hours and a refresh token about 3 months, and each works **once**. SenOS refreshes by itself and saves every new pair straight away in the encrypted account store, so a bot that keeps running never needs a new grant.
 

@@ -167,9 +167,9 @@ async def find() -> Browser:
                             f"the connection '{conn.get('label')}' has no tool that can add cookies")
     if not seen:
         raise BrowserError(localefmt.chu(
-            "Chưa có kết nối trình duyệt (Playwright). Chủ thêm kết nối Playwright ở trang Kết nối rồi thử lại.",
+            "Chưa có kết nối trình duyệt (Playwright). Chủ thêm kết nối Playwright ở trang Ứng dụng rồi thử lại.",
             "There is no browser connection (Playwright). The owner adds the Playwright connection on the "
-            "Connections page, then tries again."), missing=True)
+            "Apps page, then tries again."), missing=True)
     raise BrowserError(localefmt.chu(f"Chưa dùng được kết nối trình duyệt: {why}",
                                      f"The browser connection is not usable: {why}"))
 
@@ -213,7 +213,7 @@ async def open_signed_in(url: str, login: str = "") -> dict:
     {ok, login, browser, namespace, final_url, title, page, refused} or {ok: False, error, signed_out?, login?}."""
     vault = login_vault.current()
     if vault is None:
-        return {"ok": False, "error": localefmt.chu("Trang Cookies chưa sẵn sàng", "The Cookies page is not ready")}
+        return {"ok": False, "error": localefmt.chu("Trang Phiên đăng nhập chưa sẵn sàng", "The Sign-ins page is not ready")}
     url = str(url or "").strip()
     if not url.lower().startswith(("http://", "https://")):
         return {"ok": False, "error": localefmt.chu("url phải bắt đầu bằng http:// hoặc https://",

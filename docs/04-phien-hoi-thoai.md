@@ -56,7 +56,7 @@ Bạn cũng có thể nói thẳng trong chat: "ghi nhớ cho project này là..
 đang nhớ gì". Tắt việc ghi nhớ mới của brain thì SenOS cũng ngừng tự ghi vào project. SenOS không lưu khoá, mật
 khẩu hay câu mệnh lệnh lấy từ tài liệu vào phần này.
 
-**Cộng sự và nhóm cũng vậy.** Tài liệu của một cộng sự (nút File & link trong trang Cộng sự) và của một nhóm (tab
+**Cộng sự và nhóm cũng vậy.** Tài liệu của một cộng sự (nút File & link trong trang Trợ lý) và của một nhóm (tab
 Thông tin của nhóm) có cùng dòng mô tả "tài liệu này chứa gì". Khi bạn chat riêng với một cộng sự, nó tự gắn tài
 liệu bạn đưa vào để dùng lâu dài và tự ghi mô tả. Mô tả của cộng sự nằm ngay trong file của cộng sự đó, nên đi
 theo nó khi bạn xuất ra hay chép brain sang máy khác.
@@ -102,9 +102,9 @@ Vì trên Telegram gần như không ai bấm bắt đầu cuộc mới, SenOS t
 
 ## Mở ở đâu trong SenOS
 
-Sidebar lịch sử nằm ở trang **Trò chuyện**. Có ba đường vào, đều dẫn tới đúng chỗ đó:
+Sidebar lịch sử nằm ở trang **Hội thoại**. Có ba đường vào, đều dẫn tới đúng chỗ đó:
 
-- **Rail điều hướng.** Mở nhóm **Trợ lý** bên trái rồi bấm **Trò chuyện**.
+- **Rail điều hướng.** Bấm **Hội thoại** trên cùng rail bên trái.
 - **Nút ⛶** trên khung **HỘI THOẠI** ở màn hình chính SenOS.
 - **Nút 🕘 Lịch sử** ở hàng nút góc trên bên phải màn hình.
 
@@ -202,8 +202,8 @@ Việc nén thường chạy nền sau mỗi lượt nên bạn không thấy ch
 
 | Thao tác | Nút / phím | Vị trí |
 |---|---|---|
-| Mở trang Trò chuyện (có sidebar lịch sử) | Mục `Trò chuyện` | Rail điều hướng, nhóm Trợ lý |
-| Mở trang Trò chuyện từ màn SenOS | `⛶` hoặc `🕘 Lịch sử` | Khung HỘI THOẠI / hàng nút góc trên phải |
+| Mở trang Hội thoại (có sidebar lịch sử) | Mục `Hội thoại` | Rail điều hướng, trên cùng |
+| Mở trang Hội thoại từ màn SenOS | `⛶` hoặc `🕘 Lịch sử` | Khung HỘI THOẠI / hàng nút góc trên phải |
 | Ẩn/hiện sidebar | `🕘` | Thanh tiêu đề "Trò chuyện với SenOS" |
 | Về lại màn SenOS | `‹ Thu nhỏ` | Thanh tiêu đề |
 | Tìm toàn văn | Ô "Tìm trong mọi hội thoại…" | Đầu sidebar |

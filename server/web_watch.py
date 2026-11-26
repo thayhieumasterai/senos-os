@@ -567,8 +567,8 @@ def after_failure(w: dict, error: str) -> tuple[dict, Optional[dict]]:
     cols["status"] = "paused"
     alert = {"title": localefmt.chu(f"⚠ {w['title']}: tạm dừng theo dõi sau {failures} lần lỗi liền",
                                     f"⚠ {w['title']}: watch paused after {failures} failures in a row"),
-             "body": localefmt.chu(f"Lỗi gần nhất: {error}\nMở lại ở trang Việc định kỳ khi trang đã chạy lại.",
-                                   f"Last error: {error}\nResume it on the Recurring work page once the page works."),
+             "body": localefmt.chu(f"Lỗi gần nhất: {error}\nMở lại ở trang Công việc khi trang đã chạy lại.",
+                                   f"Last error: {error}\nResume it on the Jobs page once the page works."),
              "url": w["url"], "page_title": "", "key": f"watch-paused:{w['id']}:{streak}", "failed": True}
     return cols, alert
 
@@ -583,9 +583,9 @@ def after_signed_out(w: dict, login_name: str, error: str) -> tuple[dict, Option
     alert = {"title": localefmt.chu(f"⚠ {w['title']}: đăng nhập '{login_name}' đã hết hạn, tạm dừng theo dõi",
                                     f"⚠ {w['title']}: the sign-in '{login_name}' expired, watch paused"),
              "body": localefmt.chu("Đăng nhập lại trên trình duyệt của bạn, xuất cookie rồi bấm Cập nhật ở trang "
-                                   "Cookies. Sau đó mở lại mục theo dõi ở trang Việc định kỳ.",
+                                   "Phiên đăng nhập. Sau đó mở lại mục theo dõi ở trang Công việc.",
                                    "Sign in again in your browser, export the cookies and press Update on the "
-                                   "Cookies page. Then resume the watch on the Recurring work page."),
+                                   "Sign-ins page. Then resume the watch on the Jobs page."),
              "url": w["url"], "page_title": "", "key": f"watch-signed-out:{w['id']}:{streak}", "failed": True}
     return cols, alert
 
@@ -640,7 +640,7 @@ class WebWatchFeature:
             import login_vault
             vault = login_vault.current()
             if vault is None:
-                return None, localefmt.chu("Trang Cookies chưa sẵn sàng", "The Cookies store is not ready")
+                return None, localefmt.chu("Trang Phiên đăng nhập chưa sẵn sàng", "The Sign-ins page is not ready")
             row, _ck, err = vault.pick(url, login_id, only_allowed=True)
             if err:
                 return None, err
@@ -742,7 +742,7 @@ class WebWatchFeature:
         import login_vault
         vault = login_vault.current()
         if vault is None:
-            return after_failure(w, localefmt.chu("Trang Cookies chưa sẵn sàng", "The Cookies store is not ready"))
+            return after_failure(w, localefmt.chu("Trang Phiên đăng nhập chưa sẵn sàng", "The Sign-ins page is not ready"))
         try:
             r = await vault.open(w["url"], w["login_id"])
         except Exception as e:  # noqa: BLE001

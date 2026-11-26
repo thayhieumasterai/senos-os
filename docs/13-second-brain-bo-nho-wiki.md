@@ -24,7 +24,7 @@ Một Second Brain (gọi tắt là "brain" hay "vault") là một thư mục tr
 Ba lớp cốt lõi của "second brain" theo đúng nghĩa là **Sources + Wiki + Memory**:
 
 - **Sources** là nơi chứa nguyên liệu thô, chưa xử lý.
-- **Wiki** là tri thức đã tinh lọc, nối với nhau thành mạng, chính là thứ SenOS vẽ ra trong [Đồ thị tri thức](03-do-thi-tri-thuc.md).
+- **Wiki** là tri thức đã tinh lọc, nối với nhau thành mạng, chính là thứ SenOS vẽ ra trong [Bản đồ tri thức](03-do-thi-tri-thuc.md).
 - **Memory** là bộ nhớ dài hạn giúp SenOS "nhớ bạn".
 
 Nguyên lý vận hành: **Sources -> (INGEST) -> Wiki**. Tri thức được tích luỹ dần, làm dày bộ não, không phải mỗi lần hỏi lại đi tìm từ đầu.
@@ -42,11 +42,11 @@ Biến `BRAIN_PATH` chỉ còn là biến cũ từ thời SenOS có một brain 
 Second Brain không nằm gọn trong một trang riêng mà rải ở vài chỗ trên dashboard (cổng mặc định `7777`). Rail điều hướng bên trái gom các trang thành nhóm, phải mở nhóm mới thấy mục con:
 
 1. **Thanh trên cùng, góc trái**: ô chọn brain cùng 3 nút nhỏ ➕ 🗑 📁. Đây là nơi tạo, chọn, xoá brain.
-2. **Khung chat** (màn **SenOS** hoặc trang **Trò chuyện**, nhóm **Trợ lý**): nơi thả file để INGEST và ra lệnh "nhớ điều này".
-3. **Trang Tự học** (nhóm **Bộ não**): số ký ức đã học, nút học ngay, Curator dọn dẹp, và khối đồng bộ brain lên GitHub. Xem [Tự học](22-tu-hoc.md).
-4. **Trang Tệp tin** (nhóm **Bộ não**): duyệt, sửa, tải lên/tải về mọi file trong brain. Xem [Quản lý tệp tin](05-quan-ly-tep-tin.md).
-5. **Trang Việc định kỳ** (nhóm **Việc**): đặt việc lặp để SenOS tự tiêu hoá nguồn theo lịch. Xem [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md).
-6. **Trang Cài đặt** (nhóm **Hệ thống**): nhóm **Giao diện & Brain**, mục **Cấu trúc brain**, để chuẩn hoá thư mục.
+2. **Khung chat** (màn **SenOS** hoặc trang **Hội thoại** trên cùng rail): nơi thả file để INGEST và ra lệnh "nhớ điều này".
+3. **Trang Rèn luyện** (nhóm **Tri thức**): số ký ức đã học, nút học ngay, Curator dọn dẹp, và khối đồng bộ brain lên GitHub. Xem [Tự học](22-tu-hoc.md).
+4. **Trang Tài liệu** (nhóm **Tri thức**): duyệt, sửa, tải lên/tải về mọi file trong brain. Xem [Quản lý tệp tin](05-quan-ly-tep-tin.md).
+5. **Trang Lịch tự động** (nhóm **Điều phối**, mục **Công việc**, danh sách **Lặp lại**): đặt việc lặp để SenOS tự tiêu hoá nguồn theo lịch. Xem [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md).
+6. **Trang Thiết lập** (nhóm **Quản trị**): nhóm **Giao diện & Brain**, mục **Cấu trúc brain**, để chuẩn hoá thư mục.
 
 ## Đa-brain: nhiều bộ não trong một SenOS
 
@@ -113,7 +113,7 @@ Với folder ngoài (📁), nút 🗑 làm việc khác hẳn: nó hỏi 'Bỏ f
 
 Nếu một brain có cấu trúc cũ (ví dụ ghi chú nằm trong `SenOS/agents`, `Memory` viết hoa, skill nằm trong `.claude/skills`), bạn có thể gom về dạng phẳng đồng nhất:
 
-1. Vào **Cài đặt** (nhóm **Hệ thống** trên rail).
+1. Vào **Thiết lập** (nhóm **Quản trị** trên rail).
 2. Mở nhóm **Giao diện & Brain**, kéo tới mục **Cấu trúc brain**.
 3. Bấm **Chuẩn hóa brain đang chọn**, rồi xác nhận hộp thoại: "Chuẩn hóa cấu trúc brain đang chọn? (Di chuyển SenOS/agents→agents, SenOS/workflows→workflows, Memory→memory. Có git backup.)"
 
@@ -165,9 +165,9 @@ Hai điểm nữa đáng biết:
 
 ### Xem số ký ức đã học
 
-Số ký ức nằm ở dòng **Chỉ số** trên trang **Tự học** (nhóm **Bộ não**), dạng `Chỉ số · Ký ức: 87 · Wiki: 42 · MEMORY.md: 18363B ...`. Con số "Ký ức" chính là số file trong `memory/facts/` của brain đang chọn; đổi brain thì con số đổi theo.
+Số ký ức nằm ở dòng **Chỉ số** trên trang **Rèn luyện** (nhóm **Tri thức**), dạng `Chỉ số · Ký ức: 87 · Wiki: 42 · MEMORY.md: 18363B ...`. Con số "Ký ức" chính là số file trong `memory/facts/` của brain đang chọn; đổi brain thì con số đổi theo.
 
-Widget "BỘ NHỚ DÀI HẠN" ở cột chat ngày trước đã được gỡ, mọi thứ liên quan tới học và bộ nhớ nay gom về trang Tự học.
+Widget "BỘ NHỚ DÀI HẠN" ở cột chat ngày trước đã được gỡ, mọi thứ liên quan tới học và bộ nhớ nay gom về trang Rèn luyện.
 
 ### Ép SenOS ghi nhớ một điều
 
@@ -188,7 +188,7 @@ Vòng này nay chạy tự động ở tầng server sau mỗi lượt chat (có
 
 Điểm quan trọng của vòng này: SenOS phân biệt rõ hai thứ. Sự thật về bạn và doanh nghiệp vào `memory/facts/`. Còn khái niệm, framework, quy trình dùng lại được thì chưng cất thành trang Wiki (có `[[wikilink]]`). Cái nào ra cái nấy, nhờ vậy đồ thị tri thức dày lên chứ không lẫn lộn với ghi chú cá nhân.
 
-Bật/tắt, chọn chế độ ghi, chọn học cái gì, bấm học ngay, xem "SenOS đã tự học gì" và hoàn tác một lần học: tất cả ở trang **Tự học**. Xem [Tự học](22-tu-hoc.md).
+Bật/tắt, chọn chế độ ghi, chọn học cái gì, bấm học ngay, xem "SenOS đã tự học gì" và hoàn tác một lần học: tất cả ở trang **Rèn luyện**. Xem [Tự học](22-tu-hoc.md).
 
 ## INGEST: tiêu hoá tài liệu thành tri thức
 
@@ -196,7 +196,7 @@ INGEST là quy trình biến một file thô (bài viết, ảnh chụp, ghi ch�
 
 ### Cách dùng (từng bước)
 
-1. Mở khung chat (màn **SenOS** hoặc trang **Trò chuyện**).
+1. Mở khung chat (màn **SenOS** hoặc trang **Hội thoại**).
 2. Thả file vào ô nhập chat (kéo thả, vùng thả ghi "📎 Thả file vào đây → lưu vào Sources"), hoặc bấm nút đính kèm hình cái ghim giấy cạnh ô nhập (tooltip "Đính kèm file (ảnh, text, tài liệu) → lưu vào Sources"). Ảnh và file văn bản đều được. File được tải lên và chờ ở khu tạm.
 3. Mặc định, SenOS **chỉ đọc file rồi trả lời**, chưa lưu đi đâu. Nếu bạn chỉ cần tóm tắt nhanh thì gõ câu hỏi bình thường.
 4. Muốn SenOS lưu và tiêu hoá, hãy nói rõ trong tin nhắn một trong các cụm: **"lưu vào source"**, **"ingest"**, hoặc **"ghi vào second brain"**.
@@ -211,7 +211,7 @@ Nhớ luật vùng cache ở trên: ảnh gốc trong `attachments/` sẽ hết 
 
 Nếu bạn dồn nhiều nguồn chưa xử lý, có thể giao cho SenOS một **việc lặp** chạy nền:
 
-1. Vào **Việc định kỳ** (nhóm **Việc** trên rail).
+1. Vào **Công việc** (nhóm **Điều phối** trên rail), danh sách **Lặp lại**.
 2. Bấm **+ Thêm việc**.
 3. Ở **Loại việc**, giữ **🔁 Việc lặp**.
 4. Đặt **Tên** (ví dụ "Tiêu hoá nguồn mới").
@@ -225,9 +225,9 @@ Chi tiết từng chế độ, cách bật/tắt, xem nhật ký và mẹo an to
 
 Khi Wiki đã dày, bạn nên soát định kỳ. LINT chỉ **đọc và liệt kê vấn đề**, không tự sửa, nên rất an toàn.
 
-Nút "LINT Wiki" riêng lẻ ngày trước không còn nữa. LINT nay chạy bên trong **Curator** ở trang **Tự học** (nhóm **Bộ não**), với mô tả đúng chữ trên giao diện: "Dọn index, LINT Wiki (chỉ đề xuất), nén MEMORY.md. Không xoá."
+Nút "LINT Wiki" riêng lẻ ngày trước không còn nữa. LINT nay chạy bên trong **Curator** ở trang **Rèn luyện** (nhóm **Tri thức**), với mô tả đúng chữ trên giao diện: "Dọn index, LINT Wiki (chỉ đề xuất), nén MEMORY.md. Không xoá."
 
-1. Vào **Tự học** ở nhóm **Bộ não** trên rail.
+1. Vào **Rèn luyện** ở nhóm **Tri thức** trên rail.
 2. Bấm **🧹 Curator ngay** để chạy một lượt liền. Nút đổi thành "Đang dọn...".
 3. Hoặc bấm nút trạng thái ở mục **Curator (bảo trì định kỳ)** cho nó chuyển từ "○ Tắt" sang "● Bật", rồi bấm **💾 Lưu cấu hình** để SenOS tự chạy theo chu kỳ (mặc định Curator đang tắt, chu kỳ khi bật là 24 giờ).
 
@@ -242,14 +242,14 @@ Kết quả không sửa gì cả, chỉ đổ xuống khối **Nhật ký học
 | Xoá brain (vào thùng rác 30 ngày) | Thanh trên cùng, góc trái | 🗑, rồi gõ đúng tên brain |
 | Trỏ tới vault Obsidian sẵn có | Thanh trên cùng, góc trái | 📁 |
 | Gỡ folder ngoài khỏi menu | Chọn folder ngoài rồi bấm | 🗑 (không đụng ổ đĩa) |
-| Xem số ký ức, số trang Wiki | Nhóm Bộ não → Tự học | Đọc dòng **Chỉ số** |
-| Ép học một lượt ngay | Nhóm Bộ não → Tự học | **▶ Học ngay** |
-| Soát lỗi Wiki | Nhóm Bộ não → Tự học | **🧹 Curator ngay** |
-| Hoàn tác lần học gần nhất | Nhóm Bộ não → Tự học | **↶ Hoàn tác lần học gần nhất** |
-| Sao lưu brain lên GitHub | Nhóm Bộ não → Tự học | Khối **⇅ Đồng bộ brain với GitHub (2 chiều)** |
-| Duyệt/sửa file trong brain | Nhóm Bộ não → Tệp tin | Cây thư mục bên trái |
-| Giao việc lặp tiêu hoá nguồn | Nhóm Việc → Việc định kỳ | **+ Thêm việc** |
-| Chuẩn hoá thư mục brain | Nhóm Hệ thống → Cài đặt | **Chuẩn hóa brain đang chọn** |
+| Xem số ký ức, số trang Wiki | Nhóm Tri thức → Rèn luyện | Đọc dòng **Chỉ số** |
+| Ép học một lượt ngay | Nhóm Tri thức → Rèn luyện | **▶ Học ngay** |
+| Soát lỗi Wiki | Nhóm Tri thức → Rèn luyện | **🧹 Curator ngay** |
+| Hoàn tác lần học gần nhất | Nhóm Tri thức → Rèn luyện | **↶ Hoàn tác lần học gần nhất** |
+| Sao lưu brain lên GitHub | Nhóm Tri thức → Rèn luyện | Khối **⇅ Đồng bộ brain với GitHub (2 chiều)** |
+| Duyệt/sửa file trong brain | Nhóm Tri thức → Tài liệu | Cây thư mục bên trái |
+| Giao việc lặp tiêu hoá nguồn | Nhóm Điều phối → Công việc → Lặp lại | **+ Thêm việc** |
+| Chuẩn hoá thư mục brain | Nhóm Quản trị → Thiết lập | **Chuẩn hóa brain đang chọn** |
 
 ## Mẹo
 
@@ -257,17 +257,17 @@ Kết quả không sửa gì cả, chỉ đổ xuống khối **Nhật ký học
 - **Nói "nhớ điều này" cho những gì bền vững.** Ví dụ ngách sản phẩm, kênh bán chính, quyết định giá. Đừng ghi chuyện nhất thời (hôm nay bận, tin nhắn vừa gửi), SenOS vốn đã bỏ qua loại này.
 - **Muốn tiêu hoá tài liệu thì phải nói rõ.** Chỉ thả file không đủ để lưu, phải kèm cụm "lưu vào source" hoặc "ingest". Nếu chỉ hỏi bình thường, SenOS đọc xong là thôi.
 - **Bộ nhớ đi theo thư mục.** Đổi máy hoặc chuyển VPS, chỉ cần trỏ SenOS về đúng thư mục brain là mọi ký ức và Wiki còn nguyên.
-- **Đừng tự dựng git tay để đồng bộ.** SenOS đã có sẵn khối **⇅ Đồng bộ brain với GitHub (2 chiều)** trên trang Tự học: đẩy toàn bộ thư mục brains lên một repo riêng tư và kéo thay đổi từ máy khác về. Hướng dẫn từng bước ở [Sao lưu brain lên GitHub](18-sao-luu-github.md).
-- **Xem tri thức trực quan** ở [Đồ thị tri thức](03-do-thi-tri-thuc.md): mỗi nguồn và trang Wiki là một điểm, liên kết `[[...]]` là các đường nối.
+- **Đừng tự dựng git tay để đồng bộ.** SenOS đã có sẵn khối **⇅ Đồng bộ brain với GitHub (2 chiều)** trên trang Rèn luyện: đẩy toàn bộ thư mục brains lên một repo riêng tư và kéo thay đổi từ máy khác về. Hướng dẫn từng bước ở [Sao lưu brain lên GitHub](18-sao-luu-github.md).
+- **Xem tri thức trực quan** ở [Bản đồ tri thức](03-do-thi-tri-thuc.md): mỗi nguồn và trang Wiki là một điểm, liên kết `[[...]]` là các đường nối.
 
 ## Sự cố thường gặp
 
-- **Không tìm thấy mục "BỘ NHỚ DÀI HẠN" hay nút "Học ngay từ hội thoại" ở cột chat.** Widget đó đã được gỡ. Mọi thứ về học và bộ nhớ nay ở trang **Tự học** (nhóm **Bộ não**): số ký ức ở dòng **Chỉ số**, học tay bằng nút **▶ Học ngay**.
+- **Không tìm thấy mục "BỘ NHỚ DÀI HẠN" hay nút "Học ngay từ hội thoại" ở cột chat.** Widget đó đã được gỡ. Mọi thứ về học và bộ nhớ nay ở trang **Rèn luyện** (nhóm **Tri thức**): số ký ức ở dòng **Chỉ số**, học tay bằng nút **▶ Học ngay**.
 - **Số ký ức vẫn là 0 dù đã chat nhiều.** Ký ức chỉ được ghi khi có thông tin bền vững đáng nhớ, hoặc khi bạn nói "nhớ điều này", hoặc sau khi chạy một lượt học. Chat phiếm không sinh ký ức. Kiểm tra thêm ở trang Tự học xem tự học có đang bật và chế độ ghi có phải **Tự ghi** không.
 - **Thả file mà không thấy vào Sources.** Đúng như thiết kế: mặc định chỉ đọc. Phải gõ kèm "lưu vào source" / "ingest" trong tin nhắn thì SenOS mới tạo file `.md` trong `sources/`.
 - **Ảnh cũ trong hội thoại thành ô xám "Ảnh đã hết hạn".** Đúng như thiết kế: `attachments/` là vùng cache, ảnh quá 30 ngày bị dọn. Nội dung ảnh đã được rút thành `.md` trong `sources/` lúc ingest thì vẫn còn.
 - **Xoá nhầm brain.** Không mất ngay: thư mục nằm trong `brain-trash` ở thư mục state của SenOS, tên dạng `Tên brain__20260729-153012`, giữ 30 ngày. Cách lấy lại an toàn: bấm ➕ tạo lại brain **đúng tên cũ** (thao tác này gỡ giấy báo tử để brain không bị xoá lại khi đồng bộ), rồi chép nội dung từ thùng rác vào thư mục đó.
-- **Brain báo cấu trúc chưa chuẩn.** Vào Cài đặt, nhóm Giao diện & Brain, mục Cấu trúc brain, bấm **Chuẩn hóa brain đang chọn** để SenOS gom lại các thư mục.
+- **Brain báo cấu trúc chưa chuẩn.** Vào Thiết lập, nhóm Giao diện & Brain, mục Cấu trúc brain, bấm **Chuẩn hóa brain đang chọn** để SenOS gom lại các thư mục.
 - **Ký ức không theo sang máy mới.** Kiểm tra bạn đã trỏ đúng thư mục brain chứa `memory/`. Bộ nhớ nằm trong thư mục, không nằm trong tài khoản. Muốn hai máy tự khớp nhau thì bật đồng bộ GitHub, xem [Sao lưu brain lên GitHub](18-sao-luu-github.md).
 - **Sao lưu GitHub xong không thấy log hội thoại và ảnh.** Đúng như thiết kế: `memory/conversations/`, `attachments/` và `inbox/` đều nằm ngoài git của brain. Bản sao lưu chỉ giữ tri thức đã chưng cất.
 
@@ -276,7 +276,7 @@ Kết quả không sửa gì cả, chỉ đổ xuống khối **Nhật ký học
 - [Tự học](22-tu-hoc.md) - bật/tắt tự học, chế độ ghi, Curator, hoàn tác một lần học.
 - [Quản lý tệp tin](05-quan-ly-tep-tin.md) - duyệt và sửa trực tiếp file trong brain, chi tiết vùng cache.
 - [Sao lưu brain lên GitHub](18-sao-luu-github.md) - đồng bộ hai chiều mọi brain giữa các máy.
-- [Đồ thị tri thức](03-do-thi-tri-thuc.md) - nhìn Sources và Wiki dưới dạng mạng lưới.
+- [Bản đồ tri thức](03-do-thi-tri-thuc.md) - nhìn Sources và Wiki dưới dạng mạng lưới.
 - [Skills](06-skills.md) - kỹ năng nằm trong `skills/` của brain.
 - [Agents & Workflows](07-agents-va-workflows.md) - lớp vận hành trong `agents/` và `workflows/`.
 - [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md) - giao việc lặp cho SenOS tiêu hoá nguồn theo lịch.

@@ -158,7 +158,7 @@ def _turn(vault_root):
                 "SenOS)." + _PLAIN)
     ag = t.get("agent") or {}
     if not ag.get("key"):
-        return ("ERROR: Cộng hưởng chỉ dùng trong cuộc trò chuyện với một trợ lý đã bật Cộng hưởng (trang Cộng sự)."
+        return ("ERROR: Cộng hưởng chỉ dùng trong cuộc trò chuyện với một trợ lý đã bật Cộng hưởng (trang Trợ lý)."
                 + _PLAIN)
     sid, mid = str(t.get("session_id") or ""), int(t.get("message_id") or 0)
     if not sid or mid <= 0:
@@ -168,7 +168,7 @@ def _turn(vault_root):
     store = RS.shared()
     _a, why = R.agent_gate(store, _brain_id(vault_root), ag["key"], ag.get("config_version"))
     if why:
-        return (f"ERROR: Cộng hưởng của trợ lý này đang tắt hoặc vừa đổi ({why}). Chủ dự án bật lại ở trang Cộng sự "
+        return (f"ERROR: Cộng hưởng của trợ lý này đang tắt hoặc vừa đổi ({why}). Chủ dự án bật lại ở trang Trợ lý "
                 "rồi gửi lại tin." + _PLAIN)
     text = luot_dang_chay.loi_cua_luot(f"web:{sid}", mid, vault_root)
     if text is None:

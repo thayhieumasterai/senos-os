@@ -4,15 +4,15 @@
 
 Từ 0.71.0 SenOS nói chuyện được trên Slack và WhatsApp, theo đúng hai cách như Telegram và Zalo:
 
-- **Kênh điều khiển:** bạn chat với chính SenOS (brain, công cụ, việc nền của bạn). Cài ở trang **Kênh Admin**.
-- **Bot khách hàng:** một agent chuyên trách trả lời khách hoặc đội nhóm, mọi cuộc chat vào hộp thư chung, tiếp quản được khi cần người thật. Cài ở trang **Chatbot**.
+- **Kênh điều khiển:** bạn chat với chính SenOS (brain, công cụ, việc nền của bạn). Cài ở trang **Kênh quản trị**.
+- **Bot khách hàng:** một agent chuyên trách trả lời khách hoặc đội nhóm, mọi cuộc chat vào hộp thư chung, tiếp quản được khi cần người thật. Cài ở trang **Hộp thư bot**.
 
 | | Slack | WhatsApp |
 |---|---|---|
 | SenOS kết nối thế nào | Socket Mode: SenOS tự mở kết nối, **không cần tên miền** | Webhook: Meta gọi vào SenOS, **cần tên miền HTTPS** |
 | Nhóm | Kênh (SenOS trả lời khi được gọi tên, trong thread) | Chỉ chat riêng |
 | File | Ảnh và tài liệu, cả hai chiều | Ảnh và tài liệu, cả hai chiều |
-| Tin thoại | Chép thành chữ (cần key Groq ở trang Models) | Chép thành chữ (như trên) |
+| Tin thoại | Chép thành chữ (cần key Groq ở trang Mô hình AI) | Chép thành chữ (như trên) |
 | Nhắn trước | Lúc nào cũng được | Chỉ trong 24 giờ kể từ tin cuối của người đó |
 
 ---
@@ -74,7 +74,7 @@ settings:
 
 ### 2a. Kênh điều khiển (bạn chat với SenOS)
 
-1. Trang **Kênh Admin** → tab **Slack**: dán bot token và app token, bấm **Lưu và bật kênh**.
+1. Trang **Kênh quản trị** → tab **Slack**: dán bot token và app token, bấm **Lưu và bật kênh**.
 2. Mở Slack, tìm app trong mục **Apps**, nhắn một câu bất kỳ. Bạn sẽ hiện trên thẻ kèm mã 4 số; đối chiếu mã rồi bấm **Cho phép**. Danh sách để trống là cố ý: chưa ai chạm được vào brain của bạn cho tới khi bạn cho phép.
 3. Từ đó: nhắn riêng cho bot, hoặc gọi `@SenOS` trong kênh đã mời bot vào (`/invite @SenOS`); bot trả lời trong thread.
 
@@ -83,7 +83,7 @@ Lệnh bot trên Slack bắt đầu bằng `!` thay cho `/`, vì Slack giữ `/`
 ### 2b. Bot khách hàng
 
 1. Dùng một app Slack **riêng** (làm lại bước 1 với tên khác) để khách không bao giờ chạm tới kênh điều khiển của bạn.
-2. Trang **Chatbot** → **Tài khoản** → thêm tài khoản, kênh **Slack**, dán cả hai token **cách nhau một dấu cách**: `xoxb-... xapp-...`.
+2. Trang **Hộp thư bot** → tab **Kênh** → thêm tài khoản, kênh **Slack**, dán cả hai token **cách nhau một dấu cách**: `xoxb-... xapp-...`.
 3. Tạo bot ngay trên trang đó và gắn tài khoản vào.
 
 ---
@@ -107,15 +107,15 @@ WhatsApp chỉ chạy qua **WhatsApp Business Cloud API** chính thức của Me
 
 ### 2a. Kênh điều khiển
 
-1. Trang **Kênh Admin** → tab **WhatsApp**: điền Phone number ID, Access token, App secret, bấm **Lưu và bật kênh**.
+1. Trang **Kênh quản trị** → tab **WhatsApp**: điền Phone number ID, Access token, App secret, bấm **Lưu và bật kênh**.
 2. Thẻ hiện **Callback URL** và **Verify token**. Bên Meta: **WhatsApp → Configuration → Webhook → Edit**, dán cả hai, **Verify and save**, rồi đăng ký trường **messages**.
 3. Nhắn cho số doanh nghiệp từ WhatsApp của bạn. Bạn hiện trên thẻ kèm mã; bấm **Cho phép**.
 
 ### 2b. Bot khách hàng
 
 1. Dùng một số khác (mỗi số thuộc về một bot).
-2. Trang **Chatbot** → **Tài khoản** → thêm tài khoản, kênh **WhatsApp**, dán ba giá trị **cách nhau dấu cách**: `<phone number id> <access token> <app secret>`.
-3. Webhook dùng chung Callback URL và Verify token ở trang Kênh Admin: một địa chỉ phục vụ mọi số, SenOS tự chia tin theo số mà khách nhắn tới.
+2. Trang **Hộp thư bot** → tab **Kênh** → thêm tài khoản, kênh **WhatsApp**, dán ba giá trị **cách nhau dấu cách**: `<phone number id> <access token> <app secret>`.
+3. Webhook dùng chung Callback URL và Verify token ở trang Kênh quản trị: một địa chỉ phục vụ mọi số, SenOS tự chia tin theo số mà khách nhắn tới.
 
 ### Cửa sổ 24 giờ
 

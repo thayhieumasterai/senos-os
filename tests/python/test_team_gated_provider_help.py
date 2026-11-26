@@ -39,7 +39,7 @@ def test_no_full_mode_and_no_fixed_provider_list():
 
 def test_no_connected_choice_sends_to_models():
     msg = team_gate.unsupported_text("x")
-    assert "trang Models" in msg and "Thử lại" in msg and "Cộng sự" in msg
+    assert "trang Mô hình AI" in msg and "Thử lại" in msg and "Trợ lý" in msg
 
 
 def test_at_most_three_choices():
@@ -55,8 +55,8 @@ def test_english_screen():
     finally:
         localefmt.bo_ngon_ngu_yeu_cau(token)
     assert msg.startswith("This step did not run.") and "switch Writer to Claude Code or OpenRouter" in msg, msg
-    assert "Try again" in msg and "Partners page" in msg
-    assert "Models page" in bare and "the assistant of this step" in bare
+    assert "Try again" in msg and "Assistants page" in msg
+    assert "AI models page" in bare and "the assistant of this step" in bare
 
 
 def test_gate_contract_unchanged():

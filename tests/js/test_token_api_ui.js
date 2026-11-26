@@ -133,7 +133,7 @@ for (const [f, ten] of NOI) {
 }
 // Và phải chỉ ĐÚNG chỗ, chứ không phải chỉ "không sai".
 const DOC = fs.readFileSync(path.join(ROOT, "docs", "24-cli-terminal.md"), "utf8");
-check("tài liệu CLI chỉ đúng trang Tích hợp", /Tích hợp\*?\*?\s*(>|&gt;)\s*Token API/.test(DOC));
+check("tài liệu CLI chỉ đúng trang Webhook", /Webhook\*?\*?\s*(>|&gt;)\s*Token API/.test(DOC));
 
 // ============================================================
 // 7. Có đường sang tài liệu, và đường đó phải còn thật

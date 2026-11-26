@@ -153,7 +153,7 @@ check("báo tối đa 5 và không lặp",
       len(K(" ".join(f"[{i}](k/{i % 3}.md)" for i in range(12)))) == 3)
 _cau = main._cau_link_khong_thay(["bai-viet/khong-co.txt"])
 check("câu báo kể tên file, chỉ chỗ tự kiểm, không dùng em dash",
-      "bai-viet/khong-co.txt" in _cau and "Tệp tin" in _cau and "—" not in _cau)
+      "bai-viet/khong-co.txt" in _cau and "Tài liệu" in _cau and "—" not in _cau)
 
 # ============================================================
 # 4. File "vừa ghi trong lượt": có thật, trong brain, mtime mới

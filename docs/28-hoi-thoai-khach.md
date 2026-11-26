@@ -8,14 +8,14 @@ Từ bản 0.61.0 trang này gộp luôn phần Chatbot: **một mục trên tha
 
 ## Mở ở đâu trong SenOS
 
-Thanh điều hướng bên trái, nhóm **Năng lực**, mục **Chatbot**. Trong trang có bốn tab:
+Thanh điều hướng bên trái, nhóm **Đội ngũ AI**, mục **Hộp thư bot**. Trong trang có bốn tab:
 
 - **Hội thoại**: mọi tin khách, ai đang lo cuộc chat nào, trả lời, nhờ SenOS soạn.
 - **Bot**: nhân viên A.I. đứng trực các kênh. Kênh đã có bot hiện thành chip trên thẻ bot; bấm chip để sửa hoặc xoá kênh đó. Xem [Chatbot](25-chatbot.md).
 - **Kênh**: mọi nick và Page, bot nào trực, bật tắt A.I. từng nhóm hay người.
 - **Thống kê**: A.I. và bạn đã trả lời bao nhiêu, khách chờ bao lâu.
 
-Nói bằng lời cũng được: "mở hộp thư khách", "hòm thư bot", "tài khoản bot", và "mở chatbot" vẫn tới đúng tab Bot. Nói "hội thoại" trần vẫn ra trang Trò chuyện như trước.
+Nói bằng lời cũng được: "mở hộp thư khách", "hòm thư bot", "tài khoản bot", và "mở chatbot" vẫn tới đúng tab Bot. Nói "hội thoại" trần vẫn ra trang Hội thoại như trước.
 
 ## Mô hình
 
@@ -34,7 +34,7 @@ Bên dưới, mọi kênh đều đưa tin về **một khuôn chung** rồi và
 
 Từ 0.372.0 (Chatbot v5) máy tính chia **ba cột**: danh sách khách bên trái, khung chat ở giữa, bảng **Thông tin** bên phải. Từ 0.397.0 bảng Thông tin **đóng sẵn** để khung chat rộng, bấm nút ⓘ ở góc phải đầu cuộc chat mới mở (SenOS nhớ lựa chọn của bạn trên trình duyệt đó); màn hẹp hơn 1200px thì bảng trượt đè lên khung chat. Chữ trên máy tính cũng gọn lại: danh sách 14px, tin nhắn 15px, và tin nằm trong một cột giữa vừa tầm mắt.
 
-**Trên điện thoại** (từ 0.397.0): không còn chữ "Chatbot" ở đầu trang, bốn tab chỉ còn icon (giữ ngón tay hay đọc màn hình vẫn nghe tên tab). Mở một cuộc chat là nó **chiếm cả màn hình**: một hàng đầu gồm nút quay lại, tên khách, kênh, và một **nút chế độ** màu tím (ví dụ "A.I. trả lời ▾"). Bấm nút đó là một bảng trượt từ dưới lên với ba chế độ, mỗi cái một dòng giải thích, cùng **Thông tin khách và cài đặt A.I.** Ô nhập một hàng, hai nút tròn: ✨ để SenOS soạn hộ, mũi tên để gửi.
+**Trên điện thoại** (từ 0.397.0): không còn chữ "Hộp thư bot" ở đầu trang, bốn tab chỉ còn icon (giữ ngón tay hay đọc màn hình vẫn nghe tên tab). Mở một cuộc chat là nó **chiếm cả màn hình**: một hàng đầu gồm nút quay lại, tên khách, kênh, và một **nút chế độ** màu tím (ví dụ "A.I. trả lời ▾"). Bấm nút đó là một bảng trượt từ dưới lên với ba chế độ, mỗi cái một dòng giải thích, cùng **Thông tin khách và cài đặt A.I.** Ô nhập một hàng, hai nút tròn: ✨ để SenOS soạn hộ, mũi tên để gửi.
 
 **Ai đang lo cuộc chat này.** Server tính cho mỗi cuộc chat một trạng thái, mọi chỗ trên trang đọc đúng nó:
 
@@ -144,17 +144,17 @@ Từ 0.62.4 mỗi tài khoản có một **brain chủ**:
 - **Đổi chủ:** bấm **Sửa**, chọn lại ở mục **Brain của tài khoản**. Lịch sử hội thoại giữ nguyên, vì nó khoá theo id tài khoản chứ không theo brain.
 - **Tài khoản cũ không đoán ra được chủ** (lúc nâng cấp không có bot nào trực nó) thì để **chưa gán** và hiện ở **mọi** brain kèm ghi chú. Chủ ý: thà thấy thừa một thẻ còn hơn có một token tồn tại mà không màn hình nào hiện ra, không ai xoá hay gắn lại được. Gắn nó vào một bot là nó nhận brain của bot đó.
 
-Zalo cá nhân (`kind: account`) không bị lọc: nó là một kết nối ở trang **Kết nối**, không thuộc brain nào, nên luôn hiện.
+Zalo cá nhân (`kind: account`) không bị lọc: nó là một kết nối ở trang **Ứng dụng**, không thuộc brain nào, nên luôn hiện.
 
 Đây là bước đầu của hướng dài hơn: chia quyền quản lý tài khoản cho brain, rồi tới agent, skill, workflow và chatbot, để sau này lên được bản nhiều người dùng.
 
 **Xoá một tài khoản:** bấm **Xoá**. Nếu đang có bot trực nó, SenOS nói rõ bot nào, ở brain nào, rồi hỏi một câu duy nhất: gỡ khỏi bot đó rồi xoá luôn? Đồng ý là xong trong một lần, không phải đổi brain rồi đi tìm bot để tự gỡ. Bot vẫn còn và vẫn trực các tài khoản khác của nó. Nếu đó là tài khoản **duy nhất** của bot thì SenOS nói trước, và sau khi xoá sẽ tắt bot đó đi (bản ghi bot vẫn còn, gắn tài khoản khác vào là bật lại được). Hội thoại đã ghi vẫn nằm nguyên trong hộp thư.
 
-**Tài khoản của chính bạn** (Zalo cá nhân) đến từ trang **Kết nối** (quét QR ở Zalo Agent MCP) và hiện ở đây với công tắc **Ghi hội thoại**. Bật lên là SenOS đọc tin mới mỗi 20 giây qua MCP và đổ vào hộp thư. Ba điều về kênh này, nói thẳng:
+**Tài khoản của chính bạn** (Zalo cá nhân) đến từ trang **Ứng dụng** (quét QR ở Zalo Agent MCP) và hiện ở đây với công tắc **Ghi hội thoại**. Bật lên là SenOS đọc tin mới mỗi 20 giây qua MCP và đổ vào hộp thư. Ba điều về kênh này, nói thẳng:
 
 - **Mặc định tắt.** Bật là giữ phiên Zalo của bạn sống liên tục qua API không chính thức, tức tài khoản đăng nhập 24/7 trên máy chạy SenOS. Đó là lựa chọn của bạn, không phải của SenOS. Nên dùng tài khoản phụ.
 - **Chỉ lưu từ lúc bật.** Không kéo lịch sử cũ. Tin do chính bạn (hay nhân viên dùng chung nick) gửi từ điện thoại hiện là tin "Bạn". Với Zalo cá nhân điều này cần SenOS 0.108.0 trở lên: các bản trước dùng senos-zalo 1.2.0, bản đó bỏ mọi tin của chính tài khoản khỏi luồng tin mới nên tin bạn nhắn tay không bao giờ vào Hộp thư.
-- **Không có bot trực.** Trả lời từ Hòm thư bot là gửi dưới tên bạn. Muốn nick này tự trả lời khách thì tạo một Bot chuyên trách và chọn kênh Zalo cá nhân (chat riêng từ 0.64.80, nhóm và chế độ Tự đánh giá từ 0.64.82), xem [Chatbot](25-chatbot.md).
+- **Không có bot trực.** Trả lời từ Hộp thư bot là gửi dưới tên bạn. Muốn nick này tự trả lời khách thì tạo một Bot chuyên trách và chọn kênh Zalo cá nhân (chat riêng từ 0.64.80, nhóm và chế độ Tự đánh giá từ 0.64.82), xem [Chatbot](25-chatbot.md).
 
 ## Dữ liệu lưu ở đâu, giữ gì
 
@@ -181,12 +181,12 @@ Thêm một kênh = thêm một file ở sổ, một dòng đăng ký, một log
 - **Bot đang bật mà không thấy hội thoại nào**: kho chỉ ghi từ lúc kênh được nối; nhắn thử cho bot một câu. Nếu vẫn trống, bấm Nhật ký trên thẻ bot ở tab Bot.
 - **Thẻ bot báo "chưa có tài khoản kênh nào"**: bot chưa trực token nào. Bấm Sửa, tích một tài khoản có sẵn hoặc dán token mới.
 - **Gửi từ Hòm thư bot báo lỗi**: câu lỗi là của chính nền tảng (token bị thu hồi, khách đã chặn bot, phiên Zalo hết hạn). Tin không đi thì không được ghi vào kho.
-- **Zalo cá nhân báo lỗi đỏ ở tab Kênh**: thường là phiên QR hết hạn hoặc máy thiếu Node.js 20. Vào trang Kết nối kiểm tra kết nối Zalo, quét QR lại nếu cần. Vòng đọc tự thử lại sau 90 giây.
+- **Zalo cá nhân báo lỗi đỏ ở tab Kênh**: thường là phiên QR hết hạn hoặc máy thiếu Node.js 20. Vào trang Ứng dụng kiểm tra kết nối Zalo, quét QR lại nếu cần. Vòng đọc tự thử lại sau 90 giây.
 - **Gạt sang Tôi trả lời mà bot vẫn trả lời một câu**: đó là lượt đã chạy dở từ trước khi bấm. Từ tin sau bot im.
 
 ## Muốn hơn thế: gói Quản lý khách hàng (CRM)
 
-Kho cài đặt có gói **Quản lý khách hàng (CRM)** (`javis.crm`, cần bản 0.440.0 trở lên) đặt lên chính hộp thư này. Cài xong hỏi SenOS bằng lời: "khách nào chờ hơn 2 tiếng chưa được trả lời", "chị Lan đã hỏi gì", "gắn tag VIP cho chị Lan", "tuần này bao nhiêu khách mới", "xuất danh sách khách đã hỏi giá ra Excel". Kèm một trợ lý chăm sóc khách và một quy trình rà soát mỗi ngày. Gói chỉ đọc hộp thư và ghi tag, ghi chú lên khách; không gửi tin cho ai.
+Chợ Sen có gói **Quản lý khách hàng (CRM)** (`senos.crm`, cần bản 0.440.0 trở lên) đặt lên chính hộp thư này. Cài xong hỏi SenOS bằng lời: "khách nào chờ hơn 2 tiếng chưa được trả lời", "chị Lan đã hỏi gì", "gắn tag VIP cho chị Lan", "tuần này bao nhiêu khách mới", "xuất danh sách khách đã hỏi giá ra Excel". Kèm một trợ lý chăm sóc khách và một quy trình rà soát mỗi ngày. Gói chỉ đọc hộp thư và ghi tag, ghi chú lên khách; không gửi tin cho ai.
 
 ## Tham khảo
 

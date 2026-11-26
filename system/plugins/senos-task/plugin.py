@@ -107,7 +107,7 @@ _MODE_MAC_DINH = "full"
 _CANH_BAO_DIEU_PHOI = (
     "LƯU Ý QUAN TRỌNG: điều phối việc nền của brain này đang ở mức \"{muc}\" nên việc chỉ nằm "
     "xếp hàng, KHÔNG tự chạy và sẽ không có kết quả nào tự về. Phải nói thẳng điều này với "
-    "người dùng và bảo họ bật \"AI tự vận hành\" ở trang Nhiệm vụ, đừng hứa là việc đang chạy."
+    "người dùng và bảo họ bật \"AI tự vận hành\" ở trang Công việc, đừng hứa là việc đang chạy."
 )
 
 
@@ -156,14 +156,14 @@ def _feature():
     f = tasks_mod.current()
     if f is None:
         return None, ("ERROR: hàng đợi việc chưa sẵn sàng (máy chủ đang khởi động?). "
-                      "Thử lại sau vài giây, hoặc giao việc ở trang Nhiệm vụ trên dashboard.")
+                      "Thử lại sau vài giây, hoặc giao việc ở trang Công việc trên dashboard.")
     return f, ""
 
 
 def _them(args, ctx) -> str:
     if not ctx.vault_root:
         return ("ERROR: chưa biết đang làm việc trên brain nào nên không giao việc được. "
-                "Giao ở trang Nhiệm vụ trên dashboard, ở đó brain đã xác định rõ.")
+                "Giao ở trang Công việc trên dashboard, ở đó brain đã xác định rõ.")
     tieu_de = str((args or {}).get("title") or "").strip()
     if not tieu_de:
         return "ERROR: thiếu title - việc phải có tên thì người dùng mới theo dõi được."
@@ -193,7 +193,7 @@ def _them(args, ctx) -> str:
         if wfs[slug][1] != "active":
             canh_bao_route = (f"LƯU Ý: quy trình '{wfs[slug][0]}' đang TẮT, nên việc này sẽ dừng "
                               "chờ ngay khi tới lượt chạy. Bảo người dùng bật quy trình ở trang Cộng "
-                              "sự, rồi chạy lại việc ở trang Nhiệm vụ.")
+                              "sự, rồi chạy lại việc ở trang Công việc.")
     else:
         nhac = _workflow_nhac_toi(wfs, tieu_de, str((args or {}).get("intent") or ""))
         if nhac:
@@ -259,7 +259,7 @@ def _them(args, ctx) -> str:
     if _cu and (time.time() - float(_cu.get("created_at") or time.time())) > 5:
         return (f"CHƯA TẠO việc mới: đã có việc trùng tên \"{tieu_de}\" (mã {tid}) đang ở trạng thái "
                 f"{_cu.get('status')}. Hãy nói rõ với người dùng, rồi hoặc đặt tên việc khác đi, "
-                "hoặc xử lý việc cũ ở trang Nhiệm vụ (chạy lại / huỷ) trước khi giao lại.")
+                "hoặc xử lý việc cũ ở trang Công việc (chạy lại / huỷ) trước khi giao lại.")
 
     ten_mode = {"suggest": "chỉ đọc và đề xuất", "auto": "được ghi file nháp trong brain",
                 "full": "toàn quyền, tự thao tác ra ngoài"}[mode]
@@ -291,7 +291,7 @@ def _them(args, ctx) -> str:
     except Exception:
         pass
     if _dieu_phoi_chay(muc):
-        ra.append("Việc chạy nền. Kết quả tự về, tiến độ xem ở trang Nhiệm vụ.")
+        ra.append("Việc chạy nền. Kết quả tự về, tiến độ xem ở trang Công việc.")
     else:
         ra.append(_CANH_BAO_DIEU_PHOI.format(muc=muc))
     return "\n".join(ra)
@@ -327,7 +327,7 @@ def _liet_ke(args, ctx) -> str:
     if not dong:
         return "Chưa có việc nào trong hàng đợi."
     if con:
-        dong.append(f"…(+{con} việc nữa, xem đủ ở trang Nhiệm vụ)")
+        dong.append(f"…(+{con} việc nữa, xem đủ ở trang Công việc)")
 
     # Điều phối TẮT thì việc nằm im mãi mãi mà không có một dòng lỗi nào. Nói ngay ở đây, vì đây
     # là chỗ model đang nhìn khi người dùng hỏi "việc chạy tới đâu rồi".
@@ -486,7 +486,7 @@ def register(ctx):
         "như vậy thì accept, bảo làm lại cho đạt thì fix; truyền id, và note nếu họ dặn thêm cách sửa. "
         "op=cancel: CHỈ khi người dùng bảo huỷ một việc cụ thể -> truyền id (lấy từ op=list), reason nếu họ "
         "nói lý do; việc đang chạy bị dừng ngay, không hoàn tác được. "
-        "Chuyển cột và duyệt việc chờ phê duyệt thì làm ở trang Nhiệm vụ, tool này không có. "
+        "Chuyển cột và duyệt việc chờ phê duyệt thì làm ở trang Công việc, tool này không có. "
         "acceptance (op=add): fixed done-criteria, one per item; the intent is then kept word for word "
         "and checked against exactly these. A job whose answer opens or ends with [SILENT] finishes quietly.",
         _chay,

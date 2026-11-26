@@ -169,7 +169,7 @@ check("có nói rõ đã cắt bao nhiêu", "cắt" in kq.output)
 
 kq = rc.chay("ls", CodingToolContext())
 check("phiên không gắn thư mục -> không chạy", not kq.da_chay)
-check("câu lỗi chỉ đúng chỗ cần làm", "trang Coding" in kq.error)
+check("câu lỗi chỉ đúng chỗ cần làm", "trang Lập trình" in kq.error)
 
 
 # ---- 11. Chương trình không tồn tại: câu lỗi nói được, KHÔNG ném ----

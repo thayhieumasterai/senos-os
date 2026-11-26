@@ -38,8 +38,8 @@ def refusal(password_set):
 code, body = refusal(False)
 check("no password: still refused with 401", code == 401 and body.get("ok") is False, (code, body))
 check("no password: says need_password", body.get("need_password") is True, body)
-check("no password: the message points at the Account page",
-      "Account" in body.get("error", "") or "Tài khoản" in body.get("error", ""), body.get("error"))
+check("no password: the message points at the Profile page",
+      "Profile" in body.get("error", "") or "Hồ sơ" in body.get("error", ""), body.get("error"))
 
 code, body = refusal(True)
 check("password set: still refused with 401", code == 401, code)

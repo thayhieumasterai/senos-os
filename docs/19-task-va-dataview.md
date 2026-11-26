@@ -19,7 +19,7 @@ Trước đây SenOS chỉ hiển thị mấy ô này cho đẹp, muốn tick ph
 
 ### Tick ở đâu
 
-- **Trang Tệp tin** (nhóm **Bộ não** trên thanh nav trái): mở một file `.md`, để ở chế độ **Sửa** (bản render, mặc định). Bấm checkbox là tick và tự lưu.
+- **Trang Tài liệu** (nhóm **Tri thức** trên thanh nav trái): mở một file `.md`, để ở chế độ **Sửa** (bản render, mặc định). Bấm checkbox là tick và tự lưu.
 - **Khung sửa file bung ra từ chat** (khi bấm vào link file trong câu trả lời của SenOS): y hệt, tick là lưu.
 - **Trong tin nhắn chat**: checkbox chỉ để xem, không bấm được. Lý do: nội dung chat không gắn với file nào để ghi lại.
 - **Trong kết quả khối dataview**: bấm được, ghi thẳng vào file gốc chứa việc đó (xem phần 2).

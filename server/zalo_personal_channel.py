@@ -92,8 +92,8 @@ def bat(conn_id: str, on: bool) -> dict:
     if not cid:
         return {"ok": False, "error": localefmt.chu("thiếu id kết nối", "missing connection id")}
     if not any(c["id"] == cid for c in _ket_noi()):
-        return {"ok": False, "error": localefmt.chu("không có kết nối Zalo nào id đó (hoặc đang tắt ở trang Kết nối)",
-                                                    "no Zalo connection has that id (or it is turned off on the Connections page)")}
+        return {"ok": False, "error": localefmt.chu("không có kết nối Zalo nào id đó (hoặc đang tắt ở trang Ứng dụng)",
+                                                    "no Zalo connection has that id (or it is turned off on the Apps page)")}
     cfg = cfgmod.read_settings()
     ht = cfg.setdefault("conversations", {})
     if not isinstance(ht, dict):
@@ -590,8 +590,8 @@ async def nhap_lich_su(conn_id: str, ngay: int = NHAP_NGAY) -> dict:
     cid = str(conn_id or "")
     conn = ket_noi_theo_id(cid)
     if not conn:
-        return {"ok": False, "loi": localefmt.chu("Tài khoản Zalo này không còn ở trang Kết nối (hoặc đang tắt).",
-                                                   "This Zalo account is no longer on the Connections page (or is off).")}
+        return {"ok": False, "loi": localefmt.chu("Tài khoản Zalo này không còn ở trang Ứng dụng (hoặc đang tắt).",
+                                                   "This Zalo account is no longer on the Apps page (or is off).")}
     if cid in _DANG_NHAP:
         return {"ok": False, "loi": localefmt.chu("Đang nhập tin cũ cho tài khoản này, chờ chút rồi xem lại Hộp thư.",
                                                    "Old messages are already being imported for this account.")}
@@ -1089,9 +1089,9 @@ _LOI_ZALO = (
      "browser (chat.zalo.me) or another SenOS machine signed in to the same account. An account keeps only "
      "one such session. Close the other one; SenOS reconnects by itself in about 2 minutes."),
     (re.compile(r"auto-login failed|re-login retry failed|re-login failed", re.I),
-     "Phiên đăng nhập Zalo của tài khoản này đã hết hạn hoặc bị đăng xuất. Vào trang Kết nối, đăng nhập "
+     "Phiên đăng nhập Zalo của tài khoản này đã hết hạn hoặc bị đăng xuất. Vào trang Ứng dụng, đăng nhập "
      "lại Zalo bằng mã QR.",
-     "This account's Zalo sign-in has expired or was signed out. Go to the Connections page and sign in "
+     "This account's Zalo sign-in has expired or was signed out. Go to the Apps page and sign in "
      "to Zalo again with the QR code."),
 )
 _DONG_CAU_HINH = re.compile(r"\[mcp\] Config loaded: \{.*?\}\s*(\|\s*)?")
@@ -1372,7 +1372,7 @@ def _soi_tranh_phien(conn: dict) -> None:
             f"Zalo ({tk}) is being evicted by another session of the same account: the bot only hears messages for a few "
             f"seconds after each reconnect, and tags and private messages in between are missed.{don} If it goes on: "
             "close Zalo Web (chat.zalo.me) for this account in every browser, stop any other SenOS or Claude client "
-            "using it, then click Check on the Connections page.")
+            "using it, then click Check on the Apps page.")
         loop = asyncio.get_running_loop()
         t = loop.create_task(NOTIFY_OWNER("", cau, kind="system", label="Zalo", source="zalo"))
         _VIEC.add(t)

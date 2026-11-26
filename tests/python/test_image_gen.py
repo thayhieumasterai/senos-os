@@ -398,7 +398,7 @@ openai_oauth.list_models = lambda creds: []
 _goi_m = _install_theo_model(set())
 r_het = asyncio.run(image_gen.generate_chatgpt("x", vault_root=vault))
 check("hết model: ok False, giữ mã lỗi và nêu model đã thử",
-      r_het.get("ok") is False and "400" in r_het["error"] and "gpt-5.5" in r_het["error"] and "Models" in r_het["error"])
+      r_het.get("ok") is False and "400" in r_het["error"] and "gpt-5.5" in r_het["error"] and ("Mô hình AI" in r_het["error"] or "AI models" in r_het["error"]))
 
 # Lỗi KHÔNG phải do model (401...) thì không đổi model thử lại vô ích.
 image_gen._catalog_models = lambda: ["gpt-5.5", "gpt-6-luna"]

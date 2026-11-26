@@ -35,7 +35,7 @@ Xong thì có lệnh `senos`. Kiểm tra: `senos --help`.
 
 Máy chủ SenOS không nhận lệnh từ bên ngoài nếu chưa có token. **Không có token nào sẵn** - chưa tự tay tạo thì cửa này đóng.
 
-1. Mở dashboard SenOS, vào **Tích hợp** (nhóm **Việc** trên thanh bên trái) rồi chọn tab **Token API (cho CLI)**. Cùng trang với webhook, vì cả hai đều là cửa để chương trình khác gọi vào SenOS.
+1. Mở dashboard SenOS, vào **Webhook** (nhóm **Điều phối** trên thanh bên) rồi chọn tab **Token API (cho CLI)**. Cùng trang với webhook, vì cả hai đều là cửa để chương trình khác gọi vào SenOS.
 2. Đặt tên dễ nhớ, ví dụ "laptop của anh" - sau này thu hồi thì biết đang thu hồi cái nào.
 3. Chọn phạm vi:
    - **Chỉ chat** - vào được `/chat`, `/version`, `/health`, `/sessions`. Đủ để hỏi đáp và xem lịch sử. Chọn cái này nếu chỉ định hỏi han.
@@ -140,7 +140,7 @@ senos brain cat "Memory/MEMORY.md"
 senos loops                                          # loop nào đang bật, mức quyền gì
 ```
 
-Việc giao xong chạy nền trên máy chủ. Kết quả tự về đúng nơi bạn giao việc, xem tiến độ ở trang **Việc** trên dashboard hoặc gõ lại `senos tasks`.
+Việc giao xong chạy nền trên máy chủ. Kết quả tự về đúng nơi bạn giao việc, xem tiến độ ở trang **Công việc** trên dashboard hoặc gõ lại `senos tasks`.
 
 ### Bật SenOS trên chính máy này
 
@@ -156,7 +156,7 @@ Không tìm thấy bản cài thì nó nói thẳng: **`senos up` không chứa 
 
 ## Quản lý token
 
-Vào **Tích hợp > Token API** trong dashboard (nhóm Việc). Danh sách hiện tên, 12 ký tự đầu, phạm vi, và **lần dùng cuối** - nếu thấy một token bạn không nhớ đang được dùng đều đặn thì đó là dấu hiệu cần thu hồi ngay.
+Vào **Webhook > Token API (cho CLI)** trong dashboard (nhóm Điều phối). Danh sách hiện tên, 12 ký tự đầu, phạm vi, và **lần dùng cuối** - nếu thấy một token bạn không nhớ đang được dùng đều đặn thì đó là dấu hiệu cần thu hồi ngay.
 
 Bấm **Thu hồi** là token chết lập tức, máy nào đang dùng nó mất kết nối ngay và không hoàn tác được.
 
@@ -171,7 +171,7 @@ Vài điều đáng biết về cách SenOS giữ token:
 
 **"Chưa nối tới SenOS nào"** - chạy `senos login <địa-chỉ>` trước.
 
-**Báo 401 hoặc "token không hợp lệ"** - token sai, hoặc đã bị thu hồi. Tạo cái mới ở Tích hợp > Token API rồi `senos login` lại.
+**Báo 401 hoặc "token không hợp lệ"** - token sai, hoặc đã bị thu hồi. Tạo cái mới ở Webhook > Token API (cho CLI) rồi `senos login` lại.
 
 **Báo 403 khi gõ `senos task add` hay `senos brain ls`** - token của bạn là loại **chỉ chat**. Tạo một token **toàn quyền** cho những lệnh này.
 

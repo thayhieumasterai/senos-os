@@ -2,11 +2,11 @@
 
 *[Tiếng Việt](../05-quan-ly-tep-tin.md) · **English***
 
-The "Files" page is a file manager built into the SenOS dashboard. You search for files, browse folders, open and edit text files (.md, .txt...) straight in the browser and save them, upload files, download files (any type), download a whole folder as a .zip, create folders, rename and delete. The entry point is always the "brain" you have selected, with no File Explorer and no shell needed.
+The "Documents" page is a file manager built into the SenOS dashboard. You search for files, browse folders, open and edit text files (.md, .txt...) straight in the browser and save them, upload files, download files (any type), download a whole folder as a .zip, create folders, rename and delete. The entry point is always the "brain" you have selected, with no File Explorer and no shell needed.
 
 ## What this feature is
 
-Each SenOS brain is really a folder on your machine or VPS holding all of its knowledge: source notes, the Wiki, memory, agents, workflows and so on. The "Files" page lets you see and edit those files visually:
+Each SenOS brain is really a folder on your machine or VPS holding all of its knowledge: source notes, the Wiki, memory, agents, workflows and so on. The "Documents" page lets you see and edit those files visually:
 
 - Search the whole brain by **name** or by **content**.
 - Browse the folder tree (click a folder to go in, use the breadcrumb to come back).
@@ -35,7 +35,7 @@ How to set environment variables is in [.env configuration](16-env-configuration
 ## Where to find it in SenOS
 
 1. Open the SenOS dashboard (port 7777 by default).
-2. In the left navigation rail, open the **Brain** group and click **Files**.
+2. In the left navigation rail, open the **Knowledge** group and click **Documents**.
 3. The page shows a search box on top, a toolbar under it, then the file and folder list. On first entry, SenOS shows the root of the selected brain.
 
 If the list reports something like "The SenOS server does not have the Files feature", restart the server (run `stop-senos.bat` then `start-senos.vbs`) and reload the page. See [Troubleshooting & FAQ](17-troubleshooting.md).
@@ -46,7 +46,7 @@ The file manager always acts on the selected brain. You switch brains in the pic
 
 1. Find the brain picker in the top bar (default: "Brain Default").
 2. Click it and choose the brain you want. Each brain shows as "🧠 brain name" (with a note count when available).
-3. The Files page **reloads itself** for the new brain as soon as you switch, with no ↻ and no F5 needed. The vault tree in the left column refreshes too.
+3. The Documents page **reloads itself** for the new brain as soon as you switch, with no ↻ and no F5 needed. The vault tree in the left column refreshes too.
 
 Next to the brain picker sit three small buttons:
 
@@ -62,9 +62,9 @@ Three things to remember about 🗑:
 - For an external folder entry (📁): it only **removes it from the picker**, touching no data on disk. The confirmation says so explicitly.
 - The default brain cannot be deleted; SenOS says the starter brain cannot be removed.
 
-Do not confuse this button with the per-row "Delete" button inside the Files page. Details on brains and memory are in [Second Brain: memory, Wiki, INGEST](13-second-brain.md).
+Do not confuse this button with the per-row "Delete" button inside the Documents page. Details on brains and memory are in [Second Brain: memory, Wiki, INGEST](13-second-brain.md).
 
-## The Files page layout
+## The Documents page layout
 
 **Top row, search**, with:
 
@@ -157,11 +157,11 @@ SenOS **before 0.33.4** had a silent bug: opening a `.md` note in the visual edi
 
 This build closed that path. For files already damaged:
 
-1. Open the **Files** page. SenOS scans the whole brain once when you arrive. **If nothing is broken, nothing appears**: silence is good news.
+1. Open the **Documents** page. SenOS scans the whole brain once when you arrive. **If nothing is broken, nothing appears**: silence is good news.
 2. If something is, a yellow panel appears at the top with the file list and what is wrong in each.
 3. Click **Repair all N files**. SenOS rebuilds the properties block, strips the extra backslashes, and reports how many files it fixed.
 
-Since 0.52.8, a brain that scans **clean** is remembered and **not scanned again** on later visits. That scan reads every `.md` file in the brain, so on a brain with a few thousand notes it made the Files page noticeably slow to open, and the search box sluggish with it. The damage came from a build that no longer exists, so clean once means clean for good. A brain that still has broken files is rescanned on every visit until you click repair. If you copy an old vault in from another machine and want a rescan, open `/files/md-hong?force=1`.
+Since 0.52.8, a brain that scans **clean** is remembered and **not scanned again** on later visits. That scan reads every `.md` file in the brain, so on a brain with a few thousand notes it made the Documents page noticeably slow to open, and the search box sluggish with it. The damage came from a build that no longer exists, so clean once means clean for good. A brain that still has broken files is rescanned on every visit until you click repair. If you copy an old vault in from another machine and want a rescan, open `/files/md-hong?force=1`.
 
 SenOS only fixes what **only that bug could produce**: a `* * *` block at the very top of the file wrapping lines that look like metadata, and runs of two or more backslashes. A horizontal rule in the middle of an article, a file with intact frontmatter, or a single backslash you typed deliberately are all left alone.
 

@@ -26,13 +26,13 @@ Rất nhiều lỗi biến mất sau một trong hai việc này, nên thử tr�
 | **Cổng 7777 bị giữ**, bản mới không lên được | Tắt tiến trình cũ TRƯỚC rồi mới bật lại. Windows: chạy `stop-senos.bat`, hoặc `taskkill /F /PID <pid>` với PID đang giữ cổng. Docker: `docker compose down` rồi `docker compose up -d`. |
 | **Hostinger không pull được image** | Đặt package GHCR ở chế độ **Public** (GitHub, repo, mục Packages, chọn `senos`, Package settings, Visibility = Public). Sau đó đợi GitHub Action build xong (xem tab Actions của repo) rồi Deploy lại. |
 | Mở app ra **màn tạo tài khoản admin** trên server public | Chưa có admin nên ai mở link trước sẽ tạo được admin. Tạo tài khoản ngay (mật khẩu tối thiểu 8 ký tự), hoặc lần sau đặt sẵn env `SENOS_ADMIN_USER` và `SENOS_ADMIN_PASSWORD` lúc deploy để đăng nhập luôn. Vào được rồi thì bật 2FA. |
-| **Claude báo chưa đăng nhập** (SenOS không trả lời được) | Đăng nhập lại "bộ não" Claude 1 lần. Cách trong app: mở **Models**, ở thẻ Claude Code bấm **Đăng nhập Claude**, mở link, dán code nếu được yêu cầu. Cách bằng lệnh: `claude auth login --claudeai` (Docker: chạy trong App terminal). |
-| **Trang Tệp tin báo lỗi ở "Đang tải..."** | Máy chủ chưa có endpoint Tệp tin (báo lỗi 404). **Khởi động lại server** để nạp endpoint mới, rồi nhấn **Ctrl+Shift+R**. |
+| **Claude báo chưa đăng nhập** (SenOS không trả lời được) | Đăng nhập lại "bộ não" Claude 1 lần. Cách trong app: mở **Mô hình AI**, ở thẻ Claude Code bấm **Đăng nhập Claude**, mở link, dán code nếu được yêu cầu. Cách bằng lệnh: `claude auth login --claudeai` (Docker: chạy trong App terminal). |
+| **Trang Tài liệu báo lỗi ở "Đang tải..."** | Máy chủ chưa có endpoint Tệp tin (báo lỗi 404). **Khởi động lại server** để nạp endpoint mới, rồi nhấn **Ctrl+Shift+R**. |
 | Ảnh trong hội thoại cũ hiện ô xám **Ảnh đã hết hạn** | Đúng thiết kế: `attachments/` và `inbox/` là vùng cache, file quá 30 ngày (hoặc khi vượt trần 300MB) bị dọn. Xem mục "Ảnh và file cũ biến mất" bên dưới để biết cách giữ lại hoặc tắt hẳn. |
 | Voice / micro không bật được | Trình duyệt chỉ cấp quyền micro trên **HTTPS** (hoặc localhost). Mở qua `http://<ip>:7777` sẽ luôn bị chặn. Dùng URL `https://` (Hostinger `*.hstgr.cloud`, Cloudflare Tunnel, hoặc tên miền riêng có SSL). Xem [Thương hiệu & tên miền riêng](15-thuong-hieu-ten-mien.md). |
 | Cập nhật trong app xong mà **phiên bản không đổi** | Đợi thêm; nếu vẫn báo bản cũ, kiểm tra log cập nhật: `update.log` trong thư mục state (`server/update.log` khi chạy local, `/data/state/update.log` trên Docker), hoặc `docker compose logs`. |
-| **`senos` báo 401** hoặc "token không hợp lệ" | Token sai hoặc đã bị thu hồi. Tạo cái mới ở **Tích hợp > Token API** rồi `senos login <địa-chỉ>` lại. Xem [SenOS CLI](24-cli-terminal.md). |
-| **`senos task add` / `senos brain ls` báo 403** | Token của bạn là loại **chỉ chat**. Những lệnh này cần token **toàn quyền** - tạo thêm một cái ở Tích hợp > Token API. |
+| **`senos` báo 401** hoặc "token không hợp lệ" | Token sai hoặc đã bị thu hồi. Tạo cái mới ở **Webhook > Token API (cho CLI)** rồi `senos login <địa-chỉ>` lại. Xem [SenOS CLI](24-cli-terminal.md). |
+| **`senos task add` / `senos brain ls` báo 403** | Token của bạn là loại **chỉ chat**. Những lệnh này cần token **toàn quyền** - tạo thêm một cái ở Webhook > Token API (cho CLI). |
 | **`senos up` báo không thấy bản cài SenOS** | Đúng như nó nói: gói CLI KHÔNG chứa server bên trong. Đặt `SENOS_HOME` trỏ tới thư mục SenOS, chạy lệnh từ trong thư mục đó, hoặc `senos login <địa-chỉ>` để nối tới một SenOS đang chạy nơi khác. |
 
 Các mục dưới đây giải thích chi tiết hơn từng dòng trong bảng.
@@ -71,7 +71,7 @@ Khi SenOS chạy public (Docker/VPS/Hostinger) mà chưa có admin, lần đầu
 
 1. **Đặt sẵn admin lúc deploy (khuyến nghị)**: hai env `SENOS_ADMIN_USER` và `SENOS_ADMIN_PASSWORD` trong compose hoặc `.env`. Khi đó mở app là đăng nhập luôn.
 2. **Không đặt env**: tạo tài khoản ngay sau khi deploy, mật khẩu tối thiểu 8 ký tự.
-3. **Vào được rồi**: bật xác thực 2 lớp (2FA) ở trang **Tài khoản**.
+3. **Vào được rồi**: bật xác thực 2 lớp (2FA) ở trang **Hồ sơ**.
 
 Chi tiết bảo mật và cách đặt mật khẩu xem [Bảo mật & tài khoản](14-bao-mat-tai-khoan.md).
 
@@ -79,16 +79,16 @@ Chi tiết bảo mật và cách đặt mật khẩu xem [Bảo mật & tài kho
 
 Khi bạn chạy engine Claude, SenOS mượn đúng phiên đăng nhập của `claude` CLI trên máy: đăng nhập 1 lần và giữ qua mọi restart/update. Nếu SenOS không trả lời hoặc báo chưa đăng nhập:
 
-1. **Cách trong giao diện:** mở **Models** (nhóm **Kết nối** trên thanh nav trái). Ở thẻ Claude Code, dòng trạng thái sẽ hiện **○ Chưa đăng nhập**. Bấm **Đăng nhập Claude**, app hiện một link; mở link để đăng nhập claude.ai; nếu trang hiện một mã code thì dán vào ô rồi bấm **Gửi code**. Khi xong, trạng thái đổi thành **● Đã kết nối**. Có nút **↻ Kiểm tra lại** để làm mới trạng thái.
+1. **Cách trong giao diện:** mở **Mô hình AI** (nhóm **Quản trị** trên thanh nav trái). Ở thẻ Claude Code, dòng trạng thái sẽ hiện **○ Chưa đăng nhập**. Bấm **Đăng nhập Claude**, app hiện một link; mở link để đăng nhập claude.ai; nếu trang hiện một mã code thì dán vào ô rồi bấm **Gửi code**. Khi xong, trạng thái đổi thành **● Đã kết nối**. Có nút **↻ Kiểm tra lại** để làm mới trạng thái.
 2. **Cách bằng lệnh:** chạy `claude auth login --claudeai` một lần (trên Docker thì chạy trong **App terminal**), mở link, dán code.
 
 Token đăng nhập nằm trong `~/.claude` (Docker: volume `claude-auth`) nên không mất khi update. Nếu đã đăng nhập trên máy khác, có thể copy thư mục `~/.claude` sang. Xem thêm [Models & engine](10-models-va-engine.md).
 
-## Trang Tệp tin báo lỗi ở "Đang tải..."
+## Trang Tài liệu báo lỗi ở "Đang tải..."
 
-Nếu vào **Tệp tin** (nhóm **Bộ não**) mà chỗ danh sách file báo lỗi thay vì lên danh sách, thường do máy chủ đang chạy bản cũ chưa có endpoint Tệp tin (lỗi 404). Bản thân giao diện sẽ nhắc: hãy **khởi động lại server** (Windows: `stop-senos.bat` rồi `start-senos.vbs`) rồi **tải lại trang** bằng Ctrl+Shift+R.
+Nếu vào **Tài liệu** (nhóm **Tri thức**) mà chỗ danh sách file báo lỗi thay vì lên danh sách, thường do máy chủ đang chạy bản cũ chưa có endpoint Tệp tin (lỗi 404). Bản thân giao diện sẽ nhắc: hãy **khởi động lại server** (Windows: `stop-senos.bat` rồi `start-senos.vbs`) rồi **tải lại trang** bằng Ctrl+Shift+R.
 
-Nếu hiện dòng báo phiên đăng nhập hết hạn (lỗi 401), chỉ cần tải lại trang và đăng nhập lại. Hướng dẫn dùng Tệp tin đầy đủ ở [Quản lý tệp tin](05-quan-ly-tep-tin.md).
+Nếu hiện dòng báo phiên đăng nhập hết hạn (lỗi 401), chỉ cần tải lại trang và đăng nhập lại. Hướng dẫn dùng trang Tài liệu đầy đủ ở [Quản lý tệp tin](05-quan-ly-tep-tin.md).
 
 ## Ảnh và file cũ biến mất (ô xám "Ảnh đã hết hạn")
 
@@ -120,14 +120,14 @@ Lưu ý nếu bạn đang bật đồng bộ GitHub: `attachments/` và `inbox/`
 
 Gói miễn phí của các nhà cung cấp API (Groq rõ nhất) siết **bốn thứ song song**, và chúng đòi bốn cách xử lý khác hẳn nhau. SenOS đọc câu báo lỗi rồi tự phân loại, nên đọc thông báo trong chat là biết mình đang dính cái nào:
 
-- **Token mỗi phút, lượt này quá to.** SenOS tự rút gọn ngữ cảnh rồi gửi lại. Không vừa nữa thì bật mức **Tối ưu** ở đầu trang Mức dùng, hoặc hỏi câu ngắn hơn.
+- **Token mỗi phút, lượt này quá to.** SenOS tự rút gọn ngữ cảnh rồi gửi lại. Không vừa nữa thì bật mức **Tối ưu** ở đầu trang Hạn mức, hoặc hỏi câu ngắn hơn.
 - **Token mỗi phút, cửa sổ đang đầy.** Các lượt trước chưa trôi qua. SenOS tự chờ đúng số giây nhà cung cấp nói rồi gửi lại. Rút gọn câu hỏi không giúp gì.
 - **Số lượt mỗi phút.** Gọi quá dày. Chờ một lát rồi hỏi lại.
-- **Hạn mức theo NGÀY** (token hoặc số lượt). Hết quota ngày. Rút gọn câu hỏi hoàn toàn không giúp. Phải chờ sang ngày mới, đổi tạm sang bộ não khác ở trang **Models**, hoặc nâng gói với nhà cung cấp.
+- **Hạn mức theo NGÀY** (token hoặc số lượt). Hết quota ngày. Rút gọn câu hỏi hoàn toàn không giúp. Phải chờ sang ngày mới, đổi tạm sang bộ não khác ở trang **Mô hình AI**, hoặc nâng gói với nhà cung cấp.
 
 Nếu SenOS không nhận ra loại nào, nó sẽ **đưa nguyên văn câu báo lỗi của nhà cung cấp** ra thay vì đoán. Gửi nguyên câu đó khi báo lỗi thì dễ lần ra hơn nhiều.
 
-Mẹo giảm hẳn tần suất gặp: chọn mức **Tối ưu** hoặc **Siêu tiết kiệm** ở đầu trang **Mức dùng** (từ 0.24.7 máy mới đã mặc định ở Siêu tiết kiệm). Sau lần đầu bị từ chối, SenOS nhớ luôn hạn mức thật của tài khoản đó (do chính nhà cung cấp nói ra) và tự canh ngữ cảnh dưới ngưỡng cho các lượt sau, không cần khai gì cả.
+Mẹo giảm hẳn tần suất gặp: chọn mức **Tối ưu** hoặc **Siêu tiết kiệm** ở đầu trang **Hạn mức** (từ 0.24.7 máy mới đã mặc định ở Siêu tiết kiệm). Sau lần đầu bị từ chối, SenOS nhớ luôn hạn mức thật của tài khoản đó (do chính nhà cung cấp nói ra) và tự canh ngữ cảnh dưới ngưỡng cho các lượt sau, không cần khai gì cả.
 
 ### Nhà cung cấp gãy một nhịp thì SenOS tự hỏi lại
 
@@ -144,9 +144,9 @@ Hết ba lần vẫn hỏng thì SenOS báo nguyên văn lỗi của nhà cung c
 
 Có vài nơi xem "nhật ký" tùy loại thông tin:
 
-1. **Nhật ký SenOS tự chạy nền**: mở nhóm **Việc** ở thanh nav trái, chọn **Việc định kỳ**, kéo xuống mục **Nhật ký gần đây**. Đây là nơi ghi lại các lượt SenOS tự thức làm nhiệm vụ, lọc được theo từng loop. Xem [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md).
-2. **Nhật ký tự học**: trang **Tự học** (nhóm **Bộ não**) có hai khung riêng là **SenOS đã tự học gì (commit gần nhất)** và **Nhật ký học**. Xem [Tự học](22-tu-hoc.md).
-3. **Trang Cập nhật** (nhóm **Hệ thống**, tiêu đề trang là **Nhật ký cập nhật**): đây là nơi xem phiên bản đang chạy và lịch sử tính năng mới theo từng bản. Không còn trang "Logs" hay "Nhật ký hoạt động" riêng nào nữa; mục `logs` trên rail chính là trang này.
+1. **Nhật ký SenOS tự chạy nền**: mở nhóm **Điều phối** ở thanh nav trái, chọn **Công việc**, rồi mở danh sách **Nhật ký**. Đây là nơi ghi lại các lượt SenOS tự thức làm nhiệm vụ, lọc được theo từng loop. Xem [Việc định kỳ & Nhắc hẹn](08-viec-dinh-ky.md).
+2. **Nhật ký tự học**: trang **Rèn luyện** (nhóm **Tri thức**) có hai khung riêng là **SenOS đã tự học gì (commit gần nhất)** và **Nhật ký học**. Xem [Tự học](22-tu-hoc.md).
+3. **Trang Phiên bản** (tab **Phiên bản** trong **Thiết lập**): đây là nơi xem phiên bản đang chạy và lịch sử tính năng mới theo từng bản. Không còn trang "Logs" hay "Nhật ký hoạt động" riêng nào nữa; mục `logs` trên rail chính là trang này.
 4. **Log kỹ thuật của server** (khi cần soi lỗi sâu):
    - Windows chạy ngầm bằng `start-senos.vbs`: log ghi ở `server\senos.log`.
    - Docker / VPS: `docker compose logs senos` (thêm `-f` để xem trực tiếp: `docker compose logs -f`).
@@ -161,7 +161,7 @@ Không, nếu chạy bằng Docker. Mọi ghi chú, brain, settings và cả tok
 
 ### Cập nhật trong app hoạt động thế nào?
 
-Mở **Hệ thống → Cài đặt → Cập nhật**; thẻ **SenOS** hiện phiên bản đang chạy và tự kiểm tra bản mới trên GitHub. Nếu có bản mới, dòng trạng thái hiện **🆕 Có bản mới** kèm khung **Bản mới có gì**, và nút **⬆ Cập nhật ngay** xuất hiện khi môi trường hỗ trợ. Bấm nút, xác nhận, app chạy qua 6 bước hiện trên thanh tiến trình (Chuẩn bị, Tải code, Cài thư viện, Khởi động lại, Kiểm tra sức khoẻ, Xong) rồi tự tải lại trang. Nếu bản mới lỗi, SenOS **tự quay về bản cũ** và báo **↩ Bản mới lỗi, đã tự quay về bản cũ**. Bên dưới thẻ là timeline nhật ký cập nhật của các bản đã ra.
+Mở **Quản trị → Thiết lập → Phiên bản**; thẻ **SenOS** hiện phiên bản đang chạy và tự kiểm tra bản mới trên GitHub. Nếu có bản mới, dòng trạng thái hiện **🆕 Có bản mới** kèm khung **Bản mới có gì**, và nút **⬆ Cập nhật ngay** xuất hiện khi môi trường hỗ trợ. Bấm nút, xác nhận, app chạy qua 6 bước hiện trên thanh tiến trình (Chuẩn bị, Tải code, Cài thư viện, Khởi động lại, Kiểm tra sức khoẻ, Xong) rồi tự tải lại trang. Nếu bản mới lỗi, SenOS **tự quay về bản cũ** và báo **↩ Bản mới lỗi, đã tự quay về bản cũ**. Bên dưới thẻ là timeline nhật ký cập nhật của các bản đã ra.
 
 Bản cài trực tiếp trên máy (Windows, Linux, macOS) luôn tự cập nhật được. Bản Docker chỉ tự cập nhật tại chỗ khi container **Watchtower** đang chạy.
 
@@ -186,7 +186,7 @@ Từ 0.55.56 Watchtower **đi kèm sẵn** trong cả compose VPS lẫn compose 
 Được. SenOS quản lý nhiều brain trong thư mục `brains/`. Ở dropdown chọn brain trên giao diện, bạn có thể:
 
 1. Tạo brain mới: bấm nút thêm brain, đặt tên khi được hỏi.
-2. Chuyển brain: chọn brain khác trong dropdown; mọi thao tác Tệp tin, đồ thị và bộ nhớ sẽ theo brain đang chọn.
+2. Chuyển brain: chọn brain khác trong dropdown; mọi thao tác ở trang Tài liệu, đồ thị và bộ nhớ sẽ theo brain đang chọn.
 3. Xoá brain: chọn brain cần xoá rồi bấm nút xoá, giao diện yêu cầu **gõ chính xác tên brain** để xác nhận (chống xoá nhầm). Không xoá được **Brain mặc định**.
 
 Xem chi tiết ở [Second Brain: bộ nhớ, Wiki, INGEST](13-second-brain-bo-nho-wiki.md).
@@ -221,4 +221,4 @@ Trình duyệt bắt buộc **HTTPS** mới cho cấp quyền micro (trừ local
 1. Thu thập log server (xem mục "Xem nhật ký (log) ở đâu" phía trên) để biết lỗi cụ thể.
 2. Thử lần lượt: khởi động lại server, rồi Ctrl+Shift+R.
 3. Kiểm tra biến môi trường trong `.env` có đặt đúng không, xem [Cấu hình .env](16-cau-hinh-env.md).
-4. Kiểm tra "bộ não" còn đăng nhập không (mục **Models**, thẻ engine bạn đang dùng phải hiện **● Đã kết nối**).
+4. Kiểm tra "bộ não" còn đăng nhập không (mục **Mô hình AI**, thẻ engine bạn đang dùng phải hiện **● Đã kết nối**).

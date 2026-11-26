@@ -20,7 +20,7 @@ A chatbot is for CUSTOMERS to write to, so only the Official Account fits. SenOS
 | How SenOS connects | Webhook: WeChat calls SenOS, **a public address is required** on port 443 (https) or 80 |
 | Groups | No, private chats with the account only |
 | Files | Receives text, images, voice, locations, links. Sends text and JPG/PNG/GIF images (up to 10MB). Cannot send documents |
-| Voice | Transcribed (WeChat's own recognition when present, otherwise a Groq key on the Models page) |
+| Voice | Transcribed (WeChat's own recognition when present, otherwise a Groq key on the AI models page) |
 | Replies | As "customer service messages", only within 48 hours of the follower's last message |
 | Formatting | Plain text, 2048 bytes per message. SenOS strips Markdown and splits long answers |
 | Customer names | WeChat no longer lets an account read them. A customer shows as an OpenID |
@@ -33,7 +33,7 @@ A chatbot is for CUSTOMERS to write to, so only the Official Account fits. SenOS
 
 ## 2. Get the address and the Token from SenOS
 
-1. Open SenOS **through its domain**, go to **Chatbot**, tab **Bots**, click **Add channel** and choose **WeChat**.
+1. Open SenOS **through its domain**, go to **Bot inbox**, tab **Bots**, click **Add channel** and choose **WeChat**.
 2. The form shows two lines: the **Webhook address** (like `https://<domain>/wechat/webhook`) and the **Verify token**. That token is the **Token** field on WeChat. SenOS generates it once for the machine and checks the signature of every message with it.
 
 ## 3. Configure WeChat
@@ -61,7 +61,7 @@ The sandbox test account has no EncodingAESKey field: fill in the URL and the To
 
    Leave out the EncodingAESKey when you run Plaintext mode.
 2. Click **Check**. SenOS asks for one access token: passing means the AppID and AppSecret are right and the IP is on the whitelist.
-3. Click **Save**, then go to **Chatbot**, **Bots** to create a bot or attach an existing one to this channel. Once the bot is on, it answers.
+3. Click **Save**, then go to **Bot inbox**, **Bots** to create a bot or attach an existing one to this channel. Once the bot is on, it answers.
 
 ## 5. Why Safe mode
 

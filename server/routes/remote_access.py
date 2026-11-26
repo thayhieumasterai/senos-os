@@ -41,7 +41,7 @@ def _make_router() -> APIRouter:
         if (loi := _DEPS.browser_session_error(request)) is not None:
             return loi
         if not cfgmod.auth_enabled():
-            return _err("Đặt mật khẩu đăng nhập trước (Cài đặt, mục Tài khoản), rồi mới mở SenOS ra Internet.",
+            return _err("Đặt mật khẩu đăng nhập trước (trang Hồ sơ), rồi mới mở SenOS ra Internet.",
                         "Set a login password first (Settings, Account), then open SenOS to the Internet.",
                         409, need_password=True)
         mode = (mode or "").strip().lower()

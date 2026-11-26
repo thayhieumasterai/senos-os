@@ -78,7 +78,7 @@ async def call(tool, arguments, spec):
     token = secrets.get("api_key", "")
     page_id = str(secrets.get("page_id", "")).strip()
     if not token or not page_id:
-        return "ERROR: kết nối Botcake thiếu page_id/API key - sửa lại ở trang Kết nối"
+        return "ERROR: kết nối Botcake thiếu page_id/API key - sửa lại ở trang Ứng dụng"
     ent = _ROUTES.get(tool)
     if not ent:
         return f"ERROR: tool '{tool}' không tồn tại trong cầu nối Botcake"

@@ -8,6 +8,14 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.626.0] - 2026-11-26
+### Added
+- **The assistant knows SenOS's own screens.** Asked "where do I change the model" or "what is the Knowledge map", SenOS looks it up with the new `senos_app_guide` tool: the sidebar with the exact names on screen, plus the matching guide sections. Before, it searched the brain only and guessed page names.
+### Improved
+- **Every page is called by its current name.** Notices, hints, page titles, Preferences tabs and the whole user guide (Vietnamese and English) now use today's names: AI models, Preferences, Apps, Sen Market, Jobs, Bot inbox, Assistants, Playbooks, Add-ons, Profile, Quota... Menu positions are unchanged.
+- **Packs in the guides use senos.* ids** (senos.zalo, senos.crm, senos.gate), as Sen Market shows them.
+- **Voice "open ..." commands know the new page names**, such as "open Apps", "open Sen Market", "open AI models".
+
 ## [0.625.1] - 2026-11-26
 ### Fixed
 - **The model and Effort chips under the chat box are no longer cut off by the bottom of the window.** The chat box keeps room for that row, also in a short window.

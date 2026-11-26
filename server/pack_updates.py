@@ -95,15 +95,15 @@ def notify(updates: List[dict]) -> Optional[dict]:
         return None
     import inbox
     n = len(fresh)
-    title = localefmt.chu(f"Store có bản mới cho {n} gói đã cài", f"Store has updates for {n} installed packs") \
-        if n > 1 else localefmt.chu(f"Store có bản mới: {fresh[0]['name']} {fresh[0]['to']}",
-                                    f"Store update: {fresh[0]['name']} {fresh[0]['to']}")
+    title = localefmt.chu(f"Chợ Sen có bản mới cho {n} gói đã cài", f"Sen Market has updates for {n} installed packs") \
+        if n > 1 else localefmt.chu(f"Chợ Sen có bản mới: {fresh[0]['name']} {fresh[0]['to']}",
+                                    f"Sen Market update: {fresh[0]['name']} {fresh[0]['to']}")
     lines = [f"- {u['name']}: {u['from']} → {u['to']}" for u in fresh[:MAX_LINES]]
     if n > MAX_LINES:
         lines.append(localefmt.chu(f"- và {n - MAX_LINES} gói khác", f"- and {n - MAX_LINES} more"))
     body = "\n".join(lines) + "\n\n" + localefmt.chu(
-        "Bấm để mở SenOS Store và cập nhật. SenOS không tự cập nhật: mỗi bản mới vẫn qua màn hình xác nhận.",
-        "Press to open the SenOS Store and update. SenOS never updates on its own: each new version still goes "
+        "Bấm để mở Chợ Sen và cập nhật. SenOS không tự cập nhật: mỗi bản mới vẫn qua màn hình xác nhận.",
+        "Press to open Sen Market and update. SenOS never updates on its own: each new version still goes "
         "through the confirm screen.")
     # 0.403.0: an update is an "info" notice of the group "update"; SenOS Core's rules decide if it rings.
     import notify_policy
@@ -112,7 +112,7 @@ def notify(updates: List[dict]) -> Optional[dict]:
         told.update({u["id"]: u["to"] for u in fresh})
         _save(told)
         return None
-    item = inbox.add(body, kind="system", title=title, label="SenOS Store", source="store", channel=CHANNEL,
+    item = inbox.add(body, kind="system", title=title, label=localefmt.chu("Chợ Sen", "Sen Market"), source="store", channel=CHANNEL,
                      dedup="pack-updates:" + ",".join(sorted(f"{u['id']}@{u['to']}" for u in fresh)),
                      group=dec["group"], level=dec["level"], sig=dec["sig"], filtered=dec["verdict"] != "loud",
                      why=dec["why"])

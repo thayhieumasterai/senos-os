@@ -1,8 +1,8 @@
-# A Terminal right in the dashboard
+# A Command line right in the dashboard
 
 *[Tiếng Việt](../27-tab-code-terminal.md) · **English***
 
-**Terminal** sits in the **Capabilities** group on the navigation rail: a real command line, running on the very machine running SenOS, opened right in the browser. No more opening SSH in another window. (Since 0.347.0 there is no separate Code group: every chat can attach a folder and write code.)
+**Command line** sits in the **AI crew** group on the navigation rail: a real command line, running on the very machine running SenOS, opened right in the browser. No more opening SSH in another window. (Since 0.347.0 there is no separate Code group: every chat can attach a folder and write code.)
 
 ## What this feature is
 
@@ -18,7 +18,7 @@ To write code you need no separate page: attach a folder to any chat and SenOS r
 ## Where to open it in SenOS
 
 1. Open the SenOS dashboard (default port 7777).
-2. On the left navigation rail, open the **Code** group and click **Terminal**.
+2. On the left navigation rail, open the **AI crew** group and click **Command line**.
 3. The terminal opens and connects itself. Click the black panel and type as in any terminal.
 
 The shell opens in the **HOME folder of the user running SenOS**, exactly like an ordinary terminal on the machine, which suits this tab's main job: installing and signing into CLIs (`agy`, `codex login`...). To get into the brain, type `cd "$SENOS_BRAIN"`, a variable always pointing at the root of the selected brain.
@@ -46,7 +46,7 @@ Right above the terminal panel is a tab strip, like a browser's:
 
 This is the most important thing in daily use: **navigating away or reloading the page does NOT kill the shell.**
 
-- Mid `npm install` and you click over to the Chat page: the command keeps running, in EVERY tab, not only the one in view. Coming back to the Code page shows the whole set of tabs, each as far along as it has got.
+- Mid `npm install` and you click over to the Conversations page: the command keeps running, in EVERY tab, not only the one in view. Coming back to the Command line page shows the whole set of tabs, each as far along as it has got.
 - Losing the network, closing the laptop, F5: SenOS reconnects to those very sessions.
 - Only when nobody comes back for **30 minutes** does SenOS close the sessions, so forgotten processes do not run forever.
 - To close one now, click the **x** on the tab, click **Restart**, or type `exit`.
@@ -84,7 +84,7 @@ How to set variables: [.env configuration](16-env-configuration.md).
 
 ## Common problems
 
-**Opening Terminal shows "The terminal is off on this machine".** The server has `SENOS_TERMINAL=0`. Remove that variable from `.env` then restart SenOS.
+**Opening Command line shows "The terminal is off on this machine".** The server has `SENOS_TERMINAL=0`. Remove that variable from `.env` then restart SenOS.
 
 **It reports "4 terminal sessions are already open".** The ceiling of 4 counts across every browser window. Close a tab (the **x**) in the window holding it, or wait 30 minutes for SenOS to clear the unwatched sessions.
 

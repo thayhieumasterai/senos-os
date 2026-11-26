@@ -201,9 +201,9 @@ def subscription_blocked_hint(limit, configured_providers=(), now=None) -> str:
     others = sorted({str(p) for p in (configured_providers or ()) if str(p).strip()})
     if others:
         parts.append("Đang chờ thì đổi tạm sang " + ", ".join(others)
-                     + " ở trang Models - hội thoại giữ nguyên.")
+                     + " ở trang Mô hình AI - hội thoại giữ nguyên.")
     else:
-        parts.append("Chưa đấu bộ não nào khác để chạy tạm; thêm một API key ở trang Models "
+        parts.append("Chưa đấu bộ não nào khác để chạy tạm; thêm một API key ở trang Mô hình AI "
                      "là những lúc thế này vẫn làm việc được.")
     parts.append("Rút gọn câu hỏi KHÔNG giúp gì ở đây - hạn mức này đếm lượt dùng theo giờ, "
                  "không đếm độ dài.")

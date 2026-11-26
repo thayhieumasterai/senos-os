@@ -131,7 +131,7 @@ def build(spec: dict, base: Any, tag: str, settings: Optional[dict] = None) -> A
         return eng
     raise TeamEngineUnavailable(
         f"{prov} chưa chạy được lượt nhóm chỉ chữ (còn công cụ native không tắt riêng cho lượt này được). "
-        "Đổi model của trợ lý ở trang Cộng sự sang Claude, ChatGPT (Codex) hay một model API", prov)
+        "Đổi model của trợ lý ở trang Trợ lý sang Claude, ChatGPT (Codex) hay một model API", prov)
 
 
 def build_tools(spec: dict, base: Any, tag: str, settings: Optional[dict] = None, mode: str = "full",

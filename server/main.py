@@ -1363,7 +1363,7 @@ def _turn_facts_header(brain: str, session_id: str, lang: str = "", first: bool 
                 if lang_registry.chuan_hoa(lang) == "vi":
                     lines.append(f"[Mức dùng hôm nay (SenOS tự đo, không phải hạn mức gói): "
                                  f"{_t.get('in', 0):,} token vào + {_t.get('out', 0):,} token ra qua "
-                                 f"{_t.get('turns', 0)} lượt. Chi tiết ở panel 'Mức dùng'.]")
+                                 f"{_t.get('turns', 0)} lượt. Chi tiết ở trang 'Hạn mức'.]")
                 else:
                     lines.append(f"[Usage today (measured by SenOS, not the plan's limit): "
                                  f"{_t.get('in', 0):,} tokens in + {_t.get('out', 0):,} tokens out over "
@@ -2999,10 +2999,10 @@ def _auto_background_notice(provider: str, picks: dict, before: str) -> str:
     return localefmt.chu(
         "Model việc nền đang ở chế độ Tự động ({nha}). Việc SenOS tự làm (tự học, gợi ý câu tiếp) chạy bằng "
         "{nhe}; việc bạn giao chạy nền (nhắc hẹn, loop, Kanban) chạy bằng {giua}. Mục đích là đỡ tốn hạn mức. "
-        "Muốn dùng model khác thì đổi ở trang Models, khối Model việc nền.",
+        "Muốn dùng model khác thì đổi ở trang Mô hình AI, khối Model việc nền.",
         "The background model is on Automatic ({nha}). SenOS's own work (self-learning, next-message suggestions) "
         "runs on {nhe}; the jobs you hand over (reminders, loops, Kanban) run on {giua}. This saves plan allowance. "
-        "To use another model, change it on the Models page, Background model block.",
+        "To use another model, change it on the AI models page, Background model block.",
         nha=label, nhe=light or (before or label), giua=mid or label)
 
 
@@ -3105,7 +3105,7 @@ async def _reply_policy_review_ask(prompt: str) -> str:
     # Bộ não chính không phải Claude thì engine sau swap có hub/MCP: lột sạch, kẻo chữ khách cài lệnh gọi được tool.
     cli = aux_engine.strip_tools(cli, base)
     if not cli.is_available():
-        raise RuntimeError("bộ não chính chưa sẵn sàng (kiểm tra trang Models)")
+        raise RuntimeError("bộ não chính chưa sẵn sàng (kiểm tra trang Mô hình AI)")
     final = ""
     async for ev in cli.query(prompt):
         if ev.get("type") == "final":
@@ -3237,7 +3237,7 @@ async def _reply_policy_ask(prompt: str, purpose: str = "") -> str:
     # Model việc nền (hoặc mắt dự phòng) không phải Claude thì có hub/MCP: lột sạch, prompt chứa chữ người lạ.
     cli = aux_engine.strip_tools(_aux_swap(cli, mode="suggest", tag="reply-policy"), base)
     if not cli.is_available():
-        raise RuntimeError("engine việc nền chưa sẵn sàng (kiểm tra trang Models)")
+        raise RuntimeError("engine việc nền chưa sẵn sàng (kiểm tra trang Mô hình AI)")
     final = ""
     async for ev in cli.query(prompt):
         if ev.get("type") == "final":
@@ -3969,9 +3969,9 @@ def _signin_lost_message(provider: str, raw="") -> str:
     name = _route_name(provider)
     detail = " ".join(str(raw or "").split())[:200]
     return localefmt.chu(
-        f"⚠ {name} mất đăng nhập nên lượt này chưa chạy. Vào trang Models đăng nhập lại {name}, hoặc chọn model khác."
+        f"⚠ {name} mất đăng nhập nên lượt này chưa chạy. Vào trang Mô hình AI đăng nhập lại {name}, hoặc chọn model khác."
         + (f" (Chi tiết: {detail})" if detail else ""),
-        f"⚠ {name} lost its sign-in, so this turn did not run. Sign in to {name} again on the Models page, or pick "
+        f"⚠ {name} lost its sign-in, so this turn did not run. Sign in to {name} again on the AI models page, or pick "
         "another model." + (f" (Details: {detail})" if detail else ""))
 
 
@@ -4008,9 +4008,9 @@ def _note_signin_lost(provider: str, account: str = None, now: float = None) -> 
         name = _route_name(prov)
         inbox.add(localefmt.chu(
             f"{name} mất đăng nhập. SenOS đang chạy bằng model khác đã kết nối (nếu có). "
-            f"Vào trang Models đăng nhập lại {name} để dùng lại model này.",
+            f"Vào trang Mô hình AI đăng nhập lại {name} để dùng lại model này.",
             f"{name} lost its sign-in. SenOS is running on another connected model (if there is one). "
-            f"Sign in to {name} again on the Models page to use this model again."),
+            f"Sign in to {name} again on the AI models page to use this model again."),
             kind="system", dedup=f"signed-out:{prov}:{time.strftime('%Y-%m-%d', time.localtime(now))}")
     except Exception as e:  # noqa: BLE001 - a missed notice never fails the turn
         print(f"[routing] signed-out notice {prov}: {type(e).__name__}: {e}", file=sys.stderr)
@@ -7548,8 +7548,8 @@ async def connect_oauth_callback(state: str = Query(""), code: str = Query(""), 
         except Exception as e:
             print(f"[oauth label] {e}")
         html = ("<html><body style='font-family:sans-serif;background:#111;color:#eee;text-align:center;padding-top:80px'>"
-                + localefmt.chu("<h2>✓ Đã kết nối thành công</h2><p>Đóng tab này và quay lại SenOS, bấm Làm mới ở trang Kết nối.</p>",
-                                "<h2>✓ Connected successfully</h2><p>Close this tab, go back to SenOS and click Refresh on the Connections page.</p>")
+                + localefmt.chu("<h2>✓ Đã kết nối thành công</h2><p>Đóng tab này và quay lại SenOS, bấm Làm mới ở trang Ứng dụng.</p>",
+                                "<h2>✓ Connected successfully</h2><p>Close this tab, go back to SenOS and click Refresh on the Apps page.</p>")
                 + "</body></html>")
     else:
         html = (f"<html><body style='font-family:sans-serif;background:#111;color:#eee;text-align:center;padding-top:80px'>"
@@ -8091,10 +8091,10 @@ async def settings_set(section: str = Form(...), data: str = Form("{}")):
         # khẩu chủ máy rồi khoá chính chủ ra ngoài. Nó cũng nhận mật khẩu 4 ký tự trong khi mọi
         # đường khác đòi 8.
         return JSONResponse({"ok": False, "error": localefmt.chu(
-            "Đổi mật khẩu chuyển sang trang Tài khoản "
+            "Đổi mật khẩu chuyển sang trang Hồ sơ "
             "(phải nhập mật khẩu hiện tại). Tải lại trang "
             "nếu vẫn thấy form cũ.",
-            "Changing the password moved to the Account page "
+            "Changing the password moved to the Profile page "
             "(the current password is required). Reload the page "
             "if you still see the old form.")}, status_code=400)
     else:
@@ -8708,11 +8708,11 @@ def _vi_sao_khong_co_model(provider: str, m: dict, cause: str = "") -> str:
                              "Could not reach Ollama. Check that the Ollama server is running and the key is still valid.")
     if provider == "ollama-local":
         if not (m.get("ollama_local_endpoint") or "").strip():
-            return localefmt.chu("Chưa đặt địa chỉ Ollama - vào trang Models, tab Local Model để kết nối.",
-                                 "No Ollama address set - go to the Models page, Local Model tab, to connect.")
-        return localefmt.chu("Không gọi được Ollama ở địa chỉ đã lưu. Mở trang Models, tab Local Model để "
+            return localefmt.chu("Chưa đặt địa chỉ Ollama - vào trang Mô hình AI, tab Local Model để kết nối.",
+                                 "No Ollama address set - go to the AI models page, Local Model tab, to connect.")
+        return localefmt.chu("Không gọi được Ollama ở địa chỉ đã lưu. Mở trang Mô hình AI, tab Local Model để "
                              "xem lỗi cụ thể.",
-                             "Could not reach Ollama at the saved address. Open the Models page, Local Model "
+                             "Could not reach Ollama at the saved address. Open the AI models page, Local Model "
                              "tab, to see the exact error.")
     if provider in adv_keys.PROVIDERS:
         card = _card_label(d)
@@ -8720,8 +8720,8 @@ def _vi_sao_khong_co_model(provider: str, m: dict, cause: str = "") -> str:
         if not base:
             return localefmt.chu(f"Chưa đặt Base URL cho {card}.", f"No Base URL set for {card}.")
         host, why = adv_keys.host(base), (f" ({cause})" if cause else "")
-        where = localefmt.chu(f"Mở trang Models, thẻ {card}, bấm dấu ba chấm cạnh key rồi chọn Sửa",
-                              f"Open the Models page, {card} card, press the three dots next to the key and choose Edit")
+        where = localefmt.chu(f"Mở trang Mô hình AI, thẻ {card}, bấm dấu ba chấm cạnh key rồi chọn Sửa",
+                              f"Open the AI models page, {card} card, press the three dots next to the key and choose Edit")
         if cause in ("HTTP 401", "HTTP 403"):
             return localefmt.chu(f"{host} từ chối API key{why}. {where}, dán lại key.",
                                  f"{host} refused the API key{why}. {where}, then paste the key again.")
@@ -9330,7 +9330,7 @@ async def ingest_upload(
     cli = claude_engine(system_prompt=SYSTEM_PROMPT, cwd=CLAUDE_CWD)
     cli = _aux_swap(cli, mode="auto", tag="ingest")   # việc nền: theo model phụ đã chọn
     if not cli.is_available():
-        return {"ok": False, "error": localefmt.chu("Engine việc nền chưa sẵn sàng (kiểm tra trang Model)", "The background engine is not ready (check the Models page)")}
+        return {"ok": False, "error": localefmt.chu("Engine việc nền chưa sẵn sàng (kiểm tra trang Mô hình AI)", "The background engine is not ready (check the AI models page)")}
     slug = _sanitize_filename(os.path.splitext(name)[0]) or "source"
 
     if kind == "image":
@@ -14255,9 +14255,9 @@ def _agent_chat_prompt(brain, slug, channel="dashboard", conv_sid="", skill_serv
                      + "\n# Resonance (on for you)\n- " + _RESONANCE_GOAL_HINT + "\n")
     where = ("qua SenOS CLI (terminal hoặc HTTP /chat)" if channel == "cli"
              else "qua Telegram" if channel == "telegram"
-             else "trong một cuộc gọi thoại trên dashboard SenOS (khung chat của bạn ở trang Cộng sự); câu bạn "
+             else "trong một cuộc gọi thoại trên dashboard SenOS (khung chat của bạn ở trang Trợ lý); câu bạn "
                   "viết ra được đọc lại thành tiếng, nên viết gọn, không bảng" if channel == "voice"
-             else "trên dashboard SenOS (trang Cộng sự)")
+             else "trên dashboard SenOS (trang Trợ lý)")
     # the dashboard chat id, so a chat_id/owner_chat the model passes names this chat. An agent DM never had
     # the channel block or the `[Phiên chat: ...]` header, so its jobs used to report to SenOS Core.
     # A voice call runs in that same dashboard chat, so its jobs report there too.
@@ -14990,7 +14990,7 @@ async def execute_workflow(brain, slug, input="", tools=None, session_id="", sou
         yield {"type": "error", "needs_input": True,
                "content": localefmt.chu(
                    f"Quy trình '{meta.get('name', slug)}' đang tắt nên không chạy nền. "
-                   "Bật nó ở trang Cộng sự rồi chạy lại việc này.",
+                   "Bật nó ở trang Trợ lý rồi chạy lại việc này.",
                    f"The workflow '{meta.get('name', slug)}' is switched off, so it does not "
                    "run in the background. Switch it on in Studio, then rerun this job.")}
         return
@@ -15228,8 +15228,8 @@ def _security_alert_text(ev: dict) -> str:
     where = " · ".join(x for x in (when, ev.get("ip", ""), _ua_short(ev.get("ua", "")), ev.get("detail", "")) if x)
     if where:
         bits.append(where)
-    bits.append(localefmt.chu("Không phải anh/chị? Mở Tài khoản > Bảo mật để đăng xuất thiết bị lạ và đổi mật khẩu.",
-                              "Not you? Open Account > Security to sign out unknown devices and change the password."))
+    bits.append(localefmt.chu("Không phải anh/chị? Mở Hồ sơ > Bảo mật để đăng xuất thiết bị lạ và đổi mật khẩu.",
+                              "Not you? Open Profile > Security to sign out unknown devices and change the password."))
     return "\n".join(bits)
 
 
@@ -16220,7 +16220,7 @@ async def _scout_run(vault_root: str, prompt: str, tag: str, wall_s: int) -> dic
     cli = _aux_swap(cli, mode="suggest", tag=tag)
     cli.max_wall_s = int(wall_s)
     if not cli.is_available():
-        return {"text": "", "error": "the background engine is not ready (Models page)"}
+        return {"text": "", "error": "the background engine is not ready (AI models page)"}
     spec = aux_engine.read_spec(tag=tag)
     out, err, usage = "", "", {"input": 0, "output": 0}
     async for ev in cli.query(prompt):
@@ -17198,7 +17198,7 @@ def _cau_link_khong_thay(thieu: list) -> str:
     đoán nguyên nhân; chỉ nói mình không thấy và chỉ chỗ tự kiểm."""
     ds = ", ".join(f"`{x}`" for x in thieu[:5])
     return ("⚠ Câu trả lời có dẫn link tới file không tìm thấy trong brain: " + ds +
-            ". Có thể file được ghi ở chỗ khác hoặc chưa được ghi thật. Kiểm tra ở trang Tệp tin "
+            ". Có thể file được ghi ở chỗ khác hoặc chưa được ghi thật. Kiểm tra ở trang Tài liệu "
             "trước khi tin vào link đó.")
 
 
@@ -19673,7 +19673,7 @@ async def _tts_openai(text: str, rate: str, cfg: dict) -> bytes:
     import httpx
     key = (cfg.get("model", {}) or {}).get("openai_api_key", "")
     if not key:
-        raise RuntimeError("Chưa có OpenAI API key (đặt ở Models / Cài đặt).")
+        raise RuntimeError("Chưa có OpenAI API key (đặt ở trang Mô hình AI).")
     v = cfg.get("voice", {}) or {}
     payload = {
         "model": v.get("openai_tts_model") or "gpt-4o-mini-tts",
@@ -19929,8 +19929,8 @@ async def voice_options(brains: int = 1):
             item["available"] = agy_models is not None
             item["models"] = _models_items(agy_models)
             item["hint"] = "" if agy_models is not None else localefmt.chu(
-                "Chưa cài agy. Cài rồi Re-check ở trang Models.",
-                "agy is not installed. Install it, then Re-check on the Models page.")
+                "Chưa cài agy. Cài rồi Re-check ở trang Mô hình AI.",
+                "agy is not installed. Install it, then Re-check on the AI models page.")
         # Ba bộ não trên gói (Voice V3): sẵn hay không đọc từ CHÍNH trạng thái đăng nhập của
         # trang Models, không hỏi mạng ở đây (trang Cài đặt vẽ thẻ này mỗi lần mở).
         elif pid == "codex":
@@ -19940,8 +19940,8 @@ async def voice_options(brains: int = 1):
             item["hint"] = (localefmt.chu("Đi HTTP stream trên gói ChatGPT, không dựng tiến trình: đường gói nhanh nhất.",
                                           "HTTP streaming on the ChatGPT plan, no process to start: the fastest plan route.")
                             if item["available"] else
-                            localefmt.chu("Chưa kết nối ChatGPT. Vào trang Models bấm Kết nối.",
-                                          "ChatGPT is not connected. Go to the Models page and click Connect."))
+                            localefmt.chu("Chưa kết nối ChatGPT. Vào trang Mô hình AI bấm Kết nối.",
+                                          "ChatGPT is not connected. Go to the AI models page and click Connect."))
         elif pid == "claude":
             try:
                 import claude_sdk_engine as _cse
@@ -19953,8 +19953,8 @@ async def voice_options(brains: int = 1):
                                           "Chọn haiku cho nhanh nhất.",
                                           "Keeps one Claude Code session alive while you talk, no tools, no MCP. "
                                           "Pick haiku for the fastest replies.") if item["available"]
-                            else localefmt.chu("Chưa cài hoặc chưa đăng nhập Claude Code. Xem trang Models.",
-                                               "Claude Code is not installed or not signed in. See the Models page."))
+                            else localefmt.chu("Chưa cài hoặc chưa đăng nhập Claude Code. Xem trang Mô hình AI.",
+                                               "Claude Code is not installed or not signed in. See the AI models page."))
         elif pid == "grok":
             try:
                 item["available"] = bool(grok_cli.find_grok_cli())
@@ -19966,8 +19966,8 @@ async def voice_options(brains: int = 1):
                                           "One headless grok turn per sentence, resuming the thread so it remembers. "
                                           "Text arrives piece by piece, so speech starts while Grok writes.")
                             if item["available"]
-                            else localefmt.chu("Chưa cài Grok Build (grok). Xem trang Models.",
-                                               "Grok Build (grok) is not installed. See the Models page."))
+                            else localefmt.chu("Chưa cài Grok Build (grok). Xem trang Mô hình AI.",
+                                               "Grok Build (grok) is not installed. See the AI models page."))
         brain_list.append(item)
     _vb = voice_brain.config_from_settings(cfg).get("provider") or ""
     return {
@@ -21001,7 +21001,7 @@ def _bao_lan_nhanh_bo_qua(vconf) -> bool:
                  else "chế độ Làn nhanh nhưng chưa chọn bộ não giọng và không có bộ não nào sẵn trên gói "
                       "(Antigravity, ChatGPT, Claude Code, Grok Build)")
         print(f"[voice lane] tin từ mic đi bộ não chính: {ly_do}. "
-              f"Đăng nhập một gói ở trang Models để có làn nhanh.", file=sys.stderr)
+              f"Đăng nhập một gói ở trang Mô hình AI để có làn nhanh.", file=sys.stderr)
     return True
 
 
@@ -21270,8 +21270,8 @@ async def _chat_socket(ws):
             if _persona and _persona[0] == "agent" and not (_agents_dir(brain) / f"{_persona[1]}.md").exists():
                 await ws.send_text(json.dumps({"type": "error",
                     "content": localefmt.chu(
-                        f"Trợ lý '{_persona[1]}' không còn trong brain này. Mở trang Cộng sự để chọn trợ lý khác.",
-                        f"Assistant '{_persona[1]}' is no longer in this brain. Open the Partners page to pick another one.")}))
+                        f"Trợ lý '{_persona[1]}' không còn trong brain này. Mở trang Trợ lý để chọn trợ lý khác.",
+                        f"Assistant '{_persona[1]}' is no longer in this brain. Open the Assistants page to pick another one.")}))
                 return ""
             # 2026-11-15: the GitHub repos of the chat's project or assistant join the chat before any engine reads
             # its folder (`_cwd_luot_chat`, `_khoi_coding` below). A rerun on another route finds them already there.
@@ -21526,7 +21526,7 @@ async def _chat_socket(ws):
                 if not kcli.is_available():
                     final_text = ("⚠ Chưa cài Grok Build CLI trên máy này. Cài một lần:\n\n"
                                   f"`{grok_cli.lenh_cai()}`\n\n"
-                                  "Rồi bấm \"Đăng nhập\" ở thẻ Grok trên trang Models (chạy "
+                                  "Rồi bấm \"Đăng nhập\" ở thẻ Grok trên trang Mô hình AI (chạy "
                                   "trên VPS cũng được, nó in ra một link và một mã).")
                     await ws.send_text(json.dumps({
                         "type": "response", "content": final_text, "engine": "grok-cli",
@@ -21699,9 +21699,9 @@ async def _chat_socket(ws):
                                 model_routing.set_profile(_fix.setdefault("model", {}), "openai-oauth", model=actual_model)
                             cfgmod.write_settings(_fix)
                         await ws.send_text(json.dumps({"type": "system", "content": localefmt.chu(
-                            f"⚠ Model '{api_model}' không chạy được qua Codex (tài khoản ChatGPT) - đã tự đổi sang '{actual_model}'. Đổi model khác ở trang Models nếu muốn.",
+                            f"⚠ Model '{api_model}' không chạy được qua Codex (tài khoản ChatGPT) - đã tự đổi sang '{actual_model}'. Đổi model khác ở trang Mô hình AI nếu muốn.",
                             f"⚠ Model '{api_model}' does not run through Codex (ChatGPT account) - switched to "
-                            f"'{actual_model}' automatically. Pick another model on the Models page if you like.")}))
+                            f"'{actual_model}' automatically. Pick another model on the AI models page if you like.")}))
                     except Exception as _e:
                         print(f"[codex model self-heal] {_e}", file=__import__('sys').stderr)
                 openai_oauth.write_codex_auth()   # bắc cầu token đã nối ở Models → ~/.codex/auth.json (codex dùng được)
@@ -21752,9 +21752,9 @@ async def _chat_socket(ws):
                 ccli.session_id = stored_codex_thread or None
                 if not ccli.is_available():
                     await ws.send_text(json.dumps({"type": "error", "content": localefmt.chu(
-                        "Chưa cài Codex CLI trong container. ChatGPT subscription là THỬ NGHIỆM - dùng Claude Code hoặc OpenRouter cho ổn định (đổi ở Models).",
+                        "Chưa cài Codex CLI trong container. ChatGPT subscription là THỬ NGHIỆM - dùng Claude Code hoặc OpenRouter cho ổn định (đổi ở Mô hình AI).",
                         "Codex CLI is not installed in the container. The ChatGPT subscription is EXPERIMENTAL - "
-                        "use Claude Code or OpenRouter for stability (change it on the Models page).")}))
+                        "use Claude Code or OpenRouter for stability (change it on the AI models page).")}))
                 else:
                     _codex_current = _codex_do_sau(ccli, reasoning, user_message)
                     _codex_fast(ccli)
@@ -25975,7 +25975,7 @@ def _limit_autoshrink_message(provider: str, model: str, hit: dict) -> str:
         # Cửa sổ NGÀY. Rút gọn hoàn toàn vô ích ở đây - nói thẳng ra thay vì để người dùng
         # ngồi cắt câu hỏi cho ngắn rồi vẫn lỗi.
         return (dau + "Đây là hạn mức theo NGÀY nên rút gọn câu hỏi không giúp gì cả. "
-                "Phải chờ sang ngày mới, hoặc đổi tạm sang bộ não khác ở trang Models, "
+                "Phải chờ sang ngày mới, hoặc đổi tạm sang bộ não khác ở trang Mô hình AI, "
                 "hoặc nâng gói với nhà cung cấp.")
     if remedy == "wait":
         khi_nao = f" khoảng {cho:.0f} giây nữa" if cho else " một lát"
@@ -26104,7 +26104,7 @@ def _loi_het_luot_cua_buoc(out: str, loi: str, provider: str, agent_name: str) -
         ten = str(agent_name or "").strip()
         if ten:
             noi += (f" Bước này chạy bằng trợ lý \"{ten}\", nên muốn chạy tiếp ngay thì trỏ "
-                    "riêng trợ lý đó sang model khác ở trang Models.")
+                    "riêng trợ lý đó sang model khác ở trang Mô hình AI.")
         return noi
     return ""
 
@@ -27652,7 +27652,7 @@ async def _bot_tra_loi(text, *, sess, sysprompt, prov, api_key, api_model, reaso
             # Codex không chạy không-tool được nên không có đường dự phòng. Nói đúng việc cần
             # làm thay vì để chủ đọc một mã lỗi HTTP.
             return ("⚠ Chưa đăng nhập được ChatGPT nên bot không gọi được model. "
-                    "Vào trang Models kết nối lại tài khoản ChatGPT rồi nhắn lại.")
+                    "Vào trang Mô hình AI kết nối lại tài khoản ChatGPT rồi nhắn lại.")
         return "⚠ " + (loi[0] if loi else "Không nhận được nội dung nào.")
     # Không gửi kèm file: bot ở mức này không tạo được file (không có tool), và quét thư mục
     # brain để tìm file "mới" thì lại là một đường rò tài liệu ra ngoài.
@@ -27859,14 +27859,14 @@ async def _bot_tra_loi_co_tool(text, *, sess, sysprompt, prov, api_key, api_mode
         canh_bao = (f"Engine đang chạy ({_api_label(prov)}) không gọi được công cụ cho bot, "
                     f"nên lượt vừa rồi trả lời ở mức Chỉ đọc chứ không phải mức "
                     f"{chatbot_store.MUC_NHAN.get(muc_quyen, muc_quyen)} bạn đã đặt. "
-                    f"Cần bot làm việc thật thì đổi engine ở trang Models, hoặc hạ mức bot "
+                    f"Cần bot làm việc thật thì đổi engine ở trang Mô hình AI, hoặc hạ mức bot "
                     f"xuống Chỉ đọc cho khỏi hiểu nhầm.")
 
     if not out:
         lich_su.pop()   # lượt hỏng thì đừng để câu hỏi treo lơ lửng không có câu trả lời
         if prov == "openai-oauth" and not (openai_oauth.valid_creds() or {}).get("access_token"):
             return ("⚠ Chưa đăng nhập được ChatGPT nên bot không gọi được model. "
-                    "Vào trang Models kết nối lại tài khoản ChatGPT rồi nhắn lại.")
+                    "Vào trang Mô hình AI kết nối lại tài khoản ChatGPT rồi nhắn lại.")
         return "⚠ " + (loi[0] if loi else "Không nhận được nội dung nào.")
     if not tools:
         # Bot được đặt ở mức có quyền mà lại chẳng có công cụ nào - im lặng ở đây thì chủ tưởng
@@ -27884,7 +27884,7 @@ async def _bot_tra_loi_co_tool(text, *, sess, sysprompt, prov, api_key, api_mode
         else:
             canh_bao = (f"Bot đang ở mức {chatbot_store.MUC_NHAN.get(muc_quyen, muc_quyen)} nhưng "
                         f"chưa có nguồn dữ liệu nào đấu vào, nên không có công cụ nào để dùng. "
-                        f"Đấu thêm ở trang Kết nối, hoặc hạ mức bot xuống Chỉ đọc.")
+                        f"Đấu thêm ở trang Ứng dụng, hoặc hạ mức bot xuống Chỉ đọc.")
         print(f"[bot {prov} chat {chat_id}] mức '{muc_quyen}' nhưng hub không trả tool nào - "
               f"lượt này chỉ chat", file=__import__('sys').stderr)
     ket = _bot_ket(out, lich_su)
@@ -28146,7 +28146,7 @@ async def _tg_answer_engine(text, meta, progress, *, chat_id, sess, brain, mcfg,
         if not kcli.is_available():
             return ("⚠ Chưa cài Grok Build CLI trên máy chạy SenOS. Cài một lần:\n"
                     f"`{grok_cli.lenh_cai()}`\n"
-                    "Rồi đăng nhập ở thẻ Grok trên trang Models.")
+                    "Rồi đăng nhập ở thẻ Grok trên trang Mô hình AI.")
         _hoi = text
         if not getattr(kcli, "session_id", None):
             # Chưa có mạch native (phiên mới, hoặc vừa restart nên object engine dựng lại từ
@@ -28250,9 +28250,9 @@ async def _tg_answer_engine(text, meta, progress, *, chat_id, sess, brain, mcfg,
             else:
                 canh_bao = localefmt.chu(
                     f"⚠ Model '{api_model}' không chạy được qua Codex (tài khoản ChatGPT) - "
-                    f"đã tự đổi sang '{actual_model}'. Đổi model khác ở trang Models nếu muốn.",
+                    f"đã tự đổi sang '{actual_model}'. Đổi model khác ở trang Mô hình AI nếu muốn.",
                     f"⚠ Model '{api_model}' does not run through Codex (ChatGPT account) - switched to "
-                    f"'{actual_model}' automatically. Pick another model on the Models page if you like.") + "\n\n"
+                    f"'{actual_model}' automatically. Pick another model on the AI models page if you like.") + "\n\n"
         openai_oauth.write_codex_auth()
         ccli = sess.get("codex")
         if ccli is None:
@@ -28822,7 +28822,7 @@ async def _tg_callback(data, chat=None):
         if pid not in dict(_tg_providers()):
             return {"alert": "Provider không hợp lệ - gõ /model lại"}
         if not _tg_prov_ready(pid, cfgmod.read_settings().get("model", {})):
-            return {"alert": f"{_tg_prov_label(pid)} chưa kết nối - vào dashboard trang Models"}
+            return {"alert": f"{_tg_prov_label(pid)} chưa kết nối - vào dashboard trang Mô hình AI"}
         await _tg_models_for(pid)   # nạp danh sách mới nhất trước khi vẽ trang 1
         return {"text": _tg_model_list_text(pid), "reply_markup": _model_list_kb(pid, 0)}
     if data.startswith("ml:"):
@@ -28847,7 +28847,7 @@ async def _tg_callback(data, chat=None):
         mdl = ids[i]
         s = cfgmod.read_settings(); m = s["model"]
         if not _tg_prov_ready(pid, m):
-            return {"alert": f"{_tg_prov_label(pid)} chưa kết nối - vào dashboard trang Models"}
+            return {"alert": f"{_tg_prov_label(pid)} chưa kết nối - vào dashboard trang Mô hình AI"}
         if pid == "anthropic-cli":
             mdl = mdl.lower()   # alias opus/sonnet/haiku/fable
         _tg_dat_model(s, pid, mdl, chat_key); cfgmod.write_settings(s)
@@ -28891,7 +28891,7 @@ async def _tg_command(cmd, arg, chat=None, meta=None):
     if cmd in ("or", "openrouter"):
         s = cfgmod.read_settings()
         if not s["model"].get("openrouter_key"):
-            return {"reply": "⚠ Chưa có OpenRouter key - đặt trong Models trên dashboard trước."}
+            return {"reply": "⚠ Chưa có OpenRouter key - đặt ở trang Mô hình AI trên dashboard trước."}
         _tg_dat_model(s, "openrouter", s["model"].get("openrouter_model"), chat_key); cfgmod.write_settings(s)
         return {"reply": f"✅ Provider: OpenRouter ({s['model'].get('openrouter_model')}) - chat + MCP đa-model."}
     if cmd in ("help", "menu", "start"):
@@ -28953,7 +28953,7 @@ async def _tg_command(cmd, arg, chat=None, meta=None):
                 return {"reply": f"✅ OpenRouter model: {a}."}
             if _is_codex_model(a):
                 if not _tg_prov_ready("openai-oauth", m):
-                    return {"reply": "⚠ Chưa kết nối ChatGPT (OpenAI OAuth) - nối ở dashboard trang Models trước."}
+                    return {"reply": "⚠ Chưa kết nối ChatGPT (OpenAI OAuth) - nối ở dashboard trang Mô hình AI trước."}
                 _tg_dat_model(s, "openai-oauth", a, chat_key); cfgmod.write_settings(s)
                 return {"reply": f"✅ ChatGPT (Codex) model: {a}."}
             _tg_dat_model(s, "anthropic-cli", a.lower(), chat_key); cfgmod.write_settings(s)
@@ -29279,8 +29279,8 @@ async def _tg_owner_command(cmd, arg, chat=None, meta=None):
             return {"reply": localefmt.chu("SenOS trả lời chat này như thường.",
                                            "SenOS answers this chat as usual.")}
         if not rows:
-            return {"reply": localefmt.chu("Brain này chưa có cộng sự nào (tạo ở trang Cộng sự trên dashboard).",
-                                           "This brain has no partner yet (create one on the Partners page).")}
+            return {"reply": localefmt.chu("Brain này chưa có cộng sự nào (tạo ở trang Trợ lý trên dashboard).",
+                                           "This brain has no partner yet (create one on the Assistants page).")}
         if not a:
             cur, notice = _tg_agent_pinned(chat_key, root, rows)
             head = (localefmt.chu(f"Đang trả lời chat này: {cur['name']}.", f"Answering this chat: {cur['name']}.")
@@ -29953,8 +29953,8 @@ def _ms_with_bot_row(res: dict, aid: str, page_id: str) -> dict:
     chk = res.get("check") or {}
     chk.setdefault("items", []).append(messenger_setup._item(
         "bot", True if _ms_bot_running(aid, page_id) else None, ("Có bot đang trực", "A bot is answering"), "",
-        ("Vào Chatbot, Bot, tạo hoặc bật bot cho kênh này.",
-         "Open Chatbot, Bots and create or turn on a bot for this channel.")))
+        ("Vào Hộp thư bot, thẻ Bot, tạo hoặc bật bot cho kênh này.",
+         "Open Bot inbox, Bots tab, and create or turn on a bot for this channel.")))
     return chk
 
 
@@ -30403,8 +30403,8 @@ async def threads_check(request: Request):
     running = bool(cr.get("user_id") in threads_bot.registered()
                    or any(b.get("enabled") for b in chatbot_store.bots_using_account(aid)))
     items.append(item("bot", True if running else None, ("Có bot đang trực", "A bot is answering"), "",
-                      ("Vào Chatbot, Bot, tạo hoặc bật bot cho kênh Threads.",
-                       "Open Chatbot, Bots and create or turn on a bot for the Threads channel.")))
+                      ("Vào Hộp thư bot, thẻ Bot, tạo hoặc bật bot cho kênh Threads.",
+                       "Open Bot inbox, Bots tab, and create or turn on a bot for the Threads channel.")))
     return {"ok": True, "account": _th_account_view(channel_accounts.get_account(aid) or a),
             "check": {"ok": all(i["ok"] is not False for i in items), "items": items}}
 
@@ -31642,7 +31642,7 @@ async def telegram_send_file(payload: dict = Body(...)):
     caption = str((payload or {}).get("caption", "")).strip()
     chat_id = str((payload or {}).get("chat_id", "")).strip()
     if not (_TG_BOT and _TG_BOT._task and not _TG_BOT._task.done()):
-        return {"ok": False, "error": "Bot Telegram chưa chạy (bật ở Settings → Telegram)."}
+        return {"ok": False, "error": "Bot Telegram chưa chạy (bật ở trang Kênh quản trị)."}
     if not path:
         return {"ok": False, "error": "Thiếu path"}
     # chỉ nhận chat_id nằm trong whitelist (chống gửi tới ID lạ); ngoài whitelist → về chủ bot
@@ -32353,7 +32353,7 @@ def _agent_spec_available(spec: dict, settings: dict = None) -> tuple:
     on the message, as it already does for a card with no key or no CLI. The reason is part of that Vietnamese note."""
     prov = str((spec or {}).get("provider") or "")
     if _signed_out_until(prov):
-        return False, f"{_route_name(prov)} mất đăng nhập, cần đăng nhập lại ở trang Models"
+        return False, f"{_route_name(prov)} mất đăng nhập, cần đăng nhập lại ở trang Mô hình AI"
     return aux_engine.availability(spec, settings)
 
 
@@ -32612,7 +32612,7 @@ def _team_engine_for(team, agent_key, role):
             eng._steer_on = lambda _t=tag: steer_inbox.INBOX.has_tag(_t)
         avail = getattr(eng, "is_available", None)
         if callable(avail) and not avail():
-            raise team_runner.EngineUnavailable(f"engine {tool_spec['provider']} chưa sẵn sàng (kiểm tra trang Models)")
+            raise team_runner.EngineUnavailable(f"engine {tool_spec['provider']} chưa sẵn sàng (kiểm tra trang Mô hình AI)")
         return eng
 
     def _build(system, tag):
@@ -32629,7 +32629,7 @@ def _team_engine_for(team, agent_key, role):
         _step_plan_account(eng, str(spec.get("provider") or aux_engine.CLAUDE))   # as in chat: the account with quota
         avail = getattr(eng, "is_available", None)
         if callable(avail) and not avail():
-            raise team_runner.EngineUnavailable(f"engine {spec['provider']} chưa sẵn sàng (kiểm tra trang Models)")
+            raise team_runner.EngineUnavailable(f"engine {spec['provider']} chưa sẵn sàng (kiểm tra trang Mô hình AI)")
         return eng
 
     async def execute(req):
@@ -32954,7 +32954,7 @@ async def _agent_judge_ask(prompt: str, purpose: str = "", started=None) -> str:
     base = cli
     cli = aux_engine.strip_tools(_aux_swap(cli, mode="suggest", tag="agent-judge"), base)
     if not cli.is_available():
-        raise agent_judge.EngineUnavailable("engine việc nền chưa sẵn sàng (kiểm tra trang Models)")
+        raise agent_judge.EngineUnavailable("engine việc nền chưa sẵn sàng (kiểm tra trang Mô hình AI)")
     if callable(started):
         started()
     final = ""

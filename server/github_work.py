@@ -312,20 +312,20 @@ _PERM_RE = re.compile(r"(returned error: 403|returned error: 404|Permission to \
 
 def auth_message() -> str:
     return _c("GitHub không nhận đăng nhập của SenOS khi đẩy code: chưa kết nối, hoặc token đã hết hạn hay bị thu hồi. "
-              "Vào trang Kết nối, đăng nhập lại GitHub. Kết nối xong SenOS tự đẩy lại ngay, không cần nhắn gì, code "
+              "Vào trang Ứng dụng, đăng nhập lại GitHub. Kết nối xong SenOS tự đẩy lại ngay, không cần nhắn gì, code "
               "đã commit trên máy không mất.",
               "GitHub did not accept SenOS's sign-in when pushing: not connected, or the token expired or was revoked. "
-              "Sign in to GitHub again on the Connections page. Once connected SenOS pushes again on its own, no "
+              "Sign in to GitHub again on the Apps page. Once connected SenOS pushes again on its own, no "
               "message needed; the committed code on this machine is safe.")
 
 
 def _perm_message(full_name: str) -> str:
     login = (github_repos.status().get("login") or "?") if github_repos.token() else "?"
     return _c(f"Tài khoản GitHub {login} không có quyền ghi vào {full_name}. Đăng nhập bằng nút Đăng nhập với GitHub thì "
-              "cài app SenOS cho repository này (trang Kết nối, phần chọn repository); dùng token thì token cần quyền ghi Contents "
+              "cài app SenOS cho repository này (trang Ứng dụng, phần chọn repository); dùng token thì token cần quyền ghi Contents "
               "(token cổ điển: quyền repository). Sửa xong SenOS tự đẩy lại.",
               f"GitHub account {login} cannot write to {full_name}. With Sign in with GitHub, install the SenOS app on "
-              "this repository (Connections page, repository picker); with a token, it needs Contents write (classic token: the "
+              "this repository (Apps page, repository picker); with a token, it needs Contents write (classic token: the "
               "repository scope). Once fixed SenOS pushes again on its own.")
 
 

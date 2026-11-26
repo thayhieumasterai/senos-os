@@ -130,15 +130,15 @@ def _mo_ta_card(c: dict) -> str:
     o = [f"- {c.get('name')} (card '{c.get('group') or c.get('name')}' trong Kho kết nối"
          + (f", nhóm {c.get('category')}" if c.get("category") else "") + ")"]
     if c.get("auth_type") == "oauth":
-        o.append("  Cần ĐĂNG NHẬP (OAuth) nên phải bấm ở trang Kết nối, SenOS không đăng nhập hộ được.")
+        o.append("  Cần ĐĂNG NHẬP (OAuth) nên phải bấm ở trang Ứng dụng, SenOS không đăng nhập hộ được.")
     else:
         ten_o = ", ".join(f.get("label") or f.get("key") for f in (c.get("fields") or []))
-        o.append("  Cần điền: " + (ten_o or "không rõ, xem tại trang Kết nối") + ".")
+        o.append("  Cần điền: " + (ten_o or "không rõ, xem tại trang Ứng dụng") + ".")
     return "\n".join(o)
 
 
 def _xem_o_dau(cid: str) -> str:
-    return (f"Xem và chỉnh ở trang Kết nối, khu 'Đã kết nối' (mã {cid}): đổi tên, nâng mức quyền, "
+    return (f"Xem và chỉnh ở trang Ứng dụng, khu 'Đã kết nối' (mã {cid}): đổi tên, nâng mức quyền, "
             "bật/tắt, xoá.")
 
 
@@ -151,7 +151,7 @@ def _tim(args, ctx) -> str:
         dong.append(f"Kho kết nối có sẵn {len(kho)} dịch vụ khớp '{q}':")
         dong += [_mo_ta_card(c) for c in kho[:_FIND_MAX]]
         if len(kho) > _FIND_MAX:
-            dong.append(f"…(+{len(kho) - _FIND_MAX} dịch vụ nữa, xem đủ ở trang Kết nối)")
+            dong.append(f"…(+{len(kho) - _FIND_MAX} dịch vụ nữa, xem đủ ở trang Ứng dụng)")
         dong.append("Dịch vụ trong kho thì đấu bằng card của nó chứ ĐỪNG thêm kiểu tự khai URL - "
                     "card mới có sẵn mẫu đăng nhập và phân loại tool đọc/ghi.")
     else:
@@ -179,14 +179,14 @@ async def _them(args, ctx) -> str:
 
     if not _TEN_HOP_LE.match(ten):
         return ("ERROR: thiếu name - đặt tên hiển thị cho nguồn này (vd 'Context7', 'POS shop 2'). "
-                "Tên này là thứ người dùng thấy ở trang Kết nối.")
+                "Tên này là thứ người dùng thấy ở trang Ứng dụng.")
 
     if not url and not command:
         kho = _tu_kho(ten)
         if kho:
             return ("Chưa đấu gì cả. Dịch vụ này ĐÃ CÓ SẴN trong Kho kết nối, đấu bằng card của nó "
                     "chứ không tự khai:\n" + "\n".join(_mo_ta_card(c) for c in kho[:_FIND_MAX])
-                    + "\nNói người dùng mở trang Kết nối, tìm card đó rồi bấm Kết nối. "
+                    + "\nNói người dùng mở trang Ứng dụng, tìm card đó rồi bấm Kết nối. "
                     "SenOS không tự đăng nhập hộ được.")
         return ("ERROR: thiếu url (MCP chạy qua mạng) hoặc command (MCP chạy bằng lệnh trên máy). "
                 "Hỏi người dùng địa chỉ MCP, hoặc gọi op=find để tra xem Kho kết nối có sẵn dịch vụ này chưa.")
@@ -194,7 +194,7 @@ async def _them(args, ctx) -> str:
     cu = _trung(url, command, tham_so)
     if cu:
         return (f"Đã có sẵn rồi, KHÔNG thêm trùng: '{cu.get('label')}' "
-                f"({'đang bật' if cu.get('enabled') else 'ĐANG TẮT, bật lại ở trang Kết nối'}), "
+                f"({'đang bật' if cu.get('enabled') else 'ĐANG TẮT, bật lại ở trang Ứng dụng'}), "
                 f"mức quyền {cu.get('perm')}. " + _xem_o_dau(cu.get("id")))
 
     transport = _chuoi(args.get("transport")).lower()
@@ -229,8 +229,8 @@ async def _them(args, ctx) -> str:
         mcp_store.update_connection(cid, {"enabled": False})
         mcp_hub.invalidate_cache()
         lenh = " ".join([command] + tham_so)
-        return (f"Đã thêm '{ten}' vào trang Kết nối nhưng ĐỂ TẮT, vì nguồn này chạy bằng lệnh trên "
-                f"máy chủ SenOS: `{lenh}`. Người dùng tự đọc lệnh, thấy ổn thì bật ở trang Kết nối "
+        return (f"Đã thêm '{ten}' vào trang Ứng dụng nhưng ĐỂ TẮT, vì nguồn này chạy bằng lệnh trên "
+                f"máy chủ SenOS: `{lenh}`. Người dùng tự đọc lệnh, thấy ổn thì bật ở trang Ứng dụng "
                 f"(SenOS không tự bật loại này). Mức quyền đang đặt: {perm}. " + _xem_o_dau(cid))
 
     val = await mcp_hub.validate_connection(cid)
@@ -239,7 +239,7 @@ async def _them(args, ctx) -> str:
         # nó nằm đó và biết vì sao chưa chạy, chứ không phải một câu lỗi rồi trang Kết nối trống trơn.
         mcp_store.update_connection(cid, {"enabled": False})
         mcp_hub.invalidate_cache()
-        return (f"Đã thêm '{ten}' vào trang Kết nối nhưng ĐỂ TẮT vì thử kết nối không được: "
+        return (f"Đã thêm '{ten}' vào trang Ứng dụng nhưng ĐỂ TẮT vì thử kết nối không được: "
                 f"{val.get('error') or 'không rõ lý do'}\n"
                 "Nói đúng lỗi này cho người dùng, gợi ý kiểm tra lại URL hoặc key rồi sửa và bật lại. "
                 + _xem_o_dau(cid))
@@ -252,7 +252,7 @@ async def _them(args, ctx) -> str:
     except Exception:
         pass
     return (f"Đã đấu xong '{ten}' và nó đang chạy: thấy {val.get('tools', 0)} tool, mức quyền "
-            f"{perm} (mặc định an toàn, muốn cho ghi thì người dùng tự nâng ở trang Kết nối). "
+            f"{perm} (mặc định an toàn, muốn cho ghi thì người dùng tự nâng ở trang Ứng dụng). "
             "Mọi bộ não đều dùng được nguồn này qua hub. " + _xem_o_dau(cid))
 
 
@@ -268,21 +268,21 @@ async def _chay(args, ctx) -> str:
 def register(ctx):
     ctx.register_tool(
         "senos_add_mcp",
-        "Đấu thêm một MCP server vào kho Kết nối của SenOS, để nó HIỆN ra trang Kết nối và MỌI bộ "
+        "Đấu thêm một MCP server vào kho Ứng dụng của SenOS, để nó HIỆN ra trang Ứng dụng và MỌI bộ "
         "não dùng chung. Dùng tool này mỗi khi người dùng bảo thêm/đấu/nối một MCP hay một nguồn "
         "dữ liệu; TUYỆT ĐỐI không dùng `claude mcp add` hay `codex mcp add` (rơi vào config riêng "
-        "của một CLI, người dùng không thấy trên trang Kết nối). "
+        "của một CLI, người dùng không thấy trên trang Ứng dụng). "
         "op=find: tra xem Kho kết nối có sẵn dịch vụ đó chưa (gọi trước khi tự khai URL). "
         "op=add: cần name, cộng url (MCP qua mạng) hoặc command (MCP chạy bằng lệnh). headers cho "
         "key dạng 'Authorization: Bearer xxx'. Mức quyền mặc định là chỉ đọc; chỉ truyền perm cao "
         "hơn khi người dùng nói rõ. Nguồn chạy bằng lệnh luôn được thêm ở trạng thái TẮT để người "
-        "dùng tự duyệt. Báo lại cho người dùng biết nó nằm ở trang Kết nối.",
+        "dùng tự duyệt. Báo lại cho người dùng biết nó nằm ở trang Ứng dụng.",
         _chay,
         schema={
             "type": "object",
             "properties": {
                 "op": {"type": "string", "enum": ["add", "find"]},
-                "name": {"type": "string", "description": "Tên hiển thị ở trang Kết nối (op=add), "
+                "name": {"type": "string", "description": "Tên hiển thị ở trang Ứng dụng (op=add), "
                                                           "hoặc từ khoá dịch vụ (op=find)"},
                 "url": {"type": "string", "description": "Địa chỉ MCP, vd https://mcp.abc.com/mcp"},
                 "command": {"type": "string", "description": "Lệnh chạy MCP trên máy, vd npx"},

@@ -2,7 +2,7 @@
 
 *[Tiếng Việt](../14-bao-mat-tai-khoan.md) · **English***
 
-This page explains how SenOS protects itself when you put it on the network, and how to use the **Account** page in the dashboard to set a password, sign out, turn login off and rename the workspace.
+This page explains how SenOS protects itself when you put it on the network, and how to use the **Profile** page in the dashboard to set a password, sign out, turn login off and rename the workspace.
 
 ## What this feature is
 
@@ -11,7 +11,7 @@ SenOS runs an AI brain with **full power over your machine or VPS**: it can read
 SenOS handles this in 7 layers:
 
 1. **Login is forced automatically when running public.** When the server listens externally (not just this machine), SenOS blocks every function until you sign in. On a personal machine (localhost) nothing is forced and you use it as before.
-2. **Set the admin early, then turn on two-factor.** The first-run screen only asks for a username and password, so on a public server **whoever opens the link before an admin exists can create it**. Preset the admin through environment variables (or create the account right after deploying), then turn on 2FA (TOTP) on the **Account** page.
+2. **Set the admin early, then turn on two-factor.** The first-run screen only asks for a username and password, so on a public server **whoever opens the link before an admin exists can create it**. Preset the admin through environment variables (or create the account right after deploying), then turn on 2FA (TOTP) on the **Profile** page.
 3. **Brute-force protection.** Too many wrong attempts temporarily locks that IP address; every wrong attempt is slowed down.
 4. **Blocking foreign web pages from commanding SenOS (CSRF) and blocking unknown domains pointed at your machine (DNS rebinding).** See the dedicated section below.
 5. **Encryption of secret keys stored in `settings.json`.** API keys, Telegram tokens, GitHub tokens and the rest are not sitting on disk in plain text.
@@ -20,9 +20,9 @@ SenOS handles this in 7 layers:
 
 ## Where to open it in SenOS
 
-Every account action lives under **Account** in the **System** group of the left nav rail. The **Settings** page has a condensed block covering the three most common actions (change password, sign out, turn login off) plus a two-factor status line; enabling two-factor and the sign-in history are on the **Security** tab of the **Account** page. API tokens for the CLI and scripts are on the **Integrations** page (**Work** group), tab **API token**.
+Every account action lives under **Profile** in the **Admin** group of the left nav rail. The **Preferences** page has a condensed block covering the three most common actions (change password, sign out, turn login off) plus a two-factor status line; enabling two-factor and the sign-in history are on the **Security** tab of the **Profile** page. API tokens for the CLI and scripts are on the **Webhooks** page (**Operations** group), tab **API token (for the CLI)**.
 
-The **Account** page has 2 tabs.
+The **Profile** page has 2 tabs.
 
 The **Account** tab:
 
@@ -44,7 +44,7 @@ SenOS decides whether to force a login based on how the server is running:
 |---|---|
 | Running on a personal machine, listening on `127.0.0.1` / `localhost` (or `::1`) | No (unless you set a password yourself) |
 | Running public (Docker/VPS/Hostinger), listening on `0.0.0.0`, `::` or a LAN IP | Yes, turned on automatically |
-| A password has been set on the Account page | Yes, in every mode |
+| A password has been set on the Profile page | Yes, in every mode |
 
 You can force it either way with the `SENOS_REQUIRE_LOGIN` environment variable:
 
@@ -73,13 +73,13 @@ The first time you open the dashboard on a public server with no admin yet, SenO
 2. On the create-account screen, enter a username and a password (**at least 8 characters**).
 3. Click the create-account button. SenOS creates the admin and signs you straight in.
 
-Whichever way you pick, **turn on two-factor authentication (2FA)** on the **Account** page after your first sign-in.
+Whichever way you pick, **turn on two-factor authentication (2FA)** on the **Profile** page after your first sign-in.
 
 ### B. Setting a password (running on a personal machine, no password yet)
 
 If you run SenOS at home and want to lock it before moving to a VPS:
 
-1. Go to **Account** in the left nav rail.
+1. Go to **Profile** in the left nav rail.
 2. In the **Login account** block, enter the **Username** (leaving it empty uses `admin`).
 3. Enter the **Password**.
 4. Click **Set password**.
@@ -91,7 +91,7 @@ The password must be at least **8 characters**, and the interface enforces exact
 
 Once a password exists, the **Login account** block shows the line "🔒 Password set · account: <your name>", adds a **Current password** field, and the button changes to **Change password**.
 
-1. Go to **Account** in the left nav rail (or the **Login account** block on the **Settings** page, both do the same).
+1. Go to **Profile** in the left nav rail (or the **Login account** block on the **Preferences** page, both do the same).
 2. Enter the **Current password**. Required even while you are signed in: a machine left with the dashboard open must not be able to change the password and lock the owner out.
 3. Enter the **New password** (8 characters or more). To change only the username, leave this empty and edit only the **Username** field.
 4. Click **Change password**.
@@ -102,7 +102,7 @@ Changing only the username leaves other sessions alive, since the password did n
 
 **If you forget the current password** there is no back door inside the dashboard: it is done on the machine that runs SenOS. Right under **Change password** a **Forgot your current password?** line shows the way for your install:
 
-- **Windows and Mac, using SenOS on that same computer:** clicking it opens the install folder with **`reset-auth.bat`** (Mac: **`reset-auth.command`**) already selected. Double-click that file. The old password is gone for good, two-step sign-in too, and every device is signed out. Open SenOS again, go to **Account** and set a new password like the first time. SenOS only opens the folder and never runs the file itself, so a signed-in machine left unattended cannot lose its password without someone at the keyboard.
+- **Windows and Mac, using SenOS on that same computer:** clicking it opens the install folder with **`reset-auth.bat`** (Mac: **`reset-auth.command`**) already selected. Double-click that file. The old password is gone for good, two-step sign-in too, and every device is signed out. Open SenOS again, go to **Profile** and set a new password like the first time. SenOS only opens the folder and never runs the file itself, so a signed-in machine left unattended cannot lose its password without someone at the keyboard.
 - **SenOS opened from another device (phone, tunnel):** the line shows the steps in its (i) popup: go to the computer that runs SenOS and double-click the file as above.
 - **Docker, Hostinger, VPS:** the line shows the environment-variable steps below.
 
@@ -116,7 +116,7 @@ Manual way on a server:
 
 ### D. Signing out
 
-1. Go to **Account**.
+1. Go to **Profile**.
 2. Click **Sign out**.
 3. SenOS deletes the current session and reloads the page. Next time you must sign in again.
 
@@ -126,7 +126,7 @@ Signing out only ends the session in this browser, it does not delete the passwo
 
 Only do this on a personal machine, never on a VPS.
 
-1. Go to **Account**.
+1. Go to **Profile**.
 2. Click **Turn login off**.
 3. Confirm in the dialog warning that anyone opening the dashboard will be able to use it.
 4. SenOS deletes the password and **signs out every open session**.
@@ -135,7 +135,7 @@ Note: if the server is still running public (or you set `SENOS_REQUIRE_LOGIN=1`)
 
 ### F. Renaming the workspace
 
-1. Go to **Account**.
+1. Go to **Profile**.
 2. In the **Workspace** block, edit the **Workspace name**.
 3. Click **Save**. The new name appears at the top of the dashboard immediately.
 
@@ -161,7 +161,7 @@ It detects, it does not prevent: whoever can write files on the server can still
 
 The assistant runs commands on the server and reads messages from outside (Zalo, Telegram, webhooks). A planted message could ask it to edit the settings file. So at **every permission level** SenOS refuses a shell command or tool call that touches: `settings.json` in the state folder, `.secret_key`, the session and token files, the security log, `~/.claude/.credentials.json`, `~/.codex/auth.json`, `authorized_keys`. This covers Claude Code (refused before the tool runs) and the terminal of the API engines. Each refusal is logged. Codex, Grok Build and Antigravity run in their own sandboxes and do not have this layer yet.
 
-It stops the plain request, it is not a wall: code running as the same OS user can still build the path in pieces. To read or edit those files, use the Account page or a real server terminal (SSH, hPanel).
+It stops the plain request, it is not a wall: code running as the same OS user can still build the path in pieces. To read or edit those files, use the Profile page or a real server terminal (SSH, hPanel).
 
 ## If you suspect a takeover
 
@@ -169,7 +169,7 @@ Signs: an unknown username, the right password reported wrong, your 2FA codes no
 
 1. **Take the account back.** On Hostinger: add `SENOS_ADMIN_USER` and `SENOS_ADMIN_PASSWORD` (a NEW password) in the Environment box and redeploy. SenOS resets the account, keeps 2FA and signs out every old session.
 2. **2FA is not yours?** Add `SENOS_RESET_2FA=1` in the same step. SenOS removes 2FA once at startup. It applies once per value; to use it again later, set another value, such as the date (`SENOS_RESET_2FA=2026-11-09`).
-3. **Sign in, open Account > Security.** Read the sign-in history (IP, device, time) and press **Sign out all other devices**.
+3. **Sign in, open Profile > Security.** Read the sign-in history (IP, device, time) and press **Sign out all other devices**.
 4. **Turn 2FA on again** with your phone and keep the 8 recovery codes somewhere safe.
 5. **Remove `SENOS_ADMIN_PASSWORD` and `SENOS_RESET_2FA` from the Environment box** and redeploy. The account is not affected. The password sits there in plain text, so do not leave it.
 6. **Find how they got in.** Whoever edited the settings file had access to the server: look for unknown SSH keys (`cat /root/.ssh/authorized_keys`), change the root password (`passwd`), change the password of the Hostinger account and turn on its 2FA, block port 7777 at the firewall once an HTTPS domain works.
@@ -194,7 +194,7 @@ SenOS blocks both paths with a gate standing in front of the login gate itself:
 | A non-browser client (no `Origin` sent, for example the CLI, curl, MCP) | Allowed |
 | Host is an IP address | The Host check is skipped |
 
-The allowlist contains: `localhost`, `127.0.0.1`, `::1`, `0.0.0.0`, plus the custom domain you set in **Settings → Domain and SSL**, plus every name in the `SENOS_ALLOWED_HOSTS` environment variable (comma separated).
+The allowlist contains: `localhost`, `127.0.0.1`, `::1`, `0.0.0.0`, plus the custom domain you set in **Preferences → Domain and SSL**, plus every name in the `SENOS_ALLOWED_HOSTS` environment variable (comma separated).
 
 When you might need to touch this: running SenOS behind a reverse proxy on a domain not declared in the app, while **no** password is set. SenOS then treats that domain as unknown and returns 403. The fix: set a password (turning the login gate on makes the Host check step aside), or add the domain to `SENOS_ALLOWED_HOSTS`.
 
@@ -224,7 +224,7 @@ This layer only catches bots that NAME themselves. A bot posing as Chrome still 
 
 ## API tokens, the door for CLI and scripts
 
-The login cookie only suits a browser. When you want [the SenOS CLI](24-cli.md) or a script to call SenOS, you need a different credential: an **API token**, created at **Integrations > API token (for the CLI)** (Work group, the same page as webhooks: both are doors for another program to call SenOS).
+The login cookie only suits a browser. When you want [the SenOS CLI](24-cli.md) or a script to call SenOS, you need a different credential: an **API token**, created at **Webhooks > API token (for the CLI)** (Operations group, the same page as webhooks: both are doors for another program to call SenOS).
 
 The most important point: **no token exists by default**. Until you click create yourself, no token exists and there is no door in except the browser. Opening another door to the Internet has to be a deliberate act.
 
@@ -289,25 +289,25 @@ About the `secure` cookie: by default SenOS does **not** force it, so it runs ov
 
 | Button / message | Where | What happens |
 |---|---|---|
-| **Set password** | Account → Login account (when no password exists) | Creates the admin account and grants you a session right away |
+| **Set password** | Profile → Login account (when no password exists) | Creates the admin account and grants you a session right away |
 | **Change password** | Same place, once a password exists | Changes the password and/or username. The current password is required; afterwards every other session is signed out |
-| **Sign out** | Account → Login account | Deletes this browser's session and reloads the page |
-| **Turn login off** | Account → Login account | Deletes the password and signs out every session (asks for confirmation first) |
-| **Save** | Account → Workspace | Renames the displayed workspace |
+| **Sign out** | Profile → Login account | Deletes this browser's session and reloads the page |
+| **Turn login off** | Profile → Login account | Deletes the password and signs out every session (asks for confirmation first) |
+| **Save** | Profile → Workspace | Renames the displayed workspace |
 | 🔒 Password set · account: ... | Login account | An admin exists, the username appears right after the colon |
 | No password set, anyone opening the dashboard can use it. Set a password before putting it on a VPS. | Login account | No admin yet |
 | ✅ Account saved. | Login account | The password was set successfully |
 | ⚠ Password must be at least 8 characters. | Login account | The interface blocks before sending, at the same threshold as the server |
 | ⚠ Current password is wrong. | Login account | The **Current password** field was typed wrong, nothing was changed |
 | **Forgot your password?** | Sign-in screen | Clicking it explains how to run `reset-auth.bat` (Mac: `reset-auth.command`), or change `SENOS_ADMIN_PASSWORD` on a server |
-| **Forgot your current password?** | Account, under Change password | Windows/Mac: opens the folder with the reset file selected. Server: shows the steps in the (i) popup |
+| **Forgot your current password?** | Profile, under Change password | Windows/Mac: opens the folder with the reset file selected. Server: shows the steps in the (i) popup |
 
 ## Tips
 
 - **Always set the admin before going public.** The surest way is setting `SENOS_ADMIN_USER` + `SENOS_ADMIN_PASSWORD` at deploy time, so the server is never without an admin.
 - **Use a long enough password.** At least 8 characters; a long, hard to guess phrase is better.
 - **Run over HTTPS for remote access.** Use a custom domain (a Hostinger `*.hstgr.cloud` name, say) or Cloudflare Tunnel rather than exposing raw port 7777 to the Internet. How to point a domain and enable HTTPS: [Branding and custom domains](15-branding-and-domains.md).
-- **Localhost plus a tunnel you run yourself means setting `SENOS_REQUIRE_LOGIN=1`.** When the machine only listens on localhost but you run a tunnel (cloudflared, ngrok...) outside SenOS, SenOS cannot tell it is public, so force login manually. The **Remote access** section in Settings does not need this: SenOS knows its tunnel is on, forces login and only runs it once a password is set.
+- **Localhost plus a tunnel you run yourself means setting `SENOS_REQUIRE_LOGIN=1`.** When the machine only listens on localhost but you run a tunnel (cloudflared, ngrok...) outside SenOS, SenOS cannot tell it is public, so force login manually. The **Remote access** section in Preferences does not need this: SenOS knows its tunnel is on, forces login and only runs it once a password is set.
 - **Turn on two-factor (2FA) right after the first sign-in.** If the password leaks, a stranger still lacks the TOTP code on your phone.
 - **Back up `.secret_key` alongside `settings.json`.** Missing either one means re-entering every API key.
 
@@ -326,7 +326,7 @@ Usually the `secure` cookie is on while you access over HTTP (many proxies serve
 You (or someone on the same IP) got the password wrong too many times. Wait about 5 minutes and try again. Restarting the server also clears the counter.
 
 **Everything returns 403 "host not allowed".**
-You are reaching SenOS through a domain it does not know, while no password is set. Add that domain to `SENOS_ALLOWED_HOSTS`, or enter it under **Settings → Domain and SSL**, or simply set a password.
+You are reaching SenOS through a domain it does not know, while no password is set. Add that domain to `SENOS_ALLOWED_HOSTS`, or enter it under **Preferences → Domain and SSL**, or simply set a password.
 
 **Everything returns 403 "cross-origin request blocked".**
 You are calling the SenOS API from another page (a script, an extension, a third-party iframe). This is the CSRF layer doing its job. If it is your own tool, add its hostname to `SENOS_ALLOWED_HOSTS`.
@@ -336,10 +336,10 @@ On Docker or Hostinger (since 0.77.1): change `SENOS_ADMIN_PASSWORD` (and `SENOS
 
 A VPS installed directly with `install.sh` (systemd): SSH in, set the `SENOS_ADMIN_PASSWORD` line of the `.env` file in the SenOS install folder to the new password (add it if missing), then run `sudo systemctl restart senos`. SenOS resets the account to the new value, as on Hostinger.
 
-On Windows and Mac the SenOS install folder ships **`reset-auth.bat`** (Windows) and **`reset-auth.command`** (Mac). Double-click it and the old password is gone; open SenOS again and set a new one on the Account page. Still signed in? Go to **Account** and click **Forgot your current password?** so SenOS opens the right folder. If the script is not usable: edit or delete the `auth` section of `settings.json` in the state folder (Docker: `/data/state`) then restart; or set the admin again with `SENOS_ADMIN_PASSWORD` after deleting the old `auth` section.
+On Windows and Mac the SenOS install folder ships **`reset-auth.bat`** (Windows) and **`reset-auth.command`** (Mac). Double-click it and the old password is gone; open SenOS again and set a new one on the Profile page. Still signed in? Go to **Profile** and click **Forgot your current password?** so SenOS opens the right folder. If the script is not usable: edit or delete the `auth` section of `settings.json` in the state folder (Docker: `/data/state`) then restart; or set the admin again with `SENOS_ADMIN_PASSWORD` after deleting the old `auth` section.
 
 **After changing machines or restoring a backup, every API key is empty.**
-You copied `settings.json` without `.secret_key`. There is no recovery: re-enter the keys on the Models page, the Admin channels page and Settings. Next time bring both files.
+You copied `settings.json` without `.secret_key`. There is no recovery: re-enter the keys on the AI models page, the Control channels page and Preferences. Next time bring both files.
 
 **Login is turned off but it still asks for an account.**
 Because the server is still public (or `SENOS_REQUIRE_LOGIN=1`). In that mode SenOS does not allow login to be turned off entirely, it forces the account to be recreated. To run without a password the server must listen purely on localhost.

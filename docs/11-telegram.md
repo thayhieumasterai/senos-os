@@ -11,7 +11,7 @@ Bật bot Telegram để hỏi SenOS ngay từ điện thoại, không cần m�
 - Có sẵn các lệnh gõ nhanh (bắt đầu bằng dấu `/`) để xem trạng thái, đổi model, dừng câu đang chạy, bắt đầu hội thoại mới, lưu note vào brain.
 - Qua Telegram SenOS vẫn có đủ MCP và skill: hỏi số liệu bán hàng, quảng cáo, đọc và ghi file trong vault đều được. Điều này đúng với MỌI engine (Claude Code, ChatGPT/Codex, OpenRouter, Claude API, OpenAI API) vì công cụ của SenOS đi qua MCP Hub chứ không gắn riêng vào engine nào.
 - Gửi file được cả hai chiều: bạn gửi ảnh/tài liệu cho bot để SenOS đọc, và file SenOS tạo ra trong lượt sẽ tự gửi ngược về cho bạn.
-- **Ra lệnh bằng ghi âm**: bấm giữ micro nói một câu, SenOS nghe thành chữ rồi làm như bạn gõ tay. Cần dán API key Groq ở trang Models một lần.
+- **Ra lệnh bằng ghi âm**: bấm giữ micro nói một câu, SenOS nghe thành chữ rồi làm như bạn gõ tay. Cần dán API key Groq ở trang Mô hình AI một lần.
 - Trả lời chạy nền: đang trả lời câu này bạn vẫn gửi được `/stop` để cắt ngang.
 
 Xem thêm engine và model ở [Models & engine](10-models-va-engine.md), công cụ MCP ở [Kết nối & số liệu kinh doanh](09-mcp-va-so-lieu.md).
@@ -19,7 +19,7 @@ Xem thêm engine và model ở [Models & engine](10-models-va-engine.md), công 
 ## Mở ở đâu trong SenOS
 
 1. Mở dashboard SenOS (mặc định `http://localhost:7777`).
-2. Nhìn thanh điều hướng bên trái, mở nhóm **Kết nối** rồi bấm mục **Kênh**.
+2. Nhìn thanh điều hướng bên trái, mở nhóm **Cổng kết nối** rồi bấm mục **Kênh quản trị**.
 3. Bạn sẽ thấy thẻ **Telegram** với các ô: bật/tắt bot, Bot token, Chat ID được phép dùng, và 2 nút **Lưu & bật** / **Gửi test**.
 
 ## Chuẩn bị: lấy Bot token và Chat ID
@@ -46,7 +46,7 @@ Muốn cho người khác (vợ/chồng, nhân viên...) dùng chung bot: nhờ 
 
 ### Bước 1: Cấu hình và bật bot
 
-1. Vào **Kênh Admin** (nhóm **Kết nối**) trên dashboard, chọn tab **Telegram**.
+1. Vào **Kênh quản trị** (nhóm **Cổng kết nối**) trên dashboard, chọn tab **Telegram**.
 2. Ở bước **1. Kết nối bot**, dán chuỗi token vào ô **Bot token**. (Token đã lưu thì cạnh nhãn hiện "✓ đã lưu"; để trống ô này nếu không muốn đổi.)
 3. Ở bước **2. Ai được dùng**, dán Chat ID vào ô **Chat ID được phép**. Nhiều người dùng chung thì dán nhiều ID cách nhau dấu phẩy, ví dụ `123456789, 987654321`.
 4. Bấm **Lưu và bật kênh** ở cuối tab.
@@ -131,7 +131,7 @@ Bấm giữ nút micro trong Telegram, nói, rồi thả tay. SenOS nghe câu đ
 Cách đấu, làm một lần:
 
 1. Vào [console.groq.com](https://console.groq.com), đăng nhập, tạo một API key.
-2. Mở dashboard SenOS, vào trang **Models**, tìm nhà cung cấp **Groq (API)**, dán key vào rồi lưu.
+2. Mở dashboard SenOS, vào trang **Mô hình AI**, tìm nhà cung cấp **Groq (API)**, dán key vào rồi lưu.
 3. Xong. Gửi tin thoại tiếp theo là nghe được ngay, **không cần tắt bật lại bot**.
 
 Vài điều nên biết:
@@ -205,7 +205,7 @@ Chi tiết cách gõ `/model`:
 
 - Bảng nút bấm khi gõ `/model`: chọn nhà cung cấp ĐÃ KẾT NỐI (provider đang dùng có dấu ✓ kèm số model), rồi tới lưới model 2 cột, 8 model một trang, nút ◀ ▶ lật trang. Danh sách model lấy TRỰC TIẾP từ nhà cung cấp (OpenRouter hiện đầy đủ vài trăm model, Antigravity hiện đúng dàn model của Antigravity IDE), không phải danh sách cứng.
 - Gõ thẳng tên cũng được: tên có dấu `/` (vd `openai/gpt-4o`) là model OpenRouter; `gpt-...` hoặc `...-codex` là model ChatGPT (cần đã kết nối OAuth); còn lại (vd `opus`, `sonnet`, `fable`) là model Claude.
-- Từ 0.33.7, bảng nút hiện **đủ 10 nhà cung cấp** như trang Models trên dashboard, gồm cả **Antigravity CLI** - trước đó nó là một danh sách chép tay 5 dòng nên mấy nhà thêm sau không đổi được từ điện thoại. Nhà nào chưa liệt kê được model nào (hay gặp: CLI đã cài nhưng chưa đăng nhập) thì ẩn đi cho gọn, trừ nhà đang dùng.
+- Từ 0.33.7, bảng nút hiện **đủ 10 nhà cung cấp** như trang Mô hình AI trên dashboard, gồm cả **Antigravity CLI** - trước đó nó là một danh sách chép tay 5 dòng nên mấy nhà thêm sau không đổi được từ điện thoại. Nhà nào chưa liệt kê được model nào (hay gặp: CLI đã cài nhưng chưa đăng nhập) thì ẩn đi cho gọn, trừ nhà đang dùng.
 - Gõ thẳng `/model <tên model>` thì SenOS dò tên đó trong danh sách thật của các nhà đã kết nối rồi chuyển đúng nhà. Tên có ở nhiều nhà mà không nhà nào đang dùng thì nó hỏi lại thay vì đoán, vì đoán trượt là âm thầm đổi cả đường tiền (gói thuê bao so với API tính theo lượt gọi).
 - **Từ 0.350.0, đổi model trên Telegram chỉ ghim cho ĐÚNG cuộc trò chuyện đó.** Nó không còn đổi model chính trên web, và các cuộc trò chuyện Telegram khác vẫn đi theo model chính. Cuộc trò chuyện chưa ghim thì đổi theo mỗi khi bạn đổi model trên web. `/model theo` gỡ ghim, `/model ghim` ghim vào model đang chạy; `/status` cho biết cuộc trò chuyện đang ghim hay đang theo model chính.
 
@@ -260,16 +260,16 @@ Các khúc Telegram cũ hơn **30 ngày** được tự cất vào kho lưu đ�
 
 Có 2 cách:
 
-1. Trên dashboard: vào **Kênh** (nhóm **Kết nối**), đọc dòng trạng thái dưới thẻ Telegram (mô tả ở Bước 2). Đây là cách nhanh nhất và dễ đọc nhất.
+1. Trên dashboard: vào **Kênh quản trị** (nhóm **Cổng kết nối**), đọc dòng trạng thái dưới thẻ Telegram (mô tả ở Bước 2). Đây là cách nhanh nhất và dễ đọc nhất.
 2. Trong Telegram: gõ `/status`. Bot trả về provider, model, brain đang dùng, phiên của bạn, và cho biết đang xử lý hay đang rảnh.
 
-Nhóm **Hệ thống** ở đầu trang **Cài đặt** cũng hiện nhanh Telegram "Đang bật" hay "Đang tắt", kèm nút tắt sang thẳng trang **Kênh Admin**; cấu hình chi tiết vẫn nằm ở **Kênh Admin**.
+Nhóm **Hệ thống** ở đầu trang **Thiết lập** cũng hiện nhanh Telegram "Đang bật" hay "Đang tắt", kèm nút tắt sang thẳng trang **Kênh quản trị**; cấu hình chi tiết vẫn nằm ở **Kênh quản trị**.
 
 ## Bảng tra nhanh nút và trạng thái
 
 | Nút / ô | Ở đâu | Tác dụng |
 |---|---|---|
-| Công tắc Bật kênh | Đầu tab Telegram, trang Kênh Admin | Bật/tắt bot NGAY, không cần bấm Lưu. Token vẫn được giữ khi tắt |
+| Công tắc Bật kênh | Đầu tab Telegram, trang Kênh quản trị | Bật/tắt bot NGAY, không cần bấm Lưu. Token vẫn được giữ khi tắt |
 | Bot token | Thẻ Telegram | Token BotFather cấp. Đã đặt rồi thì để trống nếu không muốn đổi |
 | Chat ID được phép dùng | Thẻ Telegram | Whitelist. Nhiều ID cách nhau dấu phẩy |
 | Lưu & bật | Thẻ Telegram | Lưu cấu hình rồi tự khởi động lại bot ngay |
@@ -302,7 +302,7 @@ Nhóm **Hệ thống** ở đầu trang **Cài đặt** cũng hiện nhanh Teleg
 
 **Gửi file lên bot mà SenOS nói không đọc được.** Kiểm tra 2 thứ: file có quá 20MB không (trần tải về của Telegram bot API), và có phải video/video note không (SenOS chưa xem được hai loại này, hãy gửi dạng file tài liệu hoặc gõ chữ).
 
-**Gửi tin thoại mà SenOS nói cần API key Groq.** Đúng như vậy: phần nghe giọng chạy bằng Whisper của Groq. Vào trang **Models**, mục **Groq (API)**, dán key lấy ở console.groq.com rồi lưu. Không cần tắt bật lại bot.
+**Gửi tin thoại mà SenOS nói cần API key Groq.** Đúng như vậy: phần nghe giọng chạy bằng Whisper của Groq. Vào trang **Mô hình AI**, mục **Groq (API)**, dán key lấy ở console.groq.com rồi lưu. Không cần tắt bật lại bot.
 
 **SenOS nghe sai chữ.** Thu lại gần micro hơn, nói chậm và tránh chỗ ồn. Câu quá ngắn (một hai từ) cũng dễ nghe nhầm - nói trọn một câu thì chuẩn hơn hẳn. Với việc có tác động ra ngoài, SenOS đọc lại câu nghe được rồi mới làm, nên bạn có cơ hội bắt lỗi trước.
 
@@ -310,11 +310,11 @@ Nhóm **Hệ thống** ở đầu trang **Cài đặt** cũng hiện nhanh Teleg
 
 **Ảnh cũ trong hội thoại hiện ô xám "Ảnh đã hết hạn".** Vùng cache media (`attachments/` và `inbox/`) đã dọn file quá 30 ngày hoặc vượt trần 300MB. Nội dung đã rút thành ghi chú `.md` vẫn còn nguyên.
 
-**Đổi cấu hình xong bot vẫn như cũ.** Chờ vài giây rồi tải lại trang **Kênh Admin** để dòng trạng thái cập nhật. Nếu vẫn không lên 🟢, xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
+**Đổi cấu hình xong bot vẫn như cũ.** Chờ vài giây rồi tải lại trang **Kênh quản trị** để dòng trạng thái cập nhật. Nếu vẫn không lên 🟢, xem thêm [Khắc phục sự cố & FAQ](17-khac-phuc-su-co.md).
 
 ## Mức tiết kiệm token áp dụng luôn cho Telegram
 
-Từ **0.24.0**, mức bạn chọn ở trang Cài đặt (**Tối ưu** / **Siêu tiết kiệm**) có hiệu lực cho cả kênh Telegram, không riêng chat trên dashboard.
+Từ **0.24.0**, mức bạn chọn ở trang Thiết lập (**Tối ưu** / **Siêu tiết kiệm**) có hiệu lực cho cả kênh Telegram, không riêng chat trên dashboard.
 
 Trước đó cả hai mức chỉ được nối vào trang dashboard, nên bấm bật xong thì mỗi lượt Telegram vẫn gửi nguyên `CLAUDE.md` + `MEMORY.md`. Không có lỗi nào hiện ra - chỉ là hoá đơn token không giảm ở đúng kênh nhiều người dùng nhất.
 

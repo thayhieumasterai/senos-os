@@ -12,9 +12,9 @@ SenOS có ba chỗ dính tới Zalo. Đọc bảng này một lần rồi khỏi
 
 | | Trang | Là ai | Để làm gì |
 |---|---|---|---|
-| **Kênh Zalo Bot** (trang này) | Kênh | Một bot riêng | **Bạn** nhắn cho SenOS |
-| [Chatbot](25-chatbot.md) | Chatbot | Một bot riêng, đứng tên Agent | **Khách** nhắn cho SenOS |
-| [Zalo Agent MCP](12-zalo.md) | Kết nối | Chính tài khoản Zalo của bạn | SenOS **thao tác thay bạn** |
+| **Kênh Zalo Bot** (trang này) | Kênh quản trị | Một bot riêng | **Bạn** nhắn cho SenOS |
+| [Chatbot](25-chatbot.md) | Hộp thư bot | Một bot riêng, đứng tên Agent | **Khách** nhắn cho SenOS |
+| [Zalo Agent MCP](12-zalo.md) | Ứng dụng | Chính tài khoản Zalo của bạn | SenOS **thao tác thay bạn** |
 
 Hai cái đầu dùng API chính thức, an toàn, nhưng chỉ thấy được thứ người ta nhắn thẳng cho bot. Cái thứ ba đăng nhập tài khoản thật của bạn nên đọc được hội thoại và nhắn cho bất kỳ ai, đổi lại tài khoản có thể bị hạn chế hoặc khoá.
 
@@ -31,7 +31,7 @@ Token này **không hết hạn** cho tới khi bạn tự đặt lại trong Za
 
 ## Bật kênh
 
-1. Mở dashboard, nhóm **Kết nối**, mục **Kênh**.
+1. Mở dashboard, nhóm **Cổng kết nối**, mục **Kênh quản trị**.
 2. Kéo xuống thẻ **Zalo**.
 3. Tích **Bật bot Zalo**, dán token vào ô Bot token.
 4. **Ô "Chat ID được phép dùng" cứ để trống.** Bấm **Lưu & bật**.
@@ -66,7 +66,7 @@ Kết quả việc nền và nhắc hẹn đặt từ Zalo sẽ **tự về đú
 
 Bấm giữ micro trong Zalo, nói, thả tay. SenOS nghe câu đó thành chữ và làm y như bạn gõ tay.
 
-**Cần API key của Groq** - chỗ SenOS mượn để chuyển giọng nói thành chữ (model Whisper). Vào dashboard, trang **Models**, mục **Groq (API)**, dán key lấy ở [console.groq.com](https://console.groq.com) rồi lưu. Chưa đấu thì gửi tin thoại SenOS sẽ nói rõ là cần dán key, không im lặng. Dán xong dùng được ngay, không cần tắt bật lại bot.
+**Cần API key của Groq** - chỗ SenOS mượn để chuyển giọng nói thành chữ (model Whisper). Vào dashboard, trang **Mô hình AI**, mục **Groq (API)**, dán key lấy ở [console.groq.com](https://console.groq.com) rồi lưu. Chưa đấu thì gửi tin thoại SenOS sẽ nói rõ là cần dán key, không im lặng. Dán xong dùng được ngay, không cần tắt bật lại bot.
 
 Đây là **cùng một key với kênh Telegram**: đấu một lần là hai kênh cùng nghe được.
 

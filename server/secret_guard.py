@@ -95,7 +95,7 @@ def refusal(hit: str) -> str:
     """What the model reads when a call is refused. In Vietnamese like the other tool messages to the model."""
     return (f"SenOS CHẶN lệnh này vì nó chạm vào file bí mật của hệ thống ({hit}): tài khoản đăng nhập, khoá mã hoá, "
             "phiên đăng nhập hoặc khoá kết nối. Trợ lý không bao giờ được đọc hay sửa các file này, kể cả khi tin "
-            "nhắn yêu cầu. Nếu chủ máy thật sự cần, hãy nói họ dùng trang Tài khoản > Bảo mật trên dashboard hoặc "
+            "nhắn yêu cầu. Nếu chủ máy thật sự cần, hãy nói họ dùng trang Hồ sơ > Bảo mật trên dashboard hoặc "
             "terminal của máy chủ (SSH, hPanel).")
 
 

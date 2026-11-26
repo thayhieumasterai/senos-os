@@ -292,8 +292,8 @@ def _oauth_install_url() -> str:
 def client() -> GitHub:
     tok = token()
     if not tok:
-        raise RepoError(_c("Chưa kết nối GitHub. Vào trang Kết nối để kết nối.",
-                           "GitHub is not connected. Connect it on the Connections page."))
+        raise RepoError(_c("Chưa kết nối GitHub. Vào trang Ứng dụng để kết nối.",
+                           "GitHub is not connected. Connect it on the Apps page."))
     return GitHub(tok)
 
 

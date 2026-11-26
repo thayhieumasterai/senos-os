@@ -1,8 +1,8 @@
-# Work (Kanban): handing a goal to the AI to run in the background
+# Jobs (Kanban): handing a goal to the AI to run in the background
 
 *[Tiếng Việt](../21-viec-kanban.md) · **English***
 
-The **Work** page is where you hand over a goal and let SenOS do it in the background, without sitting and watching the chat box. You write one sentence describing what needs finishing, the AI normalises it into a specification, picks the worker type, claims the job and runs it; when it is done, the result is sent to whoever handed it over.
+The **Jobs** page is where you hand over a goal and let SenOS do it in the background, without sitting and watching the chat box. You write one sentence describing what needs finishing, the AI normalises it into a specification, picks the worker type, claims the job and runs it; when it is done, the result is sent to whoever handed it over.
 
 The easiest thing to misunderstand: this is **not a drag-and-drop Trello board**. You do not drag cards and you do not run each card by hand. This screen is for **watching the queue and handling exceptions**, while the dispatcher does the running.
 
@@ -10,7 +10,7 @@ The easiest thing to misunderstand: this is **not a drag-and-drop Trello board**
 
 SenOS treats the work queue as a runtime for the AI. A job goes through this lifecycle:
 
-1. **You hand over a goal** (from the Work page, by saying it in chat, or proposed by the Self-learning page).
+1. **You hand over a goal** (from the Jobs page, by saying it in chat, or proposed by the Training page).
 2. **The AI specifies it (triage)**: a short run of the background model reads the raw goal and returns JSON with a clear intent, a **capability** (`files`, `research`, `mcp-read`, `code`, `external-write`), an **execution_mode** (`suggest`, `auto`, `full`) and a list of **completion conditions**. This step executes nothing.
 3. **Into the queue**: the task moves to a ready state, waiting its turn.
 4. **The dispatcher claims the task**: each task is held by exactly one worker (locked with an SQLite transaction), with a 90-second lease and a heartbeat every 20 seconds.
@@ -23,13 +23,13 @@ Do not confuse three similarly named things:
 
 | Thing | What it is | Where to read |
 | --- | --- | --- |
-| **Work** (this page) | The queue of ONE-OFF jobs the AI runs in the background | this page |
+| **Jobs** (this page) | The queue of ONE-OFF jobs the AI runs in the background | this page |
 | **Recurring jobs** | Loops on a cycle and reminders at a fixed time | [Recurring jobs and reminders](08-recurring-jobs.md) |
 | `- [ ]` checkboxes in notes | Tasks you tick yourself in a markdown file | [Tasks and Dataview in notes](19-tasks-and-dataview.md) |
 
 ## Where to open it in SenOS
 
-On the left navigation rail, open the **Work** group then click **Work**. The page title is **Work (Kanban)** with the subtitle "The AI specifies, dispatches and runs background tasks".
+On the left navigation rail, open the **Operations** group then click **Jobs**. The board's title is **Tasks (Kanban)** with the subtitle "The AI specifies, dispatches and runs background tasks".
 
 The board is bound to the **brain selected** at the top of the dashboard. Switching brains switches the board, one queue per brain.
 
@@ -127,7 +127,7 @@ When a worker hits something only you know (which customer to send to, whether t
 You can answer in any of three places, all equal:
 
 - Type in the box right under the question in the web chat and press **Send**.
-- Type in the answer box on the job's card on the Work page and press **Send answer**.
+- Type in the answer box on the job's card on the Jobs page and press **Send answer**.
 - Just reply in chat (Telegram or Zalo too), saying which job it is for. SenOS passes the answer to the right job.
 
 Once answered, the job goes back to the queue and carries on. The next run reads the question, your answer and what the previous run already finished, so it neither starts over nor asks again. Asking and answering does **not** use up another attempt. A job that asks several times keeps every round under **Questions and answers** in the detail drawer.
@@ -144,7 +144,7 @@ SenOS now records every outside action of a job (sending, posting, creating an o
 - **Not sure it went through** (the server stopped or the connection dropped right while sending): SenOS does not send again on its own. The job stops and asks you, naming the action. Answer **"sent"** and SenOS skips it; answer **"not sent"** and SenOS does it again exactly once. Any answer that does not start with "not" or "resend" counts as sent, so a customer never gets a duplicate.
 - **The service returned a clear error** (wrong recipient, missing permission): treated as not sent, so the next run may try again.
 
-Ordinary chat is unchanged: the record only applies to background jobs on the Work board.
+Ordinary chat is unchanged: the record only applies to background jobs on the Jobs board.
 
 Limits: the record lives in the SenOS hub, so it only sees actions that go through the hub. Connectors tied to your Claude account (Gmail, Drive on claude.ai) and an engine's own shell commands bypass the hub and are not recorded. Grok Build and Antigravity CLI cannot yet carry the job id to the hub, so jobs running on those two engines do not have this protection yet.
 
@@ -206,7 +206,7 @@ Every job that ends completed, awaiting approval or blocked **sends a notice by 
 - `✅ Job '<title>' is done and its result awaits your review.`
 - `⚠ The job '<title>' is blocked and needs your attention.` with a `Reason: ...` line.
 
-Every notice ends with a pointer to the Work page, because the full detail lives here rather than being crammed into a message.
+Every notice ends with a pointer to the Jobs page, because the full detail lives here rather than being crammed into a message.
 
 Who receives it and where:
 
@@ -240,7 +240,7 @@ Since 0.25.2, right above the chat input there is a **background work strip**. I
 | **Yellow** | Work was **handed over but does not run** because the dispatcher mode is not **AI runs itself**. The strip says where to turn it on. |
 | **Grey** | Only loops or reminders waiting for their time. |
 
-The strip gathers all three sources: Kanban work, [loops and reminders](08-recurring-jobs.md). Work handed over from the open conversation gets its own outline and its own count ("2 jobs running in the background · 1 from this conversation"), because "the machine is busy" and "my job is running" are two different things. Click **Work page** in the right corner to open the full board.
+The strip gathers all three sources: Kanban work, [loops and reminders](08-recurring-jobs.md). Work handed over from the open conversation gets its own outline and its own count ("2 jobs running in the background · 1 from this conversation"), because "the machine is busy" and "my job is running" are two different things. Click **Open the Jobs page** in the right corner to open the full board.
 
 The strip re-asks the server every few seconds, and asks immediately whenever a chat turn ends or a background job reports back. With no work at all it hides entirely rather than taking space from the chat box.
 
@@ -269,16 +269,16 @@ Two things that tool deliberately does **not** do:
 - **It cannot create `full`-level work.** The full level lets a job really act outside (creating orders, spending money, running ads, sending messages) and cannot be undone. SenOS only creates `suggest` or `auto`; to get full you raise it yourself on this page, where you can see clearly what you are permitting.
 - **It does not move columns or approve work awaiting approval.** Those actions need you to see the board, so they stay on this page. Cancelling a job can be asked in chat ("cancel the report job"): SenOS cancels it exactly like the Cancel task button on this page, a running job stops at once, and the reason you give goes into the job's log.
 
-## Work proposed by the Self-learning page
+## Work proposed by the Training page
 
-The **Self-learning** page has a capability switch named **Work (Kanban)** letting the learning engine propose background jobs from conversations. That switch is **off by default** in the current build, after inspecting a real board and finding that most machine-generated jobs were things a headless worker cannot do (needing cookies, needing to send something outside, only waiting for someone else's approval, touching a repo outside the brain). Work is now only created when you say so directly.
+The **Training** page has a capability switch named **Tasks (Kanban)** letting the learning engine propose background jobs from conversations. That switch is **off by default** in the current build, after inspecting a real board and finding that most machine-generated jobs were things a headless worker cannot do (needing cookies, needing to send something outside, only waiting for someone else's approval, touching a repo outside the brain). Work is now only created when you say so directly.
 
 If you turn it back on, these rails still hold:
 
 - At most 3 jobs per learning pass, and only proposals with high enough confidence.
 - Proposals containing a secret or a prompt-injection sentence are blocked outright.
 - An "impossible job" gate filters out work needing a sign-in, OTP or QR, work sending or publishing outside, work that only waits for someone else's reply, and work touching source code outside the brain. The rejection reason is written into the learning log.
-- Work created by Self-learning enters the specification layer exactly like work you hand over, and is **not** forced to await approval: only missing information, missing permission or your own approval flag brings you in.
+- Work created by Training enters the specification layer exactly like work you hand over, and is **not** forced to await approval: only missing information, missing permission or your own approval flag brings you in.
 
 Details in [Self-learning](22-self-learning.md).
 
@@ -339,7 +339,7 @@ Those are two different things. That line says the server's dispatch process is 
 It means no job is in a ready state: the queue is empty, or work is waiting on dependencies, or 2 workers are already running. Look at the **Waiting** and **Workers running** KPIs to see which case you are in.
 
 **A job sits forever at "AI is specifying".**
-The specification step needs a background model run. If the background engine is not ready or is out of quota, the job returns to the queue and retries. Check the [Models and engines](10-models-and-engines.md) page and the [Usage](23-usage-and-cost.md) page. When the background model cannot be reached, SenOS still has a fallback branch guessing the capability from keywords so the queue does not stall completely.
+The specification step needs a background model run. If the background engine is not ready or is out of quota, the job returns to the queue and retries. Check the [AI models](10-models-and-engines.md) page and the [Quota](23-usage-and-cost.md) page. When the background model cannot be reached, SenOS still has a fallback branch guessing the capability from keywords so the queue does not stall completely.
 
 **A job is blocked with the reason that the task needs an outside action and only a mode=full worker may execute it.**
 This is a safety rail, not a bug. Your job belongs to the group that sends messages, publishes, creates orders or changes something outside. If you genuinely want it done automatically, hand the job over again and state in the goal that you permit acting; if not, let SenOS draft it and press send yourself.
@@ -360,7 +360,7 @@ That is an empty promise and has been banned since 0.9.289: a SenOS answer turn 
 Three possibilities, in order of likelihood: you are standing in **another brain** (switch brains at the top of the dashboard), the work finished over 3 days ago and was archived, or someone called a cleanup endpoint.
 
 **Background work eats your whole quota.**
-Each job is a real AI session. Lower the parallel worker count with `SENOS_KANBAN_MAX_WORKERS=1`, or set the mode to **Off** when you do not need it. Watch the consumption on the [Usage](23-usage-and-cost.md) page, which separates "SenOS running by itself" from "You typing".
+Each job is a real AI session. Lower the parallel worker count with `SENOS_KANBAN_MAX_WORKERS=1`, or set the mode to **Off** when you do not need it. Watch the consumption on the [Quota](23-usage-and-cost.md) page, which separates "SenOS running by itself" from "You typing".
 
 ## Related
 

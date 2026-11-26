@@ -2,7 +2,7 @@
 
 ***Tiếng Việt** · [English](en/15-branding-and-domains.md)*
 
-Trang này hướng dẫn hai việc: đổi logo/avatar của SenOS thành ảnh của bạn, và trỏ một tên miền riêng (ví dụ `senos.tencuaban.com`) vào SenOS để chạy qua HTTPS. Các thao tác nằm trong **Cài đặt → Chung**.
+Trang này hướng dẫn hai việc: đổi logo/avatar của SenOS thành ảnh của bạn, và trỏ một tên miền riêng (ví dụ `senos.tencuaban.com`) vào SenOS để chạy qua HTTPS. Các thao tác nằm trong **Thiết lập → Chung**.
 
 ## Tính năng này là gì
 
@@ -13,16 +13,16 @@ Lưu ý quan trọng ngay từ đầu: phần **Tên miền riêng** chỉ hoạ
 
 ## Mở ở đâu trong SenOS
 
-Cả hai tính năng nằm trong **Cài đặt → Chung**. Trong tab Chung có hai thẻ:
+Cả hai tính năng nằm trong **Thiết lập → Chung**. Trong tab Chung có hai thẻ:
 
 - Ô **ẢNH ĐẠI DIỆN**: có ảnh xem trước, nút **Tải ảnh lên** và nút **Khôi phục mặc định**.
 - Ô **TÊN MIỀN & SSL**: có ô nhập (chỗ trống ghi "vd: senos.tencuaban.com"), nút **Lưu & kiểm tra**, hai badge trạng thái DNS và SSL, hai nút **Bật SSL** và **Kiểm tra lại**, cùng wizard ba bước đổi nội dung theo đúng môi trường VPS/Hostinger.
 
-Mỗi lần mở Cài đặt, SenOS tự nạp lại giá trị đang dùng, kiểm tra DNS/HTTPS và đưa ra đúng bước tiếp theo.
+Mỗi lần mở Thiết lập, SenOS tự nạp lại giá trị đang dùng, kiểm tra DNS/HTTPS và đưa ra đúng bước tiếp theo.
 
 ## Đổi logo/avatar (từng bước)
 
-1. Mở **Cài đặt → Chung**, tìm ô **ẢNH ĐẠI DIỆN**.
+1. Mở **Thiết lập → Chung**, tìm ô **ẢNH ĐẠI DIỆN**.
 2. Bấm nút **Tải ảnh lên**. Cửa sổ chọn tệp của máy hiện ra.
 3. Chọn một tệp ảnh. Định dạng nhận: PNG, JPG, WEBP, GIF. Dung lượng tối đa 5MB.
 4. Sau khi chọn, SenOS hiện dòng trạng thái **Đang tải lên…** rồi **Đã cập nhật ảnh ✓** khi xong. Ảnh mới thay ngay ở tất cả vị trí (góc trên, thanh bên, màn đăng nhập, ô xem trước) mà không cần tải lại trang.
@@ -54,7 +54,7 @@ Phần này giả định bạn đã deploy SenOS bằng Docker trên VPS, đã 
 
 ### Bước A: nhập và lưu tên miền
 
-1. Mở **Cài đặt → Chung**, tìm ô **TÊN MIỀN & SSL**.
+1. Mở **Thiết lập → Chung**, tìm ô **TÊN MIỀN & SSL**.
 2. Nhập tên miền (hoặc tên miền con) bạn muốn dùng vào ô, ví dụ `senos.tencuaban.com`. Không cần gõ `https://`; nếu có gõ, SenOS tự bỏ.
 3. Bấm nút **Lưu & kiểm tra** (hoặc nhấn Enter trong ô nhập). SenOS hiện **Đang lưu và kiểm tra…**, lưu tên miền, rồi tự chạy kiểm tra DNS/SSL và vẽ wizard ba bước ngay trên UI.
 4. Nếu tên miền sai định dạng, SenOS báo: **Tên miền không hợp lệ (vd: senos.tencuaban.com)**. Sửa lại rồi lưu tiếp.
@@ -90,7 +90,7 @@ Trên Hostinger, nút **Bật SSL** bị ẩn đi, vì Traefik của hPanel mớ
 
 ## Truy cập từ xa trên máy Windows hoặc macOS
 
-Mục **TRUY CẬP TỪ XA** (Cài đặt, ngay dưới Tên miền & SSL) mở SenOS ra Internet qua **Cloudflare Tunnel** (hoặc riêng tư qua **Tailscale**, xem Cách 3) mà không cần VPS, không mở cổng modem, không gõ lệnh. SenOS tự tải `cloudflared` (công cụ chính thức, miễn phí của Cloudflare) đúng bản cho máy (Windows x64/ARM, macOS Intel/Apple Silicon, Linux), chạy nó cùng SenOS và tự nối lại khi rớt mạng. Có HTTPS nên micro và giọng nói chạy được trên điện thoại.
+Mục **TRUY CẬP TỪ XA** (Thiết lập, ngay dưới Tên miền & SSL) mở SenOS ra Internet qua **Cloudflare Tunnel** (hoặc riêng tư qua **Tailscale**, xem Cách 3) mà không cần VPS, không mở cổng modem, không gõ lệnh. SenOS tự tải `cloudflared` (công cụ chính thức, miễn phí của Cloudflare) đúng bản cho máy (Windows x64/ARM, macOS Intel/Apple Silicon, Linux), chạy nó cùng SenOS và tự nối lại khi rớt mạng. Có HTTPS nên micro và giọng nói chạy được trên điện thoại.
 
 **Bắt buộc đặt mật khẩu đăng nhập trước** (mục Tài khoản đăng nhập). Khi tunnel đang bật, SenOS luôn đòi đăng nhập và không cho tắt đăng nhập. Nếu mật khẩu bị xoá (ví dụ chạy `reset-auth`), tunnel tự dừng trong vài giây.
 
@@ -199,7 +199,7 @@ Hostinger VPS đã cài sẵn reverse proxy Traefik lo SSL, và cổng 80/443 đ
 
 Nếu bạn cố bấm Bật SSL trên Hostinger (ví dụ qua API), SenOS từ chối và nói rõ: Hostinger quản lý HTTPS bằng Traefik, hãy đặt `DOMAIN_NAME` trong Docker Manager rồi Redeploy.
 
-Sau khi Redeploy, trở lại Cài đặt và bấm **Kiểm tra lại**. Chi tiết và xử lý sự cố xem mục "Tên miền + HTTPS trên Hostinger" trong `DEPLOY.md`; hai link tài liệu cũng nằm ngay dưới card tên miền.
+Sau khi Redeploy, trở lại Thiết lập và bấm **Kiểm tra lại**. Chi tiết và xử lý sự cố xem mục "Tên miền + HTTPS trên Hostinger" trong `DEPLOY.md`; hai link tài liệu cũng nằm ngay dưới card tên miền.
 
 ### Badge SSL nói gì (từ 0.248.0)
 

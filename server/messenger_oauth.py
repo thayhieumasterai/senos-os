@@ -100,7 +100,7 @@ async def start(app_id: str, app_secret: str, redirect_uri: str, brain: str = ""
         return {"ok": False, "error": bad}
     if not str(redirect_uri or "").startswith("https://"):
         return {"ok": False, "error": _c(
-            "SenOS cần địa chỉ HTTPS (Cài đặt, Truy cập từ xa) và bạn phải mở SenOS bằng địa chỉ đó.",
+            "SenOS cần địa chỉ HTTPS (Thiết lập, Truy cập từ xa) và bạn phải mở SenOS bằng địa chỉ đó.",
             "SenOS needs an HTTPS address (Settings, Remote access) and you must open SenOS through it.")}
     own = client is None
     client = client or httpx.AsyncClient(timeout=20)

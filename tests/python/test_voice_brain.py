@@ -192,7 +192,7 @@ async def main():
         await vb.get_brain("s2", {"provider": "gemini", "model": "", "api_key": ""})
     except RuntimeError as e:
         err = str(e)
-    check("get_brain: thiếu key -> câu lỗi nhắc trang Models", "Models" in err)
+    check("get_brain: thiếu key -> câu lỗi nhắc trang Mô hình AI", "Mô hình AI" in err or "AI models" in err)
     err = ""
     try:
         await vb.get_brain("s3", {"provider": "", "model": "", "api_key": ""})
@@ -228,7 +228,7 @@ async def main():
         [d async for d in cx2.stream("q", [])]
     except RuntimeError as e:
         err = str(e)
-    check("codex: chưa kết nối OAuth -> lỗi nhắc trang Models", "Models" in err)
+    check("codex: chưa kết nối OAuth -> lỗi nhắc trang Mô hình AI", "Mô hình AI" in err or "AI models" in err)
 
     async def codex_limit(token, account, model, messages, reasoning="off"):
         yield {"type": "limit_exceeded", "provider": "ChatGPT"}
@@ -404,8 +404,8 @@ check("prompt bộ não giọng có dạy khuôn SENOS_UI", vb.UI_MARKER in vb.S
       and "open_group" in vb.SYSTEM_PROMPT)
 # Model giọng là model NHỎ: nó chỉ viết đúng id khi prompt nói rõ id nào ứng với nhãn tiếng
 # Việt người dùng đọc lên ("mở trang công cụ" -> plugins).
-check("prompt kèm nhãn tiếng Việt của trang", "plugins (công cụ)" in vb.SYSTEM_PROMPT
-      and "skills (kỹ năng)" in vb.SYSTEM_PROMPT and "workspace (cộng sự, trợ lý, quy trình)" in vb.SYSTEM_PROMPT)
+check("prompt kèm nhãn tiếng Việt của trang", "plugins (Tiện ích)" in vb.SYSTEM_PROMPT
+      and "skills (Nghiệp vụ)" in vb.SYSTEM_PROMPT and "workspace (Trợ lý, quy trình)" in vb.SYSTEM_PROMPT)
 
 # ---- 7. Dòng SENOS_NGHE: câu người dùng đã diễn giải (0.59.25) ----
 # Vì sao: bong bóng người dùng hiện chữ thô của máy nghe ("David"), SenOS lại trả lời như đã

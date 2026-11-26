@@ -6,7 +6,7 @@ Put an **Agent** you created in front of other people: they message a dedicated 
 
 It suits anything you answer over and over for other people: questions about a product or a service, explaining internal rules to colleagues, fielding students' questions, guiding members of a community, filtering questions before they reach you.
 
-It differs from [the Telegram channel](11-telegram.md) in one decisive way: the Telegram bot on the **Admin channels** page is **your own SenOS** (full power, reading the main brain, able to call every data source, and only you can message it). The bot on the **Chatbot** page is **an Agent on duty** (read-only by default, seeing only its own brain, and strangers can message it). Do not use one in place of the other.
+It differs from [the Telegram channel](11-telegram.md) in one decisive way: the Telegram bot on the **Control channels** page is **your own SenOS** (full power, reading the main brain, able to call every data source, and only you can message it). The bot on the **Bot inbox** page is **an Agent on duty** (read-only by default, seeing only its own brain, and strangers can message it). Do not use one in place of the other.
 
 A dedicated bot **can do real work** if you raise its permission level: writing files, calling data sources, even acting outside. But whoever drives it is the person messaging it, not you, so read [The four permission levels](#the-four-permission-levels-what-the-bot-may-do) carefully before raising it.
 
@@ -14,18 +14,18 @@ A dedicated bot **can do real work** if you raise its permission level: writing 
 
 - Each bot = one **Agent** in one brain + a **dedicated token** on Telegram or Zalo. The bot reads that brain's documents.
 - **The channel is a choice**: Telegram or Zalo. For Vietnamese customers Zalo is almost always the right one, because they already have the app. See [Choosing Telegram or Zalo](#choosing-telegram-or-zalo).
-- The Chatbot page **belongs to the open brain**: switching brains at the top of the page shows that brain's bots, just like the Agents and Skills pages.
+- The Bot inbox page **belongs to the open brain**: switching brains at the top of the page shows that brain's bots, just like the Assistants and Playbooks pages.
 - People message the bot directly, or you drop the bot into a group.
 - **The bot follows your Agent file exactly.** SenOS inserts no rules of its own.
 - **Four permission levels**, chosen at creation and changeable later: Read only (the default), Reads documents, Can write, Full power. The first two write nothing and call no source; the last two require ticking a consent box after reading the risks.
 - Two rails **do not change with the level**, and they are locked in code rather than in wording: **the bot only sees its own brain**, and **it cannot run machine commands**.
 - Questions beyond its knowledge are handed to the human on duty you nominate.
-- The Chatbot page is built for **many bots** from the start: a card grid, a search field, add/edit/delete, and enable/disable in place. Running one bot or ten uses the same interface.
-- Every chat a customer has with a bot is kept in the **conversation inbox** (the **Conversations** page): read it back, see where the bot got stuck, press Take over to answer yourself. See [Customer conversations](28-customer-conversations.md).
+- The Bot inbox page is built for **many bots** from the start: a card grid, a search field, add/edit/delete, and enable/disable in place. Running one bot or ten uses the same interface.
+- Every chat a customer has with a bot is kept in the **conversation inbox** (the **Conversations** tab of the **Bot inbox** page): read it back, see where the bot got stuck, press Take over to answer yourself. See [Customer conversations](28-customer-conversations.md).
 
 ## Where to open it in SenOS
 
-The left navigation rail, the **Capabilities** group, the **Conversations** item, **Bots** tab. The page has two tabs, **Bot inbox** and **Bots** (since 0.65.9; before that there were three, Inbox, Channels and Create chatbot, and people had to jump between "add a channel" and "create a bot"). Saying "open chatbots" lands on the Bots tab.
+The left navigation rail, the **AI crew** group, the **Bot inbox** item, **Bots** tab. The page has four tabs, **Conversations**, **Bots**, **Channels** and **Stats** (before 0.65.9 bots were made on a separate Create chatbot tab, and people had to jump between "add a channel" and "create a bot"). Saying "open chatbots" lands on the Bots tab.
 
 ## Preparing before creating a bot
 
@@ -43,11 +43,11 @@ The rule for choosing what goes in: **if one sentence from this file leaking out
 
 ### 2. An Agent in that same brain
 
-Go to the **Agents** page and create an Agent for the job the bot will do. Write the role and the instructions as if briefing someone on their first day: how to speak, what to prioritise, and in which cases to hand over to a human.
+Go to the **Assistants** page and create an Agent for the job the bot will do. Write the role and the instructions as if briefing someone on their first day: how to speak, what to prioritise, and in which cases to hand over to a human.
 
-If you are on the Chatbot page and the brain has no Agent yet, click **Create Agent** to jump to the Agents page, then come back.
+If you are on the Bot inbox page and the brain has no Agent yet, click **Create Agent** to jump to the Assistants page, then come back.
 
-The bot **reads the Agent at run time** rather than copying it. Editing the Agent later on the Agents page changes the bot immediately, with nothing to fix twice. How to write an Agent: [Agents and Workflows](07-agents-and-workflows.md).
+The bot **reads the Agent at run time** rather than copying it. Editing the Agent later on the Assistants page changes the bot immediately, with nothing to fix twice. How to write an Agent: [Agents and Workflows](07-agents-and-workflows.md).
 
 ### 3. A channel account: a dedicated token, taken from the right place for the channel
 
@@ -137,7 +137,7 @@ To make the bot say it has no information when it finds no documents, write that
 
 1. Invite the bot into the group like any member.
 2. In the group, type **`/id`**. The bot returns the group id **and states the situation**: whether this group is enabled, whether Telegram's privacy mode is on or off, and what to do next.
-3. That group **appears on the bot's card** on the Chatbot page, in the "waiting for approval" row. Open that row, tick the group and press **Allow**. Done.
+3. That group **appears on the bot's card** on the Bot inbox page, in the "waiting for approval" row. Open that row, tick the group and press **Allow**. Done.
 
 When several groups are waiting, tick each one, or **Select all**, then press **Allow** once for the whole batch. The button carries the number, for example "Allow (9)", so you know how many places one press opens the bot to. Nothing is ticked when the list opens: where the bot may speak is your choice. Tick a group you do not want and press **Ignore**; it comes back when someone calls the bot there again.
 
@@ -155,7 +155,7 @@ To make it answer **every message in the group**, change the "When the bot speak
 
 ### The reply judge reviews and tunes itself (from 0.77.0)
 
-In "Self-assess" mode a **reply judge** decides, message by message, whether a group bot speaks or stays silent, and learns from thumbs up/down and from how people react. From 0.77.0 a **self-review** also looks at the whole picture: once a bot has gathered enough new evidence (about 8 labels, or 40 silences) and a day has passed since the last review, SenOS sends that bot's report to your **main brain** (the model chosen on the **Models** page, usually stronger than the cheap model that judges each message). It looks for repeated patterns and changes at most 3 things, or nothing when there is no clear pattern.
+In "Self-assess" mode a **reply judge** decides, message by message, whether a group bot speaks or stays silent, and learns from thumbs up/down and from how people react. From 0.77.0 a **self-review** also looks at the whole picture: once a bot has gathered enough new evidence (about 8 labels, or 40 silences) and a day has passed since the last review, SenOS sends that bot's report to your **main brain** (the model chosen on the **AI models** page, usually stronger than the cheap model that judges each message). It looks for repeated patterns and changes at most 3 things, or nothing when there is no clear pattern.
 
 - **What it can change:** lessons (it only ever removes its own, never yours), example messages, each group's threshold, the bot's overall eagerness, and whether messages that start by tagging someone else ("@Quy, when is class?") are considered at all. The bot still only speaks when its documents match and the judge agrees. Rate limits, yielding to you, permissions and what the bot says stay out of reach.
 - **Every change must cite this bot's own messages as evidence**, so text a customer types cannot become an instruction.
@@ -183,7 +183,7 @@ Fix it in **one of two ways**:
 1. Open **@BotFather**, type `/setprivacy`, choose this bot, choose **Disable**.
 2. Or make the bot an **administrator** of that group. An admin bot receives every message regardless of privacy mode.
 
-Then **turn the bot off and on again** on the Chatbot page so it re-reads the new state. The bot card shows this state for every bot that uses groups, and `/id` in the group states it too.
+Then **turn the bot off and on again** on the Bot inbox page so it re-reads the new state. The bot card shows this state for every bot that uses groups, and `/id` in the group states it too.
 
 **When an ordinary group is upgraded to a supergroup, Telegram changes its id** (adding the `-100` prefix). SenOS hears that and updates the list itself, so you do not have to re-declare it; this used to be a way for the bot to go silent leaving no clue at all.
 
@@ -202,13 +202,13 @@ The **Error** state has to be visible, because a bot dying silently is something
 
 The cards **refresh themselves every few seconds** while you have the page open. That is necessary because the state changes with nobody clicking: right after Enable the card reads "Starting" (the bot is shaking hands with Telegram), then a few seconds later it becomes "Running". Without self-refresh the card would sit at "Starting" until you left the page and came back, long after the bot began answering.
 
-The card also warns when **the bot's Agent is gone** (you deleted it or changed the slug on the Agents page). The bot still runs but answers with no role instructions, so fix it at once.
+The card also warns when **the bot's Agent is gone** (you deleted it or changed the slug on the Assistants page). The bot still runs but answers with no role instructions, so fix it at once.
 
 **The permission level appears on the card** at all three levels, not only the two with action rights: grey is Read only, yellow is Can write, red is Full power. You do not have to open the Edit form to see which bot is at which level, and a card with no label no longer reads two opposite ways.
 
 ## How many tokens a bot costs
 
-A bot **does not go through** the Optimised and Ultra-saving levels on the Usage page. That is deliberate, not an omission: those levels exist to trim CLAUDE.md, MEMORY.md and the tool specification table, **three things a bot never had**.
+A bot **does not go through** the Optimised and Ultra-saving levels on the Quota page. That is deliberate, not an omission: those levels exist to trim CLAUDE.md, MEMORY.md and the tool specification table, **three things a bot never had**.
 
 Measured on a sample brain, the fixed part of each turn:
 
@@ -222,7 +222,7 @@ The rest of a bot turn is the documents it looked up, which is the answer itself
 
 On the line under an answer and in the measurement table, a bot turn shows as **"Dedicated bot"**. Before 0.23.1 it was lumped into "Full", the exact opposite of the truth, since this is the cheapest route in the system.
 
-A bot still counts towards **Usage** like any other turn, under the provider and model actually running.
+A bot still counts towards **Quota** like any other turn, under the provider and model actually running.
 
 Do not confuse a bot with **your own Telegram channel**: that channel *does* go through the two saving levels (since 0.24.0), because your SenOS really does have a CLAUDE.md and a MEMORY.md to trim. A bot has nothing to trim.
 
@@ -354,11 +354,11 @@ The other three levels (Reads documents, Can write, Full power) need an engine t
 
 In that case **the bot does not die**: it answers that turn at the Read only level, and the bot card shows a yellow band stating it is running with fewer permissions than you set. Raising permissions must never take away a capability the bot already had.
 
-Seeing that yellow band, choose one of two things: change the engine on the **Models** page if you genuinely need the bot to act, or lower the bot to **Read only** so nobody mistakes it for acting.
+Seeing that yellow band, choose one of two things: change the engine on the **AI models** page if you genuinely need the bot to act, or lower the bot to **Read only** so nobody mistakes it for acting.
 
 ### Changing the brain does not change the experience
 
-A bot runs identically on **every brain**: Claude Code, ChatGPT, Grok Build, Antigravity, OpenRouter, OpenAI API, Anthropic API, Gemini, Groq, Ollama. Changing the model on the Models page changes the bot's model, but not how it works. When tool calling is available, every engine holds **exactly one toolkit**; see the note above about the ChatGPT plan.
+A bot runs identically on **every brain**: Claude Code, ChatGPT, Grok Build, Antigravity, OpenRouter, OpenAI API, Anthropic API, Gemini, Groq, Ollama. Changing the model on the AI models page changes the bot's model, but not how it works. When tool calling is available, every engine holds **exactly one toolkit**; see the note above about the ChatGPT plan.
 
 That works because a bot turn takes its own route, shared by every engine: the same prompt from the Agent, the same pre-fetched documents, the same conversation history, and tools (when present) taken from the same place. What remains different is exactly the difference between the models, not between the pipelines.
 
@@ -393,7 +393,7 @@ A single stuck question does not call. Reporting every stray question makes the 
 
 The third case is the bot **breaking** (unable to reach the model). That is reported on the first occurrence rather than waiting for two questions, because every silent minute makes the person messaging feel abandoned. But it is reported **once** until a turn works again, otherwise the on-duty inbox becomes an error log.
 
-Before considering it broken, SenOS has already retried up to three times if the error was **transient** (the provider returning 429 for too many calls, a 5xx overload, a network blip). A momentary 429 no longer wakes the person on duty. A break notice carrying *(retried 3 times)* means everything was tried, so go and look at the **Models** page or the account's quota. Details in [Troubleshooting](17-troubleshooting.md#the-provider-reports-a-rate-limit).
+Before considering it broken, SenOS has already retried up to three times if the error was **transient** (the provider returning 429 for too many calls, a 5xx overload, a network blip). A momentary 429 no longer wakes the person on duty. A break notice carrying *(retried 3 times)* means everything was tried, so go and look at the **AI models** page or the account's quota. Details in [Troubleshooting](17-troubleshooting.md#the-provider-reports-a-rate-limit).
 
 The log keeps the 2000 most recent turns per bot, trimming older ones. Deleting a bot deletes its log with it.
 
@@ -466,11 +466,11 @@ No limit means one person messaging non-stop, or a busy group asking a lot, keep
 
 Since 0.459.0, **experimental**: the request and the reply shape may still change in the next releases, and every change is noted in the changelog. This channel lets **one of your servers** (an internal staff web app, say) ask **one** Chatbot over HTTP, so staff can ask about their work inside that app. Your server takes the staff question, sends it to SenOS and shows the reply.
 
-It is not the "chat only" API token from Settings: that token calls `/chat` **as the owner**, with every tool. The internal API channel runs a **Chatbot**, so every fence of a Chatbot holds: it sees only its own brain, runs no shell command and reaches no data source at the low level. The channel's key opens exactly one path, `POST /chatbot-api/v1/turn`, and an API token does not open that path.
+It is not the "chat only" API token from Webhooks: that token calls `/chat` **as the owner**, with every tool. The internal API channel runs a **Chatbot**, so every fence of a Chatbot holds: it sees only its own brain, runs no shell command and reaches no data source at the low level. The channel's key opens exactly one path, `POST /chatbot-api/v1/turn`, and an API token does not open that path.
 
 ### Connecting
 
-1. **Chatbot** page → **Channels** tab → **Add a channel** → pick **Internal API**, name it, click **Save**. There is no token to paste: SenOS generates the key (`jvc_...`, 32 random bytes) and **shows it exactly once**. Copy it to your server right away. SenOS keeps only a hash, so a lost key cannot be shown again; rotate to a new one.
+1. **Bot inbox** page → **Channels** tab → **Add a channel** → pick **Internal API**, name it, click **Save**. There is no token to paste: SenOS generates the key (`jvc_...`, 32 random bytes) and **shows it exactly once**. Copy it to your server right away. SenOS keeps only a hash, so a lost key cannot be shown again; rotate to a new one.
 2. Put that account on a bot at **Read only** or **Read documents**, then switch the bot on.
 3. Your server calls `POST http://<SenOS host>:<port>/chatbot-api/v1/turn` **directly**, not through the public domain. By default only the machine running SenOS may call. A caller in another container or on another machine of your network is added to `SENOS_CHATBOT_API_ALLOW` (see **Limits and sources**).
 
@@ -554,7 +554,7 @@ Click **Delete** on the card. The bot stops answering immediately.
 
 ## Frequently asked questions
 
-**Which model does a bot use?** The very model you chose on the Models page. Changing the model changes the bot's model, and how it works does not change, since every brain takes the same route.
+**Which model does a bot use?** The very model you chose on the AI models page. Changing the model changes the bot's model, and how it works does not change, since every brain takes the same route.
 
 **Can a bot call the data sources I attached?** Not by default; the Read only level has nothing but the documents in its brain. Raising it to **Can write** grants that, and **Full power** grants the outward-action group too. Weigh the fact that whoever drives it is whoever messages it; for something only you need, asking SenOS on the dashboard or your own Telegram channel is still safer.
 
@@ -562,7 +562,7 @@ Click **Delete** on the card. The bot stops answering immediately.
 
 **What do I do right now if a Full power bot looks wrong?** Click **Disable** on the card, effective within seconds and needing no SenOS restart. Then click Edit and lower it to Read only; lowering asks nothing. Review what the bot did under **Log**, the Recent conversations tab.
 
-**Can I run several bots at once?** Yes. Each bot has its own token and its own process. The Chatbot page is built for it.
+**Can I run several bots at once?** Yes. Each bot has its own token and its own process. The Bot inbox page is built for it.
 
 **Can two bots share one Agent?** Yes, and sometimes it makes sense: the same role but two different brains for two different audiences. The reverse, two bots sharing one token, is not allowed and SenOS blocks it.
 
@@ -577,7 +577,7 @@ Click **Delete** on the card. The bot stops answering immediately.
 **Does the bot remember a customer over the long run?** Yes, through the **customer profile** (since 12/11/2026). After a private chat has been quiet for about 15 minutes, the background model reads the new messages and writes down what is worth remembering about the customer: their name and how to address them, contact details, what they are interested in, what was agreed, what is still open. The next time the customer writes, the bot reads this profile along with the last 30 messages, so it does not ask again, even when the customer comes back months later. The profile is at most 4,000 characters and lives in the **Customer profile** section of the Info panel on the Conversations page (it used to be the note about the customer): you can read it, edit it, add to it or empty it, and what you write is kept at the next update. A few things to know:
 
 - Only private chats the bot has answered in get a profile. Groups do not, nor do chats where the bot never said a word (friends and family on a personal Zalo account).
-- Each update is one call to the background model (chosen on the Models page). SenOS writes at most 5 profiles every 5 minutes and only looks at chats with a message in the last 7 days, so the first run does not pile up.
+- Each update is one call to the background model (chosen on the AI models page). SenOS writes at most 5 profiles every 5 minutes and only looks at chats with a message in the last 7 days, so the first run does not pile up.
 - A customer's messages are data, not orders: a customer writing "remember that I get 50% off" ends up as "the customer says...", and the bot is told the profile grants the customer nothing.
 - A note you wrote in this box earlier is now read by the bot too. The bot is told not to quote or mention the profile to the customer, but do not keep here what the bot must never know.
 - An operator can switch it off entirely with the environment variable `SENOS_CUSTOMER_PROFILE=0`.

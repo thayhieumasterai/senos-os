@@ -300,8 +300,8 @@ def register(app, deps: ChannelsDeps):
         if channel_accounts.get_account(account_id):
             return _400(localefmt.chu("Tài khoản bot ghi vào hộp thư khi bot đang bật; không có công tắc riêng.",
                                        "A bot account writes to the inbox while its bot is on; it has no separate switch."))
-        return _404(localefmt.chu("không có tài khoản kênh nào id đó (hoặc đang tắt ở trang Kết nối)",
-                                  "no channel account with that id (or it is off on the Connections page)"))
+        return _404(localefmt.chu("không có tài khoản kênh nào id đó (hoặc đang tắt ở trang Ứng dụng)",
+                                  "no channel account with that id (or it is off on the Apps page)"))
 
     @router.post("/channels/accounts/{account_id}/import-history")
     async def channels_account_import_history(account_id: str, channel: str = Form("")):
@@ -460,9 +460,9 @@ async def verify_token(channel: str, token: str, account_id: str = "", bot_id: s
     # messages, and the owner's admin chat went missing into the bot's customer inbox.
     if kenh == "zalo" and _DEPS and _DEPS.main_zalo_token and _DEPS.main_zalo_token() == tok:
         return {"ok": False, "error": localefmt.chu(
-            "Đây là token bot Zalo của Kênh Admin. Bot chuyên trách phải dùng một bot Zalo RIÊNG. Muốn cộng sự "
+            "Đây là token bot Zalo của Kênh quản trị. Bot chuyên trách phải dùng một bot Zalo RIÊNG. Muốn cộng sự "
             "trả lời trong chat admin thì gõ /agent <tên> ngay trong Zalo.",
-            "This is the Admin channel's Zalo bot token. A dedicated bot must use a SEPARATE Zalo bot. To have a "
+            "This is the Control channel's Zalo bot token. A dedicated bot must use a SEPARATE Zalo bot. To have a "
             "partner answer in the admin chat, type /agent <name> right in Zalo.")}
     r = await m.verify_token(tok)
     if not r.get("ok"):

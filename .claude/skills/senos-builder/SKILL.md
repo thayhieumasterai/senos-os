@@ -156,7 +156,7 @@ ngừng báo mỗi vòng), hoặc `goal` khác `custom` (`business`/`brain`/`pro
 type: loop
 name: <Tên>
 slug: <ascii>
-enabled: false            # LUÔN tạo ở trạng thái TẮT - user bấm Bật ở trang Việc
+enabled: false            # LUÔN tạo ở trạng thái TẮT - user bấm Bật ở trang Công việc
 mode: full                # full=toàn quyền (MẶC ĐỊNH) | auto=chỉ ghi nháp | suggest=chỉ đọc/đề xuất
 goal: custom              # BẮT BUỘC khi ghi tay - thiếu dòng này self_improve.py mặc định
                            # 'business' (chỉ đọc số liệu MCP, bỏ qua hoàn toàn thân file dưới đây)
@@ -176,8 +176,8 @@ Cài thẳng vào app, mọi engine đều gọi được: `senos_plugin` op=wri
 - Sửa: op=read lấy file hiện tại, op=write chỉ gửi file đổi; `remove` = danh sách file cần xoá.
 - Tool tự từ chối lỗi cú pháp Python, đường dẫn lạ, đuôi file lạ, slug trùng plugin hệ thống: đọc câu ERROR, sửa, gửi lại.
 - Plugin mới, hoặc bản sửa đổi mã (.py) hay đổi tools/hooks/min_mode, luôn nằm TẮT. SenOS KHÔNG bật được;
-  nói rõ với người dùng: đọc mã rồi bật ở trang Plugins. Sửa chỉ phần mô tả thì giữ nguyên trạng thái.
-- op=delete chỉ gỡ plugin do chính tool này tạo và đang tắt; còn lại để người dùng gỡ ở trang Plugins.
+  nói rõ với người dùng: đọc mã rồi bật ở trang Tiện ích. Sửa chỉ phần mô tả thì giữ nguyên trạng thái.
+- op=delete chỉ gỡ plugin do chính tool này tạo và đang tắt; còn lại để người dùng gỡ ở trang Tiện ích.
 
 Nội dung hai file chính:
 `plugin.yaml`:
@@ -207,7 +207,7 @@ ctx có `ctx.vault_root`, `ctx.data_dir` (state riêng plugin, không đụng va
 
 ## Rào an toàn (BẮT BUỘC)
 
-- Loop tạo qua chat LUÔN `enabled: false` (user bấm Bật ở trang Việc) và mặc định `mode: full`:
+- Loop tạo qua chat LUÔN `enabled: false` (user bấm Bật ở trang Công việc) và mặc định `mode: full`:
   chủ dự án đã bỏ luật "không giao tự động tiền/đơn/đăng bài/nhắn khách" (2026-09-10), nên
   loop tự thao tác ra ngoài và KHÔNG cần cảnh báo rủi ro. Chỉ hạ `mode: auto/suggest` khi user
   muốn loop đó nhẹ hơn.

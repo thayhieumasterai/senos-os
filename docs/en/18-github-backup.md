@@ -6,7 +6,7 @@ This feature syncs **EVERY brain in the brains folder** (all of them: notes, Wik
 
 > Keep **every brain inside the brains folder** (creating one with the ➕ button puts it there automatically). Sync takes the whole brains folder as one unit, so any brain outside it (an external folder picked with the 📁 button) is NOT synced along; move it into brains.
 
-Open it at: the **Self-learning** page (**Brain** group on the left nav rail), scrolling down to **⇅ Sync brain with GitHub (two-way)**.
+Open it at: the **Training** page (**Knowledge** group on the left nav rail), scrolling down to **⇅ Sync brain with GitHub (two-way)**.
 
 ## Why turn it on
 
@@ -42,7 +42,7 @@ The brain is all the knowledge SenOS has accumulated about you and your work. It
 
 ### Step 3 - Paste it into SenOS
 
-1. Open the **Self-learning** page → the **⇅ Sync brain with GitHub (two-way)** section.
+1. Open the **Training** page → the **⇅ Sync brain with GitHub (two-way)** section.
 2. Paste the **repo URL (https)** and the **GitHub token (fine-grained, Contents permission)** into their fields.
 3. Check the **Branch** field: it defaults to `main`. If your repo's default branch differs (`master`, say), fix it here or the push goes to the wrong branch.
 4. Click **🔌 Test connection**, which must report "Connection OK".
@@ -127,7 +127,7 @@ With "Sync images too" OFF, SenOS treats `attachments/` and `inbox/` as a cache:
 
 ## Restoring the brain on a new machine
 
-No manual git needed: install SenOS, go to **Self-learning → ⇅ Sync brain with GitHub (two-way)**, paste the repo, the token and the right branch, click **⇅ Sync now**, and every brain comes back in full. (The old way, `git clone` straight into the brains folder, still works.)
+No manual git needed: install SenOS, go to **Training → ⇅ Sync brain with GitHub (two-way)**, paste the repo, the token and the right branch, click **⇅ Sync now**, and every brain comes back in full. (The old way, `git clone` straight into the brains folder, still works.)
 
 ## Handling .conflict-* files
 
@@ -147,7 +147,7 @@ When two machines edit the same file between syncs, you get an extra file such a
 
 | Symptom | Cause / what to do |
 |---|---|
-| "git is not installed on this machine" | Open **Connections** and press **Connect** (or **Install git**) on the GitHub card: SenOS installs git itself. Or install it by hand on the machine or VPS. The official Docker image already has it. |
+| "git is not installed on this machine" | Open **Apps** and press **Connect** (or **Install git**) on the GitHub card: SenOS installs git itself. Or install it by hand on the machine or VPS. The official Docker image already has it. |
 | Test connection reports a 403 | The token lacks Contents: Read and write, or the right repo was not selected. |
 | The push succeeds but GitHub shows no files on the branch you expected | The **Branch** field differs from the repo's default branch (SenOS defaults to `main`). Fix the Branch field to match, Save configuration and sync again. |
 | "the push keeps being overtaken" | Several machines are syncing at once, continuously. Click again in a few minutes and the merge mechanism will settle it. |

@@ -232,7 +232,7 @@ def _them(args, ctx) -> str:
     r = f.create(ctx.vault_root, payload)
     if not r.get("ok"):
         return "ERROR: " + str(r.get("error") or "không thêm được")
-    return "OK: đã thêm " + _describe(r["task"], f.load(ctx.vault_root)) + " vào tab Việc của tôi, trang Nhiệm vụ."
+    return "OK: đã thêm " + _describe(r["task"], f.load(ctx.vault_root)) + " vào tab Việc của tôi, trang Công việc."
 
 
 def _occurs_between(t: dict, a: str, b: str) -> list:
@@ -472,7 +472,7 @@ def _tich(args, ctx, done: bool = True) -> str:
         return f"OK: đã bỏ tích \"{t['title']}\"" + (f" ngày {day}." if t.get("repeat") else ".")
     if t.get("habit") and t.get("repeat"):
         st = my_tasks_mod.habit_state(r["task"], today)
-        return (f"OK: đã tích \"{t['title']}\" ngày {day} (SenOS tích theo lời người dùng, họ bỏ tích được trên trang Nhiệm vụ). "
+        return (f"OK: đã tích \"{t['title']}\" ngày {day} (SenOS tích theo lời người dùng, họ bỏ tích được trên trang Công việc). "
                 f"Chuỗi giữ lửa: {st['cur']} ngày.")
     return f"OK: đã đánh dấu xong \"{t['title']}\"."
 
@@ -480,7 +480,7 @@ def _tich(args, ctx, done: bool = True) -> str:
 def register(ctx):
     ctx.register_tool(
         "senos_mytask",
-        "Việc, lịch hẹn và thói quen của CHÍNH người dùng (tab Việc của tôi trên trang Nhiệm vụ). Mọi thứ người dùng "
+        "Việc, lịch hẹn và thói quen của CHÍNH người dùng (tab Việc của tôi trên trang Công việc). Mọi thứ người dùng "
         "sửa được trên trang thì sửa được bằng tool này. "
         "op=add: thêm (title; date YYYY-MM-DD, time HH:MM; repeat day|week|month|year, every, days 'T3,T5' khi lặp theo tuần; "
         "habit=true để giữ lửa thói quen; kind=appt cho lịch hẹn với end HH:MM hoặc duration phút, location, remind phút; "

@@ -6,7 +6,7 @@
 
 Dùng được cho bất cứ việc gì bạn phải trả lời đi trả lời lại cho người khác: hỏi đáp về một sản phẩm hay dịch vụ, giải đáp quy định nội bộ cho đồng nghiệp, trực câu hỏi của học viên, hướng dẫn thành viên trong một cộng đồng, sàng lọc câu hỏi trước khi tới tay bạn.
 
-Khác với [Kênh Telegram](11-telegram.md) ở một điểm quyết định: bot Telegram ở trang **Kênh Admin** là **SenOS của bạn** (toàn quyền, đọc brain chính, gọi được mọi nguồn dữ liệu, chỉ bạn nhắn được). Bot ở trang **Chatbot** là **một Agent đứng trực** (mặc định chỉ đọc, chỉ thấy brain của nó, người lạ nhắn được). Đừng dùng cái này thay cái kia.
+Khác với [Kênh Telegram](11-telegram.md) ở một điểm quyết định: bot Telegram ở trang **Kênh quản trị** là **SenOS của bạn** (toàn quyền, đọc brain chính, gọi được mọi nguồn dữ liệu, chỉ bạn nhắn được). Bot ở trang **Chatbot** là **một Agent đứng trực** (mặc định chỉ đọc, chỉ thấy brain của nó, người lạ nhắn được). Đừng dùng cái này thay cái kia.
 
 Bot chuyên trách **làm việc thật được** nếu bạn nâng mức quyền cho nó - ghi file, gọi nguồn dữ liệu, thậm chí thao tác ra ngoài. Nhưng người điều khiển nó là người nhắn cho nó chứ không phải bạn, nên đọc kỹ mục [Bốn mức quyền](#bốn-mức-quyền---bot-được-làm-gì) trước khi nâng.
 
@@ -14,18 +14,18 @@ Bot chuyên trách **làm việc thật được** nếu bạn nâng mức quy�
 
 - Mỗi bot = một **Agent** trong một brain + một **token riêng** trên Telegram hoặc Zalo. Bot đọc tài liệu của chính brain đó.
 - **Chọn được kênh**: Telegram hoặc Zalo. Với khách hàng Việt Nam thì Zalo gần như luôn là lựa chọn đúng, vì họ đã có sẵn app trên máy. Xem [Chọn Telegram hay Zalo](#chọn-telegram-hay-zalo).
-- Trang Chatbot **thuộc về brain đang mở**: đổi brain ở đầu trang là thấy bot của brain đó, y như trang Agents và Skills.
+- Trang Hộp thư bot **thuộc về brain đang mở**: đổi brain ở đầu trang là thấy bot của brain đó, y như trang Trợ lý và Nghiệp vụ.
 - Người ta nhắn riêng cho bot, hoặc bạn thả bot vào nhóm.
 - **Bot làm theo đúng file Agent của bạn.** SenOS không chèn thêm luật nào của mình vào.
 - **Bốn mức quyền**, chọn khi tạo và đổi được sau: Chỉ đọc (mặc định), Đọc tài liệu, Được ghi, Toàn quyền. Hai mức đầu không ghi gì và không gọi nguồn nào; nâng lên hai mức sau phải tick vào ô đồng ý sau khi đọc phần rủi ro.
 - Hai rào **không đổi theo mức**, và khoá bằng mã nguồn chứ không bằng câu dặn: **bot chỉ thấy brain của chính nó**, và **không chạy được lệnh máy**.
 - Câu bot không trả lời nổi được ghi vào tab **Bot bí** để bạn bổ sung tài liệu, và bạn bấm **Tiếp quản** ở trang Hội thoại khi cần người thật vào cuộc.
-- Trang Chatbot dựng theo hướng **nhiều bot** ngay từ đầu: lưới thẻ, ô tìm, thêm/sửa/xoá, bật/tắt tại chỗ. Chạy một con hay mười con đều cùng một giao diện.
+- Trang Hộp thư bot dựng theo hướng **nhiều bot** ngay từ đầu: lưới thẻ, ô tìm, thêm/sửa/xoá, bật/tắt tại chỗ. Chạy một con hay mười con đều cùng một giao diện.
 - Mọi cuộc chat khách nhắn cho bot được lưu vào **hộp thư hội thoại** (trang **Hội thoại**): đọc lại, thấy cuộc nào bot bí, bấm Tiếp quản để tự trả lời khi cần. Xem [Hội thoại khách](28-hoi-thoai-khach.md).
 
 ## Mở ở đâu trong SenOS
 
-Thanh điều hướng bên trái, nhóm **Năng lực**, mục **Chatbot**, tab **Bot**. Trang chỉ có hai tab: **Hòm thư bot** và **Bot** (từ 0.65.9; trước đó là ba tab Hòm thư bot, Kênh của bot, Tạo chatbot, và người dùng phải nhảy qua lại giữa "thêm kênh" và "tạo bot"). Nói "mở chatbot" là tới thẳng tab Bot.
+Thanh điều hướng bên trái, nhóm **Đội ngũ AI**, mục **Hộp thư bot**, tab **Bot**. Trang chỉ có hai tab: **Hòm thư bot** và **Bot** (từ 0.65.9; trước đó là ba tab Hòm thư bot, Kênh của bot, Tạo chatbot, và người dùng phải nhảy qua lại giữa "thêm kênh" và "tạo bot"). Nói "mở chatbot" là tới thẳng tab Bot.
 
 ## Chuẩn bị trước khi tạo bot
 
@@ -43,11 +43,11 @@ Nguyên tắc chọn tài liệu bỏ vào: **nếu một câu trong file này l
 
 ### 2. Một Agent trong chính brain đó
 
-Vào trang **Agents** tạo một Agent cho đúng việc bot sẽ làm. Viết phần vai trò và hướng dẫn như thể bạn đang dặn một người mới nhận việc: nói năng thế nào, ưu tiên gì, gặp trường hợp nào thì chuyển người thật.
+Vào trang **Trợ lý** tạo một Agent cho đúng việc bot sẽ làm. Viết phần vai trò và hướng dẫn như thể bạn đang dặn một người mới nhận việc: nói năng thế nào, ưu tiên gì, gặp trường hợp nào thì chuyển người thật.
 
-Đang ở trang Chatbot mà brain chưa có Agent nào thì bấm **Tạo Agent** để sang thẳng trang Agents, tạo xong quay lại.
+Đang ở trang Hộp thư bot mà brain chưa có Agent nào thì bấm **Tạo Agent** để sang thẳng trang Trợ lý, tạo xong quay lại.
 
-Bot **đọc Agent lúc chạy**, không chép lại. Sau này sửa Agent ở trang Agents là bot đổi theo ngay, không phải sửa hai chỗ. Chi tiết cách viết Agent ở [Agents & Workflows](07-agents-va-workflows.md).
+Bot **đọc Agent lúc chạy**, không chép lại. Sau này sửa Agent ở trang Trợ lý là bot đổi theo ngay, không phải sửa hai chỗ. Chi tiết cách viết Agent ở [Agents & Workflows](07-agents-va-workflows.md).
 
 ### 3. Một tài khoản kênh: token riêng, lấy đúng chỗ theo kênh
 
@@ -146,7 +146,7 @@ Bot đã đặt người trực từ trước 0.64.83 thì **giữ nguyên** (th
 
 1. Mời bot vào nhóm như mời một thành viên.
 2. Trong nhóm, gõ **`/id`**. Bot trả về id nhóm **và nói luôn tình trạng**: nhóm này đã được bật chưa, chế độ riêng tư của Telegram đang bật hay tắt, và phải làm gì tiếp.
-3. Nhóm đó **hiện lên thẻ bot** ở trang Chatbot, trong dòng "chờ cho phép". Bấm vào dòng đó, tích nhóm rồi bấm **Cho phép**. Xong.
+3. Nhóm đó **hiện lên thẻ bot** ở trang Hộp thư bot, trong dòng "chờ cho phép". Bấm vào dòng đó, tích nhóm rồi bấm **Cho phép**. Xong.
 
 Nhiều nhóm cùng chờ thì tích từng nhóm, hoặc **Chọn tất cả**, rồi bấm **Cho phép** một lần cho cả loạt. Nút ghi sẵn con số, ví dụ "Cho phép (9)", để bạn biết một cú bấm mở bot cho bao nhiêu nơi. Mở ra chưa dòng nào được tích sẵn: cho bot lên tiếng ở đâu là việc bạn chọn. Nhóm không muốn thì tích rồi bấm **Bỏ qua**; khi có người gọi bot ở đó lần nữa nó sẽ hiện lại.
 
@@ -164,7 +164,7 @@ Muốn nó trả lời **mọi câu trong nhóm** thì đổi nút "Trong nhóm,
 
 ### Bot trên Zalo cá nhân: nhóm và chế độ Tự đánh giá
 
-Từ 0.64.82 bot gắn vào **tài khoản Zalo cá nhân** (nối ở trang Kết nối, xem [Zalo Agent MCP](12-zalo.md)) đứng được trong nhóm Zalo, không chỉ chat riêng. Nick đó là người thật nên mọi thứ dưới đây nghiêng về phía im lặng.
+Từ 0.64.82 bot gắn vào **tài khoản Zalo cá nhân** (nối ở trang Ứng dụng, xem [Zalo Agent MCP](12-zalo.md)) đứng được trong nhóm Zalo, không chỉ chat riêng. Nick đó là người thật nên mọi thứ dưới đây nghiêng về phía im lặng.
 
 **Nhóm phải được bạn cho phép.** Có tin từ một nhóm lạ thì nhóm hiện lên hàng chờ ngay trên thẻ bot, kèm tên nhóm và ô tích để **Cho phép**. Khác Telegram, ở Zalo bot **không nói một câu nào** vào nhóm chưa cho phép: một câu như "em chưa được bật" trước cả nhóm là tự khai mình là máy.
 
@@ -237,7 +237,7 @@ Học chỉ đổi việc **nói hay im**, không bao giờ đổi điều bot k
 
 **Riêng tư.** Vì tự vận hành, bot ở chế độ Tự đánh giá ghi lại chữ của mọi tin nhóm đáng cân nhắc để hiện trong menu Bộ phán xử: tối đa 400 ký tự mỗi tin, giữ 14 ngày. Các ca đã học (từ phản hồi của bạn hoặc của nhóm) giữ tối đa 180 ngày. Tất cả nằm trong thư mục dữ liệu của SenOS (không lên git). Bot không ở chế độ Tự đánh giá thì không lưu gì. **Quên hết** hoặc xoá bot xoá sạch dữ liệu này.
 
-**Ai chạy và tốn gì.** Mỗi tin đáng cân nhắc tốn một lượt model rẻ theo model "việc nền" bạn chọn ở trang **Models** (gói thuê bao hay API rẻ đều được), thêm khoảng vài giây; model chạy trong thư mục trống, không công cụ ghi hay chạy lệnh. Tin hiển nhiên không đáng (rỗng, chỉ có link, nhắn người khác khi chưa học được gì khác) và tin gọi tên rõ ràng không tốn lượt nào. Bộ phán xử dùng đủ trên **Zalo cá nhân** (cửa sổ tin, tin nối tiếp). Trên **Telegram** nó cũng quyết trong nhóm nhưng không có cửa sổ tin nối tiếp.
+**Ai chạy và tốn gì.** Mỗi tin đáng cân nhắc tốn một lượt model rẻ theo model "việc nền" bạn chọn ở trang **Mô hình AI** (gói thuê bao hay API rẻ đều được), thêm khoảng vài giây; model chạy trong thư mục trống, không công cụ ghi hay chạy lệnh. Tin hiển nhiên không đáng (rỗng, chỉ có link, nhắn người khác khi chưa học được gì khác) và tin gọi tên rõ ràng không tốn lượt nào. Bộ phán xử dùng đủ trên **Zalo cá nhân** (cửa sổ tin, tin nối tiếp). Trên **Telegram** nó cũng quyết trong nhóm nhưng không có cửa sổ tin nối tiếp.
 
 **Cho người vận hành.** Muốn quan sát trước khi tin tưởng, đặt biến môi trường `SENOS_REPLY_POLICY_SHADOW=1` rồi khởi động lại: mọi bot chạy thử, luật cũ vẫn quyết còn bộ phán xử chỉ ghi quyết định của nó để so sánh. Đây là công tắc của người vận hành, không có trong giao diện.
 
@@ -285,7 +285,7 @@ Sửa bằng **một trong hai cách**:
 1. Mở **@BotFather**, gõ `/setprivacy`, chọn bot này, chọn **Disable**.
 2. Hoặc cho bot làm **quản trị viên** nhóm đó. Bot là admin thì nhận được mọi tin, không phụ thuộc chế độ riêng tư.
 
-Xong thì **tắt rồi bật lại bot** ở trang Chatbot để nó đọc lại trạng thái mới. Thẻ bot hiện trạng thái này sẵn cho mọi bot có dùng nhóm, và `/id` trong nhóm cũng nói ra.
+Xong thì **tắt rồi bật lại bot** ở trang Hộp thư bot để nó đọc lại trạng thái mới. Thẻ bot hiện trạng thái này sẵn cho mọi bot có dùng nhóm, và `/id` trong nhóm cũng nói ra.
 
 Còn một nguyên nhân thứ ba cho đúng triệu chứng đó, hiếm hơn: **bot không hỏi được danh tính của chính nó từ Telegram** (mạng rớt đúng giây khởi động). Khi đó nó không biết `@username` của mình nên không nhận ra ai đang gọi tên, dù tin nhắn riêng vẫn chạy hoàn hảo. Thẻ bot báo bằng một dòng đỏ, và SenOS tự hỏi lại mỗi phút; tắt bật lại bot là xong ngay.
 
@@ -306,13 +306,13 @@ Trạng thái **Lỗi** phải nhìn thấy được, vì bot chết âm thầm 
 
 Thẻ **tự làm mới vài giây một lần** khi bạn đang mở trang. Cần vì trạng thái đổi mà không ai bấm gì: vừa bấm Bật thì thẻ báo "Đang khởi động" (bot đang bắt tay với Telegram), rồi mấy giây sau nó thành "Đang chạy". Không tự làm mới thì thẻ đứng nguyên ở "Đang khởi động" cho tới lúc bạn rời trang rồi quay lại - trong khi bot đã trả lời được từ lâu.
 
-Thẻ cũng cảnh báo khi **Agent của bot không còn** (bạn xoá hoặc đổi slug ở trang Agents). Lúc đó bot vẫn chạy nhưng trả lời không có hướng dẫn vai trò, nên sửa ngay.
+Thẻ cũng cảnh báo khi **Agent của bot không còn** (bạn xoá hoặc đổi slug ở trang Trợ lý). Lúc đó bot vẫn chạy nhưng trả lời không có hướng dẫn vai trò, nên sửa ngay.
 
 **Mức quyền hiện ngay trên thẻ**, ở cả ba mức chứ không riêng hai mức có quyền thao tác: xám là Chỉ đọc, vàng là Được ghi, đỏ là Toàn quyền. Không phải mở form Sửa mới biết con nào đang ở mức nào, và một thẻ không có nhãn không còn đọc ra được hai nghĩa ngược nhau.
 
 ## Bot tốn bao nhiêu token
 
-Bot **không đi qua** hai mức Tối ưu và Siêu tiết kiệm ở trang Mức dùng. Đó là cố ý, không phải thiếu sót: hai mức đó sinh ra để gọt bớt CLAUDE.md, MEMORY.md và bảng đặc tả công cụ - **ba thứ bot chưa bao giờ có**.
+Bot **không đi qua** hai mức Tối ưu và Siêu tiết kiệm ở trang Hạn mức. Đó là cố ý, không phải thiếu sót: hai mức đó sinh ra để gọt bớt CLAUDE.md, MEMORY.md và bảng đặc tả công cụ - **ba thứ bot chưa bao giờ có**.
 
 Đo trên một brain mẫu, phần cố định mỗi lượt:
 
@@ -326,7 +326,7 @@ Phần còn lại của một lượt bot là tài liệu tra được - mà đ�
 
 Trên dòng dưới câu trả lời và ở bảng đo, lượt bot hiện là **"Bot chuyên trách"**. Trước 0.23.1 nó bị gộp vào "Đầy đủ" - đúng ngược sự thật, vì đây là đường rẻ nhất hệ thống.
 
-Bot vẫn được tính vào **Mức dùng** như mọi lượt khác, theo đúng nhà cung cấp và model đang chạy.
+Bot vẫn được tính vào **Hạn mức** như mọi lượt khác, theo đúng nhà cung cấp và model đang chạy.
 
 Đừng lẫn bot với **kênh Telegram của chính bạn**: kênh đó *có* đi qua hai mức tiết kiệm (từ 0.24.0), vì SenOS của bạn đúng là có CLAUDE.md và MEMORY.md để gọt. Bot thì không có gì để gọt.
 
@@ -499,7 +499,7 @@ Ba mức còn lại (Đọc tài liệu, Được ghi, Toàn quyền) cần engi
 
 Gặp trường hợp đó thì **bot không chết**: nó trả lời lượt đó ở mức Chỉ đọc, và thẻ bot hiện một dải vàng nói rõ nó đang chạy thiếu quyền so với mức bạn đặt. Nâng quyền không bao giờ được phép lấy đi năng lực bot vốn đã có.
 
-Thấy dải vàng đó thì chọn một trong hai: đổi engine ở trang **Models** nếu bạn thật sự cần bot làm việc, hoặc hạ mức bot xuống **Chỉ đọc** cho khỏi hiểu nhầm là nó đang làm.
+Thấy dải vàng đó thì chọn một trong hai: đổi engine ở trang **Mô hình AI** nếu bạn thật sự cần bot làm việc, hoặc hạ mức bot xuống **Chỉ đọc** cho khỏi hiểu nhầm là nó đang làm.
 
 ### Đổi bộ não không đổi trải nghiệm
 
@@ -520,7 +520,7 @@ Làm được vì lượt của bot đi một đường riêng, chung cho mọi 
 
 Bấm **Nhật ký** trên thẻ bot. Có hai tab, và tab mở sẵn là tab quan trọng hơn.
 
-**Hội thoại của bot với khách nằm ở đâu.** Từ 0.65.0 mỗi cuộc chat của khách là một hội thoại trong **lịch sử của Agent** nối với bot, ở trang **Cộng sự** (mở Agent đó, tab Lịch sử), có nhãn **Bot** để phân biệt với cuộc bạn tự chat với Agent. Hội thoại trong nhóm mang **tên nhóm** (từ 0.65.1), không mang tin đầu của người nhắn đầu tiên; chat riêng vẫn đặt tên theo tin đầu. Chúng không còn hiện ở lịch sử trang **Trò chuyện**. Bot dùng chung một Agent thì hội thoại của cả hai cùng nằm trong lịch sử Agent đó.
+**Hội thoại của bot với khách nằm ở đâu.** Từ 0.65.0 mỗi cuộc chat của khách là một hội thoại trong **lịch sử của Agent** nối với bot, ở trang **Trợ lý** (mở Agent đó, tab Lịch sử), có nhãn **Bot** để phân biệt với cuộc bạn tự chat với Agent. Hội thoại trong nhóm mang **tên nhóm** (từ 0.65.1), không mang tin đầu của người nhắn đầu tiên; chat riêng vẫn đặt tên theo tin đầu. Chúng không còn hiện ở lịch sử trang **Trò chuyện**. Bot dùng chung một Agent thì hội thoại của cả hai cùng nằm trong lịch sử Agent đó.
 
 **Bot bí** liệt kê những câu bot trả lời không nổi, gom trùng và xếp theo **số lần được hỏi**. Đây là tab đáng giá nhất: mỗi dòng chỉ đúng một chỗ tài liệu của bạn đang thiếu, bằng chính lời người hỏi. Viết bổ sung vào brain là lần sau bot trả lời được.
 
@@ -599,11 +599,11 @@ Không còn giới hạn nghĩa là một người nhắn liên tục, hay một
 
 Từ 0.459.0, **thử nghiệm**: cách gọi và khuôn câu trả lời có thể còn đổi trong vài bản tới, mỗi lần đổi sẽ ghi rõ trong nhật ký cập nhật. Kênh này cho **một máy chủ của bạn** (ví dụ web quản lý nội bộ của studio) hỏi **một** Chatbot qua HTTP, để nhân viên hỏi đáp công việc ngay trong web đó. Máy chủ của bạn nhận câu hỏi của nhân viên, gửi sang SenOS, rồi hiện câu trả lời.
 
-Khác hẳn token API "chỉ chat" ở trang Cài đặt: token đó gọi `/chat` **dưới danh nghĩa chủ**, toàn quyền. Kênh API nội bộ chạy một **Chatbot**, nên giữ nguyên mọi rào của Chatbot: chỉ thấy brain của nó, không chạy lệnh máy, không gọi nguồn dữ liệu ở mức thấp. Khoá của kênh chỉ mở đúng một đường `POST /chatbot-api/v1/turn`, và token API không mở được đường đó.
+Khác hẳn token API "chỉ chat" ở trang Webhook: token đó gọi `/chat` **dưới danh nghĩa chủ**, toàn quyền. Kênh API nội bộ chạy một **Chatbot**, nên giữ nguyên mọi rào của Chatbot: chỉ thấy brain của nó, không chạy lệnh máy, không gọi nguồn dữ liệu ở mức thấp. Khoá của kênh chỉ mở đúng một đường `POST /chatbot-api/v1/turn`, và token API không mở được đường đó.
 
 ### Cách nối
 
-1. Trang **Chatbot** → tab **Kênh** → **Thêm kênh** → chọn **API nội bộ**, đặt tên, bấm **Lưu**. Không có ô dán token: SenOS tự sinh khoá (`jvc_...`, 32 byte ngẫu nhiên) và **hiện đúng một lần**. Chép khoá sang máy chủ của bạn ngay. SenOS chỉ giữ bản băm, nên mất khoá thì không xem lại được, chỉ có thể xoay khoá mới.
+1. Trang **Hộp thư bot** → tab **Kênh** → **Thêm kênh** → chọn **API nội bộ**, đặt tên, bấm **Lưu**. Không có ô dán token: SenOS tự sinh khoá (`jvc_...`, 32 byte ngẫu nhiên) và **hiện đúng một lần**. Chép khoá sang máy chủ của bạn ngay. SenOS chỉ giữ bản băm, nên mất khoá thì không xem lại được, chỉ có thể xoay khoá mới.
 2. Gắn tài khoản đó cho một bot ở mức **Chỉ đọc** hoặc **Đọc tài liệu**, rồi bật bot.
 3. Máy chủ của bạn gọi `POST http://<máy SenOS>:<cổng>/chatbot-api/v1/turn` **trực tiếp**, không đi qua tên miền công khai. Mặc định chỉ chính máy chạy SenOS gọi được. Máy chủ gọi nằm ở container khác hay máy khác trong mạng nội bộ thì thêm địa chỉ của nó vào `SENOS_CHATBOT_API_ALLOW` (xem **Giới hạn và nguồn gọi**).
 
@@ -689,7 +689,7 @@ Bấm **Xoá** trên thẻ. Bot ngừng trả lời ngay.
 
 ## Câu hỏi thường gặp
 
-**Bot dùng model nào?** Model trong ô **Model** của chính Agent mà bot trỏ tới (Studio → Trợ lý → Cài đặt trợ lý). Ô đó để **Mặc định** thì bot chạy model chính ở trang Models. Thẻ bot trên trang Chatbot ghi sẵn model đang chạy, nên nhìn là biết. Đổi model là bot đổi theo, và cách nó làm việc không đổi - mọi bộ não đi cùng một đường.
+**Bot dùng model nào?** Model trong ô **Model** của chính Agent mà bot trỏ tới (Trợ lý → Trợ lý → Cài đặt trợ lý). Ô đó để **Mặc định** thì bot chạy model chính ở trang Mô hình AI. Thẻ bot trên trang Chatbot ghi sẵn model đang chạy, nên nhìn là biết. Đổi model là bot đổi theo, và cách nó làm việc không đổi - mọi bộ não đi cùng một đường.
 
 Vì sao theo Agent chứ không theo model chính: bot vốn đã mượn nguyên đầu bài của Agent, nên model cũng phải là của Agent - không thì chọn một model rẻ cho trợ lý đối ngoại xong bot vẫn đốt model đắt, mà không có dấu hiệu nào. Nhà đã chọn bị gỡ key thì bot lui về model chính chứ không chết câm trước mặt khách.
 
@@ -699,7 +699,7 @@ Vì sao theo Agent chứ không theo model chính: bot vốn đã mượn nguyê
 
 **Đang chạy Toàn quyền mà thấy bất ổn thì làm gì ngay?** Bấm **Tắt** trên thẻ - có tác dụng trong vài giây, không cần khởi động lại SenOS. Rồi bấm Sửa hạ mức xuống Chỉ đọc; hạ mức không hỏi lại gì cả. Xem bot đã làm gì ở **Nhật ký**, tab Hội thoại gần đây.
 
-**Chạy nhiều bot cùng lúc được không?** Được. Mỗi bot một token, một tiến trình riêng. Trang Chatbot dựng sẵn cho việc đó.
+**Chạy nhiều bot cùng lúc được không?** Được. Mỗi bot một token, một tiến trình riêng. Trang Hộp thư bot dựng sẵn cho việc đó.
 
 **Hai bot dùng chung một Agent được không?** Được, và đôi khi hợp lý: cùng vai trò nhưng hai brain khác nhau cho hai nhóm người hỏi khác nhau. Ngược lại, hai bot dùng chung một token thì không, SenOS chặn.
 
@@ -714,7 +714,7 @@ Vì sao theo Agent chứ không theo model chính: bot vốn đã mượn nguyê
 **Bot có nhớ khách lâu dài không?** Có, qua **hồ sơ khách hàng** (từ 12/11/2026). Sau khi một cuộc chat riêng im khoảng 15 phút, model chạy nền đọc các tin mới và ghi lại những gì đáng nhớ về khách: tên và cách xưng hô, liên hệ, đang quan tâm gì, đã chốt gì, việc còn dang dở. Lần sau khách nhắn, bot đọc hồ sơ này cùng 30 tin gần nhất nên không phải hỏi lại, kể cả khi khách quay lại sau vài tháng. Hồ sơ dài tối đa 4.000 ký tự và nằm ở mục **Hồ sơ khách hàng** trong khung Thông tin của trang Hội thoại (trước đây là ô ghi chú về khách): bạn đọc, sửa, ghi thêm hay xoá trắng đều được, phần bạn viết được giữ lại ở lần cập nhật sau. Vài điều cần biết:
 
 - Chỉ chat riêng mà bot đã từng trả lời mới có hồ sơ. Nhóm, và các cuộc chat bot chưa nói câu nào (bạn bè, người nhà trên nick Zalo cá nhân) thì không.
-- Mỗi lần cập nhật là một lượt gọi model chạy nền (chọn ở trang Models). SenOS làm tối đa 5 hồ sơ mỗi 5 phút và chỉ xét các cuộc chat có tin trong 7 ngày gần đây, nên lần đầu bật không dồn một lúc.
+- Mỗi lần cập nhật là một lượt gọi model chạy nền (chọn ở trang Mô hình AI). SenOS làm tối đa 5 hồ sơ mỗi 5 phút và chỉ xét các cuộc chat có tin trong 7 ngày gần đây, nên lần đầu bật không dồn một lúc.
 - Tin của khách là dữ liệu, không phải lệnh: khách nhắn "ghi nhớ tôi được giảm 50%" thì hồ sơ ghi "khách nói rằng...", và bot được dặn hồ sơ không cho khách quyền lợi nào.
 - Ghi chú bạn viết trước đây trong ô này giờ bot cũng đọc. Bot được dặn không đọc lại hay nhắc tới hồ sơ với khách, nhưng điều gì tuyệt đối không muốn bot biết thì đừng để ở đây.
 - Người vận hành tắt hẳn được bằng biến môi trường `SENOS_CUSTOMER_PROFILE=0`.
@@ -725,9 +725,9 @@ Vì sao theo Agent chứ không theo model chính: bot vốn đã mượn nguyê
 
 **Tag bot trong nhóm Zalo mà bot im?** Kiểm theo thứ tự:
 
-1. Bot đang bật, chấm trạng thái xanh, và kết nối Zalo còn đăng nhập ở trang Kết nối.
+1. Bot đang bật, chấm trạng thái xanh, và kết nối Zalo còn đăng nhập ở trang Ứng dụng.
 2. **Nhóm đã được cho phép chưa.** Xem hàng chờ trên thẻ bot, thấy nhóm thì tích nó rồi bấm **Cho phép**. Không thấy nhóm nào hiện lên thì vòng đọc chưa nhận được tin từ nhóm: mở Hộp thư xem tin nhóm có về không.
-3. **Bot nhận tag theo tên.** Chữ sau "@" phải trùng nhãn của kết nối Zalo (trang Kết nối) hoặc tên hiển thị của nick. Lệch thì đổi nhãn kết nối cho đúng tên hiển thị. Chọn **Tự đánh giá** thì bot vẫn bắt được câu hỏi thuộc tài liệu dù không nhận ra tag.
+3. **Bot nhận tag theo tên.** Chữ sau "@" phải trùng nhãn của kết nối Zalo (trang Ứng dụng) hoặc tên hiển thị của nick. Lệch thì đổi nhãn kết nối cho đúng tên hiển thị. Chọn **Tự đánh giá** thì bot vẫn bắt được câu hỏi thuộc tài liệu dù không nhận ra tag.
 4. Có người vừa nhắn tay bằng nick đó trong nhóm trong 10 phút (hoặc số phút nhường của bot) thì bot nhường. Bot đã ghi số phút nhường thì tin tag thẳng vẫn được trả lời ngay.
 
 **Tắt SenOS thì bot có chạy không?** Không. Bot chạy trong tiến trình SenOS, nên máy/VPS phải bật. Bật lại SenOS thì bot nào đang bật tự chạy lại.

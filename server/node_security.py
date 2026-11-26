@@ -75,9 +75,9 @@ def node_version():
 def _fix_steps(mode: str) -> str:
     if mode == "docker":
         return localefmt.chu(
-            "Cập nhật SenOS lên bản mới nhất (trang Cài đặt, mục Cập nhật, hoặc chạy ./update.sh trên VPS). "
+            "Cập nhật SenOS lên bản mới nhất (trang Phiên bản, nút Cập nhật ngay, hoặc chạy ./update.sh trên VPS). "
             "Ảnh Docker mới đã có Node.js 22.23.4.",
-            "Update SenOS to the latest version (Settings, Updates, or ./update.sh on the VPS). "
+            "Update SenOS to the latest version (Releases page, Update now button, or ./update.sh on the VPS). "
             "The new Docker image ships Node.js 22.23.4.")
     if mode == "windows":
         return localefmt.chu(

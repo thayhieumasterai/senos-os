@@ -67,9 +67,9 @@ def explain(text, stderr_lines=()):
               "container), add the line IS_SANDBOX=1 to SenOS' .env file and restart.")
     elif "invalid mcp configuration" in seen:
         vi = ("Claude Code không khởi động được vì cấu hình nguồn dữ liệu (MCP) gửi cho nó không hợp lệ. Mở trang "
-              "Kết nối, xem lại nguồn vừa thêm hoặc vừa sửa rồi gửi lại tin nhắn.")
+              "Ứng dụng, xem lại nguồn vừa thêm hoặc vừa sửa rồi gửi lại tin nhắn.")
         en = ("Claude Code could not start because the data source (MCP) configuration it was given is invalid. "
-              "Open the Connections page, review the source just added or edited, then send the message again.")
+              "Open the Apps page, review the source just added or edited, then send the message again.")
     elif "unknown option" in seen:
         vi = ("Claude Code trên máy không hiểu một tuỳ chọn SenOS gửi, thường vì bản đang cài đã cũ. Cập nhật "
               "Claude Code (lệnh `claude update`) rồi gửi lại tin nhắn.")

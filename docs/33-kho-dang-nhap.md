@@ -1,8 +1,8 @@
-# 33 - Cookies (Kho đăng nhập)
+# 33 - Phiên đăng nhập (Cookies)
 
 ***Tiếng Việt** · [English](en/33-login-vault.md)*
 
-Từ 0.251.0 SenOS có trang **Cookies** (trước 0.261.0 tên là Kho đăng nhập): chỗ cất phiên đăng nhập riêng của bạn (cookie) để SenOS dùng lại. Bạn đăng nhập một lần trên trình duyệt của mình, đưa cookie cho SenOS, rồi SenOS đọc được những trang chỉ hiện khi đã đăng nhập: kênh người bán Shopee, trang affiliate, trang quản trị web. Từ 21/11/2026 SenOS còn **bấm nút và điền form** được bằng phiên đó.
+Từ 0.251.0 SenOS có trang **Phiên đăng nhập** (trước đây tên là Cookies, trước 0.261.0 là Kho đăng nhập): chỗ cất phiên đăng nhập riêng của bạn (cookie) để SenOS dùng lại. Bạn đăng nhập một lần trên trình duyệt của mình, đưa cookie cho SenOS, rồi SenOS đọc được những trang chỉ hiện khi đã đăng nhập: kênh người bán Shopee, trang affiliate, trang quản trị web. Từ 21/11/2026 SenOS còn **bấm nút và điền form** được bằng phiên đó.
 
 Kho này là tuỳ chọn. Không thêm đăng nhập nào thì SenOS chạy y như cũ.
 
@@ -10,7 +10,7 @@ Kho này là tuỳ chọn. Không thêm đăng nhập nào thì SenOS chạy y n
 
 1. Cài tiện ích **Cookie-Editor** cho Chrome hoặc Edge.
 2. Mở trang đã đăng nhập, bấm biểu tượng Cookie-Editor, chọn **Export** rồi **JSON**. Cookie được chép vào bộ nhớ tạm.
-3. Trong SenOS vào thanh bên, nhóm **Kết nối**, mục **Cookies** (biểu tượng bánh quy). Bấm **Thêm cookie**.
+3. Trong SenOS vào thanh bên, nhóm **Cổng kết nối**, mục **Phiên đăng nhập** (biểu tượng bánh quy). Bấm **Thêm cookie**.
 4. Đặt tên dễ nhớ (ví dụ "Shopee bán hàng"), dán cookie vào ô, đọc dòng **cảnh báo rủi ro** ngay trên nút lưu, rồi bấm **Lưu và kiểm tra**.
 
 Đã có file cookie (Cookie-Editor xuất ra file JSON, hoặc `cookies.txt` từ tiện ích Get cookies.txt LOCALLY) thì bấm **Tải file lên** ở đầu trang, hoặc nút **Chọn file** trong form, hoặc kéo file thả vào ô. SenOS đọc file ngay trên trình duyệt, tự điền tên theo tên file nếu ô Tên còn trống. File tối đa 1 MB.
@@ -34,7 +34,7 @@ Nút **Kiểm tra** mở **trang kiểm tra** bằng đăng nhập đó. Mặc �
 ## SenOS dùng đăng nhập ở đâu
 
 - **Trong chat:** mọi engine có tool `senos_login`. Nói "xem giúp anh trang đơn hàng Shopee" kèm link, SenOS mở trang bằng đăng nhập đã cất và đọc nội dung. Đăng nhập hết hạn thì SenOS nói thẳng và nhờ bạn cập nhật, không thử lại mãi.
-- **Theo dõi trang:** form ở tab Theo dõi trang (trang Việc định kỳ) có ô **Đăng nhập**. Chọn một đăng nhập là SenOS canh được trang cần đăng nhập. Phiên hết hạn thì mục theo dõi tự tạm dừng và báo bạn một lần.
+- **Theo dõi trang:** form ở tab Theo dõi trang (trang Lịch tự động) có ô **Đăng nhập**. Chọn một đăng nhập là SenOS canh được trang cần đăng nhập. Phiên hết hạn thì mục theo dõi tự tạm dừng và báo bạn một lần.
 - **Bấm nút và điền form:** nói "vào kênh người bán Shopee, điền form trả lời đánh giá này giúp anh". SenOS nạp đăng nhập vào trình duyệt, mở trang rồi thao tác như một người dùng.
 
 Đọc trang (hai mục đầu) chỉ tải trang về và lấy chữ, nên trang dựng hoàn toàn bằng JavaScript có thể ra ít chữ. Cần bấm, cần gõ, hoặc trang nặng JavaScript thì SenOS dùng trình duyệt.
@@ -43,7 +43,7 @@ Nút **Kiểm tra** mở **trang kiểm tra** bằng đăng nhập đó. Mặc �
 
 Cần ba thứ:
 
-1. **Kết nối Playwright** ở trang Kết nối (đây là trình duyệt mà SenOS lái). Chưa có thì SenOS nói thẳng là thiếu.
+1. **Kết nối Playwright** ở trang Ứng dụng (đây là trình duyệt mà SenOS lái). Chưa có thì SenOS nói thẳng là thiếu.
 2. Công tắc **Cho bấm và điền form** ở thẻ đăng nhập đang bật. Đăng nhập thêm mới thì bật sẵn. Đăng nhập đã cất từ trước bản này thì **tắt sẵn**, vì lúc bạn cất SenOS mới chỉ đọc: bật lên SenOS sẽ hỏi lại bạn một lần.
 3. Lượt chạy ở mức **Toàn quyền**. Việc nền đặt mức nhẹ hơn (chỉ đọc, chỉ viết nháp) không mở được trình duyệt đã đăng nhập.
 
@@ -61,7 +61,7 @@ Vài điều SenOS tự lo:
 - Cookie được **mã hoá** trên máy chủ. Máy chưa mã hoá được (thiếu thư viện `cryptography`) thì SenOS từ chối lưu chứ không ghi trần ra đĩa.
 - **Tool của SenOS không bao giờ trả giá trị cookie cho AI.** Tool chỉ trả nội dung trang và tên đăng nhập, kể cả khi trình duyệt báo lỗi.
 - Cookie chỉ được gửi tới đúng tên miền nó thuộc về, kiểm lại ở **mọi bước chuyển hướng**: trang chuyển sang site khác thì cookie không đi theo.
-- Trang Cookies đòi **đăng nhập dashboard thật**: API token không đọc hay thêm được đăng nhập.
+- Trang Phiên đăng nhập đòi **đăng nhập dashboard thật**: API token không đọc hay thêm được đăng nhập.
 - **Chatbot trả lời khách không thấy tool này.** Và từ lúc trình duyệt đã từng giữ một đăng nhập của bạn, chatbot trả lời khách cũng **không còn dùng được kết nối trình duyệt đó**, để người lạ không lướt web bằng tài khoản của bạn.
 
 ## Lưu ý thật

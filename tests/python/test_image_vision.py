@@ -213,7 +213,7 @@ check("the Connect catalog route carries the companion states", '"companions": _
 
 claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
 check("system prompt points the brain at zalo_read_images and says where it comes from",
-      "zalo_read_images" in claude_md and "javis.zalo" in claude_md)
+      "zalo_read_images" in claude_md and "senos.zalo" in claude_md)
 for f in (Path(__file__), ROOT / "server" / "image_vision.py", ROOT / "system" / "plugins" / "image-chatgpt" / "plugin.py"):
     check(f"no em dash in {f.name}", chr(0x2014) not in f.read_text(encoding="utf-8"))
 

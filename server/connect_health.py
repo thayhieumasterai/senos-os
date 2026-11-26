@@ -300,15 +300,15 @@ _ENGINE_AUTH_PATTERNS = ("failed to authenticate", "oauth session expired",
 # kết nối duy nhất giờ đây, kể cả Claude (trước đây phải mở terminal gõ /login - hướng dẫn đó
 # đã sai và từng làm người dùng đi nhầm đường).
 ENGINE_FIX = {
-    "claude": "Vào trang Models để kết nối lại.",
-    "codex": "Vào trang Models để kết nối lại ChatGPT.",
+    "claude": "Vào trang Mô hình AI để kết nối lại.",
+    "codex": "Vào trang Mô hình AI để kết nối lại ChatGPT.",
 }
-ENGINE_FIX_DEFAULT = "Vào trang Models để kết nối và sử dụng SenOS."
+ENGINE_FIX_DEFAULT = "Vào trang Mô hình AI để kết nối và sử dụng SenOS."
 ENGINE_FIX_EN = {
-    "claude": "Go to the Models page to reconnect.",
-    "codex": "Go to the Models page to reconnect ChatGPT.",
+    "claude": "Go to the AI models page to reconnect.",
+    "codex": "Go to the AI models page to reconnect ChatGPT.",
 }
-ENGINE_FIX_DEFAULT_EN = "Go to the Models page to connect and use SenOS."
+ENGINE_FIX_DEFAULT_EN = "Go to the AI models page to connect and use SenOS."
 
 
 _ENGINE_NOTICE_FILE = "engine_down_notified.json"   # in STATE_DIR (0.402.0)
@@ -727,9 +727,9 @@ async def startup_smoke(version: str = "", pool=None, retry_after: float | None 
             try:
                 coro = notify(localefmt.chu(
                     f"⚠ Sau khi SenOS khởi động lại{ban}, {len(failed)} kết nối chưa chạy: {vi}. "
-                    "Mở trang Kết nối và bấm Kiểm tra.",
+                    "Mở trang Ứng dụng và bấm Kiểm tra.",
                     f"⚠ After SenOS restarted{ver}, {len(failed)} connection(s) are not working: "
-                    f"{en}. Open the Connections page and click Check."))
+                    f"{en}. Open the Apps page and click Check."))
                 if asyncio.iscoroutine(coro):
                     await coro
                 sent = True

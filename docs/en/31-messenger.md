@@ -9,7 +9,7 @@ From 0.134.0 a dedicated bot can answer a Facebook Page's inbox, the same way a 
 | How SenOS connects | Webhook: Meta calls SenOS, **needs an HTTPS domain** |
 | Groups | No, private chats with the Page only |
 | Files | Images and documents, both ways |
-| Voice notes | Transcribed (needs a Groq key on the Models page) |
+| Voice notes | Transcribed (needs a Groq key on the AI models page) |
 | Replies | Only within 24 hours of the customer's last message |
 | Formatting | Plain text: Messenger shows no Markdown, SenOS strips the symbols |
 | Page comments | Yes (from 0.434.0): every top-level comment is a conversation in the inbox |
@@ -19,12 +19,12 @@ From 0.134.0 a dedicated bot can answer a Facebook Page's inbox, the same way a 
 No Graph API Explorer, no Page ID or token to copy. First time, and want every click on Meta's site: [Messenger step by step](31-messenger-step-by-step.md).
 
 1. On [developers.facebook.com/apps](https://developers.facebook.com/apps), create an app with the Messenger use case and add four permissions `pages_read_engagement`, `pages_read_user_content`, `pages_manage_engagement`, `pages_manage_posts` (once).
-2. Open SenOS through its HTTPS domain, go to **Connections**, card **Facebook Messenger**, click **Connect**. The form shows two addresses with a **Copy** button:
+2. Open SenOS through its HTTPS domain, go to **Apps**, card **Facebook Messenger**, click **Connect**. The form shows two addresses with a **Copy** button:
    - **Redirect address**: paste it into **Valid OAuth Redirect URIs** in the app's **Facebook Login** settings (add the Facebook Login product first if the app has none).
    - **Privacy policy link**: SenOS serves this page itself. Paste it into **App settings, Basic**, Privacy Policy URL and User data deletion.
 3. Paste the **App ID** and **App secret**, pick how comments are handled, click **Log in with Facebook**. A Facebook tab opens: sign in, tick the Pages, accept the permissions.
 4. Back on the SenOS tab the Page list appears: tick the Pages to connect and click **Connect the ticked Pages**. SenOS gets a non-expiring Page token, registers the webhook, subscribes each Page to the app and shows a checklist per Page.
-5. Open **Chatbot**, **Bots**, tick the new channel on a bot and switch the bot on. Until a bot is on, SenOS does not take in messages.
+5. Open **Bot inbox**, **Bots**, tick the new channel on a bot and switch the bot on. Until a bot is on, SenOS does not take in messages.
 6. Switch the app to **Live** (section 4), then test with a Facebook account that has no role on the app.
 
 ## Posting to the Page (from 0.438.0)
@@ -53,9 +53,9 @@ The step people get wrong is the token: a user token pasted where a Page token b
 
 1. On Meta, create an app with the Messenger use case and connect the Page (steps 1.1 to 1.3 below, no need to click Generate yet).
 2. Open [Graph API Explorer](https://developers.facebook.com/tools/explorer), pick the right app, add `pages_show_list`, `pages_messaging`, `pages_manage_metadata`, `pages_read_engagement`, click **Generate Access Token** and tick the right Page. Copy the `EAA...` string.
-3. Open SenOS through its HTTPS domain, go to **Connections**, card **Facebook Messenger**, click **Connect**, then **Paste a token instead**. Paste the App ID, App secret, Page ID and the token, then click **Connect and check**.
+3. Open SenOS through its HTTPS domain, go to **Apps**, card **Facebook Messenger**, click **Connect**, then **Paste a token instead**. Paste the App ID, App secret, Page ID and the token, then click **Connect and check**.
 4. SenOS derives a non-expiring Page token, registers the app webhook with `messages`, `messaging_postbacks` and `message_echoes` (so the bot sees the files staff send from the Page inbox), subscribes the Page to the app, saves the channel and shows a checklist with a fix for every red row.
-5. Open **Chatbot**, **Bots** to create a bot for the new channel (section 3).
+5. Open **Bot inbox**, **Bots** to create a bot for the new channel (section 3).
 
 Every connected Page has **Check**, **Repair** (registers the webhook and subscribes the Page again) and **New token** buttons. Any brain can call the `messenger_check` and `messenger_repair` tools when the bot goes silent. Business verification and App Review for `pages_messaging` (section 4) still happen on Meta's site. To have SenOS message a customer from chat, the brain finds the chat with `inbox_find` and sends with `inbox_reply`, through that chat's own Page or Instagram account. Messenger accepts a message within 24 hours of the customer's last one.
 
@@ -71,15 +71,15 @@ The manual steps below still work.
 
 ## 2. Add the Messenger account in SenOS
 
-> If the Page was connected on the Facebook Messenger card on the Connections page, **skip this section**: the Page is already in the channel list, go straight to section 3. That card also shows the webhook address and verify token if you need to paste them by hand.
+> If the Page was connected on the Facebook Messenger card on the Apps page, **skip this section**: the Page is already in the channel list, go straight to section 3. That card also shows the webhook address and verify token if you need to paste them by hand.
 
-1. Open SenOS **through its HTTPS domain** (not localhost or an IP), go to the **Chatbot** page, **Bots** tab, click **Add a channel**, choose **Messenger**.
+1. Open SenOS **through its HTTPS domain** (not localhost or an IP), go to the **Bot inbox** page, **Bots** tab, click **Add a channel**, choose **Messenger**.
 2. The form shows a **Webhook address** and a **Verify token**. Back in the Meta app, under Messenger's **Configure webhooks**, paste them as the Callback URL and Verify token and click **Verify and save**. Tick the **messages**, **messaging_postbacks** and **message_echoes** fields.
 3. Back in SenOS, paste three things separated by spaces into the token field: `Page ID`, `Page access token`, `App secret`. Click **Check** (SenOS asks Meta for the Page name), then **Save**.
 
 ## 3. Attach a bot
 
-- **Reuse the bot already on Zalo:** open it on the Chatbot page, click **Edit**, tick the new Messenger account, **Save**. The bot answers on Zalo and Messenger with the same Agent and the same active hours.
+- **Reuse the bot already on Zalo:** open it on the Bot inbox page, click **Edit**, tick the new Messenger account, **Save**. The bot answers on Zalo and Messenger with the same Agent and the same active hours.
 - **Or create a new bot** for Messenger only.
 
 Switch the bot on. SenOS then subscribes the Page to the app's webhook by itself (no manual step); any error shows on the bot card in words. If the token lacks the permission to subscribe, the bot still runs and its card reminds you to subscribe the Page once by hand: Meta app, Messenger, Webhooks, **Add Subscriptions** for the Page.

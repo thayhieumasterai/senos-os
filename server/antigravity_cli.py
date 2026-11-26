@@ -324,11 +324,11 @@ def _cau_bao_tam_thoi(loi: str, so_lan: int = len(_NHIP_THU_LAI)) -> str:
               else "This turn had already done part of the work, so SenOS did not run it again (that would repeat it).\n\n")
     return localefmt.chu(
         "Google (Antigravity) đang trục trặc tạm thời nên lượt này không gửi đi được. " + vi_thu +
-        "Chờ một lát rồi nhắn lại, hoặc đổi sang bộ não khác ở trang Models. Đây là lỗi "
+        "Chờ một lát rồi nhắn lại, hoặc đổi sang bộ não khác ở trang Mô hình AI. Đây là lỗi "
         "phía Google, không phải cấu hình của bạn.\n\n"
         "_Nguyên văn:_ " + (loi or "")[:400],
         "Google (Antigravity) is having a temporary problem, so this turn could not be sent. " + en_thu +
-        "Wait a moment and send again, or switch to another brain on the Models page. This is an error "
+        "Wait a moment and send again, or switch to another brain on the AI models page. This is an error "
         "on Google's side, not your configuration.\n\n"
         "_Raw message:_ " + (loi or "")[:400])
 
@@ -701,12 +701,12 @@ def _loi_nhac_file(duong_dan: str, cau_hoi: str) -> str:
 _CANH_BAO_CHUA_DOC = (
     "\n\n_(Lưu ý của SenOS: bản `agy` trên máy này không mở file ngữ cảnh, nên lượt vừa rồi trả "
     "lời mà chưa có system prompt và bộ nhớ của SenOS. Muốn chuẩn thì nâng cấp `agy` lên bản mới "
-    "(nhận prompt qua stdin), hoặc đổi bộ não khác ở trang Models.)_"
+    "(nhận prompt qua stdin), hoặc đổi bộ não khác ở trang Mô hình AI.)_"
 )
 _CANH_BAO_CHUA_DOC_EN = (
     "\n\n_(Note from SenOS: the `agy` version on this machine does not open the context file, so the last "
     "answer was given without SenOS's system prompt and memory. To fix this, upgrade `agy` to a newer version "
-    "(that takes the prompt over stdin), or switch to another brain on the Models page.)_"
+    "(that takes the prompt over stdin), or switch to another brain on the AI models page.)_"
 )
 # Bơm stdin theo mẩu bao nhiêu byte. 4096 là kích thước một trang ống dẫn: đủ nhỏ để bên đọc
 # nhận từng mẩu rời, đủ lớn để không tốn hàng chục nghìn lời gọi ghi.
@@ -754,12 +754,12 @@ def _ghi_stdin(proc, s: str) -> None:
 _CANH_BAO_HONG_DAU = (
     "\n\n_(Lưu ý của SenOS: bản `agy` trên máy này làm hỏng dấu tiếng Việt khi nhận prompt dài "
     "(chữ biến thành `�`), và đổi đường gửi cũng không cứu được. Lỗi nằm trong chính CLI, "
-    "SenOS không vá được - nâng cấp `agy` lên bản mới, hoặc đổi bộ não khác ở trang Models.)_"
+    "SenOS không vá được - nâng cấp `agy` lên bản mới, hoặc đổi bộ não khác ở trang Mô hình AI.)_"
 )
 _CANH_BAO_HONG_DAU_EN = (
     "\n\n_(Note from SenOS: the `agy` version on this machine breaks Vietnamese diacritics in long prompts "
     "(letters turn into `�`), and switching the delivery route did not help. The bug is in the CLI itself, "
-    "SenOS cannot patch it - upgrade `agy`, or switch to another brain on the Models page.)_"
+    "SenOS cannot patch it - upgrade `agy`, or switch to another brain on the AI models page.)_"
 )
 _CANH_BAO_DOC_HONG = (
     "\n\n_(Lưu ý của SenOS: `agy` có thử mở file ngữ cảnh nhưng KHÔNG đọc được (thường là do mức "
@@ -1045,7 +1045,7 @@ def auth_status(bo_qua_cache: bool = False) -> dict:
         # của SenOS nên đăng nhập ở đó là chắc ăn nhất.
         d = {"connected": False, "method": "", "email": "",
              "error": "Đã cài Antigravity CLI nhưng phiên của SenOS chưa đăng nhập. Mở trang "
-                      "Code (Terminal) NGAY TRONG SenOS, gõ `agy` rồi làm theo hướng dẫn - "
+                      "Dòng lệnh NGAY TRONG SenOS, gõ `agy` rồi làm theo hướng dẫn - "
                       "phải đăng nhập bằng ĐÚNG user đang chạy SenOS; SSH bằng user khác "
                       "(vd root) đăng nhập xong SenOS vẫn không thấy."}
     _AUTH_CACHE.update(ts=now, val=dict(d))
@@ -1058,11 +1058,11 @@ _METHOD_KEYRING = "google (keyring của máy)"
 _AUTH_EN = {
     _METHOD_KEYRING: "google (machine keyring)",
     "Đã cài Antigravity CLI nhưng phiên của SenOS chưa đăng nhập. Mở trang "
-    "Code (Terminal) NGAY TRONG SenOS, gõ `agy` rồi làm theo hướng dẫn - "
+    "Dòng lệnh NGAY TRONG SenOS, gõ `agy` rồi làm theo hướng dẫn - "
     "phải đăng nhập bằng ĐÚNG user đang chạy SenOS; SSH bằng user khác "
     "(vd root) đăng nhập xong SenOS vẫn không thấy.":
         "Antigravity CLI is installed but SenOS's session is not signed in. Open the "
-        "Terminal page RIGHT IN SenOS, type `agy` and follow the steps - "
+        "Command line page RIGHT IN SenOS, type `agy` and follow the steps - "
         "you must sign in as the SAME user that runs SenOS; signing in over SSH as another user "
         "(e.g. root) still leaves SenOS unable to see it.",
 }
@@ -1147,7 +1147,7 @@ def login_huong_dan() -> dict:
         "cai": lenh_cai(),
         "dang_nhap": "agy",
         "ghi_chu": localefmt.chu(
-            "Dùng trang Terminal (nhóm Năng lực) NGAY TRONG SenOS - nó mở shell bằng đúng user "
+            "Dùng trang Dòng lệnh (nhóm Đội ngũ AI) NGAY TRONG SenOS - nó mở shell bằng đúng user "
             "đang chạy SenOS, đăng nhập ở đó là SenOS nhận liền. (SSH bằng user khác, "
             "vd root, đăng nhập xong SenOS vẫn không thấy - đây là lý do hay gặp nhất "
             "của cảnh 'cài rồi mà không nhận'.) Gõ `agy`: nó in ra một đường link. Mở "
@@ -1155,7 +1155,7 @@ def login_huong_dan() -> dict:
             "địa chỉ localhost báo không mở được - đó là bước ĐÚNG, copy nguyên địa "
             "chỉ trên thanh URL rồi dán ngược vào terminal và Enter. Chỉ phải làm một "
             "lần.",
-            "Use the Terminal page RIGHT IN SenOS - it opens a shell as the same user "
+            "Use the Command line page RIGHT IN SenOS - it opens a shell as the same user "
             "running SenOS, so signing in there is picked up right away. (Signing in over SSH as another user, "
             "e.g. root, still leaves SenOS unable to see it - the most common reason "
             "for 'installed but not recognized'.) Type `agy`: it prints a link. Open "
@@ -1642,12 +1642,12 @@ class AntigravityCLI:
                            f"({type(e).__name__}: {e}). Prompt của SenOS dài hơn trần "
                            f"dòng lệnh của hệ điều hành nên phải đi qua file. Kiểm tra "
                            f"quyền ghi của thư mục state, hoặc đổi bộ não khác ở trang "
-                           f"Models.",
+                           f"Mô hình AI.",
                            f"Could not write the context file for Antigravity CLI "
                            f"({type(e).__name__}: {e}). SenOS's prompt is longer than the operating "
                            f"system's command-line limit, so it must go through a file. Check "
                            f"write permission on the state folder, or switch to another brain on the "
-                           f"Models page.")}
+                           f"AI models page.")}
                 return
             prompt_argv = _loi_nhac_file(ten_ngu_canh, prompt)
             # File nằm ngoài cwd (xem `_viet_file_ngu_canh`) nên phải mở quyền đọc cho đúng thư

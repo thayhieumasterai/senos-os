@@ -176,7 +176,7 @@ def kiem_quyen(argv: list[str], muc: str) -> str:
 
     if muc != AUTO:
         return (f"Mức quyền hiện tại là '{muc}', không chạy lệnh. Nâng chip của phiên lên "
-                f"'auto' hoặc 'full' trên trang Coding.")
+                f"'auto' hoặc 'full' trên trang Lập trình.")
 
     if prog not in ALLOWLIST_AUTO:
         return (f"'{prog}' không nằm trong danh sách lệnh được phép ở mức 'auto'. Mức này chỉ "
@@ -228,7 +228,7 @@ def chay(command: str, ctx: CodingToolContext, cwd: str = ".",
     cmd = str(command or "").strip()
     if not ctx.active:
         return KetQua(False, command=cmd, error=(
-            "Phiên này chưa gắn thư mục làm việc nào. Mở trang Coding, chọn repo rồi thử lại."))
+            "Phiên này chưa gắn thư mục làm việc nào. Mở trang Lập trình, chọn repo rồi thử lại."))
 
     argv, loi = tach(cmd)
     if loi:

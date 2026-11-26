@@ -1313,6 +1313,18 @@ def _builtin_tools(mode, vault_root, include_ambient=False, hidden=None, lang=""
         {"url": {"type": "string"}, "offset": {"type": "integer"},
          "limit": {"type": "integer", "description": "số ký tự, mặc định 15000, tối đa 50000"}},
         ["url"], _web_fetch)
+
+    # 2026-11-26: SenOS's own screens. Without this the assistant guessed menu names from the brain, which knows
+    # nothing about the app. Read only: the sidebar as the app draws it, plus matching user-guide sections.
+    async def _app_guide(args):
+        import app_guide
+        return await asyncio.to_thread(app_guide.guide, str((args or {}).get("query") or ""), lang)
+
+    add("senos_app_guide", "SenOS's own interface and user guide: the sidebar's pages and groups with the exact names "
+        "on screen, plus the guide sections that match `query`. Call it before telling the user where a page, tab or "
+        "button is or how to do something in SenOS; never guess a menu name.",
+        {"query": {"type": "string", "description": "the question, e.g. 'đổi model', 'connect Zalo'; empty = page list only"}},
+        [], _app_guide)
     # Mô tả tool = router thu nhỏ: liệt kê slug + mô tả ngắn để engine biết KHI NÀO gọi skill nào.
     # Trần lấy từ skill_router (CHUNG với system prompt) - trước đây hub tự cắt 60, system prompt
     # cắt 100 - người viết skill không biết mình bị chấm theo thước nào.

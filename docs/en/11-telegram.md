@@ -11,7 +11,7 @@ Enable the Telegram bot to ask SenOS from your phone without opening the dashboa
 - There are quick commands (starting with `/`) to check status, change model, stop a running answer, start a new conversation and save notes into the brain.
 - Over Telegram, SenOS still has the full MCP and skill set: asking for sales numbers, ads data, reading and writing vault files all work. This is true for EVERY engine (Claude Code, ChatGPT/Codex, OpenRouter, Claude API, OpenAI API), because SenOS's tools go through the MCP Hub rather than being tied to one engine.
 - Files go both ways: you send images and documents for SenOS to read, and files SenOS creates during a turn are sent back to you.
-- **Voice commands**: hold the microphone, say a sentence, and SenOS transcribes it and acts as if you typed. This needs a Groq API key pasted on the Models page once.
+- **Voice commands**: hold the microphone, say a sentence, and SenOS transcribes it and acts as if you typed. This needs a Groq API key pasted on the AI models page once.
 - Answers run in the background: while one is running you can still send `/stop` to cut it short.
 
 For engines and models see [Models & engines](10-models-and-engines.md); for MCP tools see [Connections & business data](09-connections-and-business-data.md).
@@ -19,7 +19,7 @@ For engines and models see [Models & engines](10-models-and-engines.md); for MCP
 ## Where to find it in SenOS
 
 1. Open the SenOS dashboard (`http://localhost:7777` by default).
-2. In the left navigation rail, open the **Connections** group and click **Channels**.
+2. In the left navigation rail, open the **Gateways** group and click **Control channels**.
 3. You will see the **Telegram** card with fields for enabling the bot, the Bot token, the allowed Chat IDs, and 2 buttons: **Save & enable** / **Send test**.
 
 ## Preparation: getting a Bot token and a Chat ID
@@ -46,7 +46,7 @@ To let other people (a partner, staff...) share the bot: have each of them do th
 
 ### Step 1: Configure and enable the bot
 
-1. Open **Admin channels** (the **Connections** group) on the dashboard and pick the **Telegram** tab.
+1. Open **Control channels** (the **Gateways** group) on the dashboard and pick the **Telegram** tab.
 2. In step **1. Connect the bot**, paste the token into **Bot token**. (A saved token shows "✓ saved" next to the label; leave the field empty to keep it.)
 3. In step **2. Who can use it**, paste the Chat ID into **Allowed chat IDs**. For several people, separate IDs with commas, for example `123456789, 987654321`.
 4. Click **Save and turn on** at the bottom of the tab.
@@ -131,7 +131,7 @@ Hold the microphone button in Telegram, speak, and release. SenOS transcribes it
 To wire it, once:
 
 1. Go to [console.groq.com](https://console.groq.com), sign in and create an API key.
-2. Open the SenOS dashboard, go to the **Models** page, find the **Groq (API)** provider, paste the key and save.
+2. Open the SenOS dashboard, go to the **AI models** page, find the **Groq (API)** provider, paste the key and save.
 3. Done. The next voice message is understood immediately, with **no bot restart**.
 
 A few things to know:
@@ -205,7 +205,7 @@ Details on typing `/model`:
 
 - The button picker from `/model`: pick a CONNECTED provider (the one in use has a ✓ and a model count), then a 2-column model grid, 8 models per page, with ◀ ▶ to page. The model list comes DIRECTLY from the provider (OpenRouter shows all several hundred, Antigravity shows exactly the Antigravity IDE lineup) rather than a hardcoded list.
 - Typing a name works too: a name with a `/` (for example `openai/gpt-4o`) is an OpenRouter model; `gpt-...` or `...-codex` is a ChatGPT model (requiring OAuth); anything else (`opus`, `sonnet`, `fable`) is a Claude model.
-- Since 0.33.7 the picker shows **all 10 providers** like the dashboard Models page, **Antigravity CLI** included; before that it was a hand-written 5-row list, so later providers could not be switched to from a phone. Providers listing no models (commonly: the CLI is installed but not signed in) are hidden for tidiness, except the one in use.
+- Since 0.33.7 the picker shows **all 10 providers** like the dashboard AI models page, **Antigravity CLI** included; before that it was a hand-written 5-row list, so later providers could not be switched to from a phone. Providers listing no models (commonly: the CLI is installed but not signed in) are hidden for tidiness, except the one in use.
 - Typing `/model <model name>` makes SenOS look that name up in the real lists of connected providers and switch to the right one. If the name exists at several providers and none is currently in use, it asks rather than guessing, because guessing wrong silently changes which account pays (a subscription versus per-call API billing).
 - **Since 0.350.0, changing the model in Telegram pins THAT chat only.** It no longer changes the main model on the web, and other Telegram chats keep following the main model. A chat without a pin follows every model change you make on the web. `/model theo` removes the pin, `/model ghim` pins the model the chat runs now; `/status` says whether the chat is pinned or follows the main model.
 
@@ -214,7 +214,7 @@ Details on typing `/model`:
 - **Every engine can use SenOS's MCP over Telegram**, because tools go through the MCP Hub rather than being bound to one engine. The bot's own `/help` text says so: ChatGPT/Codex and OpenRouter can both use SenOS's MCP. You see it really happening when the status message shows "⚙ Calling tool: ...".
 - Call a skill with `/skill-name`. This path does block one case: on the OpenRouter engine, typing `/skill-name` makes the bot say "⚠ Skills need the Claude CLI engine. Send /cli to switch, then /skill-name again."
 - Switch engine inside Telegram: `/cli` returns to Claude (the bot replies "✅ Provider: Anthropic (Claude Code), full MCP, POS/Ads/vault questions work."), `/or` moves to OpenRouter (the bot replies "✅ Provider: OpenRouter (`<model>`), chat + multi-model MCP."). Switching here switches the whole SenOS system (dashboard and bot share one model configuration).
-- To use `/or` you need an OpenRouter key set on the [Models & engines](10-models-and-engines.md) page; without one the bot says "⚠ No OpenRouter key, set it in Models on the dashboard first."
+- To use `/or` you need an OpenRouter key set on the [AI models](10-models-and-engines.md) page; without one the bot says "⚠ No OpenRouter key, set it in Models on the dashboard first."
 
 ## Access control: only you can use the bot
 
@@ -260,16 +260,16 @@ Telegram pieces older than **30 days** are archived so the list does not flood. 
 
 Two ways:
 
-1. On the dashboard: open **Admin channels** (the **Connections** group) and read the status on the Telegram tab (described in Step 2). This is the fastest and clearest way.
+1. On the dashboard: open **Control channels** (the **Gateways** group) and read the status on the Telegram tab (described in Step 2). This is the fastest and clearest way.
 2. In Telegram: type `/status`. The bot reports the provider, model, brain in use, your session, and whether it is busy or idle.
 
-The **System** group at the top of the **Settings** page also shows Telegram as "On" or "Off" at a glance, with a button jumping to the **Admin channels** page; the detailed configuration stays there.
+The **System** group at the top of the **Preferences** page also shows Telegram as "On" or "Off" at a glance, with a button jumping to the **Control channels** page; the detailed configuration stays there.
 
 ## Quick reference: buttons and states
 
 | Button / field | Where | Effect |
 |---|---|---|
-| Switch at the top | Telegram tab, Admin channels page | Turns the bot on or off IMMEDIATELY, no Save needed. The token is kept while off |
+| Switch at the top | Telegram tab, Control channels page | Turns the bot on or off IMMEDIATELY, no Save needed. The token is kept while off |
 | Bot token | Telegram card | The token from BotFather. Once set, leave it empty unless changing it |
 | Allowed Chat IDs | Telegram card | The allow list. Several IDs separated by commas |
 | Save & enable | Telegram card | Save the configuration and restart the bot immediately |
@@ -296,13 +296,13 @@ The **System** group at the top of the **Settings** page also shows Telegram as 
 
 **Messaging the bot returns "You are not allowed to use this SenOS bot."** The Chat ID set in SenOS does not match the account messaging it. Get the right Chat ID from @userinfobot, paste it into the Chat ID field and Save & enable.
 
-**The "🤔 SenOS is working…" message never changes.** That turn has not called a tool yet so there is nothing to report, or the engine is waiting. When done it becomes a trail line (`⚙ ...` or `✓ Answered directly`). If it sticks on "🤔" with no answer following, that turn failed; check the status on the **Admin channels** page.
+**The "🤔 SenOS is working…" message never changes.** That turn has not called a tool yet so there is nothing to report, or the engine is waiting. When done it becomes a trail line (`⚙ ...` or `✓ Answered directly`). If it sticks on "🤔" with no answer following, that turn failed; check the status on the **Control channels** page.
 
 **Typing `/skill-name` reports that the Claude CLI engine is needed.** You are on the OpenRouter engine. Type `/cli` to return to Claude, then call the skill again.
 
 **You sent a file and SenOS says it cannot read it.** Check 2 things: whether the file is over 20MB (the Telegram bot API download ceiling), and whether it is a video or video note (SenOS cannot watch those; send it as a document or type instead).
 
-**Sending a voice message reports that a Groq API key is needed.** Correct: speech recognition runs on Groq's Whisper. Go to the **Models** page, the **Groq (API)** card, paste a key from console.groq.com and save. No bot restart needed.
+**Sending a voice message reports that a Groq API key is needed.** Correct: speech recognition runs on Groq's Whisper. Go to the **AI models** page, the **Groq (API)** card, paste a key from console.groq.com and save. No bot restart needed.
 
 **SenOS mishears you.** Record closer to the microphone, speak slowly, and avoid noise. Very short utterances (one or two words) are also easy to mishear; a full sentence is far more accurate. For actions with outside effects SenOS reads back what it heard before acting, so you get a chance to catch it.
 
@@ -310,11 +310,11 @@ The **System** group at the top of the **Settings** page also shows Telegram as 
 
 **An old image in the conversation shows a grey "Image expired" box.** The media cache (`attachments/` and `inbox/`) cleaned files older than 30 days or over the 300MB ceiling. Content already distilled into `.md` notes is untouched.
 
-**You changed the configuration and the bot behaves as before.** Wait a few seconds and reload the **Admin channels** page so the status updates. If it still is not 🟢, see [Troubleshooting & FAQ](17-troubleshooting.md).
+**You changed the configuration and the bot behaves as before.** Wait a few seconds and reload the **Control channels** page so the status updates. If it still is not 🟢, see [Troubleshooting & FAQ](17-troubleshooting.md).
 
 ## Token saving applies to Telegram too
 
-Since **0.24.0**, the level you pick on the Settings page (**Optimised** / **Ultra saving**) applies to the Telegram channel as well, not only dashboard chat.
+Since **0.24.0**, the level you pick on the Preferences page (**Optimised** / **Ultra saving**) applies to the Telegram channel as well, not only dashboard chat.
 
 Before that, both levels were wired only into the dashboard, so enabling them still sent the whole of `CLAUDE.md` + `MEMORY.md` on every Telegram turn. No error appeared; the token bill simply did not drop on the channel most people use most.
 

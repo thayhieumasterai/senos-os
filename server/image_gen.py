@@ -488,16 +488,16 @@ async def generate_chatgpt(prompt: str, aspect_ratio: str = "square", quality: s
         break
 
     if not had_credential:
-        return {"ok": False, "error": localefmt.chu("Chưa kết nối ChatGPT (OAuth). Vào trang Model đăng nhập ChatGPT rồi thử lại.",
-                                                "ChatGPT (OAuth) is not connected. Sign in to ChatGPT on the Models page and try again.")}
+        return {"ok": False, "error": localefmt.chu("Chưa kết nối ChatGPT (OAuth). Vào trang Mô hình AI đăng nhập ChatGPT rồi thử lại.",
+                                                "ChatGPT (OAuth) is not connected. Sign in to ChatGPT on the AI models page and try again.")}
 
     if not b64 and err and model_rejected(0, err) and len(da_thu) > 0:
         ds = ", ".join(da_thu)
         err = err + localefmt.chu(
             f" (đã thử model: {ds}). Gói ChatGPT này không cho dùng các model đó để tạo ảnh. Mở trang "
-            "Models để SenOS tải lại danh sách model của ChatGPT rồi thử lại.",
+            "Mô hình AI để SenOS tải lại danh sách model của ChatGPT rồi thử lại.",
             f" (models tried: {ds}). This ChatGPT plan does not allow those models for image generation. "
-            "Open the Models page so SenOS reloads the ChatGPT model list, then try again.")
+            "Open the AI models page so SenOS reloads the ChatGPT model list, then try again.")
 
     if err or not b64:
         return {"ok": False, "error": err or localefmt.chu(

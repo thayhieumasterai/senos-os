@@ -52,7 +52,7 @@ kq = chay(stt.groq_nghe(b"xxx", "voice.ogg", ""))
 check("chưa có key -> không ok", not kq["ok"] and kq["ly_do"] == "thieu_key")
 _cau = kq["noi_voi_senos"]
 check("câu thiếu key gọi đúng tên Groq", "Groq" in _cau)
-check("câu thiếu key chỉ đúng chỗ dán key", "Models" in _cau)
+check("câu thiếu key chỉ đúng chỗ dán key", "Mô hình AI" in _cau)
 check("câu thiếu key nói được cả ca đóng vai người thật với khách",
       "người thật" in _cau and "đừng nhắc" in _cau)
 
@@ -138,7 +138,7 @@ tb.TelegramBot._tai_ve_ram = _tai_gia   # không chạm mạng Telegram
 # --- chưa đấu STT (stt_fn=None): phải nói cần key Groq ---
 out = chay(_bot(None)._ingest_attachment(None, _voice_msg()))
 check("chưa đấu STT -> vẫn trả một câu (không im lặng)", bool(out))
-check("chưa đấu STT -> câu nói về key Groq", "Groq" in out and "Models" in out)
+check("chưa đấu STT -> câu nói về key Groq", "Groq" in out and "Mô hình AI" in out)
 check("chưa đấu STT -> KHÔNG còn câu cũ 'chưa đọc được loại này'",
       "chưa đọc được" not in out)
 
@@ -265,7 +265,7 @@ def _zvoice(caption=""):
 
 
 out = chay(_zbot(None)._ingest_attachment(_ZClient(), zb.SK_VOICE, _zvoice()))
-check("Zalo chưa đấu STT -> nói về key Groq", "Groq" in out and "Models" in out)
+check("Zalo chưa đấu STT -> nói về key Groq", "Groq" in out and "Mô hình AI" in out)
 
 out = chay(_zbot(_stt_ok)._ingest_attachment(_ZClient(), zb.SK_VOICE, _zvoice()))
 check("Zalo nghe được -> khối mở đầu bằng marker thoại", out.startswith(stt.MARK_THOAI))

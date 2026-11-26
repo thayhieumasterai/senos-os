@@ -112,7 +112,7 @@ _DA_BAO_NHOM: set = set()
 # gọi bot gần như luôn là chủ hoặc người của chủ đang thử, và thứ họ nhận được là một con bot
 # "hỏng". Một câu, một lần mỗi nhóm, là đủ để biến một lỗi không thể chẩn đoán thành một việc
 # bấm một nút là xong.
-CAU_NHOM_CHUA_BAT = ("Em chưa được bật cho nhóm này ạ. Chủ bot mở trang Chatbot của SenOS, "
+CAU_NHOM_CHUA_BAT = ("Em chưa được bật cho nhóm này ạ. Chủ bot mở trang Hộp thư bot của SenOS, "
                      "ở thẻ của em sẽ thấy nhóm này đang chờ, bấm **Cho phép** một cái là em "
                      "trả lời được ngay.")
 
@@ -1680,14 +1680,14 @@ def _chan_doan_nhom(bot_id: str, chat: str, meta: dict) -> str:
         return dong[0]
 
     if not _nhom_duoc_phep(cfg, chat):
-        dong.append("Nhóm này **chưa được bật** cho em. Chủ bot mở trang Chatbot của SenOS, "
+        dong.append("Nhóm này **chưa được bật** cho em. Chủ bot mở trang Hộp thư bot của SenOS, "
                     "thẻ của em sẽ thấy nhóm này đang chờ, bấm **Cho phép** một cái là xong.")
     else:
         dong.append("Nhóm này **đã được bật** cho em rồi ạ.")
 
     if tb is not None and not getattr(tb, "bot_id", 0):
         dong.append("⚠ Em chưa hỏi được danh tính của chính mình từ Telegram, nên em **không "
-                    "nhận ra khi có người gọi tên em**. Chủ bot vào trang Chatbot tắt rồi bật "
+                    "nhận ra khi có người gọi tên em**. Chủ bot vào trang Hộp thư bot tắt rồi bật "
                     "lại em giúp ạ.")
     elif tb is not None and not getattr(tb, "doc_moi_tin_nhom", False):
         # Chế độ riêng tư chặn Ở PHÍA TELEGRAM, trước khi SenOS nhìn thấy tin nào. Không nói ra
@@ -1698,7 +1698,7 @@ def _chan_doan_nhom(bot_id: str, chat: str, meta: dict) -> str:
         dong.append("Sửa bằng MỘT trong hai cách: mở **@BotFather** gõ `/setprivacy`, chọn em, "
                     "chọn **Disable**, rồi **xoá em khỏi nhóm và thêm lại** (Telegram chỉ áp chế độ "
                     "mới khi em vào lại nhóm); hoặc cho em làm **quản trị viên** nhóm này. Xong "
-                    "thì tắt bật lại em ở trang Chatbot.")
+                    "thì tắt bật lại em ở trang Hộp thư bot.")
     return "\n\n".join(dong)
 
 
@@ -1758,9 +1758,9 @@ def _goi_chu(bot_cfg: dict, ai: str, ly_do: str) -> bool:
     ten_bot = str(bot_cfg.get("name") or bot_cfg.get("id") or "")
     text = localefmt.chu(
         f"Bot {ten_bot} cần người thật: {ai or 'khách'}\n\n{ly_do}\n\n"
-        "Mở trang Chatbot, thẻ Hòm thư bot để đọc và trả lời tay.",
+        "Mở trang Hộp thư bot, thẻ Hội thoại để đọc và trả lời tay.",
         f"Bot {ten_bot} needs a human: {ai or 'a customer'}\n\n{ly_do}\n\n"
-        "Open the Chatbot page, Bot inbox tab, to read and reply by hand.")
+        "Open the Bot inbox page, Conversations tab, to read and reply by hand.")
     try:
         r = fn(text)
         if asyncio.iscoroutine(r):
@@ -1894,10 +1894,10 @@ def _bao_hop_thu(bot_id: str, cfg: dict, meta: dict, loi: str) -> None:
     noi_en = (f" in the group {nhom}" if nhom else "")
     text = localefmt.chu(
         f"Bot {ten_bot} đang lỗi, chưa trả lời được {ai or 'khách'}{noi}\n\n"
-        f"Lỗi: {str(loi)[:300]}\n\nKhách không nhận được tin nào. Mở trang Chatbot để trả lời tay hoặc xem "
+        f"Lỗi: {str(loi)[:300]}\n\nKhách không nhận được tin nào. Mở trang Hộp thư bot để trả lời tay hoặc xem "
         "nhật ký bot. Các lượt hỏng tiếp theo không báo lại cho tới khi bot chạy được.",
         f"Bot {ten_bot} is failing and could not answer {ai or 'a customer'}{noi_en}\n\n"
-        f"Error: {str(loi)[:300]}\n\nThe customer received nothing. Open the Chatbot page to reply by hand or "
+        f"Error: {str(loi)[:300]}\n\nThe customer received nothing. Open the Bot inbox page to reply by hand or "
         "read the bot log. Further failures are not reported again until the bot works.")
     try:
         r = fn(text)
@@ -3029,9 +3029,9 @@ def start_bot(bot_id: str) -> tuple[bool, str]:
         aid = tk["id"]
         if token == _admin_token(kenh):
             loi.append(localefmt.chu(
-                f"Token {nhan_kenh} này đang là bot của Kênh Admin, bot chuyên trách không dùng chung được. "
+                f"Token {nhan_kenh} này đang là bot của Kênh quản trị, bot chuyên trách không dùng chung được. "
                 "Tạo một bot riêng, hoặc gọi cộng sự ngay trong chat admin bằng /agent <tên>.",
-                f"This {nhan_kenh} token is the Admin channel's bot, a dedicated bot cannot share it. "
+                f"This {nhan_kenh} token is the Control channel's bot, a dedicated bot cannot share it. "
                 "Create a separate bot, or call a partner in the admin chat with /agent <name>."))
             continue
         chung = dict(

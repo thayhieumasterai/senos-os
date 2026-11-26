@@ -19,7 +19,7 @@ SenOS used to display these boxes decoratively, and ticking one meant opening So
 
 ### Where you can tick
 
-- **The Files page** (**Brain** group on the left nav rail): open an `.md` file and stay in **Edit** mode (the rendered view, the default). Clicking a checkbox ticks it and saves.
+- **The Documents page** (**Knowledge** group on the left nav rail): open an `.md` file and stay in **Edit** mode (the rendered view, the default). Clicking a checkbox ticks it and saves.
 - **The file editor opened from chat** (clicking a file link in one of SenOS's answers): exactly the same, ticking saves.
 - **Inside a chat message**: checkboxes are display-only and not clickable. The reason: chat content is not bound to any file to write back to.
 - **In dataview block results**: clickable, writing straight into the source file holding that task (see part 2).

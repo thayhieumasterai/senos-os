@@ -2,7 +2,7 @@
 
 *[Tiếng Việt](../15-thuong-hieu-ten-mien.md) · **English***
 
-This page covers two things: changing SenOS's logo/avatar to your own image, and pointing a custom domain (`senos.yourname.com`, say) at SenOS so it runs over HTTPS. Both live under **Settings → General**.
+This page covers two things: changing SenOS's logo/avatar to your own image, and pointing a custom domain (`senos.yourname.com`, say) at SenOS so it runs over HTTPS. Both live under **Preferences → General**.
 
 ## What this feature is
 
@@ -13,16 +13,16 @@ One important note up front: the **Custom domain** section only works when you d
 
 ## Where to open it in SenOS
 
-Both features are under **Settings → General**. The General tab contains two cards:
+Both features are under **Preferences → General**. The General tab contains two cards:
 
 - The **AVATAR** box: a preview image, an **Upload image** button and a **Restore default** button.
 - The **DOMAIN AND SSL** box: an input (placeholder "e.g. senos.yourname.com"), a **Save and check** button, two status badges for DNS and SSL, two buttons **Enable SSL** and **Check again**, plus a three-step wizard whose content matches your actual VPS/Hostinger environment.
 
-Every time you open Settings, SenOS reloads the current values, checks DNS/HTTPS and shows the correct next step.
+Every time you open Preferences, SenOS reloads the current values, checks DNS/HTTPS and shows the correct next step.
 
 ## Changing the logo/avatar (step by step)
 
-1. Open **Settings → General** and find the **AVATAR** box.
+1. Open **Preferences → General** and find the **AVATAR** box.
 2. Click **Upload image**. Your machine's file picker opens.
 3. Pick an image file. Accepted formats: PNG, JPG, WEBP, GIF. Maximum size 5MB.
 4. After picking, SenOS shows the status line **Uploading…** then **Image updated ✓** when done. The new image replaces the old one everywhere immediately (top corner, sidebar, sign-in screen, preview box) with no page reload.
@@ -54,7 +54,7 @@ This section assumes you deployed SenOS with Docker on a VPS, enabled Caddy (On-
 
 ### Step A: enter and save the domain
 
-1. Open **Settings → General** and find the **DOMAIN AND SSL** box.
+1. Open **Preferences → General** and find the **DOMAIN AND SSL** box.
 2. Enter the domain (or subdomain) you want in the input, for example `senos.yourname.com`. No need to type `https://`; if you do, SenOS strips it.
 3. Click **Save and check** (or press Enter in the input). SenOS shows **Saving and checking…**, saves the domain, then runs the DNS/SSL check and draws the three-step wizard right in the UI.
 4. If the domain is malformed, SenOS reports that the domain is invalid and gives the example format. Fix it and save again.
@@ -90,7 +90,7 @@ On Hostinger the **Enable SSL** button is hidden, because hPanel's Traefik is wh
 
 ## Remote access on a Windows or macOS computer
 
-The **REMOTE ACCESS** section (Settings, right below Domain & SSL) opens SenOS to the Internet through a **Cloudflare Tunnel** (or privately through **Tailscale**, see Option 3), with no VPS, no router port and no terminal. SenOS downloads `cloudflared` (Cloudflare's official free tool) in the right build for the machine (Windows x64/ARM, macOS Intel/Apple Silicon, Linux), runs it alongside SenOS and reconnects when the network drops. It is HTTPS, so the microphone and voice work on a phone.
+The **REMOTE ACCESS** section (Preferences, right below Domain & SSL) opens SenOS to the Internet through a **Cloudflare Tunnel** (or privately through **Tailscale**, see Option 3), with no VPS, no router port and no terminal. SenOS downloads `cloudflared` (Cloudflare's official free tool) in the right build for the machine (Windows x64/ARM, macOS Intel/Apple Silicon, Linux), runs it alongside SenOS and reconnects when the network drops. It is HTTPS, so the microphone and voice work on a phone.
 
 **Set a login password first** (Login account section). While the tunnel is on, SenOS always asks for a login and does not let you turn login off. If the password is removed (for example with `reset-auth`), the tunnel stops within seconds.
 
@@ -199,7 +199,7 @@ A Hostinger VPS already runs the Traefik reverse proxy handling SSL, and Traefik
 
 If you try to click Enable SSL on Hostinger (through the API, say), SenOS refuses and states plainly that Hostinger manages HTTPS through Traefik, so set `DOMAIN_NAME` in Docker Manager and Redeploy.
 
-After the Redeploy, return to Settings and click **Check again**. Details and troubleshooting are in the "Domain + HTTPS on Hostinger" section of `DEPLOY.md`; both documentation links also sit right under the domain card.
+After the Redeploy, return to Preferences and click **Check again**. Details and troubleshooting are in the "Domain + HTTPS on Hostinger" section of `DEPLOY.md`; both documentation links also sit right under the domain card.
 
 ### What the SSL badge says (since 0.248.0)
 

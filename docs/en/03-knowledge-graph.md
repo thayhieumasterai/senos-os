@@ -1,10 +1,10 @@
-# Knowledge graph
+# Knowledge map
 
 *[Tiếng Việt](../03-do-thi-tri-thuc.md) · **English***
 
-The knowledge graph turns the notes in a brain into a visual network. Every glowing dot is a Markdown file; every thread is a `[[...]]` wikilink between two notes.
+The **Knowledge map** page (the first item of the **Knowledge** group in the sidebar) turns the notes in a brain into a visual network, the knowledge graph. Every glowing dot is a Markdown file; every thread is a `[[...]]` wikilink between two notes.
 
-The graph uses a 2D canvas, no WebGL, and loads no library from the internet. It shows notes that have no links yet, supports a timelapse, and can be switched off entirely in Settings.
+The graph uses a 2D canvas, no WebGL, and loads no library from the internet. It shows notes that have no links yet, supports a timelapse, and can be switched off entirely in Preferences.
 
 To see where this data comes from, read [Second Brain: memory, Wiki, INGEST](13-second-brain.md).
 
@@ -19,21 +19,21 @@ To see where this data comes from, read [Second Brain: memory, Wiki, INGEST](13-
 ## Opening the graph
 
 1. Open the dashboard, by default at `http://<machine-address>:7777`.
-2. In the left navigation rail, open the **Assistant** group and select **SenOS**.
+2. In the left navigation rail, open the **Knowledge** group and select **Knowledge map**.
 3. The graph occupies the middle of the screen.
 
-When you move to another page or open the note editor, the graph pauses itself. Returning to the **SenOS** page or closing the editor resumes it.
+When you move to another page or open the note editor, the graph pauses itself. Returning to the **Knowledge map** page or closing the editor resumes it.
 
-On screens narrower than 860px, SenOS prefers the light interface and opens the **Chat** page directly.
+On screens narrower than 860px, SenOS prefers the light interface and opens the **Conversations** page directly.
 
 ## Turning the graph on or off
 
-1. Open **System → Settings**.
+1. Open **Admin → Preferences**.
 2. Open the **Interface & Brain** group.
 3. Find the **Brain graph** card.
-4. Click **Disable graph** or **Enable graph**.
+4. Click **Turn graph off** or **Turn graph on**.
 
-While disabled, SenOS does not build the graph and opens the **Chat** page directly. The choice is stored in the server settings.
+While disabled, SenOS does not build the graph and opens the **Conversations** page directly. The choice is stored in the server settings.
 
 ## Choosing a brain
 
@@ -146,8 +146,8 @@ If the watch connection drops, SenOS reconnects. A periodic scan also catches an
 - **The graph is empty or has few nodes**: check which brain is selected and whether the source contains `.md` files.
 - **The graph library will not load**: reload the page. The library is served from the SenOS server itself, so the error usually means a partial page load or static files not being served.
 - **The statistics line reads "Error"**: an external source may have moved or lost read permission.
-- **The graph is frozen**: check whether you are on another page, have the editor open, are on a narrow screen, or have disabled the graph in Settings.
-- **Opening SenOS jumps straight to Chat**: the screen is narrow or the graph is disabled.
+- **The graph is frozen**: check whether you are on another page, have the editor open, are on a narrow screen, or have disabled the graph in Preferences.
+- **Opening SenOS jumps straight to Conversations**: the screen is narrow or the graph is disabled.
 - **A new node has not appeared**: wait for the watch connection to reconnect, or switch brains and back to reload.
 
 ## Related
