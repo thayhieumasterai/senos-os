@@ -56,14 +56,14 @@ def reset_device(**kw):
 
 
 # ---- 1. Start ----
-check("the app's client id is the registered one", github_oauth.client_id() == "Iv23limeL0BsyXptmTz2")
+check("the app's client id is the registered one", github_oauth.client_id() == "Iv23lit5d4SEyVhBKGxB")
 check("repos are picked on the SenOS app page",
-      github_oauth.install_url() == "https://github.com/apps/senos/installations/new")
+      github_oauth.install_url() == "https://github.com/apps/senos-brain/installations/new")
 reset_device(pending=2, slow=True)
 d = github_oauth.start()
 check("start returns the code to type", d["user_code"] == "ABCD-1234")
 check("start returns the page to type it on", d["verification_uri"] == "https://github.com/login/device")
-check("start sends the app's client id", fake.device["client_ids"] == ["Iv23limeL0BsyXptmTz2"])
+check("start sends the app's client id", fake.device["client_ids"] == ["Iv23lit5d4SEyVhBKGxB"])
 check("the device code stays in the server", "dev-123" not in json.dumps(d))
 
 # ---- 2. Interval ----

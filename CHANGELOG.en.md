@@ -8,6 +8,10 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.627.1] - 2026-11-27
+### Fixed
+- **"Let SenOS see repos" opens the right page.** The link pointed at a GitHub App that did not exist, so it showed a 404. SenOS now uses its own SenOS-Brain app. If you signed in to GitHub before, sign out and back in once, then install the app on your brain repo.
+
 ## [0.627.0] - 2026-11-27
 ### Improved
 - **The layout is back to the upstream one.** The sidebar sits on the left, the library on the left, the map in the middle and the chat column on the right; the Assistants, Playbooks and Workflows counters return to the bottom centre of the map; the Lotus buddy sits on the right edge. Colours, words and page names are unchanged.

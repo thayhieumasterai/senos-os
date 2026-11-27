@@ -7,7 +7,7 @@ github.com/login/device and presses Authorize, and SenOS polls until GitHub hand
 a VPS with no browser.
 
 Why a GitHub App and not an OAuth App: the person picks which repos SenOS can see by installing the app on them
-(github.com/apps/senos/installations/new), and the token only carries the app's fine-grained permissions
+(github.com/apps/senos-brain/installations/new), and the token only carries the app's fine-grained permissions
 (Contents, Pull requests, Workflows read/write; Checks, Commit statuses, Actions read).
 
 The app was registered with expiring user tokens turned off, so the token normally lasts until the person revokes
@@ -28,10 +28,11 @@ import httpx
 
 import localefmt
 
-# Public identifiers of the "SenOS" GitHub App (owner, 2026-11-01). A client id is not a secret: the device flow is
+# Public identifiers of the "SenOS-Brain" GitHub App, registered by thayhieumasterai (2026-11-27; the earlier
+# ids were upstream's "Javis OS" app, and the rename turned its slug into "senos", which never existed). A client id is not a secret: the device flow is
 # built for apps that cannot keep one. Forks that register their own app override both through the environment.
-CLIENT_ID = "Iv23limeL0BsyXptmTz2"
-APP_SLUG = "senos"
+CLIENT_ID = "Iv23lit5d4SEyVhBKGxB"
+APP_SLUG = "senos-brain"
 DEVICE_GRANT = "urn:ietf:params:oauth:grant-type:device_code"
 UA = "senos"
 _lock = threading.Lock()

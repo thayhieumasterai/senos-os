@@ -6,6 +6,10 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.627.1] - 2026-11-27
+### Sửa lỗi
+- **Nút "Cho SenOS thấy repo" mở đúng trang.** Trước đây link dẫn tới một GitHub App không tồn tại nên ra trang 404. SenOS giờ dùng app riêng SenOS-Brain. Ai đã đăng nhập GitHub từ trước thì đăng xuất rồi đăng nhập lại một lần, sau đó cài app vào repo brain của mình.
+
 ## [0.627.0] - 2026-11-27
 ### Cải thiện
 - **Bố cục trở lại như bản gốc.** Thanh bên nằm bên trái, Thư viện bên trái, bản đồ ở giữa, khung hội thoại bên phải; bộ đếm Trợ lý, Nghiệp vụ, Quy trình về giữa đáy bản đồ; bé Sen nép mép phải. Màu, chữ và tên trang giữ nguyên.

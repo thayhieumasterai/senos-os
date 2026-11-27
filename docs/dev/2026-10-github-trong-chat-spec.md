@@ -153,7 +153,7 @@ Phần dưới là [ĐỀ XUẤT]:
 - Token chỉ đi vào lệnh git theo cách của `git_brain._auth_url` (một lần, không lưu remote) và
   vào header API. Mọi log, lỗi, tin chat đi qua `secret_redact` trước khi hiện.
 - **ĐÃ LÀM 0.430.0 (chủ repo chốt 01/11/2026):** nút **Đăng nhập bằng GitHub** qua GitHub App
-  `SenOS` (`github.com/apps/senos`, Client ID `Iv23limeL0BsyXptmTz2`), luồng Device Flow
+  `SenOS-Brain` (`github.com/apps/senos-brain`, Client ID `Iv23lit5d4SEyVhBKGxB`, đăng ký lại 27/11/2026), luồng Device Flow
   (`server/github_oauth.py`). Không dùng luồng chuyển trang như Claude vì mỗi bản SenOS một địa
   chỉ (không có callback cố định) và repo công khai không giữ được client secret. Người dùng bấm
   nút, dán mã ở `github.com/login/device`, bấm Authorize; sau đó cài app vào repo muốn cho SenOS
