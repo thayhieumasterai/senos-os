@@ -144,7 +144,7 @@
   // Mặc định là LINH VẬT CHÍNH THỨC: ngôi sao màu cam, trùng logo (chủ dự án chốt 24/09, 0.64.47).
   // `image`: the owner's own picture (a name from the /avatars store, "" = the drawn face). `favicon`: also use that
   // picture as the browser tab icon, so several SenOS open side by side tell apart at a glance (owner, 2026-11-07).
-  var MAC_DINH = { enabled: true, shape: "lotus", palette: "cam", side: "left", pos: 0.62, size: 72, eye: "den", eyeSize: 1, color: "#7b4dff", eyeColor: "#2a62b0", image: "", favicon: true };
+  var MAC_DINH = { enabled: true, shape: "lotus", palette: "cam", side: "right", pos: 0.62, size: 72, eye: "den", eyeSize: 1, color: "#7b4dff", eyeColor: "#2a62b0", image: "", favicon: true };
   // Same name rule as server/avatar_upload.py: 20 hex characters of a content hash plus the real image type.
   var ANH_TEN = /^[0-9a-f]{20}\.(png|jpg|webp|gif)$/;
   function anhHopLe(v) { return typeof v === "string" && ANH_TEN.test(v); }

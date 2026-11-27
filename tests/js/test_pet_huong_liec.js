@@ -101,9 +101,8 @@ async function quay(soBuoc) {
 
 (async () => {
 
-// ---- 1. Mép PHẢI: liếc sang TRÁI (SenOS đặt pet mép trái theo mặc định, vì thanh bên nằm bên phải) ----
-check("mặc định pet nép mép trái", P.get().side === "left");
-P.hydrate({ side: "right" });
+// ---- 1. Mép PHẢI (mặc định, như bản gốc: thanh bên nằm bên trái): liếc sang TRÁI ----
+check("mặc định pet nép mép phải", P.get().side === "right");
 const phai = await quay(140);
 check("nép mép phải thì nhìn sang TRÁI, vào trong màn hình (x=" + phai + ")", phai !== null && phai < -1);
 

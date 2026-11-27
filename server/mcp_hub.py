@@ -1320,11 +1320,8 @@ def _builtin_tools(mode, vault_root, include_ambient=False, hidden=None, lang=""
         import app_guide
         return await asyncio.to_thread(app_guide.guide, str((args or {}).get("query") or ""), lang)
 
-    add("senos_app_guide", "SenOS's own interface and user guide: the sidebar's pages and groups with the exact names "
-        "on screen, plus the guide sections that match `query`. Call it before telling the user where a page, tab or "
-        "button is or how to do something in SenOS; never guess a menu name.",
-        {"query": {"type": "string", "description": "the question, e.g. 'đổi model', 'connect Zalo'; empty = page list only"}},
-        [], _app_guide)
+    add("senos_app_guide", "SenOS's pages, tabs and buttons by their exact on-screen names, plus user-guide how-tos. "
+        "Call it before naming any menu.", {"query": {"type": "string"}}, [], _app_guide)
     # Mô tả tool = router thu nhỏ: liệt kê slug + mô tả ngắn để engine biết KHI NÀO gọi skill nào.
     # Trần lấy từ skill_router (CHUNG với system prompt) - trước đây hub tự cắt 60, system prompt
     # cắt 100 - người viết skill không biết mình bị chấm theo thước nào.
@@ -1487,6 +1484,9 @@ CORE_TOOL_FNS = frozenset({
     # Chỉ tồn tại ở mức Toàn quyền của phiên Coding, và ở đó lượt nào cũng dùng.
     "senos_terminal",
     "senos_process",
+    # 0.627.0: "where is X in SenOS" must not need a tool search first. Hidden in the pool, the model never thought
+    # to search for it and guessed menu names from the brain instead (asked about "Bản đồ tri thức" on 0.626.1).
+    "senos_app_guide",
 })
 
 # 0.256.0: hạt nhân CHỈ TRONG PHIÊN CODING. Ở đó gần như lượt nào cũng sửa và tìm code, bắt model

@@ -21,7 +21,7 @@ The first time you open the app, a wizard appears and walks you through exactly 
 - On a personal machine, open a browser at `http://localhost:7777` (7777 is the default port).
 - On a VPS or Docker, use the address your provider gave you, e.g. `http://<vps-ip>:7777` or an HTTPS link like `https://<app>.<vps>.hstgr.cloud`.
 
-Once setup is done, the related items sit on the navigation rail on the right. **Conversations** sits alone at the top; the other items are in 5 groups, and **you have to open a group before its items appear**:
+Once setup is done, the related items sit on the navigation rail on the left. **Conversations** sits alone at the top; the other items are in 5 groups, and **you have to open a group before its items appear**:
 
 | Group | Item | Used for |
 |---|---|---|

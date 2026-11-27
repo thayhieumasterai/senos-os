@@ -53,8 +53,8 @@ _STOP_FOLDED.update(_fold(w) for w in _STOP)
 # Each language SenOS ships a user guide in, and where it is. Labels come from dashboard/i18n/<code>.json.
 _GUIDE_DIRS = {"vi": DOCS, "en": DOCS / "en"}
 _TEXT = {
-    "head": {"vi": "Thanh bên của SenOS, từ trên xuống (dùng đúng các tên này):",
-             "en": "SenOS sidebar, top to bottom (use these exact names):"},
+    "head": {"vi": "Thanh bên trái của SenOS, từ trên xuống (dùng đúng các tên này):",
+             "en": "SenOS left sidebar, top to bottom (use these exact names):"},
     "foot": {"vi": " (ghim ở đáy)", "en": " (pinned at the bottom)"},
     "hidden": {"vi": "Trang không nằm trên thanh bên (mở từ liên kết trong trang khác): ",
                "en": "Pages not on the sidebar (opened from links inside other pages): "},

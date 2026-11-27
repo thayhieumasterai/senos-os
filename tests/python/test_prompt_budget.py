@@ -193,7 +193,9 @@ check(
 # Trước Việc 1: 26 tool nặng khoảng 17.000 ký tự đi vào mọi request. Trần này bảo đảm
 # nhóm hạt nhân không âm thầm phình trở lại (thêm tool vào CORE_TOOL_FNS, hoặc mô tả của
 # một tool hạt nhân dài ra theo số thứ user cắm thêm).
-CORE_TOOLS_MAX_CHARS = 3_000
+# 0.627.0: +300 for senos_app_guide (where a page or button is). Kept in the pool, the model never searched for it
+# and guessed menu names instead; its schema is cut to the minimum (301 characters).
+CORE_TOOLS_MAX_CHARS = 3_300
 
 import mcp_hub  # noqa: E402
 import config  # noqa: E402

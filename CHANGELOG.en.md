@@ -8,6 +8,12 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.627.0] - 2026-11-27
+### Improved
+- **The layout is back to the upstream one.** The sidebar sits on the left, the library on the left, the map in the middle and the chat column on the right; the Assistants, Playbooks and Workflows counters return to the bottom centre of the map; the Lotus buddy sits on the right edge. Colours, words and page names are unchanged.
+### Fixed
+- **The assistant always sees the interface guide tool.** Asked "what is the Knowledge map" or "where do I change the model", it calls `senos_app_guide` right away. In 0.626 the tool sat behind the tool search, so the assistant still guessed page names.
+
 ## [0.626.1] - 2026-11-26
 ### Fixed
 - **Self-improvement trials run again.** 0.626.0 reworded two messages in the Goal (Resonance) plugin, so the plugin check refused it; its pinned hash is updated after a review of the change.

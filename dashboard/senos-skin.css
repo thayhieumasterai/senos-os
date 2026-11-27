@@ -5,8 +5,9 @@
    radii. This file owns everything that makes SenOS look and sit differently
    from the upstream layout:
      1. colour tokens (dark and light) that replace the upstream palette
-     2. layout: talk column left, map centre, library right, rail on the right
-     3. shapes: 6-10px radii, solid primary buttons, quiet scrollbars
+     2. shapes: 6-10px radii, solid primary buttons, quiet scrollbars, flat panels
+   Positions follow upstream (owner, 2026-11-27: "điều chỉnh vị trí giống Javis, không đổi nội dung"): rail on the
+   left, library left, map centre, talk column right, map counters where upstream draws them. Do not move them here.
    ========================================================================== */
 :root {
   --bg: #1a161c; --bg2: #221d25; --bg3: #2a242d; --border: #3a333e;
@@ -53,37 +54,15 @@ body { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
 /* ============================================================================
-   LAYOUT - desktop. Talk column on the LEFT, knowledge map in the middle,
-   library on the RIGHT; the navigation rail sits on the right edge.
-   col-resize.js has the drag edges swapped to match. Phones keep the drawer
-   behaviour from console.css (rail width is 0 there).
+   LAYOUT - desktop. Where things sit is upstream's (rail on the left, library | map | talk column); this only
+   changes how the surfaces look. Phones keep the drawer behaviour from console.css.
    ========================================================================== */
 @media (min-width: 861px) {
   .rail {
-    left: auto; right: 0; top: 0; bottom: 0;
-    border: 0; border-left: 1px solid var(--border); border-radius: 0;
+    border: 0; border-right: 1px solid var(--border); border-radius: 0;
     padding: 12px 8px; box-shadow: none; background: var(--rail-bg);
   }
-  body.has-rail .hud { margin-left: 0; margin-right: var(--rail-w); width: calc(100% - var(--rail-w)); }
-  .cview { left: 0; right: var(--rail-w); bottom: 0; border: 0; border-radius: 0; }
-  /* collapsed-rail tooltip opens to the LEFT of the icon (console.js sets `left` to the icon's left edge) */
-  .rail-tip { transform: translate(calc(-100% + 4px), -50%); }
-  .rail-tip.show { transform: translate(-100%, -50%); }
-
-  /* columns: [talk] [map] [library] */
-  .hud-body {
-    gap: var(--sen-gap); padding: var(--sen-gap);
-    grid-template-columns: var(--hud-right-w, clamp(280px, 26vw, 360px)) minmax(0, 1fr) var(--hud-left-w, clamp(200px, 18vw, 250px));
-  }
-  .hud-body > .hud-right { order: 1; }
-  .hud-body > .hud-center { order: 2; }
-  .hud-body > .hud-left { order: 3; }
-  body.vault-thu .hud-body { grid-template-columns: var(--hud-right-w, clamp(280px, 26vw, 360px)) minmax(0, 1fr) 44px; }
-  body.chatcol-thu .hud-body { grid-template-columns: 44px minmax(0, 1fr) var(--hud-left-w, clamp(200px, 18vw, 250px)); }
-  body.vault-thu.chatcol-thu .hud-body { grid-template-columns: 44px minmax(0, 1fr) 44px; }
-  /* the collapse arrows were drawn for the old sides: mirror them */
-  .chatcol-thu-btn svg, .chatcol-expand svg { transform: none; }
-  #vtCollapse svg, .vault-expand svg { transform: scaleX(-1); }
+  .hud-body { gap: var(--sen-gap); padding: var(--sen-gap); }
 
   .hud-left, .hud-right, .hud-center {
     border-radius: var(--sen-radius); border: 1px solid var(--border); overflow: hidden;
@@ -106,7 +85,7 @@ body { background: var(--bg); }
 .rail-brand-text i { font-style: normal; font-weight: 600; opacity: 1; color: inherit; margin: 0; }
 .rail-item { border-radius: var(--sen-radius-sm); }
 .rail-item.active, .rail-item[aria-current="page"] {
-  background: var(--surface-2); box-shadow: inset -2px 0 0 var(--accent);
+  background: var(--surface-2); box-shadow: inset 2px 0 0 var(--accent);
 }
 .rail-item.active .rail-ico { color: var(--accent-ink); }
 .rail-grp-lbl { text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 500; color: var(--text3); }
@@ -138,19 +117,17 @@ input[type="text"], input[type="password"], input[type="search"], input[type="em
 }
 .modal, .modal-card, .gcard, .cv-card, .card { border-radius: var(--sen-radius); }
 
-/* ---- Knowledge map overlays: counters as a vertical dock on the left ---- */
+/* ---- Knowledge map overlays: upstream's places, flat surfaces ---- */
 .brain-stats {
-  top: 50%; bottom: auto; left: 14px; transform: translateY(-50%);
-  flex-direction: column; border-radius: var(--sen-radius); padding: 6px 4px;
+  border-radius: var(--sen-radius);
   border-color: var(--brain-glass-brd); background: var(--bg2);
   backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none;
 }
-.brain-stats .bstat-sep { width: 70%; height: 1px; align-self: center; }
 .brain-stats .bstat-num {
   background: none; color: var(--text); -webkit-text-fill-color: currentColor;
   font-weight: 500; font-variant-numeric: tabular-nums;
 }
-.graph-stats { top: auto; bottom: 14px; left: 14px; border-radius: var(--sen-radius-sm); font-variant-numeric: tabular-nums; }
+.graph-stats { border-radius: var(--sen-radius-sm); font-variant-numeric: tabular-nums; }
 .brain-overlay-toggle { border-radius: var(--sen-radius-sm); }
 .orb-state { letter-spacing: 0.08em; font-size: 11px; font-weight: 500; color: var(--text3); text-shadow: none; }
 
