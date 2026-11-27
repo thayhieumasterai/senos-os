@@ -8,6 +8,20 @@ Tính năng này đồng bộ **TẤT CẢ brain trong thư mục brains** (mọ
 
 Mở tại: trang **Rèn luyện** (nhóm **Tri thức** trên thanh nav trái), kéo xuống mục **⇅ Đồng bộ brain với GitHub (2 chiều)**.
 
+## Cách nhanh: đăng nhập GitHub, không cần token
+
+Đã kết nối GitHub ở trang **Ứng dụng** (nhóm **Cổng kết nối**, thẻ **GitHub**: nút đăng nhập bằng GitHub, gõ mã ở `github.com/login/device`) thì mục đồng bộ hiện ba nút:
+
+- **Tạo repo riêng tư**: SenOS mở trang tạo repo trên GitHub với tên và chế độ Private điền sẵn, bạn bấm Create.
+- **Chọn repo có sẵn**: chọn một repo riêng tư bạn có quyền ghi. Repo phải được cho phép trước: bấm **Cho SenOS thấy repo** ở cuối khung chọn, GitHub mở trang cài app **SenOS-Brain**, chọn **Only select repositories**, tick repo brain, bấm Save, rồi mở lại khung chọn.
+- **Dùng token riêng**: cách dán token ở 3 bước dưới.
+
+Khung chọn báo "SenOS chưa thấy repo riêng tư nào" thường vì một trong ba lý do:
+
+1. **Repo đang để Public.** SenOS chỉ đồng bộ brain vào repo riêng tư. Đổi ở GitHub: repo → **Settings** → **Danger zone** → **Change visibility** → **Make private**.
+2. **Repo chưa được chọn cho app SenOS-Brain.** Bấm **Cho SenOS thấy repo** và tick repo đó.
+3. **Lần đăng nhập GitHub cũ.** Ai đăng nhập trước bản 0.627.1 là đi qua app cũ, token đó không thấy repo của SenOS-Brain. Vào **Cổng kết nối → Ứng dụng** → thẻ **GitHub** → **Đăng nhập lại**; màn hình xác nhận trên GitHub phải ghi SenOS-Brain.
+
 ## Vì sao nên bật
 
 Brain là toàn bộ tri thức SenOS tích luỹ được về bạn và công việc. Nó nằm trên đĩa máy/VPS. Nếu chỉ có một bản, một sự cố là mất sạch. Đồng bộ với GitHub cho bạn:

@@ -2407,7 +2407,7 @@
   "bl.m_access": "Let SenOS see the repo",
   "bl.pick_head": "Pick a repo for the brain sync",
   "bl.pick_foot": "Only private repos you can write to are listed.",
-  "bl.pick_empty": "SenOS sees no private repo yet. Go back and press Create a private repo.",
+  "bl.pick_empty": "SenOS sees no private repo yet. The repo must be Private; still missing? Sign in to GitHub again.",
   "bl.search": "Search repos",
   "bl.info_fast": "Fastest: press Connect GitHub (the same sign-in as the Apps page), then Create a private repo or Pick an existing repo. SenOS syncs right away and turns automatic sync on. To use a token of your own, follow the steps below.",
   "cs.ov_eng_api": "(SenOS MCP)",

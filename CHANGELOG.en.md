@@ -8,6 +8,10 @@ English entries start at 0.66.0. Every earlier release is described in the Vietn
 
 Format: each release is a `## [x.y.z] - date` block, with changes grouped under `### Added / Fixed / Improved / Security`.
 
+## [0.627.2] - 2026-11-27
+### Improved
+- **Picking the brain sync repo is clearer.** When the repo list is empty, SenOS says the repo must be Private and to sign in to GitHub again. The brain sync guide gains a sign-in-without-token section with the three usual reasons a repo does not show. The docs call the Training page by its name.
+
 ## [0.627.1] - 2026-11-27
 ### Fixed
 - **"Let SenOS see repos" opens the right page.** The link pointed at a GitHub App that did not exist, so it showed a 404. SenOS now uses its own SenOS-Brain app. If you signed in to GitHub before, sign out and back in once, then install the app on your brain repo.

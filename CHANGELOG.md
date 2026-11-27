@@ -6,6 +6,10 @@ Lịch sử phiên bản SenOS. Bản mới nhất ở trên cùng. Xem ngay tro
 
 Định dạng: mỗi phiên bản là một khối `## [x.y.z] - ngày`, bên dưới nhóm thay đổi theo `### Thêm mới / Sửa lỗi / Cải thiện / Bảo mật`.
 
+## [0.627.2] - 2026-11-27
+### Cải thiện
+- **Chọn repo đồng bộ brain dễ hiểu hơn.** Khi danh sách repo trống, SenOS nhắc repo phải để Private và cần đăng nhập lại GitHub. Hướng dẫn Đồng bộ brain có thêm mục đăng nhập GitHub không cần token, kèm ba lý do thường gặp khiến repo không hiện. Tài liệu gọi đúng tên trang Rèn luyện.
+
 ## [0.627.1] - 2026-11-27
 ### Sửa lỗi
 - **Nút "Cho SenOS thấy repo" mở đúng trang.** Trước đây link dẫn tới một GitHub App không tồn tại nên ra trang 404. SenOS giờ dùng app riêng SenOS-Brain. Ai đã đăng nhập GitHub từ trước thì đăng xuất rồi đăng nhập lại một lần, sau đó cài app vào repo brain của mình.

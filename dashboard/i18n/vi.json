@@ -2407,7 +2407,7 @@
   "bl.m_access": "Cho SenOS thấy repo",
   "bl.pick_head": "Chọn repo để đồng bộ brain",
   "bl.pick_foot": "Chỉ hiện repo riêng tư bạn có quyền ghi.",
-  "bl.pick_empty": "SenOS chưa thấy repo riêng tư nào. Quay lại bấm Tạo repo riêng tư.",
+  "bl.pick_empty": "SenOS chưa thấy repo riêng tư nào. Repo phải để Private; vẫn không thấy thì đăng nhập lại GitHub.",
   "bl.search": "Tìm repo",
   "bl.info_fast": "Nhanh nhất: bấm Kết nối GitHub (dùng chung với trang Ứng dụng), rồi Tạo repo riêng tư hoặc Chọn repo có sẵn. SenOS đồng bộ ngay và bật tự động. Muốn dùng token riêng thì làm theo các bước dưới.",
   "cs.ov_eng_api": "(MCP SenOS)",

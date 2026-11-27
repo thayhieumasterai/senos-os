@@ -8,6 +8,20 @@ This feature syncs **EVERY brain in the brains folder** (all of them: notes, Wik
 
 Open it at: the **Training** page (**Knowledge** group on the left nav rail), scrolling down to **⇅ Sync brain with GitHub (two-way)**.
 
+## Quick way: sign in to GitHub, no token
+
+Once GitHub is connected on the **Apps** page (**Gateways** group, the **GitHub** card: the sign in with GitHub button, typing the code at `github.com/login/device`), the sync section shows three buttons:
+
+- **Create a private repo**: SenOS opens GitHub's new-repo page with the name and Private already filled in; you press Create.
+- **Pick an existing repo**: pick a private repo you can write to. The repo must be allowed first: press **Let SenOS see the repo** at the bottom of the picker, GitHub opens the install page of the **SenOS-Brain** app, choose **Only select repositories**, tick the brain repo, press Save, then open the picker again.
+- **Use my own token**: the pasted-token way in the 3 steps below.
+
+When the picker says "SenOS sees no private repo yet", it is usually one of three things:
+
+1. **The repo is Public.** SenOS only syncs a brain into a private repo. Change it on GitHub: repo → **Settings** → **Danger zone** → **Change visibility** → **Make private**.
+2. **The repo was not picked for the SenOS-Brain app.** Press **Let SenOS see the repo** and tick it.
+3. **An old GitHub sign-in.** Anyone who signed in before 0.627.1 went through the old app, and that token cannot see repos given to SenOS-Brain. Go to **Gateways → Apps** → the **GitHub** card → **Sign in again**; GitHub's confirmation screen must name SenOS-Brain.
+
 ## Why turn it on
 
 The brain is all the knowledge SenOS has accumulated about you and your work. It sits on the machine's or VPS's disk. With only one copy, one accident loses everything. Syncing with GitHub gives you:
